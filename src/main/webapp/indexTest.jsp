@@ -9,6 +9,6 @@
 <body>
 <a href="psList?method=listAll">후기로 가기</a>
 
-수민이형 바보
+수민이형 바보zzz
 </body>
 </html>
