@@ -8,7 +8,6 @@
 </head>
 <body>
 <a href="psList?method=listAll">후기로 가기</a>
-
-수민이형 바보zzz
+으라차차! 우리 서버는어디로...하나 서버 공유해야하텐
 </body>
 </html>
