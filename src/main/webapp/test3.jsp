@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="psList?method=listAll">후기로 가기</a>
-으라차차! 우리 서버는어디로...하나 서버 공유해야하텐
+safsfsf원중아 안뇽 s2 r3arh2ds
 </body>
 </html>
