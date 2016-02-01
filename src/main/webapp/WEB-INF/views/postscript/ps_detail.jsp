@@ -51,7 +51,7 @@
 		</div>
 		</c:forEach>
 	</div>
-	<!-- !!!!!! 수정중이다!!! -->
+	<!-- !!!!!! 수정중이다-->
 	<div class="ps_detail_body border_style">
 		<input type="imgae" class="nextBtn" src="resources/ps_icon/next.jpg">
 		<input type="image" class="preBtn" src="resources/ps_icon/pre.jpg">
