@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+
+/*To make animated slider and button*/
+
+/*image slider*/
+@keyframes slidy {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+
+body { margin: 0; background-color:#ededed;} 
+div#slider { overflow: hidden; height:500px; }
+div#slider figure#image img { width: 20%; float: left; }
+div#slider figure#image { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 30s slidy infinite; 
+}
+
+/*button twinkle*/
+@keyframes showSweet {
+0% { opacity:0; }
+1% { opacity:1; }
+19% { opacity:1; }
+20% { opacity:0; }
+40% { opacity:0; }
+50% { opacity:0; }
+60% { opacity:0; }
+70% { opacity:0; }
+80% { opacity:0; }
+90% { opacity:0; }
+100% { opacity:0; }
+}
+
+@keyframes showWar {
+0% { opacity:0; }
+10% { opacity:0; }
+26% { opacity:0; }
+27% { opacity:1; }
+44% { opacity:1; }
+45% { opacity:0; }
+70% { opacity:0; }
+80% { opacity:0; }
+90% { opacity:0; }
+100% { opacity:0; }
+}
+
+@keyframes showHot {
+0% { opacity:0; }
+10% { opacity:0; }
+27% { opacity:0; }
+30% { opacity:0; }
+51% { opacity:0; }
+52% { opacity:1; }
+69% { opacity:1; }
+70% { opacity:0; }
+80% { opacity:0; }
+90% { opacity:0; }
+100% { opacity:0; }
+}
+
+@keyframes showCool {
+0% { opacity:0; }
+10% { opacity:0; }
+27% { opacity:0; }
+30% { opacity:0; }
+40% { opacity:0; }
+50% { opacity:0; }
+60% { opacity:0; }
+75% { opacity:0; }
+76% { opacity:1; }
+94% { opacity:1; }
+95% { opacity:0; }
+100% { opacity:0; }
+}
+
+div#slider figure#buttons div#goPlannerSweet { 
+  animation: 30s showSweet infinite; 
+}
+div#slider figure#buttons div#goPlannerWar { 
+  animation: 30s showWar infinite; 
+}
+div#slider figure#buttons div#goPlannerHot { 
+  animation: 30s showHot infinite; 
+}
+div#slider figure#buttons div#goPlannerCool { 
+  animation: 30s showCool infinite; 
+}
+
+/*button*/
+div.goPlanner{
+	/* position: absolute; */
+	position:relative;
+	/* z-index: 5 */
+	/* top:0;
+	left:0; */
+	width:40%;
+	height:70px;
+	/* margin:auto; */
+	/* overflow:visible; */
+	float:left;
+	margin-top:-500px;
+	margin-left:370px;
+	/* top:300px;
+	left:450px; */
+	/* background-color:#69D2E7; */
+	font-weight:600;
+	border-radius:10px;
+	cursor:pointer;
+	text-align:center;
+	line-height:70px;
+	font-size:30pt;
+	color:white;
+	text-shadow: 2px 2px #787878;
+}
+
+/* div.goPlanner:hover{
+	background-color:#1ea2bc;
+	font-size:20pt;
+	color:white;
+	font-weight:600;
+} */

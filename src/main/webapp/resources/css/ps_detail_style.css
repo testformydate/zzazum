@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+.ps_detail_body {position: absolute; top:10%; left:11%; width:80%; }
+.ps_detail_profile{position: absolute; top:500px; left: 1050px; z-index: 10;}
+.ps_detail_profile>img{width:150px; height:150px; border-radius:50%; margin:0px; padding: 0px; border: 1px solid #fff;}
+.ps_detail_parallax{text-align: center;}
+.ps_detail_parallax>img{width:1000px; height: 700px;}
+#ps_detail_part0 {position: relative; top:0px; z-index: 3; opacity:1;}
+#ps_detail_part1 {position: relative; top:0px; z-index: 2; opacity:0;}
+#ps_detail_part2 {position: relative; top:0px; z-index: 1; opacity:0;}
+#ps_detail_part3 {position: relative; top:0px; z-index: 0; opacity:0;}

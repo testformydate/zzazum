@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+/*To make cardlayout*/
+
+.cards{
+	width:80%;
+	margin:auto;
+	background-color:#ededed;
+}
+
+.cardarea{
+	/* width:232px;
+	height:500px;
+	float:left;
+	border: 10px solid #ededed; */
+	-webkit-column-count: 4;
+	-webkit-column-gap: 3px;
+	-webkit-column-fill: auto;
+	-moz-column-count: 4;
+	-moz-column-gap: 3px;
+	-moz-column-fill: auto;
+	column-count: 4;
+	column-gap: 3px;
+	column-fill: auto;
+	background-color:#ededed;
+}
+
+.card{
+	width:230px;
+	margin: 7px 7px;
+	border: 1px solid lightgray;
+	border-radius:7px;
+	background-color:white;
+	display:inline-block;
+	/* box-shadow: 0px 0px 7px #959595; */
+	
+	/* -webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease; */
+}
+
+.cardImg{
+	width:100%;
+	border-top-left-radius:7px;
+	border-top-right-radius:7px;
+}
+
+.cardTitle{
+	font-weight:600;
+	font-family:나눔고딕;
+	padding:7px 0 10px 10px;
+}
+
+.cardBottom{
+	border-top:1px solid lightgray;
+	padding:10px;
+}
+
+.count{
+	vertical-align:top;
+}
+
+.icons{
+	width:15px;
+	margin: 0 10px;
+}
+
+span.count{
+	font-weight:600;
+}
+
+.cardProfile{
+	width:30px;
+	height:30px;
+	border-radius:50%;
+	margin:0 10px;
+}
+
+
+.likeAndComment{
+	display:inline-block;
+	margin-bottom:10px;
+}

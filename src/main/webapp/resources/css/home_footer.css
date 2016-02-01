@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+/*To make footer*/
+
+footer{
+	clear:both;
+	background-color:#7fd9eb;
+	padding: 1em 0;
+}
+
+footer > div{
+	color:white;
+	text-align:center;
+}

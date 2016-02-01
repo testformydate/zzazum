@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+/*To make place for detail infos*/
+
+html, body{
+	height:100%;
+}
+
+div.detailWrapper{
+	position:relative;
+	width:80%;
+	margin:auto;
+/* 	border:1px solid lightgray; */
+}
+
+div.detailWrapperTitle{
+	text-align:center;
+	padding:30px 0;
+	font-family: 나눔고딕;
+	color: #E91E63;
+	font-size:20pt;
+	font-weight:500;
+}
+
+div.detail{
+	background-color:#ededed;
+	height:180px;
+	border-radius:10px;
+	border:2px solid lightgray;
+	margin-bottom:20px;
+	box-shadow:0px 2px 5px #ababab;
+}
+
+img.detailImg{
+	width:180px;
+	height:180px;
+	margin-right:20px;
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
+}
+
+div.detailContents{
+	padding:20px;
+}
+div.detailImgWrapper{
+	float:left;
+}
+
+div.detailTitle{
+	font-size:1.5em;
+	font-family:나눔고딕;
+	font-weight:500;
+	margin: 10px 0;
+	color:#ee5488;
+}
