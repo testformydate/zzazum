@@ -20,4 +20,6 @@ public interface LocationUpadateDaoInter {
 	
 	@Insert("insert into md_location(p_no,p_name,p_addr,p_lat,p_lng,p_image) values(#{p_no},#{p_name},#{p_addr},#{p_lat},#{p_lng},#{p_image})")
 	public boolean insertApiData(LocationVo location);
+	
+	
 }
