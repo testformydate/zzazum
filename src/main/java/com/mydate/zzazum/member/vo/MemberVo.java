@@ -12,7 +12,14 @@ public class MemberVo {
 	private String mem_tel;
 	private String mem_bhday;
 	private String mem_primg;
+	private String mem_love;
 	
+	public String getMem_love() {
+		return mem_love;
+	}
+	public void setMem_love(String mem_love) {
+		this.mem_love = mem_love;
+	}
 	public int getMem_no() {
 		return mem_no;
 	}

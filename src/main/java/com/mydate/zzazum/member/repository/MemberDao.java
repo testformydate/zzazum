@@ -6,7 +6,7 @@ import com.mydate.zzazum.member.vo.MemberVo;
 
 public interface MemberDao {
 
-	//안녕 
+
 	@Insert("insert into md_member(mem_id, mem_nick, mem_pw, mem_tel, mem_bhday, mem_primg) values(#{mem_id}, #{mem_nick}, #{mem_pw}, #{mem_tel}, #{mem_bhday}, #{mem_primg}")
 	public void MemberJoin(MemberVo memberVo);
 	

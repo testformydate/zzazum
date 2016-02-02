@@ -7,11 +7,11 @@ import com.mydate.zzazum.member.vo.MemberVo;
 public class MemberImpl implements MemberInter{
 	
 	@Autowired
-	private MemberDao member;
+	private MemberDao memberDao;
 		
 	@Override
 	public void MemberJoin(MemberVo memberVo) {
-		member.MemberJoin(memberVo);
+		memberDao.MemberJoin(memberVo);
 		
 	}
 }
