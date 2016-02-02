@@ -1,28 +1,29 @@
-package kr.co.mydate.postscript.controller;
+package com.mydate.zzazum.postscript.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
-
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.mydate.postscript.service.PostScriptService;
-import kr.co.mydate.postscript.vo.PostScriptList;
+import com.mydate.zzazum.postscript.service.PostScriptService;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Controller
 @RequestMapping(value="psList")
-public class PostScriptController extends HttpServlet {
+public class PostScriptController{
 	
-	@Autowired
+	
+	@Resource
 	private PostScriptService postScriptService;
 	
 	@RequestMapping(params="method=listAll")
@@ -62,7 +63,7 @@ public class PostScriptController extends HttpServlet {
 			map.put("ps_context", ps.getPs_context());
 			map.put("ps_like", Integer.toString(ps.getPs_like()));
 			map.put("ps_hits", Integer.toString(ps.getPs_hits()));
-			map.put("mb_image", ps.getMb_image());
+			map.put("mb_image", ps.getMem_primg());
 			
 			data.add(map);
 			

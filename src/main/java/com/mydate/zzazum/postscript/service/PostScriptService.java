@@ -1,21 +1,24 @@
-package kr.co.mydate.postscript.service;
+package com.mydate.zzazum.postscript.service;
 
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import kr.co.mydate.postscript.repository.PostScriptDao;
-import kr.co.mydate.postscript.repository.PostScriptDataInter;
-import kr.co.mydate.postscript.vo.Member;
-import kr.co.mydate.postscript.vo.PostScriptList;
+import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.repository.PostScriptDataInter;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Service
+@Component("postScriptService")
 public class PostScriptService {
 	
-	@Autowired
+
+	@Resource
 	private PostScriptDataInter postScriptDataInter;
 	
 	
@@ -33,7 +36,7 @@ public class PostScriptService {
 		return postScriptDataInter.psListCnt();
 	}
 	
-	public ArrayList<Member> psBestPlanner(){
+	public ArrayList<MemberVo> psBestPlanner(){
 
 		return postScriptDataInter.psBestPlanner();
 	}

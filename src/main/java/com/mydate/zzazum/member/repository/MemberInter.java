@@ -4,7 +4,7 @@ import com.mydate.zzazum.member.vo.MemberVo;
 
 public interface MemberInter {
 	
-	void MemberJoin(MemberVo memberVo);
+	void memberJoin(MemberVo memberVo);
 		
 	
 }

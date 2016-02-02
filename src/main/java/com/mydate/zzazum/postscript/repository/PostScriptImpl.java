@@ -1,21 +1,21 @@
-package kr.co.mydate.postscript.repository;
+package com.mydate.zzazum.postscript.repository;
 
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import kr.co.mydate.postscript.vo.Member;
-import kr.co.mydate.postscript.vo.PostScriptList;
+import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Repository
 public class PostScriptImpl implements PostScriptDataInter{
 	
-	@Autowired
-	private PostScriptDao postScriptDao;
-	
+	@Resource
+	private PostScriptDao postScriptDao;	
 	@Override
 	public ArrayList<PostScriptList> psListAll() {
 		ArrayList<PostScriptList> list = postScriptDao.psListAll();
@@ -35,8 +35,8 @@ public class PostScriptImpl implements PostScriptDataInter{
 	}
 	
 	@Override
-	public ArrayList<Member> psBestPlanner() {
-		ArrayList<Member> list = postScriptDao.psBestPlanner();
+	public ArrayList<MemberVo> psBestPlanner() {
+		ArrayList<MemberVo> list = postScriptDao.psBestPlanner();
 		return list;
 	}
 	

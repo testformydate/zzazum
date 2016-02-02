@@ -1,17 +1,16 @@
-package kr.co.mydate.postscript.repository;
+package com.mydate.zzazum.postscript.repository;
 
 import java.util.ArrayList;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.ui.Model;
 
-import kr.co.mydate.postscript.vo.Member;
-import kr.co.mydate.postscript.vo.PostScriptList;
+import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 public interface PostScriptDataInter {
 	ArrayList<PostScriptList> psListAll() throws DataAccessException;
 	ArrayList<PostScriptList> psListPart(PostScriptList bean);
 	String psListCnt();
-	ArrayList<Member> psBestPlanner();
+	ArrayList<MemberVo> psBestPlanner();
 	ArrayList<PostScriptList> psBest();
 }

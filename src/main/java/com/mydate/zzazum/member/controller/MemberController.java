@@ -1,6 +1,7 @@
 package com.mydate.zzazum.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,6 +13,7 @@ import com.mydate.zzazum.member.vo.MemberVo;
 public class MemberController {
 	
 	@Autowired
+	@Qualifier("memberService")
 	private MemberService memberService;
 	
 	@RequestMapping("member/memberinsview")

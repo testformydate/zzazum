@@ -1,6 +1,7 @@
 package com.mydate.zzazum.member.vo;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class MemberVo {
@@ -11,8 +12,16 @@ public class MemberVo {
 	private String mem_pw;
 	private String mem_tel;
 	private String mem_bhday;
-	private String mem_primg;
+	private MultipartFile mem_primg;
 	private String mem_love;
+	
+	public void setMem_primg(MultipartFile mem_primg) {
+		this.mem_primg = mem_primg;
+	}
+	
+	public MultipartFile getMem_primg() {
+		return mem_primg;
+	}
 	
 	public String getMem_love() {
 		return mem_love;
@@ -56,11 +65,6 @@ public class MemberVo {
 	public void setMem_bhday(String mem_bhday) {
 		this.mem_bhday = mem_bhday;
 	}
-	public String getMem_primg() {
-		return mem_primg;
-	}
-	public void setMem_primg(String mem_primg) {
-		this.mem_primg = mem_primg;
-	}
+
 	
 }

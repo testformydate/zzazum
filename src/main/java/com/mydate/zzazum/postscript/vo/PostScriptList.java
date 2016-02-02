@@ -1,10 +1,10 @@
-package kr.co.mydate.postscript.vo;
+package com.mydate.zzazum.postscript.vo;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class PostScriptList {
-	private String ps_email, ps_location, ps_date, ps_image, ps_title, ps_context, mb_image;
+	private String ps_email, ps_location, ps_date, ps_image, ps_title, ps_context, mem_primg;
 	private int ps_no, ps_psno, ps_hour, ps_like, ps_hits, track_Num, track_Count;
 	
 
@@ -20,11 +20,11 @@ public class PostScriptList {
 	public void setTrack_Count(int track_Count) {
 		this.track_Count = track_Count;
 	}
-	public String getMb_image() {
-		return mb_image;
+	public String getMem_primg() {
+		return mem_primg;
 	}
-	public void setMb_image(String mb_image) {
-		this.mb_image = mb_image;
+	public void setMem_primg(String mem_primg) {
+		this.mem_primg = mem_primg;
 	}
 	public String getPs_email() {
 		return ps_email;
