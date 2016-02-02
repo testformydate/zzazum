@@ -12,17 +12,16 @@ public class MemberVo {
 	private String mem_pw;
 	private String mem_tel;
 	private String mem_bhday;
-	private MultipartFile mem_primg;
+	private String mem_primg;
 	private String mem_love;
 	
-	public void setMem_primg(MultipartFile mem_primg) {
-		this.mem_primg = mem_primg;
-	}
 	
-	public MultipartFile getMem_primg() {
+	public String getMem_primg() {
 		return mem_primg;
 	}
-	
+	public void setMem_primg(String mem_primg) {
+		this.mem_primg = mem_primg;
+	}
 	public String getMem_love() {
 		return mem_love;
 	}

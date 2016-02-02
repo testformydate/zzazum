@@ -31,6 +31,7 @@ public class PostScriptController{
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("psBestPlanner", postScriptService.psBestPlanner());
+		System.out.println(postScriptService.psBestPlanner());
 		model.addObject("psListAll", postScriptService.psListAll());
 		model.addObject("psBest", postScriptService.psBest());
 		model.addObject("psListSize", postScriptService.psListCnt());

@@ -23,7 +23,7 @@
 		</div>
 		<div class="ps_planner">
 		<c:forEach var="bp" items="${psBestPlanner }">
-			<img class="card_click" src="resources/ps_images/profile/${bp.mb_image }">
+			<img class="card_click" src="resources/ps_images/profile/${bp.mem_primg }">
 		</c:forEach>
 		</div>
 	<div class="ps_list_body ">
@@ -36,7 +36,7 @@
 			<div class="ps_card_body card_click card_detail_click" id="${list.ps_no }">
 					<img class="card_best_image" src="resources/ps_images/postscirpt/${psB.ps_image }">
 					<div class="ps_card_profile">
-						<img src="resources/ps_images/profile/${psB.mb_image }">
+						<img src="resources/ps_images/profile/${psB.mem_primg}">
 					</div>
 				<div class="ps_card_content">
 						<div class="ps_card_day">${psB.ps_date }</div>
@@ -66,7 +66,7 @@
 			<div class="ps_card_body card_click card_detail_click" id="${list.ps_no }">
 					<img class="card_all_image" src="resources/ps_images/postscirpt/${list.ps_image }">
 					<div class="ps_card_profile">
-						<img src="resources/ps_images/profile/${list.mb_image }">
+						<img src="resources/ps_images/profile/${list.mem_primg }">
 					</div>
 				<div class="ps_card_content">
 						<div class="ps_card_day">${list.ps_date }</div>
