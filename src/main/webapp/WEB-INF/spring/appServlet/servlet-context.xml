@@ -26,6 +26,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 삭제: 광민 2016.2.3 01:50
 	<context:component-scan base-package="kr.co.mydate" />
+	 -->
 	<context:component-scan base-package="com.mydate.zzazum" />
 </beans:beans>

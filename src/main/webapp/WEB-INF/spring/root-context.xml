@@ -3,14 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- db선언 -->
+	<!-- Bean 정리 및 SqlSessionFactory 통합, 주석 정리: 광민 2016.02.03 01:30 -->
+	
+	<!-- To indicate database properties -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
    		<property name="locations">
    			<value>classpath:config/db.properties</value>
    		</property>
    </bean>
-
    
+	<!-- Shared Resources -->
    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
    		<property name="driverClass" value="${driver}"></property>
    		<property name="url" value="${url}"></property>
@@ -18,39 +20,38 @@
    		<property name="password" value="${password}"></property>
    </bean>
    
-   <bean id="sqlSessionFactoryPostScript" class="org.mybatis.spring.SqlSessionFactoryBean">
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
    		<property name="dataSource" ref="dataSource"></property>
    </bean>
-   
-   
+   <!-- 싱글톤 형식으로 여러번 생성되도 시스템에 영향을 미치지 않으므로 공유 자원으로 사용 -->
+  	<!-- jusqu'a ici -->
+  	
+  	<!-- Dao를 공유자원에 연결시켜 매핑한다; 실질적으로 query를 데이터 베이스에 던져줌 -->
    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
    		<property name="mapperInterface" value="com.mydate.zzazum.postscript.repository.PostScriptDao"></property>
-   		<property name="sqlSessionFactory" ref="sqlSessionFactoryPostScript"></property>
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
    </bean>
    
-   <bean id="sqlSessionFactoryMember" class="org.mybatis.spring.SqlSessionFactoryBean">
-   		<property name="dataSource" ref="dataSource"></property>
-   </bean>
-  
    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
    		<property name="mapperInterface" value="com.mydate.zzazum.member.repository.MemberDao"></property>
-   		<property name="sqlSessionFactory" ref="sqlSessionFactoryMember"></property>
-   </bean>
-   
-   <!-- Location MVC Database Access Object -->
-   <bean id="sqlSessionFactoryLocation" class="org.mybatis.spring.SqlSessionFactoryBean">
-   		<property name="dataSource" ref="dataSource"></property>
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
    </bean>
    
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
    		<property name="mapperInterface" value="com.mydate.zzazum.location.repository.LocationUpdateDao"></property>
-   		<property name="sqlSessionFactory" ref="sqlSessionFactoryLocation"></property>
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mydate.zzazum.member.repository.MemberTestDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 	<!-- jusqu'a ici -->
 	
+	<!-- 삭제: 광민 2016.2.3 01:50
 	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
     	<property name="contentType" value="text/html;charset=utf-8"/>
     </bean>
-   
+    -->
 		
 </beans>
