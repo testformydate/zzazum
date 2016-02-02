@@ -37,7 +37,17 @@
    		<property name="sqlSessionFactory" ref="sqlSessionFactoryMember"></property>
    </bean>
    
-
+   <!-- Location MVC Database Access Object -->
+   <bean id="sqlSessionFactoryLocation" class="org.mybatis.spring.SqlSessionFactoryBean">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="mapperInterface" value="com.mydate.zzazum.location.repository.LocationUpdateDao"></property>
+   		<property name="sqlSessionFactory" ref="sqlSessionFactoryLocation"></property>
+    </bean>
+	<!-- jusqu'a ici -->
+	
 	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
     	<property name="contentType" value="text/html;charset=utf-8"/>
     </bean>

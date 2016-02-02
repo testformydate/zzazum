@@ -1,4 +1,4 @@
-package com.mydate.zzazum.model.service;
+package com.mydate.zzazum.location.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mydate.zzazum.model.vo.LocationVo;
+import com.mydate.zzazum.location.vo.LocationVo;
 
 @Service
 public class ApiLoadImpl implements ApiLoadInter {
