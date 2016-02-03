@@ -17,8 +17,6 @@ public class MemberTestController {
 	@RequestMapping("membertest")
 	public String memberView(){
 		
-		
-		
 		return "member/membertest";
 	}
 	

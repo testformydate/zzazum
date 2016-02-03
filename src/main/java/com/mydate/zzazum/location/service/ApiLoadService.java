@@ -7,19 +7,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mydate.zzazum.location.vo.LocationVo;
 
-
+@Service
 public class ApiLoadService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApiLoadService.class);
@@ -37,11 +35,11 @@ public class ApiLoadService {
 			
 			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2BsrXKXWBJD%2FbZnmOXnC%2FIk93WKZ%2FjkbHa%2FLsWttU6DmcbM%2B7fTiMHspZoCn6QbcJjXZ4APlra0SEsh%2FccvJ0zg%3D%3D"); /*Service Key*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("120", "UTF-8")); /*ÇÑ ÆäÀÌÁö °á°ú ¼ö*/
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*ÆäÀÌÁö ¹øÈ£*/
-	        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("B", "UTF-8")); /*Á¤·Ä¼ø¼­*/
-	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*OS ±¸ºÐ*/
-	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("°øÀ¯ÀÚ¿øÆ÷ÅÐ", "UTF-8")); /*¾îÇÃÀÌ¸§*/
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("120", "UTF-8")); /*ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½*/
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£*/
+	        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("B", "UTF-8")); /*ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½*/
+	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*OS ï¿½ï¿½ï¿½ï¿½*/
+	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½*/
 	        
 	        URL url = new URL(urlBuilder.toString());
 	        
@@ -53,7 +51,7 @@ public class ApiLoadService {
 	        LOGGER.info("Response code: " + conn.getResponseCode());
 	        BufferedReader rd;
 	        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-	            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));	//ÇÑ±ÛÀº ÀÎÄÚµùÀ» ²À ³Ö¾îÁÙ°Í!!!
+	            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));	//ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ù°ï¿½!!!
 	        } else {
 	            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
 	        }
@@ -78,6 +76,7 @@ public class ApiLoadService {
 	        	location.setP_lat(items.getJSONObject(i).getDouble("mapy"));
 	        	location.setP_lng(items.getJSONObject(i).getDouble("mapx"));
 	        	/*location.setP_image(items.getJSONObject(i).getString("firstimage"));*/
+	        	System.out.println(location.getP_name());
 	        	list.add(location);
 	        }
 	        /*ArrayList<LocationVo> list = new ArrayList<LocationVo>();
