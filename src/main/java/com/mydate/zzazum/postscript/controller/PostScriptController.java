@@ -43,9 +43,9 @@ public class PostScriptController{
 	@RequestMapping(params="method=listPart")
 	@ResponseBody
 	public List<Map<String, String>> psListPart(@RequestParam("track_Num") int track_Num, @RequestParam("track_Count") int track_Count){
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, String> map = null;
-		List<Map<String, String>> data = new ArrayList<>();
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 		
 		PostScriptList dto = new PostScriptList();
 		dto.setTrack_Num(track_Num);
