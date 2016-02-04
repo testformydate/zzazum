@@ -32,4 +32,11 @@ public class MemberController {
 		return "redirect:/home";
 	}
 	
+	@RequestMapping("memberlogview")
+	public String memberlogView(){
+		
+		return "member/member_log";
+	}
+	
+	
 }

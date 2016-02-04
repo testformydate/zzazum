@@ -46,7 +46,7 @@
 						</ul>
 					</div>
 					<div style="float:right;margin:5px;font-size:10pt;">
-							<div class="member"><a href="#">로그인&nbsp;</a></div>
+							<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
 							<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
 					</div>
 			</div>
