@@ -1,6 +1,6 @@
 package com.mydate.zzazum.location.repository;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -12,29 +12,25 @@ import com.mydate.zzazum.location.vo.LocationVo;
 public class LocationDataImpl implements LocationDataInter{
 	
 	@Autowired
-	private LocationUpdateDao locationUpdateDao;
+	private LocationDao locationUpdateDao;
 	
 	@Override
 	public boolean insertApiData(LocationVo location) throws DataAccessException {
-		boolean b = locationUpdateDao.insertApiData(location);
-		return b;
+		return locationUpdateDao.insertApiData(location);
 	}
 	
 	@Override
-	public List<LocationVo> selectAllData() throws DataAccessException {
-		List<LocationVo> list = locationUpdateDao.selectAllData();
-		return list;
+	public ArrayList<LocationVo> selectAllData() throws DataAccessException {
+		return locationUpdateDao.selectAllData();
 	}
 	
 	@Override
 	public String selectMaxNo() throws DataAccessException {
-		String maxNo = locationUpdateDao.selectMaxNo();
-		return null;
+		return locationUpdateDao.selectMaxNo();
 	}
 	
 	@Override
-	public List<LocationVo> selectSearchData(LocationVo location) throws DataAccessException {
-		List<LocationVo> list = locationUpdateDao.selectSearchData(location);
-		return null;
+	public ArrayList<LocationVo> selectSearchData(LocationVo location) throws DataAccessException {
+		return locationUpdateDao.selectSearchData(location);
 	}
 }

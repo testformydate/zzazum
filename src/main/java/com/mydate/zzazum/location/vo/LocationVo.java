@@ -1,7 +1,7 @@
 package com.mydate.zzazum.location.vo;
 
 public class LocationVo {
-	private int p_no;
+	private int p_id;
 	private String p_name, p_category, p_addr, p_image;
 	private Double p_lng, p_lat;
 	
@@ -13,10 +13,10 @@ public class LocationVo {
 		this.p_image = p_image;
 	}
 	public int getP_no() {
-		return p_no;
+		return p_id;
 	}
-	public void setP_no(int p_no) {
-		this.p_no = p_no;
+	public void setP_no(int p_id) {
+		this.p_id = p_id;
 	}
 	public Double getP_lat() {
 		return p_lat;

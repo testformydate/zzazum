@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mydate.zzazum.location.service.ApiLoadService;
+import com.mydate.zzazum.location.service.LocationDataService;
 import com.mydate.zzazum.location.vo.LocationVo;
 
 @Controller
@@ -19,16 +19,15 @@ public class PlannerController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PlannerController.class);
 	
 	@Autowired
-	private ApiLoadService service;
+	private LocationDataService service;
 	
 	@RequestMapping(value = "/planner")
 	public ModelAndView planner() throws IOException{
 		ModelAndView modelAndView = new ModelAndView();
 		
-		ArrayList<LocationVo> list = service.apiLoad();
+		ArrayList<LocationVo> list = service.selectAllData();
 		System.out.println(list);
-//		modelAndView.addObject("list", list);
-		
+		modelAndView.addObject("list", list);
 		modelAndView.setViewName("planner");
 		return modelAndView;
 	}

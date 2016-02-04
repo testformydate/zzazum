@@ -38,7 +38,7 @@
    </bean>
    
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-   		<property name="mapperInterface" value="com.mydate.zzazum.location.repository.LocationUpdateDao"></property>
+   		<property name="mapperInterface" value="com.mydate.zzazum.location.repository.LocationDao"></property>
    		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 	

@@ -1,24 +1,23 @@
 package com.mydate.zzazum.location.repository;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.location.vo.LocationVo;
 
-public interface LocationUpdateDao {
+public interface LocationDao {
 	
-	@Select("select * from md_locaiton")
-	public List<LocationVo> selectAllData();
+	@Select("select * from md_location")
+	public ArrayList<LocationVo> selectAllData();
 	
 	@Select("select * from md_location where like concat('%',#{p_name},'%')")
-	public List<LocationVo>  selectSearchData(LocationVo location);
+	public ArrayList<LocationVo>  selectSearchData(LocationVo location);
 	
 	@Select("select max(p_no) from md_location")
 	public String selectMaxNo();
 	
-	@Insert("insert into md_location(p_no,p_name,p_addr,p_lat,p_lng,p_image) values(#{p_no},#{p_name},#{p_addr},#{p_lat},#{p_lng},#{p_image})")
+	@Insert("insert into md_location(p_id,p_name,p_addr,p_lat,p_lng,p_image) values(#{p_id},#{p_name},#{p_addr},#{p_lat},#{p_lng},#{p_image})")
 	public boolean insertApiData(LocationVo location);
 }

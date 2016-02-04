@@ -60,7 +60,10 @@ function initialize() {
 			<div class="step" id="step3">
 				<div class="stepTitle">장소</div>
 				<div class="stepContents">
-					<div class="stepContent">이런카페</div>
+					<c:forEach var="l" items="${list}" >
+						<div>${l.p_name}</div>
+					</c:forEach>
+					<!-- <div class="stepContent">이런카페</div>
 					<div class="stepContent">저런카페</div>
 					<div class="stepContent">핫한카페</div>
 					<div class="stepContent">쿨한카페</div>
@@ -149,7 +152,7 @@ function initialize() {
 					<div class="stepContent">저런카페</div>
 					<div class="stepContent">핫한카페</div>
 					<div class="stepContent">쿨한카페</div>
-					<div class="stepContent">쩌는카페</div>
+					<div class="stepContent">쩌는카페</div> -->
 				</div>
 			</div>
 			<div class="step" id="step4">
