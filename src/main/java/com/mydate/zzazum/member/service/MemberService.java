@@ -4,7 +4,6 @@ import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mydate.zzazum.member.repository.MemberDao;
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.member.vo.MemberVo;
 
@@ -15,10 +14,15 @@ public class MemberService {
 	@Autowired
 	private MemberInter memberInter;
 	
-	public boolean memberJoin(MemberVo memberVo){
+	public boolean memberIns(MemberVo memberVo){
 		boolean b = false;
-		b = memberInter.memberJoin(memberVo);
+		b = memberInter.memberIns(memberVo);
 		return b;
+	}
+	
+	public MemberVo memberLog(MemberVo memberVo){
+		
+		return memberInter.memberLog(memberVo);
 	}
 	
 	public MemberVo memberInfo(String mem_id) {

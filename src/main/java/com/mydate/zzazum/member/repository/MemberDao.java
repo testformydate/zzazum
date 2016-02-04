@@ -12,7 +12,10 @@ import com.mydate.zzazum.member.vo.MemberVo;
 public interface MemberDao {
 
 	@Insert("insert into md_member(mem_id, mem_nick, mem_pw, mem_tel, mem_bhday) values(#{mem_id}, #{mem_nick}, #{mem_pw}, #{mem_tel}, #{mem_bhday})")
-	public boolean memberJoin(MemberVo memberVo);
+	public boolean memberIns(MemberVo memberVo);
+	
+	@Select("select * from md_member where mem_id=#{mem_id} and mem_pw=#{mem_pw}")
+	public MemberVo memberLog(MemberVo memberVo);
 	
 	@Select("select mem_id, mem_nick, mem_pw, mem_tel, mem_bhday from md_member where md_id=#{mem_id}")
 	public MemberVo memberInfo(String mem_id);

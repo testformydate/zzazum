@@ -1,6 +1,11 @@
+<%@page import="org.apache.catalina.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
+<%
+	String mem_id = (String)session.getAttribute("mem_id");
+	
+%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <html>
 <head>
@@ -10,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home_slider.css" />">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home_search.css" />">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home_footer.css" />">
+	
 	<title>MyDate - Find Your Own Date</title>
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -46,8 +52,18 @@
 						</ul>
 					</div>
 					<div style="float:right;margin:5px;font-size:10pt;">
+					<%	if(mem_id==null){
+						
+					 %>
 							<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
 							<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
+							<%}else{
+								%>
+								<div class="member"><%=mem_id %>님 환영합니다.</div>
+								<div class="member"><a href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
+								<div class="member"><a href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
+								
+							<%} %>
 					</div>
 			</div>
 		</header>

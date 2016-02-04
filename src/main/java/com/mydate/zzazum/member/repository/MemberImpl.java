@@ -12,11 +12,17 @@ public class MemberImpl implements MemberInter{
 	private MemberDao memberDao;
 		
 	@Override
-	public boolean memberJoin(MemberVo memberVo) {
+	public boolean memberIns(MemberVo memberVo) {
 		boolean b = false;
-		b = memberDao.memberJoin(memberVo);
+		b = memberDao.memberIns(memberVo);
 		System.out.println(b);
 		return b;
+	}
+	
+	@Override
+	public MemberVo memberLog(MemberVo memberVo) {
+		
+		return memberDao.memberLog(memberVo);
 	}
 	
 	@Override
