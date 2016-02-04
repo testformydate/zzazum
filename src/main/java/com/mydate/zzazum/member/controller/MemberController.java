@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mydate.zzazum.member.service.MemberService;
 import com.mydate.zzazum.member.vo.MemberVo;
@@ -20,15 +21,15 @@ public class MemberController {
 	@RequestMapping("memberinsview")
 	public String MemberinsView(){
 		
-		return "member/member_view";
+		return "member/member_ins";
 	}
 	
-	@RequestMapping("memberins")
+	@RequestMapping(value = "memberins", method=RequestMethod.POST)
 	public String Memberins(MemberVo memberVo){
 		
 		memberService.memberJoin(memberVo);
 		
-		return "home";
+		return "redirect:/home";
 	}
 	
 }

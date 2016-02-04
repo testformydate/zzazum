@@ -11,7 +11,7 @@
 <body>
 	<p class='mempage'>회원가입</p>
 <div class="Registro">
-<form action="memberins" autocomplete="off">
+<form action="memberins" autocomplete="off" method="post">
 <input type="text" name="mem_id" placeholder="아이디(이메일)를 입력해주세요" autofocus />
 <input type="text" name="mem_nick" placeholder="닉네임을 입력하세요(2자~8자)" />
 <input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(8~20자)" />
