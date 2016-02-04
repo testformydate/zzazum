@@ -42,10 +42,6 @@
    		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 	
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.mydate.zzazum.member.repository.MemberTestDao"></property>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
 	<!-- jusqu'a ici -->
 	
 	<!-- 삭제: 광민 2016.2.3 01:50

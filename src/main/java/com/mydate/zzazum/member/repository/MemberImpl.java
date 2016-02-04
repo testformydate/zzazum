@@ -12,8 +12,30 @@ public class MemberImpl implements MemberInter{
 	private MemberDao memberDao;
 		
 	@Override
-	public void memberJoin(MemberVo memberVo) {
-		memberDao.memberJoin(memberVo);
-		
+	public boolean memberJoin(MemberVo memberVo) {
+		boolean b = false;
+		b = memberDao.memberJoin(memberVo);
+		System.out.println(b);
+		return b;
+	}
+	
+	@Override
+	public MemberVo memberInfo(String mem_id) {
+		MemberVo member = memberDao.memberInfo(mem_id);
+		return member;
+	}
+	
+	@Override
+	public boolean memberModify(MemberVo member) {
+		boolean b = false;
+		b =	memberDao.memberModify(member);
+		return b;
+	}
+	
+	@Override
+	public boolean memberDel(String mem_id) {
+		boolean b = false;
+		b = memberDao.memberDel(mem_id);
+		return b;
 	}
 }

@@ -10,24 +10,25 @@ import com.mydate.zzazum.member.vo.MemberVo;
 
 
 @Controller
+@RequestMapping("member")
 public class MemberController {
 	
 	@Autowired
 	@Qualifier("memberService")
 	private MemberService memberService;
 	
-	@RequestMapping("member/memberinsview")
+	@RequestMapping("memberinsview")
 	public String MemberinsView(){
 		
-		return "/member/member_view";
+		return "member/member_view";
 	}
 	
-	@RequestMapping("member/memberins")
+	@RequestMapping("memberins")
 	public String Memberins(MemberVo memberVo){
 		
 		memberService.memberJoin(memberVo);
 		
-		return "redirect:/home";
+		return "home";
 	}
 	
 }

@@ -15,7 +15,26 @@ public class MemberService {
 	@Autowired
 	private MemberInter memberInter;
 	
-	public void memberJoin(MemberVo memberVo){
-		memberInter.memberJoin(memberVo);
+	public boolean memberJoin(MemberVo memberVo){
+		boolean b = false;
+		b = memberInter.memberJoin(memberVo);
+		return b;
+	}
+	
+	public MemberVo memberInfo(String mem_id) {
+		MemberVo member = memberInter.memberInfo(mem_id);
+		return member;
+	}
+	
+	public boolean memberModify(MemberVo member) {
+		boolean b = false;
+		b =	memberInter.memberModify(member);
+		return b;
+	}
+	
+	public boolean memberDel(String mem_id) {
+		boolean b = false;
+		b = memberInter.memberDel(mem_id);
+		return b;
 	}
 }
