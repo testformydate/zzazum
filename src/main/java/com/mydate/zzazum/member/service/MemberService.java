@@ -25,6 +25,16 @@ public class MemberService {
 		return memberInter.memberLog(memberVo);
 	}
 	
+	public int memberUp(MemberVo memberVo){
+		
+		return memberInter.memberUp(memberVo);
+	}
+	
+	public int memberDel(String mem_id){
+		
+		return memberInter.memberDel(mem_id);
+	}
+	
 	public MemberVo memberInfo(String mem_id) {
 		MemberVo member = memberInter.memberInfo(mem_id);
 		return member;
@@ -36,9 +46,9 @@ public class MemberService {
 		return b;
 	}
 	
-	public boolean memberDel(String mem_id) {
+	/*public boolean memberDel(String mem_id) {
 		boolean b = false;
 		b = memberInter.memberDel(mem_id);
 		return b;
-	}
+	}*/
 }

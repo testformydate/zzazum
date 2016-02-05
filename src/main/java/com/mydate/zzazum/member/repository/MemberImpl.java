@@ -26,6 +26,18 @@ public class MemberImpl implements MemberInter{
 	}
 	
 	@Override
+	public int memberUp(MemberVo memberVo) {
+		
+		return memberDao.memberUp(memberVo);
+	}
+	
+	@Override
+	public int memberDel(String mem_id) {
+		
+		return memberDao.memberDel(mem_id);
+	}
+	
+	@Override
 	public MemberVo memberInfo(String mem_id) {
 		MemberVo member = memberDao.memberInfo(mem_id);
 		return member;
@@ -38,10 +50,10 @@ public class MemberImpl implements MemberInter{
 		return b;
 	}
 	
-	@Override
+	/*@Override
 	public boolean memberDel(String mem_id) {
 		boolean b = false;
 		b = memberDao.memberDel(mem_id);
 		return b;
-	}
+	}*/
 }
