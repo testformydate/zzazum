@@ -18,8 +18,20 @@
 			$(".searchBtn").on("click", function(){
 				$(this).css("background-color","#c1134e");
 			});
+			// to fade in on page load
+		    $("body").css("display", "none");
+		    $("body").fadeIn(400); 
+		    // to fade out before redirect
+		    $('a').click(function(e){
+		        redirect = $(this).attr('href');
+		        e.preventDefault();
+		        $('body').fadeOut(400, function(){
+		            document.location.href = redirect
+		        });
+		    });
 		});
 </script>
+<title>MyDate - Find Your Own Date</title>
 <header class="navi-wrapper">
 		<div class="navigator">
 			<div style="float:left;">

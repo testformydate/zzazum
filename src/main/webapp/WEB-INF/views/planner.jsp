@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_search.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_selection.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_detail.css" />">
-<title>Insert title here</title>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBfAaETQowRXNSOloGWhPhclip16_Bwdfg"></script>
 <script type="text/javascript">
 function initialize() {
@@ -41,10 +40,10 @@ function initialize() {
 			<div class="step" id="step1">
 				<div class="stepTitle">카테고리</div>
 				<div class="stepContents">
-					<div class="stepContent">카&nbsp;&nbsp;&nbsp;페</div>
-					<div class="stepContent">전시&nbsp;/&nbsp;공연</div>
-					<div class="stepContent">액&nbsp;티&nbsp;비&nbsp;티</div>
-					<div class="stepContent">영&nbsp;&nbsp;&nbsp;화</div>
+					<div class="stepContent"><a href="#">카&nbsp;&nbsp;&nbsp;페</a></div>
+					<div class="stepContent"><a href="#">전시&nbsp;/&nbsp;공연</a></div>
+					<div class="stepContent"><a href="#">액&nbsp;티&nbsp;비&nbsp;티</a></div>
+					<div class="stepContent"><a href="#">영&nbsp;&nbsp;&nbsp;화</a></div>
 				</div>
 			</div>
 			<div class="step" id="step2">
@@ -61,7 +60,7 @@ function initialize() {
 				<div class="stepTitle">장소</div>
 				<div class="stepContents">
 					<c:forEach var="l" items="${list}" >
-						<div>${l.p_name}</div>
+						<div class="stepContent">${l.p_name}</div>
 					</c:forEach>
 					<!-- <div class="stepContent">이런카페</div>
 					<div class="stepContent">저런카페</div>
@@ -157,8 +156,8 @@ function initialize() {
 			</div>
 			<div class="step" id="step4">
 				<div id="googleMapTitle" class="stepTitle">위치</div>
-				<div class="stepContents">
-					<div id="googleMap" class="stepContent"></div>
+				<div class="googleMapWrapper">
+					<div id="googleMap"></div>
 				</div>
 			</div>
 		</div>

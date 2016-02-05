@@ -31,4 +31,10 @@ public class PlannerController {
 		modelAndView.setViewName("planner");
 		return modelAndView;
 	}
+	
+	public ModelAndView plannerSearch() throws IOException{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		return modelAndView;
+	}
 }
