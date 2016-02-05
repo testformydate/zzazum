@@ -94,7 +94,7 @@ public class MemberController {
 	}
 	
 	//회원 정보 수정을 위한 컨트롤러
-	@RequestMapping("memberup")
+	@RequestMapping(value = "memberup", method = RequestMethod.POST)
 	public void memberUp(MemberVo memberVo, HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		memberService.memberUp(memberVo);

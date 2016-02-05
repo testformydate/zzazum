@@ -15,7 +15,7 @@
 <input type="text" name="mem_id" placeholder="아이디(이메일)를 입력해주세요" autofocus />
 <input type="text" name="mem_nick" placeholder="닉네임을 입력하세요(2자~8자)" />
 <input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(8~20자)" />
-<input type="password" name="passwordOk" placeholder="비밀번호를 한번 더 입력하세요" />
+<input type="password" name="mem_pwok" placeholder="비밀번호를 한번 더 입력하세요" />
 <input type="text" name="mem_tel" placeholder="휴대폰번호를  입력하세요" />
 <input type="text" name="mem_bhday" placeholder="생년월일을 - 없이 입력하세요" />
 <input type="submit" value="전송">
