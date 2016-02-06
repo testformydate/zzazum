@@ -2,36 +2,37 @@ package com.mydate.zzazum.postscript.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.postscript.service.PostScriptService;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Controller
-@RequestMapping(value="psList")
-public class PostScriptController{
+public class PostScriptController extends HttpServlet {
 	
-	
-	@Resource
+	@Autowired
 	private PostScriptService postScriptService;
 	
-	@RequestMapping(params="method=listAll")
+	@RequestMapping(value="psListAll")
 	public ModelAndView psListAll(){
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("psBestPlanner", postScriptService.psBestPlanner());
-		System.out.println(postScriptService.psBestPlanner());
 		model.addObject("psListAll", postScriptService.psListAll());
 		model.addObject("psBest", postScriptService.psBest());
 		model.addObject("psListSize", postScriptService.psListCnt());
@@ -40,7 +41,7 @@ public class PostScriptController{
 		return model;	
 	}
 	
-	@RequestMapping(params="method=listPart")
+	@RequestMapping(value="psListPart")
 	@ResponseBody
 	public List<Map<String, String>> psListPart(@RequestParam("track_Num") int track_Num, @RequestParam("track_Count") int track_Count){
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -72,7 +73,7 @@ public class PostScriptController{
 		return data;
 	}
 	
-	@RequestMapping(params="method=listDetail")
+	@RequestMapping(value="psListDetail")
 	public ModelAndView psListDetail(){
 		ModelAndView model = new ModelAndView();
 		
@@ -83,6 +84,26 @@ public class PostScriptController{
 		model.setViewName("postscript/ps_detail");
 		
 		return model;	
+	}
+	
+	@RequestMapping(value="psListInsert")
+	public ModelAndView psListInsert(){
+		ModelAndView model = new ModelAndView();
+		
+		model.setViewName("postscript/ps_insert");
+		
+		return model;
+	}
+	
+	@RequestMapping(value="fileInsert",method = RequestMethod.POST)
+	@ResponseBody
+	public String fileInsert(MultipartHttpServletRequest req){
+		//postScriptService.psImage(request);
+		Iterator<String> itr = req.getFileNames();
+		System.out.println(itr);
+		System.out.println(req.getFileNames());
+		System.out.println(itr.hasNext());
+		return "success";
 	}
 
 }

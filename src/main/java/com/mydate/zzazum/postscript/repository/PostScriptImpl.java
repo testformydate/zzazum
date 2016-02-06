@@ -46,4 +46,10 @@ public class PostScriptImpl implements PostScriptDataInter{
 		return list;
 	}
 	
+	@Override
+	public int psImage(String pi_image) {
+		int result = postScriptDao.psImage(pi_image);
+		return result;
+	}
+	
 }

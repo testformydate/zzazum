@@ -2,6 +2,7 @@ package com.mydate.zzazum.postscript.repository;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +30,8 @@ public interface PostScriptDao {
 	
 	@Select("select * from vmd_psbest")
 	public ArrayList<PostScriptList> psBest();
+	
+	@Insert("insert into md_image(pi_image) values(#{pi_image})")
+	public int psImage(String pi_image);
 	
 }

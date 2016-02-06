@@ -13,4 +13,5 @@ public interface PostScriptDataInter {
 	String psListCnt();
 	ArrayList<MemberVo> psBestPlanner();
 	ArrayList<PostScriptList> psBest();
+	int psImage(String pi_image);
 }
