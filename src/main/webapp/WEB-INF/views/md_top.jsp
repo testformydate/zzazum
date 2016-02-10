@@ -38,7 +38,7 @@
 				<div class="logo"><a href="${path}/home"><img src="">MyDate</a></div>
 				<ul class="naviul">
 					<li class="navili"><a href="${path}/planner">내가 짜줌</a></li>
-					<li class="navili"><a href="${path}/psList?method=listAll">다녀왔어요</a></li>
+					<li class="navili"><a href="${path}/psListlistAll">다녀왔어요</a></li>
 					<li class="navili hurry"><a id="hurry" href="#">급한 마음<img id="emergency" style="width:15px;height:15px;" src="<c:url value="/icons/emergency.png" />"></a></li>
 				</ul>
 			</div>
