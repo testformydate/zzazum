@@ -34,11 +34,11 @@ public class ApiDbController {
 		return new ModelAndView("test");
 	}
 	
-	@RequestMapping(value = "/testins")
+	@RequestMapping(value = "/updatedatabase")
 	public ModelAndView apiUpdate() throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2BsrXKXWBJD%2FbZnmOXnC%2FIk93WKZ%2FjkbHa%2FLsWttU6DmcbM%2B7fTiMHspZoCn6QbcJjXZ4APlra0SEsh%2FccvJ0zg%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*�� ������ ��� ��*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("300", "UTF-8")); /*�� ������ ��� ��*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*������ ��ȣ*/
         urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("B", "UTF-8")); /*���ļ���*/
         urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*OS ����*/
@@ -72,7 +72,7 @@ public class ApiDbController {
         JSONArray items = xmlToJsonObj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
         for(int i = 0; i < numOfRows; i++){
         	LocationVo location = new LocationVo();
-        	location.setP_no(items.getJSONObject(i).getInt("contentid"));
+        	location.setP_id(items.getJSONObject(i).getInt("contentid"));
         	location.setP_name(items.getJSONObject(i).getString("title"));
         	location.setP_addr(items.getJSONObject(i).getString("addr1"));
         	location.setP_lat(items.getJSONObject(i).getDouble("mapy"));

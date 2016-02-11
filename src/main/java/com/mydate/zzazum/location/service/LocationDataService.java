@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.mydate.zzazum.location.repository.LocationDao;
 import com.mydate.zzazum.location.vo.LocationVo;
-import com.mydate.zzazum.location.vo.SearchResultVo;
+import com.mydate.zzazum.location.vo.NaverSearchResultVo;
+import com.mydate.zzazum.location.vo.SearchKeywordVo;
 
 @Service
 public class LocationDataService{
@@ -39,12 +40,12 @@ public class LocationDataService{
 		return locationDao.selectMaxNo();
 	}
 	
-	public ArrayList<LocationVo> selectSearchData(LocationVo location) throws DataAccessException {
-		return locationDao.selectSearchData(location);
+	public ArrayList<LocationVo> selectSearchData(String name) throws DataAccessException {
+		return locationDao.selectSearchData(name);
 	}
 	
-	public ArrayList<SearchResultVo> selectNaverSearch(String query) throws IOException{
-		ArrayList<SearchResultVo> list = new ArrayList<SearchResultVo>();
+	public ArrayList<NaverSearchResultVo> selectNaverSearch(String query) throws IOException{
+		ArrayList<NaverSearchResultVo> list = new ArrayList<NaverSearchResultVo>();
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.naver.com/search"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("key","UTF-8") + "=rBc4plRbAKtGSwOvEN_U"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("query","UTF-8") + "=" + URLEncoder.encode(query, "UTF-8")); /*�� ������ ��� ��*/
@@ -75,5 +76,9 @@ public class LocationDataService{
         rd.close();
         conn.disconnect();
 		return list;
+	}
+	
+	public boolean insertSearchKeyword(SearchKeywordVo keywordVo){
+		return locationDao.insertSearchKeyword(keywordVo);
 	}
 }

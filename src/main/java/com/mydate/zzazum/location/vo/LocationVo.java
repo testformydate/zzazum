@@ -12,10 +12,10 @@ public class LocationVo {
 	public void setP_image(String p_image) {
 		this.p_image = p_image;
 	}
-	public int getP_no() {
+	public int getP_id() {
 		return p_id;
 	}
-	public void setP_no(int p_id) {
+	public void setP_id(int p_id) {
 		this.p_id = p_id;
 	}
 	public Double getP_lat() {
