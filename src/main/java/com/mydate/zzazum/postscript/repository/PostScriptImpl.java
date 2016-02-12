@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.vo.PostScriptDetail;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Repository
@@ -23,8 +24,20 @@ public class PostScriptImpl implements PostScriptDataInter{
 	}
 	
 	@Override
+	public ArrayList<PostScriptList> psSortEmail(String ps_data) throws DataAccessException {
+		ArrayList<PostScriptList> list = postScriptDao.psSortEmail(ps_data);
+		return list;
+	}
+	
+	@Override
 	public ArrayList<PostScriptList> psListPart(PostScriptList bean) {
 		ArrayList<PostScriptList> list = postScriptDao.psListPart(bean);
+		return list;
+	}
+	
+	@Override
+	public ArrayList<PostScriptList> psListSortPart(PostScriptList bean) {
+		ArrayList<PostScriptList> list = postScriptDao.psListSortPart(bean);
 		return list;
 	}
 	
@@ -32,6 +45,24 @@ public class PostScriptImpl implements PostScriptDataInter{
 	public String psListCnt() {
 		String size = postScriptDao.psListCnt();
 		return size;
+	}
+	
+	@Override
+	public String psSortEmailCnt(String ps_data) {
+		String size = postScriptDao.psSortEmailCnt(ps_data);
+		return size;
+	}
+	
+	@Override
+	public String psSortLocationCnt(String ps_data) {
+		String size = postScriptDao.psSortLocationCnt(ps_data);
+		return size;
+	}
+	
+	@Override
+	public ArrayList<PostScriptList> psSortLocation(String ps_data) throws DataAccessException {
+		ArrayList<PostScriptList> list = postScriptDao.psSortLocation(ps_data);
+		return list;
 	}
 	
 	@Override
@@ -47,9 +78,13 @@ public class PostScriptImpl implements PostScriptDataInter{
 	}
 	
 	@Override
-	public int psImage(String pi_image) {
-		int result = postScriptDao.psImage(pi_image);
-		return result;
+	public ArrayList<PostScriptDetail> psDetail(int ps_no) {
+		return postScriptDao.psDetail(ps_no);
+	}
+	
+	@Override
+	public PostScriptList psDetailMain(int ps_no) {
+		return postScriptDao.psDetailMain(ps_no);
 	}
 	
 }

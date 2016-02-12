@@ -23,7 +23,7 @@ public interface MemberDao {
 	@Delete("delete from md_member where mem_id=#{mem_id}")
 	public int memberDel(String mem_id);
 	
-	@Select("select mem_id, mem_nick, mem_pw, mem_tel, mem_bhday from md_member where md_id=#{mem_id}")
+	@Select("select mem_id, mem_nick, mem_pw, mem_tel, mem_bhday from md_member where mem_id=#{mem_id}")
 	public MemberVo memberInfo(String mem_id);
 	
 	@Update("update md_member set mem_nick=#{mem_nick}, mem_pw=#{mem_pw}, mem_tel=#{mem_tel}, mem_bhday=#{mem_bhday} where mem_id=#{mem_id}")

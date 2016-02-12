@@ -3,17 +3,18 @@ $(document).ready(function() {
     var track_Count = 7;
     var loading  = false; //to prevents multipal ajax loads
     var track_Size = $("#psListSize").val();
+    var sycro = 'false';
     
     $(window).scroll(function() { //detect page scroll
     	if(track_Size > track_Num){
-    		 if($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+    		 if($(window).scrollTop() + $(window).height() == $(document).height() && sycro=="false")  //user scrolled to bottom of the page?
     	        {	
-    	        	console.log("스크롤이 맨 밑까지 내려왔어요");
+    			 	sycro="true";
     	        	$(".ps_loading_image").show();
     	        	setTimeout(function(){
 	    	        	$.ajax({
 	    	        		type: "GET",
-	    	        		url: "psList?method=listPart&track_Num="+track_Num+"&track_Count="+track_Count,
+	    	        		url: "psListSortPart?track_Num="+track_Num+"&track_Count="+track_Count,
 	    	        		success: function(jdata){
 		    	        		$(jdata).each(function(index,objArr){
 		    	        		var str = "<div class='ps_card'><div class='ps_card_title'>";
@@ -33,13 +34,14 @@ $(document).ready(function() {
 		    	        		track_Num += track_Count;
 		    	        		
 		    	        		if(track_Num >= track_Size) track_Num= track_Size;
+		    	        		sycro="false";
 		    	        		}
 	    	        	});
     	        	},1500);
     	            
     	        }
     	}
-       
+        
         });
     
     $(".card_detail_click").click(function(){
@@ -54,3 +56,7 @@ $(document).ready(function() {
     	$("#bestPL").submit();
     });
 });
+
+function listPart(){
+	
+}

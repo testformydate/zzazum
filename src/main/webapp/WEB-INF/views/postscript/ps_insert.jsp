@@ -38,7 +38,7 @@ function readURL(input) {
 </script>
 </head>
 <body>
-<%@ include file="../../../resources/top.jsp" %>
+<%@include file="../md_top.jsp" %>
 <div class="ps_insert_body">
 	<form id="insertSubmit" enctype="multipart/form-data">
 	<div class="ps_insert_ti">Title</div>
@@ -55,5 +55,6 @@ function readURL(input) {
 	</div>	
 	</form>
 </div>
+<%@include file="../subMenu.jsp" %>
 </body>
 </html>

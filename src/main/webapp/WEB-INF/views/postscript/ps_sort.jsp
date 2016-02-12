@@ -28,12 +28,12 @@
 		</div>
 	<div class="ps_list_body ">
 		<c:forEach var="psB" items="${psBest }">
-		<input type="hidden" class="psB${list.ps_no }" value="${psB.ps_no }">
-		<div class="ps_card">
+		<input type="hidden" class="psB${psB.ps_no }" value="${psB.ps_no }">
+		<div class="ps_card" id="${psB.ps_no }">
 			<div class="ps_card_title">
-				<p class="ps_card_location"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
+				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body card_click card_detail_click" id="psB${list.ps_no }">
+			<div class="ps_card_body card_click card_detail_click" id="psB${psB.ps_no }">
 					<img class="card_best_image" src="resources/ps_images/postscirpt/${psB.ps_image }">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${psB.mem_primg}">
@@ -53,12 +53,12 @@
 	</div>
 	<div class="div_cols">
 		<hr/>
-		<h2>전체</h2>
+		<h2>${psSubTitle }</h2>
 		<hr/>
 	</div>	
 	<div class="ps_show_list">
 		<c:forEach var="list" items="${psListAll}">
-			<input type="hidden" class="ps_no list${list.ps_no }" value="${list.ps_no }">
+			<input type="hidden" class="list${list.ps_no }" value="${list.ps_no }">
 			<div class="ps_card" >
 			<div class="ps_card_title">
 				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${list.ps_location }"><b>${list.ps_location }</b></a></p>
