@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.repository.PostScriptDataInter;
+import com.mydate.zzazum.postscript.vo.PostScriptDetail;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Service
@@ -27,19 +28,36 @@ public class PostScriptService {
 	@Resource
 	private PostScriptDataInter postScriptDataInter;
 	
+	public String psListCnt(){
+		return postScriptDataInter.psListCnt();
+	}
 	
 	public ArrayList<PostScriptList> psListAll(){
-
 		return postScriptDataInter.psListAll();
 	}
 	
+	public String psSortEmailCnt(String ps_data){
+		return postScriptDataInter.psSortEmailCnt(ps_data);
+	}
+	
+	public ArrayList<PostScriptList> psSortEmail(String ps_data){
+		return postScriptDataInter.psSortEmail(ps_data);
+	}
+	
+	public String psSortLocationCnt(String ps_data){
+		return postScriptDataInter.psSortLocationCnt(ps_data);
+	}
+	
+	public ArrayList<PostScriptList> psSortLocation(String ps_data){
+		return postScriptDataInter.psSortLocation(ps_data);
+	}
+	
 	public ArrayList<PostScriptList> psListPart(PostScriptList bean){
-
 		return postScriptDataInter.psListPart(bean);
 	}
 	
-	public String psListCnt(){
-		return postScriptDataInter.psListCnt();
+	public ArrayList<PostScriptList> psListSortPart(PostScriptList bean){
+		return postScriptDataInter.psListSortPart(bean);
 	}
 	
 	public ArrayList<MemberVo> psBestPlanner(){
@@ -52,12 +70,14 @@ public class PostScriptService {
 		return postScriptDataInter.psBest();
 	}
 	
-public int psImage(HttpServletRequest request){
+	public ArrayList<PostScriptDetail> psDetail(int ps_no){
 		
-		upload(request);
+		return postScriptDataInter.psDetail(ps_no);
+	}
+	
+	public PostScriptList psDetailMain(int ps_no){
 		
-		
-		return 1;//postScriptDataInter.psImage(pi_image);
+		return postScriptDataInter.psDetailMain(ps_no);
 	}
 	
 	private void upload(HttpServletRequest request){

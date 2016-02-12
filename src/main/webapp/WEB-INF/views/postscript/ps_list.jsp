@@ -23,17 +23,17 @@
 		</div>
 		<div class="ps_planner">
 		<c:forEach var="bp" items="${psBestPlanner }">
-			<img class="card_click" src="resources/ps_images/profile/${bp.mem_primg }">
+			<img class="card_click bestPlanner_Click" id="${bp.mem_id }" src="resources/ps_images/profile/${bp.mem_primg }">
 		</c:forEach>
 		</div>
 	<div class="ps_list_body ">
 		<c:forEach var="psB" items="${psBest }">
-		<input type="hidden" class="ps_no" value="${psB.ps_no }">
-		<div class="ps_card card_detail_click" id="${psB.ps_no }">
+		<input type="hidden" class="ps_no psB${list.ps_no }" value="${psB.ps_no }">
+		<div class="ps_card">
 			<div class="ps_card_title">
-				<p class="ps_card_location card_click"><a href="#"><b>${psB.ps_location }</b></a></p>
+				<p class="ps_card_location"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body card_click card_detail_click" id="${list.ps_no }">
+			<div class="ps_card_body card_click card_detail_click" id="psB${list.ps_no }">
 					<img class="card_best_image" src="resources/ps_images/postscirpt/${psB.ps_image }">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${psB.mem_primg}">
@@ -58,12 +58,12 @@
 	</div>	
 	<div class="ps_show_list">
 		<c:forEach var="list" items="${psListAll}">
-			<input type="hidden" class="ps_no" value="${list.ps_no }">
+			<input type="hidden" class="ps_no list${list.ps_no }" value="${list.ps_no }">
 			<div class="ps_card" >
 			<div class="ps_card_title">
-				<p class="ps_card_location card_click"><a href="#"><b>${list.ps_location }</b></a></p>
+				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${list.ps_location }"><b>${list.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body card_click card_detail_click" id="${list.ps_no }">
+			<div class="ps_card_body card_click card_detail_click" id="list${list.ps_no }">
 					<img class="card_all_image" src="resources/ps_images/postscirpt/${list.ps_image }">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${list.mem_primg }">
@@ -86,5 +86,10 @@
 	</div>			
 	</div>
 <input type="hidden" id="psListSize" value="${psListSize }">
+<form id="bestPL" method="post">
+	<input type="hidden" name="sortCate" value="Email">
+	<input id="bestPLIn" type="hidden" name="ps_data">
+</form>
+<%@include file="../subMenu.jsp" %>
 </body>
 </html>
