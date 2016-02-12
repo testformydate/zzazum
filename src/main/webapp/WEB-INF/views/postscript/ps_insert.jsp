@@ -55,5 +55,6 @@ function readURL(input) {
 	</div>	
 	</form>
 </div>
+<%@include file="../subMenu.jsp" %>
 </body>
 </html>

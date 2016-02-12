@@ -46,7 +46,7 @@ $(document).ready(function() {
     
     $(".card_detail_click").click(function(){
     	var ps_no = $(this).attr('id');
-    	location.href="psListDetail?ps_no="+ps_no;
+    	location.href="psListDetail?ps_no="+$("."+ps_no).val();
     });
     
     $(".bestPlanner_Click").click(function(){

@@ -39,15 +39,18 @@ $(document).ready(function() {
     	            
     	        }
     	}
-        
+       
         });
     
     $(".card_detail_click").click(function(){
     	var ps_no = $(this).attr('id');
-    	location.href="psList?method=listDetail&ps_no="+ps_no;
+    	location.href="psListDetail?ps_no="+$("."+ps_no).val();
+    });
+    
+    $(".bestPlanner_Click").click(function(){
+    	var ps_id = $(this).attr('id');
+    	$("#bestPLIn").attr("value",ps_id);
+    	$("#bestPL").attr("action","psListSort");;
+    	$("#bestPL").submit();
     });
 });
-
-function listPart(){
-	
-}

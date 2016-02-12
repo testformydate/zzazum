@@ -28,7 +28,7 @@
 		</div>
 	<div class="ps_list_body ">
 		<c:forEach var="psB" items="${psBest }">
-		<input type="hidden" class="ps_no psB${list.ps_no }" value="${psB.ps_no }">
+		<input type="hidden" class="psB${list.ps_no }" value="${psB.ps_no }">
 		<div class="ps_card">
 			<div class="ps_card_title">
 				<p class="ps_card_location"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
