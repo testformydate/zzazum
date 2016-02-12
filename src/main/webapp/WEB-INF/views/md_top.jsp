@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String mem_id = (String)session.getAttribute("mem_id");
+%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/home_navigator.css" />">
 <!-- navigator -->
@@ -136,15 +139,22 @@ $(document).ready(function(){
 						<div id="search">
 							<form action="#" name="searchForm">
 								<img class="icon-search" src="<c:url value="/icons/search.png" />">
-								<input type="text" class="searchMain" id="keyword" name="keyword" placeholder="예:서울,경기,여의도" autocomplete="off" autofocus>
+								<input type="text" class="searchMain" id="keyword" name="keyword" placeholder="예:서울,여의도, 강남" autocomplete="off" autofocus>
 								<input type="submit" class="searchBtn" value="GO!">
 							</form>
 						</div>
 					</li>
 					<li class="navili" style="float:right;">
 						<div style="float:right;margin:5px;font-size:10pt;">
-								<div class="member"><a href="#">로그인&nbsp;</a></div>
-								<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
+								<%	if(mem_id==null){ %>
+							<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
+							<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
+							<% }else{ %>
+								<div class="member"><%=mem_id %>님 환영합니다.</div>
+								<div class="member"><a href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
+								<div class="member"><a href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
+								
+							<%} %>
 						</div>						
 					</li>
 					<li class="navili">
