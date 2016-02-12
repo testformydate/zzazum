@@ -143,7 +143,7 @@ $(document).ready(function(){
 				<div class="stepTitle">장소</div>
 				<div class="stepContents">
 					<c:forEach var="l" items="${list}" >
-						<div class="stepContent"><div class="list" onclick="javascript:variable('${l.p_name}',${l.p_lat},${l.p_lng},1)">${l.p_name}</div></div>
+						<div class="stepContent"><div class="box-font" id="${l.p_id}" onclick="javascript:variable('${l.p_id}','${l.p_name}',${l.p_lat},${l.p_lng},1)">${l.p_name}</div></div>
 					</c:forEach>
 				</div>
 			</div>
@@ -156,21 +156,35 @@ $(document).ready(function(){
 					// The following example creates complex markers to indicate beaches near
 					// Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
 					// to the base of the flagpole.
-					var beaches = [];
-					var list = "${list[0].p_name}";
-					$(list).each(function(index, objArr){
-						console.log(index);
-					});
-					
-					console.log(list.length);
 					
 					function initMap() {
 					  var map = new google.maps.Map(document.getElementById('map'), {
-					    zoom: 10,
+					    zoom: 9,
 					    center: {lat: 37.537254, lng: 126.993659}
 					  });
 					
-					  setMarkers(map);
+					  //setMarkers(map);
+					}
+					
+					function addVar(latin, lngin) {
+						  var map = new google.maps.Map(document.getElementById('map'), {
+						    zoom: 14,
+						    center: {lat: latin, lng: lngin}
+						  });
+						
+						  setMarkers(map);
+						}
+					
+					function variable(id, name, lat, lng, zIndex){
+						//alert(name + " " + lat + " " + lng + " " + zIndex);
+						markers = [name, lat, lng, 5];
+						//alert(markers[0]);
+						addVar(lat, lng);
+						//alert(id);
+						var tagId = "#" + id;
+						//console.log($(tagId));
+						$(".box-font-active").attr("class","box-font");
+						$(tagId).toggleClass("box-font-active");
 					}
 					
 					// Data for the markers consisting of a name, a LatLng and a zIndex for the
@@ -197,7 +211,7 @@ $(document).ready(function(){
 						  var image = {
 						    url: 'icons/marker.png',
 						    // This marker is 20 pixels wide by 32 pixels high.
-						    size: new google.maps.Size(20, 32),
+						    size: new google.maps.Size(45, 60),
 						    // The origin for this image is (0, 0).
 						    origin: new google.maps.Point(0, 0),
 						    // The anchor for this image is the base of the flagpole at (0, 32).
@@ -210,7 +224,16 @@ $(document).ready(function(){
 						    coords: [1, 1, 1, 20, 18, 20, 18, 1],
 						    type: 'poly'
 						  };
-						  for (var i = 0; i < beaches.length; i++) {
+					  	  var marker = new google.maps.Marker({
+					  			  position: {lat:markers[1], lng: markers[2]},
+					  			  map: map,
+					  			  icon: image,
+					  			  shape: shape,
+					  			  title: markers[0],
+					  			  zIndex: markers[3]
+					  	  });
+					  	  
+						  /* for (var i = 0; i < beaches.length; i++) {
 						    var beach = beaches[i];
 						    var marker = new google.maps.Marker({
 						      position: {lat: beach[1], lng: beach[2]},
@@ -220,7 +243,7 @@ $(document).ready(function(){
 						      title: beach[0],
 						      zIndex: beach[3]
 						   	  });
-						 	};
+						 	}; */
 						}
 					    </script>
 					    <script async defer

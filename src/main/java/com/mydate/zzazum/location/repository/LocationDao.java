@@ -11,7 +11,7 @@ import com.mydate.zzazum.location.vo.SearchResultVo;
 
 public interface LocationDao {
 	
-	@Select("select * from md_location")
+	@Select("select * from vmd_location")
 	public ArrayList<LocationVo> selectAllData();
 	
 	@Select("select * from md_location where p_addr like concat('%',#{p_addr},'%') or p_name like concat('%',#{p_addr},'%')")
