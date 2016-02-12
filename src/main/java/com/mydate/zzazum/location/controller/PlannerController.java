@@ -34,8 +34,10 @@ public class PlannerController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		ArrayList<LocationVo> list = service.selectAllData();
-		System.out.println(list);
+		//System.out.println(list);
 		modelAndView.addObject("list", list);
+		/*modelAndView.setViewName("planner");*/
+		/*modelAndView.setViewName("navitest");*/
 		modelAndView.setViewName("planner");
 		return modelAndView;
 	}

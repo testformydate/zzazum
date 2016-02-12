@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_search.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_selection.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_detail.css" />">
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBfAaETQowRXNSOloGWhPhclip16_Bwdfg"></script>
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 <!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 <%@include file="md_top.jsp" %>
@@ -31,6 +30,9 @@ li.navili#planner{
 div.stepContent > a:hover{
 	font-weight:600;
 	color:#69D2E7;
+}
+#map{
+	height: 100%;
 }
 </style>
 <script type="text/javascript">
@@ -91,25 +93,6 @@ $(document).ready(function(){
 		}, 1300);
 	})	
 })
-function initialize() {
-	  var mapProp = {
-	    center:new google.maps.LatLng(37.537254, 126.993659),
-	    zoom:10,
-	    mapTypeId:google.maps.MapTypeId.ROADMAP
-	  };
-	  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-
-function map(p_lat,p_lng) {
-	  var mapProp = {
-	    center:new google.maps.LatLng(p_lat,p_lng),
-	    zoom:16,
-	    mapTypeId:google.maps.MapTypeId.ROADMAP
-	  };
-	  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-google.maps.event.addDomListener(window, 'load', map);
 </script>
 </head>
 <body>
@@ -124,7 +107,7 @@ google.maps.event.addDomListener(window, 'load', map);
 <!-- <h1>Planner가 나올거임</h1> -->
 	<div class="body">
 		<!-- search -->
-		<div id="search">
+		<%-- <div id="search">
 			<form action="#" name="searchForm">
 				<img class="icon-search" src="<c:url value="/icons/search.png" />">
 				<input type="text" class="searchMain" id="keyword" name="keyword" placeholder="예:서울,경기,여의도" autocomplete="off" autofocus>
@@ -133,7 +116,7 @@ google.maps.event.addDomListener(window, 'load', map);
 		</div>
 		<div class="ui-widget" style="margin:auto;">
 			<ul id="searchResult" style="list-style:none; margin:auto;padding:0;background-color:white;border:1px solid lightgray;" class="results"></ul>
-		</div>
+		</div> --%>
 		
 		<!-- selection -->
 		<div id="selectionTable" style="margin-top:20px;">
@@ -160,14 +143,88 @@ google.maps.event.addDomListener(window, 'load', map);
 				<div class="stepTitle">장소</div>
 				<div class="stepContents">
 					<c:forEach var="l" items="${list}" >
-						<div class="stepContent"><a href="javascript:map(${l.p_lat},${l.p_lng})">${l.p_name}</a></div>
+						<div class="stepContent"><div class="list" onclick="javascript:variable('${l.p_name}',${l.p_lat},${l.p_lng},1)">${l.p_name}</div></div>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="step" id="step4">
 				<div id="googleMapTitle" class="stepTitle">위치</div>
 				<div class="googleMapWrapper">
-					<div id="googleMap"></div>
+					<div id="map"></div>
+					<script>
+					
+					// The following example creates complex markers to indicate beaches near
+					// Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+					// to the base of the flagpole.
+					var beaches = [];
+					var list = "${list[0].p_name}";
+					$(list).each(function(index, objArr){
+						console.log(index);
+					});
+					
+					console.log(list.length);
+					
+					function initMap() {
+					  var map = new google.maps.Map(document.getElementById('map'), {
+					    zoom: 10,
+					    center: {lat: 37.537254, lng: 126.993659}
+					  });
+					
+					  setMarkers(map);
+					}
+					
+					// Data for the markers consisting of a name, a LatLng and a zIndex for the
+					// order in which these markers should display on top of each other.
+					/* var beaches = [
+					  ['Bondi Beach', -33.890542, 151.274856, 4],
+					  ['Coogee Beach', -33.923036, 151.259052, 5],
+					  ['Cronulla Beach', -34.028249, 151.157507, 3],
+					  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+					  ['Maroubra Beach', -33.950198, 151.259302, 1]
+					]; */
+						
+
+					function setMarkers(map) {
+						
+						
+					  // Adds markers to the map.
+					
+					  // Marker sizes are expressed as a Size of X,Y where the origin of the image
+					  // (0,0) is located in the top left of the image.
+					
+					  // Origins, anchor positions and coordinates of the marker increase in the X
+					  // direction to the right and in the Y direction down.
+						  var image = {
+						    url: 'icons/marker.png',
+						    // This marker is 20 pixels wide by 32 pixels high.
+						    size: new google.maps.Size(20, 32),
+						    // The origin for this image is (0, 0).
+						    origin: new google.maps.Point(0, 0),
+						    // The anchor for this image is the base of the flagpole at (0, 32).
+						    anchor: new google.maps.Point(0, 32)
+						  };
+					  // Shapes define the clickable region of the icon. The type defines an HTML
+					  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+					  // The final coordinate closes the poly by connecting to the first coordinate.
+						  var shape = {
+						    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+						    type: 'poly'
+						  };
+						  for (var i = 0; i < beaches.length; i++) {
+						    var beach = beaches[i];
+						    var marker = new google.maps.Marker({
+						      position: {lat: beach[1], lng: beach[2]},
+						      map: map,
+						      icon: image,
+						      shape: shape,
+						      title: beach[0],
+						      zIndex: beach[3]
+						   	  });
+						 	};
+						}
+					    </script>
+					    <script async defer
+					        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfAaETQowRXNSOloGWhPhclip16_Bwdfg&signed_in=true&callback=initMap"></script>
 				</div>
 			</div>
 		</div>
