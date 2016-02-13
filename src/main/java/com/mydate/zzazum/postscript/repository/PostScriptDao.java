@@ -75,4 +75,7 @@ public interface PostScriptDao {
 	
 	@Select("select * from md_pdlike where mem_id=#{ps_email} and ps_no=#{ps_no}")
 	public ArrayList<PostScriptLike> psLike(PostScriptList list);
+	
+	@Update("update md_postscript set ps_hits = ps_hits+1 where ps_no=#{ps_no}")
+	public void psHits(String ps_no);
 }

@@ -13,7 +13,7 @@ $(document).ready(function() {
     	        	setTimeout(function(){
 	    	        	$.ajax({
 	    	        		type: "GET",
-	    	        		url: "psList?method=listPart&track_Num="+track_Num+"&track_Count="+track_Count,
+	    	        		url: "psListPart?method=listPart&track_Num="+track_Num+"&track_Count="+track_Count,
 	    	        		success: function(jdata){
 		    	        		$(jdata).each(function(index,objArr){
 		    	        		var str = "<div class='ps_card'><div class='ps_card_title'>";
@@ -35,7 +35,7 @@ $(document).ready(function() {
 		    	        		if(track_Num >= track_Size) track_Num= track_Size;
 		    	        		}
 	    	        	});
-    	        	},1500);
+    	        	},1000);
     	            
     	        }
     	}
@@ -43,8 +43,15 @@ $(document).ready(function() {
         });
     
     $(".card_detail_click").click(function(){
-    	var ps_no = $(this).attr('id');
-    	$("#detailNo").attr("value", $("."+ps_no).val());
+    	var ps_no = $("."+$(this).attr('id')).val();
+    	
+    	$.ajax({
+    		url:'psHits',
+    		type:'post',
+    		data:{"ps_no":ps_no},
+    		success:function(){}});
+    	
+    	$("#detailNo").attr("value", ps_no);
     	$("#detailForm").attr("action","psListDetail");
     	$("#detailForm").submit();
     });

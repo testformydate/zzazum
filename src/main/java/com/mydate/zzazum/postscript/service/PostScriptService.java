@@ -74,10 +74,6 @@ public class PostScriptService {
 	public ArrayList<PostScriptDetail> psDetail(PostScriptList list){
 		ArrayList<PostScriptDetail> result = postScriptDataInter.psDetail(list.getPs_no());
 		ArrayList<PostScriptLike> like = postScriptDataInter.psLike(list);
-		System.out.println("aa");
-		System.out.println(like);
-		System.out.println(result);
-		
 		for(PostScriptDetail pd : result){
 			for(PostScriptLike pl : like){
 				System.out.println(pd.getPd_no() + " " + pl.getPd_no());
@@ -128,6 +124,10 @@ public class PostScriptService {
 	
 	public int pdUpdateLike(PostScriptLike like) {
 		return postScriptDataInter.pdUpdateLike(like);
+	}
+	
+	public void psHits(String ps_no){
+		postScriptDataInter.psHits(ps_no);
 	}
 	
 

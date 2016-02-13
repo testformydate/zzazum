@@ -36,5 +36,7 @@ public interface PostScriptDataInter {
 	int pdInsertLike(PostScriptLike like);
 	int pdDeleteLike(PostScriptLike like);
 	int pdUpdateLike(PostScriptLike like);
+	
+	void psHits(String ps_no);
 
 }

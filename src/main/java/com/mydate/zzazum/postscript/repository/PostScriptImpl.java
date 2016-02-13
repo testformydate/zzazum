@@ -128,4 +128,8 @@ public class PostScriptImpl implements PostScriptDataInter{
 		return postScriptDao.pdUpdateLike(like);
 	}
 	
+	@Override
+	public void psHits(String ps_no) {
+		postScriptDao.psHits(ps_no);
+	}
 }

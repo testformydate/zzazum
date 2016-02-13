@@ -179,5 +179,10 @@ public class PostScriptController {
 		}
 		return result;
 	}
+	
+	@RequestMapping(value="psHits")
+	public void psHits(@RequestParam("ps_no") String ps_no){
+		postScriptService.psHits(ps_no);
+	}
 
 }
