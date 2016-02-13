@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Repository
@@ -85,6 +86,46 @@ public class PostScriptImpl implements PostScriptDataInter{
 	@Override
 	public PostScriptList psDetailMain(int ps_no) {
 		return postScriptDao.psDetailMain(ps_no);
+	}
+	
+	@Override
+	public int psDeleteLike(PostScriptLike like) {		
+		return postScriptDao.psDeleteLike(like);
+	}
+	
+	@Override
+	public int psInsertLike(PostScriptLike like) {
+		return postScriptDao.psInsertLike(like);
+	}
+	
+	@Override
+	public int psUpdateLike(PostScriptLike like) {
+		return postScriptDao.psUpdateLike(like);
+	}
+	
+	@Override
+	public PostScriptLike psLikeMain(PostScriptList list) {
+		return postScriptDao.psLikeMain(list);
+	}
+	
+	@Override
+	public ArrayList<PostScriptLike> psLike(PostScriptList list) {
+		return postScriptDao.psLike(list);
+	}
+	
+	@Override
+	public int pdDeleteLike(PostScriptLike like) {
+		return postScriptDao.pdDeleteLike(like);
+	}
+	
+	@Override
+	public int pdInsertLike(PostScriptLike like) {
+		return postScriptDao.pdInsertLike(like);
+	}
+	
+	@Override
+	public int pdUpdateLike(PostScriptLike like) {
+		return postScriptDao.pdUpdateLike(like);
 	}
 	
 }

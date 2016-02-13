@@ -28,12 +28,12 @@
 		</div>
 	<div class="ps_list_body ">
 		<c:forEach var="psB" items="${psBest }">
-		<input type="hidden" class="psB${list.ps_no }" value="${psB.ps_no }">
+		<input type="hidden" class="psB${psB.ps_no }" value="${psB.ps_no }">
 		<div class="ps_card">
 			<div class="ps_card_title">
 				<p class="ps_card_location"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body card_click card_detail_click" id="psB${list.ps_no }">
+			<div class="ps_card_body card_click card_detail_click" id="psB${psB.ps_no }">
 					<img class="card_best_image" src="resources/ps_images/postscirpt/${psB.ps_image }">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${psB.mem_primg}">
@@ -89,6 +89,10 @@
 <form id="bestPL" method="post">
 	<input type="hidden" name="sortCate" value="Email">
 	<input id="bestPLIn" type="hidden" name="ps_data">
+</form>
+<form id="detailForm" method="post">
+	<input type="hidden" id="detailId" name="ps_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type="hidden" id="detailNo" name="ps_no">
 </form>
 <%@include file="../subMenu.jsp" %>
 </body>

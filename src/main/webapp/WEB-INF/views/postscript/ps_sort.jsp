@@ -90,6 +90,10 @@
 	<input type="hidden" name="sortCate" value="Email">
 	<input id="bestPLIn" type="hidden" name="ps_data">
 </form>
+<form id="detailForm" method="post">
+	<input type="hidden" id="detailId" name="ps_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type="hidden" id="detailNo" name="ps_no">
+</form>
 <%@include file="../subMenu.jsp" %>
 </body>
 </html>

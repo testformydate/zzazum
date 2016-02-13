@@ -15,7 +15,7 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 function psBack(){
-	history.back()
+	location.href="psListAll";
 }
 
 function psTop(){

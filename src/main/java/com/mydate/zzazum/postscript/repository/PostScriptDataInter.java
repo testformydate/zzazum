@@ -2,10 +2,13 @@ package com.mydate.zzazum.postscript.repository;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.dao.DataAccessException;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 public interface PostScriptDataInter {
@@ -22,4 +25,16 @@ public interface PostScriptDataInter {
 	
 	PostScriptList psDetailMain(int ps_no);
 	ArrayList<PostScriptDetail> psDetail(int ps_no);
+	
+	PostScriptLike psLikeMain(PostScriptList list);
+	ArrayList<PostScriptLike> psLike(PostScriptList list);
+	
+	int psInsertLike(PostScriptLike like);
+	int psDeleteLike(PostScriptLike like);
+	int psUpdateLike(PostScriptLike like);
+	
+	int pdInsertLike(PostScriptLike like);
+	int pdDeleteLike(PostScriptLike like);
+	int pdUpdateLike(PostScriptLike like);
+
 }

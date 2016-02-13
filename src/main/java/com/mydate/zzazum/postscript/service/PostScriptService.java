@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.repository.PostScriptDataInter;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Service
@@ -70,15 +71,66 @@ public class PostScriptService {
 		return postScriptDataInter.psBest();
 	}
 	
-	public ArrayList<PostScriptDetail> psDetail(int ps_no){
+	public ArrayList<PostScriptDetail> psDetail(PostScriptList list){
+		ArrayList<PostScriptDetail> result = postScriptDataInter.psDetail(list.getPs_no());
+		ArrayList<PostScriptLike> like = postScriptDataInter.psLike(list);
+		System.out.println("aa");
+		System.out.println(like);
+		System.out.println(result);
 		
-		return postScriptDataInter.psDetail(ps_no);
+		for(PostScriptDetail pd : result){
+			for(PostScriptLike pl : like){
+				System.out.println(pd.getPd_no() + " " + pl.getPd_no());
+				if(pd.getPd_no() == pl.getPd_no()){
+					pd.setPd_clike("like");
+				}
+			}
+			if(pd.getPd_clike()==null) pd.setPd_clike("dislike");
+		}
+		
+		return result;
 	}
 	
-	public PostScriptList psDetailMain(int ps_no){
-		
-		return postScriptDataInter.psDetailMain(ps_no);
+	public PostScriptList psDetailMain(PostScriptList list){
+		PostScriptList result = postScriptDataInter.psDetailMain(list.getPs_no());
+		PostScriptLike like = postScriptDataInter.psLikeMain(list);
+		if(like != null){
+			result.setPs_clike("like");
+		}else{
+			result.setPs_clike("dislike");
+		}
+		return result;
 	}
+	
+	public String psDeleteLike(PostScriptLike like) {
+		postScriptDataInter.psDeleteLike(like);
+		return "dislike";
+	}
+	
+	public String psInsertLike(PostScriptLike like) {
+		postScriptDataInter.psInsertLike(like);
+		return "like";
+	}
+	
+	public int psUpdateLike(PostScriptLike like) {
+		return postScriptDataInter.psUpdateLike(like);
+	}
+	
+	public String pdDeleteLike(PostScriptLike like) {
+		postScriptDataInter.pdDeleteLike(like);
+		return "dislike";
+	}
+	
+	public String pdInsertLike(PostScriptLike like) {
+		postScriptDataInter.pdInsertLike(like);
+		return "like";
+	}
+	
+	public int pdUpdateLike(PostScriptLike like) {
+		return postScriptDataInter.pdUpdateLike(like);
+	}
+	
+
 	
 	private void upload(HttpServletRequest request){
 		MultipartHttpServletRequest req = (MultipartHttpServletRequest)request;

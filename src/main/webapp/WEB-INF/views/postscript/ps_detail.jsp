@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <% 
+	System.out.println(session.getAttribute("mem_id"));
 	String[] timeline = {"detail_inverted", "detail_facade"};
 	int jump =0;
 	int sum = -1;
@@ -23,7 +24,10 @@
 <%@include file="../md_top.jsp" %>
 <div class = "ps_detail_body">
 	<div class="ps_detail_title">
-		<h1>${psDM.ps_title}</h1>
+		<div class="ps_main_title"><h1>${psDM.ps_title}</h1></div>
+		<div class="ps_main_like"><span>${psDM.ps_like }</span><img class="like_click ps_like" id="pslike${psDM.ps_no}" src="resources/ps_icon/${psDM.ps_clike }.png">
+			<input type="hidden" class="pslike${psDM.ps_no}" value="${psDM.ps_clike }">
+		</div>
 	</div>
 	<div class="ps_detail_timeline">
 		<ul>
@@ -40,12 +44,13 @@
 					</div>
 					<hr style="width: 100%">	
 					<div class="ps_detail_like">
-						<span><img class="like_click" src="resources/ps_icon/like.png"></span>
-						<span>${listD.pd_like }</span>
+						<span><img class="like_click pd_like"  id="pdlike${listD.pd_no}" src="resources/ps_icon/${listD.pd_clike }.png"></span>
+						<span class="likeCnt">${listD.pd_like }</span>
+						<input type="hidden" class="pdlike${listD.pd_no}" value="${listD.pd_clike }">
 					</div>
 					<hr style="width: 95%; margin-bottom: 0px; padding-bottom: 0px; color: #efefef;">
 					<div class="ps_detail_comment">
-					<p>comment</p>
+					<div>comment</div>
 				
 					</div>
 					<div class="ps_detail_user">
@@ -63,5 +68,12 @@
 	</div>
 </div>
 <%@include file="../subMenu.jsp" %>
+
+<form id="likeUpdate">
+	<input type="hidden" name="changeVal">
+	<input type="hidden" name="ps_data">
+</form>
+<input type="hidden" id="detailNo" value="${psDM.ps_no}">
+<input type="hidden" id="getId" value="<%=session.getAttribute("mem_id") %>">
 </body>
 </html>

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Controller
@@ -130,11 +131,11 @@ public class PostScriptController {
 	}
 	
 	@RequestMapping(value="psListDetail")
-	public ModelAndView psListDetail(@RequestParam("ps_no") int ps_no){
+	public ModelAndView psListDetail(PostScriptList list){
 		ModelAndView model = new ModelAndView();
 		
-		model.addObject("psDM", postScriptService.psDetailMain(ps_no));
-		model.addObject("psD", postScriptService.psDetail(ps_no));
+		model.addObject("psDM", postScriptService.psDetailMain(list));
+		model.addObject("psD", postScriptService.psDetail(list));
 		model.setViewName("postscript/ps_detail");
 		
 		return model;	
@@ -148,16 +149,35 @@ public class PostScriptController {
 		
 		return model;
 	}
+
 	
-	@RequestMapping(value="fileInsert",method = RequestMethod.POST)
+	@RequestMapping(value="psUpdateLike")
 	@ResponseBody
-	public String fileInsert(MultipartHttpServletRequest req){
-		//postScriptService.psImage(request);
-		Iterator<String> itr = req.getFileNames();
-		System.out.println(itr);
-		System.out.println(req.getFileNames());
-		System.out.println(itr.hasNext());
-		return "success";
+	public String psUpdateLike(@RequestParam("sortLike") String sortLike, PostScriptLike like){
+		String result="dislike";
+		
+		if(like.getPd_no()== 0){
+			if(sortLike.equals("dislike")){
+				like.setLikeVal(1);
+				result = postScriptService.psInsertLike(like);
+				postScriptService.psUpdateLike(like);
+			}else if(sortLike.equals("like")){
+				like.setLikeVal(-1);
+				result = postScriptService.psDeleteLike(like);
+				postScriptService.psUpdateLike(like);
+			}
+		}else{
+			if(sortLike.equals("dislike")){
+				like.setLikeVal(1);
+				result = postScriptService.pdInsertLike(like);
+				postScriptService.pdUpdateLike(like);
+			}else if(sortLike.equals("like")){
+				like.setLikeVal(-1);
+				result = postScriptService.pdDeleteLike(like);
+				postScriptService.pdUpdateLike(like);
+			}	
+		}
+		return result;
 	}
 
 }

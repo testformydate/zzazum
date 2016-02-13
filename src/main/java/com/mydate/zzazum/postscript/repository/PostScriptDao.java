@@ -2,12 +2,15 @@ package com.mydate.zzazum.postscript.repository;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Repository
@@ -48,4 +51,28 @@ public interface PostScriptDao {
 	
 	@Select("select * from md_postscript where ps_no=#{ps_no}")
 	public PostScriptList psDetailMain(int ps_no);
+	
+	@Insert("insert into md_pslike(mem_id, ps_no) values(#{mem_id}, #{ps_no})")
+	public int psInsertLike(PostScriptLike like);
+	
+	@Delete("delete from md_pslike where mem_id=#{mem_id} and ps_no=#{ps_no}")
+	public int psDeleteLike(PostScriptLike like);
+	
+	@Update("update md_postscript set ps_like = ps_like + #{likeVal} where ps_no = #{ps_no}")
+	public int psUpdateLike(PostScriptLike like);
+	
+	@Select("select * from md_pslike where mem_id=#{ps_email} and ps_no=#{ps_no}")
+	public PostScriptLike psLikeMain(PostScriptList list);
+	
+	@Insert("insert into md_pdlike(mem_id, ps_no, pd_no) values(#{mem_id}, #{ps_no}, #{pd_no})")
+	public int pdInsertLike(PostScriptLike like);
+	
+	@Delete("delete from md_pdlike where mem_id=#{mem_id} and pd_no=#{pd_no}")
+	public int pdDeleteLike(PostScriptLike like);
+	
+	@Update("update md_psdetail set pd_like = pd_like + #{likeVal} where pd_no=#{pd_no}")
+	public int pdUpdateLike(PostScriptLike like);
+	
+	@Select("select * from md_pdlike where mem_id=#{ps_email} and ps_no=#{ps_no}")
+	public ArrayList<PostScriptLike> psLike(PostScriptList list);
 }
