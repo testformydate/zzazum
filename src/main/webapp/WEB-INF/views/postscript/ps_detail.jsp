@@ -1,9 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <% 
-	System.out.println(session.getAttribute("mem_id"));
+	request.setCharacterEncoding("utf-8");
 	String[] timeline = {"detail_inverted", "detail_facade"};
 	int jump =0;
 	int sum = -1;
@@ -32,7 +34,10 @@
 	<div class="ps_detail_timeline">
 		<ul>
 			<c:forEach var="listD" items="${psD}">
-			<% sum *= (-1); jump += sum;%>
+			<% 
+			sum *= (-1); 
+			jump += sum;
+			%>
 
 			<li class="ps_detail_li <%=timeline[jump] %>">
 				<div class="ps_detail_card">
@@ -50,15 +55,24 @@
 					</div>
 					<hr style="width: 95%; margin-bottom: 0px; padding-bottom: 0px; color: #efefef;">
 					<div class="ps_detail_comment">
-					<div>comment</div>
-				
+					<div class="pd_comment_link">comment ▼</div>
+					<c:forEach var="pdC" items="${listD.pd_comment}">
+					<div class="pd_comment_body">
+						<div class="pd_comment_profile"><img src="resources/ps_images/profile/${pdC.mem_primg }"></div>
+						<div class="pd_comment_context">
+							${pdC.mem_nick }
+							<hr>
+							${pdC.co_context }
+						</div>
+					</div>
+					</c:forEach>
 					</div>
 					<div class="ps_detail_user">
 					<div class="ps_detail_user_img">
-						<img src="resources/ps_images/profile/pro_3.png">
+						<img src="resources/ps_images/profile/${userP.mem_primg }">
 					</div>
 					<div class="ps_detail_user_input">
-						<input type="text">
+						<input type="text" class="enter_click" id="${listD.pd_no}" >
 					</div>
 					</div>
 				</div>
@@ -69,9 +83,11 @@
 </div>
 <%@include file="../subMenu.jsp" %>
 
-<form id="likeUpdate">
-	<input type="hidden" name="changeVal">
-	<input type="hidden" name="ps_data">
+<form id="insertComment" method="post">
+	<input type="hidden" name="co_psno" value="${psDM.ps_no}">
+	<input type="hidden" id="getId" name="co_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type="hidden" name="co_pdno" id="co_pdno">
+	<input type="hidden" name="co_context" id="co_comment">
 </form>
 <input type="hidden" id="detailNo" value="${psDM.ps_no}">
 <input type="hidden" id="getId" value="<%=session.getAttribute("mem_id") %>">

@@ -5,6 +5,11 @@ $(document).ready(function(){
 		var mem_id = $("#getId").val();
 		var likeNode = $(this).prev();
 		var likeVal = parseInt(likeNode.html());
+		if(mem_id == "" || mem_id == 'null' ){
+			alert("로그인해주세요!")
+			return;
+		}
+		
 		$.ajax({
     		type: "post",
     		url: "psUpdateLike",
@@ -30,6 +35,12 @@ $(document).ready(function(){
 		var mem_id = $("#getId").val();
 		var likeNode =$(this).parent().next();
 		var likeVal =  parseInt(likeNode.html());
+		
+		if(mem_id == "" || mem_id == 'null'){
+			alert("로그인해주세요!")
+			return;
+		}
+		
 		$.ajax({
     		type: "post",
     		url: "psUpdateLike",
@@ -48,4 +59,27 @@ $(document).ready(function(){
         	}
     	});
 	});
+	
+	$(".enter_click").keydown(function (key) {
+		xlike = $(this).attr("id");
+		content = $(this).val();
+		var mem_id = $("#getId").val();
+		
+        if (key.keyCode == 13) {
+        	
+        	if(mem_id =="" || mem_id=='null'){
+        		alert('로그인후 사용가능합니다!');
+        		return;
+        	}
+        	
+        	if(content == ""){
+    			alert("내용을 입력하세요")
+    			return;
+    		}
+        	$("#insertComment").attr('action',"commentInsert");
+        	$("#co_pdno").attr('value', xlike);
+        	$("#co_comment").attr('value', content);
+        	$("#insertComment").submit();
+        }
+    });
 });

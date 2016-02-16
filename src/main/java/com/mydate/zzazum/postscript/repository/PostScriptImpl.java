@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -84,6 +85,11 @@ public class PostScriptImpl implements PostScriptDataInter{
 	}
 	
 	@Override
+	public int pdCommentInsert(PostScriptComment comment) {
+		return postScriptDao.pdCommentInsert(comment);
+	}
+	
+	@Override
 	public PostScriptList psDetailMain(int ps_no) {
 		return postScriptDao.psDetailMain(ps_no);
 	}
@@ -131,5 +137,10 @@ public class PostScriptImpl implements PostScriptDataInter{
 	@Override
 	public void psHits(String ps_no) {
 		postScriptDao.psHits(ps_no);
+	}
+	
+	@Override
+	public ArrayList<PostScriptComment> psListComment(int co_psno) {
+		return postScriptDao.psListComment(co_psno);
 	}
 }

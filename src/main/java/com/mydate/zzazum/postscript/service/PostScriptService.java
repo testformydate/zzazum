@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.repository.PostScriptDataInter;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -74,9 +76,10 @@ public class PostScriptService {
 	public ArrayList<PostScriptDetail> psDetail(PostScriptList list){
 		ArrayList<PostScriptDetail> result = postScriptDataInter.psDetail(list.getPs_no());
 		ArrayList<PostScriptLike> like = postScriptDataInter.psLike(list);
+		ArrayList<PostScriptComment> comment = postScriptDataInter.psListComment(list.getPs_no());
+		
 		for(PostScriptDetail pd : result){
 			for(PostScriptLike pl : like){
-				System.out.println(pd.getPd_no() + " " + pl.getPd_no());
 				if(pd.getPd_no() == pl.getPd_no()){
 					pd.setPd_clike("like");
 				}
@@ -84,7 +87,28 @@ public class PostScriptService {
 			if(pd.getPd_clike()==null) pd.setPd_clike("dislike");
 		}
 		
+		for(PostScriptDetail pd: result){
+			ArrayList<PostScriptComment> pdList = new ArrayList<PostScriptComment>();
+			PostScriptComment comm;
+			for(PostScriptComment pc: comment){
+				if(pd.getPd_no() == pc.getCo_pdno()){
+					System.out.println(pc.getMem_nick());
+					comm = new PostScriptComment();
+					comm.setMem_primg(pc.getMem_primg());
+					comm.setMem_nick(pc.getMem_nick());
+					comm.setCo_context(pc.getCo_context());
+					
+					pdList.add(comm);
+				}
+			}
+			pd.setPd_comment(pdList);
+		}
+		
 		return result;
+	}
+	
+	public int pdCommentInsert(PostScriptComment comment){	
+		return postScriptDataInter.pdCommentInsert(comment);
 	}
 	
 	public PostScriptList psDetailMain(PostScriptList list){

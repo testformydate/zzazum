@@ -2,23 +2,19 @@ package com.mydate.zzazum.postscript.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
@@ -134,11 +130,22 @@ public class PostScriptController {
 	public ModelAndView psListDetail(PostScriptList list){
 		ModelAndView model = new ModelAndView();
 		
+		model.addObject("userP", memberInter.memberInfo(list.getPs_email()));
 		model.addObject("psDM", postScriptService.psDetailMain(list));
 		model.addObject("psD", postScriptService.psDetail(list));
 		model.setViewName("postscript/ps_detail");
 		
 		return model;	
+	}
+	
+	@RequestMapping(value="commentInsert")
+	public String commentInsert(PostScriptComment comment){
+		postScriptService.pdCommentInsert(comment);
+		System.out.println(comment.getCo_email());
+		System.out.println(comment.getCo_context());
+
+		
+		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
 	}
 	
 	@RequestMapping(value="psListInsert")

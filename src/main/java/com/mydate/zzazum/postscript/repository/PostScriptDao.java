@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -49,7 +50,10 @@ public interface PostScriptDao {
 	@Select("select psd.*, mem_primg, mem_nick from md_psdetail as psd inner join md_member on mem_id=pd_email where ps_no=#{ps_no}")
 	public ArrayList<PostScriptDetail> psDetail(int ps_no);
 	
-	@Select("select * from md_postscript where ps_no=#{ps_no}")
+	@Select("select * from md_comment inner join md_member on co_email = mem_id where co_psno=#{co_psno}")
+	public ArrayList<PostScriptComment> psListComment(int co_psno);
+	
+	@Select("select * from vmd_pslistall where ps_no=#{ps_no}")
 	public PostScriptList psDetailMain(int ps_no);
 	
 	@Insert("insert into md_pslike(mem_id, ps_no) values(#{mem_id}, #{ps_no})")
@@ -78,4 +82,7 @@ public interface PostScriptDao {
 	
 	@Update("update md_postscript set ps_hits = ps_hits+1 where ps_no=#{ps_no}")
 	public void psHits(String ps_no);
+	
+	@Insert("insert into md_comment(co_psno, co_pdno, co_email, co_context) values(#{co_psno}, #{co_pdno}, #{co_email}, #{co_context})")
+	public int pdCommentInsert(PostScriptComment comment);
 }
