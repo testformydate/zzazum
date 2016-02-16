@@ -95,7 +95,15 @@ div#map{
 	color:#69D2E7;
 }
 
+.stepContent:hover{
+	background-color:#fadce7;
+}
+
 .box-font-active{
 	font-weight:600;
 	color:#69D2E7;
+}
+
+.stepContent-active{
+	background-color:#fadce7;
 }

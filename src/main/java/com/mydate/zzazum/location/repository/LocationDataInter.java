@@ -15,4 +15,5 @@ public interface LocationDataInter {
 	public String selectMaxNo() throws DataAccessException;
 	public boolean insertApiData(LocationVo location) throws DataAccessException;
 	public boolean insertSearchKeyword(SearchKeywordVo keyword);
+	public ArrayList<LocationVo> selection(String keyword);
 }

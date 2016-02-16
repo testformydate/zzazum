@@ -22,4 +22,7 @@ public interface PostScriptDataInter {
 	
 	PostScriptList psDetailMain(int ps_no);
 	ArrayList<PostScriptDetail> psDetail(int ps_no);
+	
+	//검색을 위한 메소드
+	ArrayList<PostScriptList> selectPsSearch(String keyword);
 }

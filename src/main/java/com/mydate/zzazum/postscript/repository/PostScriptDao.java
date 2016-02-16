@@ -48,4 +48,8 @@ public interface PostScriptDao {
 	
 	@Select("select * from md_postscript where ps_no=#{ps_no}")
 	public PostScriptList psDetailMain(int ps_no);
+	
+	//검색을 위한 쿼리
+	@Select("select * from vmd_pslistall where ps_location like concat('%',#{keyword},'%') or ps_title like concat('%',#{keyword},'%') or ps_context like concat('%',#{keyword},'%')")
+	public ArrayList<PostScriptList> selectPsSearch(String keyword);
 }

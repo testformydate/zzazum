@@ -46,13 +46,12 @@ public class LocationDataService{
 	
 	public ArrayList<NaverSearchResultVo> selectNaverSearch(String query) throws IOException{
 		ArrayList<NaverSearchResultVo> list = new ArrayList<NaverSearchResultVo>();
-		StringBuilder urlBuilder = new StringBuilder("http://openapi.naver.com/search"); /*URL*/
+		StringBuilder urlBuilder = new StringBuilder("https://openapi.naver.com/v1/search/blog.xml"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("key","UTF-8") + "=rBc4plRbAKtGSwOvEN_U"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("query","UTF-8") + "=" + URLEncoder.encode(query, "UTF-8")); /*�� ������ ��� ��*/
+        urlBuilder.append("&" + URLEncoder.encode("target","UTF-8") + "=" + URLEncoder.encode("blog", "UTF-8"));
         urlBuilder.append("&" + URLEncoder.encode("display","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*������ ��ȣ*/
-        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("B", "UTF-8")); /*���ļ���*/
-        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*OS ����*/
-        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("�����ڿ�����", "UTF-8")); /*�����̸�*/
+        urlBuilder.append("&" + URLEncoder.encode("sort","UTF-8") + "=" + URLEncoder.encode("date", "UTF-8")); /*���ļ���*/
         
         URL url = new URL(urlBuilder.toString());
         
@@ -73,6 +72,7 @@ public class LocationDataService{
         while ((line = rd.readLine()) != null) {
             sb.append(line);
         }
+        System.out.println(sb);
         rd.close();
         conn.disconnect();
 		return list;
@@ -80,5 +80,9 @@ public class LocationDataService{
 	
 	public boolean insertSearchKeyword(SearchKeywordVo keywordVo){
 		return locationDao.insertSearchKeyword(keywordVo);
+	}
+	
+	public ArrayList<LocationVo> selection(String keyword){
+		return locationDao.selection(keyword);
 	}
 }

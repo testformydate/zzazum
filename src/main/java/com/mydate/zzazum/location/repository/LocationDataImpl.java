@@ -39,4 +39,9 @@ public class LocationDataImpl implements LocationDataInter{
 	public boolean insertSearchKeyword(SearchKeywordVo keyword) {
 		return locationUpdateDao.insertSearchKeyword(keyword);
 	}
+	
+	@Override
+	public ArrayList<LocationVo> selection(String keyword) {
+		return locationUpdateDao.selection(keyword);
+	}
 }

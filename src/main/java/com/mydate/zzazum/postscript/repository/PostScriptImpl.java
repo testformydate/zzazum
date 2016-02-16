@@ -87,4 +87,9 @@ public class PostScriptImpl implements PostScriptDataInter{
 		return postScriptDao.psDetailMain(ps_no);
 	}
 	
+	@Override
+	public ArrayList<PostScriptList> selectPsSearch(String keyword) {
+		return postScriptDao.selectPsSearch(keyword);
+	}
+	
 }

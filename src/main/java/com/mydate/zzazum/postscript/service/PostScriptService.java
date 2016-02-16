@@ -105,4 +105,8 @@ public class PostScriptService {
 			}
 		}
 	}
+	
+	public ArrayList<PostScriptList> selectPsSearch(String keyword){
+		return postScriptDataInter.selectPsSearch(keyword);
+	}
 }

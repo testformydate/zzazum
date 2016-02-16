@@ -36,8 +36,144 @@ div.stepContent > a:hover{
 }
 </style>
 <script type="text/javascript">
-function search(str){
-	alert(str);
+function cateShow(cate){
+	/* var category = "div:not(." + cate + ")";
+	//alert(category);
+	$(category).hide(); */
+	//console.log(cate);
+	$.ajax({
+		url:"selectionBox",
+		data: "keyword=" + cate,
+		success: function(data){
+			//console.log("aa");
+			var str = "";
+			var markers=[];
+			$(data).each(function(index, objArr){
+				//arr = objArr.datas[index];
+				//console.log(index);
+				//console.log(objArr.name);
+				//console.log(objArr.datas[0].id);
+				str += "<div id='stepContent-" + objArr.p_id + "' class='stepContent'><div class='box-font " + objArr.p_category + "' id='" + objArr.p_id + "' onclick=\"javascript:variable('" + objArr.p_id + "','" + objArr.p_name + "'," + objArr.p_lat + "," + objArr.p_lng + ",1)\">" + objArr.p_name + "</div></div>";
+				//str = objArr.name
+				$("#markerList").html(str);
+				if(objArr == "" || objArr == null){
+					$("#markerList").html("<div class='stepContent'><div class='box-font')\">검색 결과가 없습니다.</div></div>"); 
+				}
+				$("#markerList").show();
+				markers.push([objArr.p_name, objArr.p_lat, objArr.p_lng, 5]);
+			});
+			//console.log(markers);
+			var map = new google.maps.Map(document.getElementById('map'), {
+			    zoom: 10,
+			    center: {lat: 37.537254, lng: 126.993659}
+			});
+			var image = {
+				    url: 'icons/marker.png',
+				    // This marker is 20 pixels wide by 32 pixels high.
+				    size: new google.maps.Size(45, 60),
+				    // The origin for this image is (0, 0).
+				    origin: new google.maps.Point(0, 0),
+				    // The anchor for this image is the base of the flagpole at (0, 32).
+				    anchor: new google.maps.Point(0, 32)
+		    };
+		    var shape = {
+			    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+			    type: 'poly'
+		  	};
+		  	for (var i = 0; i < markers.length; i++) {
+			    var marker = markers[i];
+			    var marker = new google.maps.Marker({
+			      position: {lat: marker[1], lng: marker[2]},
+			      map: map,
+			      icon: image,
+			      shape: shape,
+			      title: marker[0],
+			      zIndex: marker[3]
+			   	  });
+			 };
+			//alert(id);
+			var tagId = "#" + cate;
+			//console.log($(tagId));
+			$(".box-font-active").attr("class","box-font");
+			$(".stepContent-active").attr("class","stepContent");
+			$(tagId).toggleClass("box-font-active");
+			$("#stepContent-" + cate).toggleClass("stepContent-active");
+			if(keyword == "" || keyword == null) $("#markerList").hide();
+			if(ck_keyword.test(keyword)) $("#markerList").hide();
+			//$("#searchResult").autocomplete({source:[str]});
+		}
+	});
+}
+
+function addrShow(addr){
+	//alert(addr);
+	$.ajax({
+		url:"autocomplete",
+		data: "keyword=" + addr,
+		success: function(data){
+			console.log(data);
+			var str = "";
+			var markers=[];
+			$(data).each(function(index, objArr){
+				//arr = objArr.datas[index];
+				//console.log(index);
+				//console.log(objArr.name);
+				//console.log(objArr.datas[0].id);
+				str += "<div id='stepContent-" + objArr.id + "' class='stepContent'><div class='box-font " + objArr.cate + "' id='" + objArr.id + "' onclick=\"javascript:variable('" + objArr.id + "','" + objArr.name + "'," + objArr.lat + "," + objArr.lng + ",1)\">" + objArr.name + "</div></div>";
+				//str = objArr.name
+				$("#markerList").html(str);
+				//alert(objArr);
+				if(objArr == "" || objArr == null) $("#markerList").html("<div class='stepContent'><div class='box-font')\">검색 결과가 없습니다.</div></div>"); 
+				$("#markerList").show();
+				markers.push([objArr.name, objArr.lat, objArr.lng, 5]);
+			});
+			//console.log(markers);
+			var map = new google.maps.Map(document.getElementById('map'), {
+			    zoom: 10,
+			    center: {lat: 37.537254, lng: 126.993659}
+			});
+			var image = {
+				    url: 'icons/marker.png',
+				    // This marker is 20 pixels wide by 32 pixels high.
+				    size: new google.maps.Size(45, 60),
+				    // The origin for this image is (0, 0).
+				    origin: new google.maps.Point(0, 0),
+				    // The anchor for this image is the base of the flagpole at (0, 32).
+				    anchor: new google.maps.Point(0, 32)
+		    };
+		    var shape = {
+			    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+			    type: 'poly'
+		  	};
+		  	for (var i = 0; i < markers.length; i++) {
+			    var marker = markers[i];
+			    var marker = new google.maps.Marker({
+			      position: {lat: marker[1], lng: marker[2]},
+			      map: map,
+			      icon: image,
+			      shape: shape,
+			      title: marker[0],
+			      zIndex: marker[3]
+			   	  });
+			 };
+			//alert(id);
+			if(addr === "강남") var id = "gangnam";
+			else if(addr === "마포") var id = "hongdae";
+			else if(addr === "중구") var id = "sichung";
+			else if(addr === "강동") var id = "gangdong";
+			else if(addr === "양천") var id = "yangcheon";
+		
+			var tagId = "#" + id;
+			//console.log($(tagId));
+			$(".box-font-active").attr("class","box-font");
+			$(".stepContent-active").attr("class","stepContent");
+			$(tagId).toggleClass("box-font-active");
+			$("#stepContent-" + id).toggleClass("stepContent-active");
+			if(keyword == "" || keyword == null) $("#markerList").hide();
+			if(ck_keyword.test(keyword)) $("#markerList").hide();
+			//$("#searchResult").autocomplete({source:[str]});
+		}
+	});
 }
 
 var ck_keyword = /^[A-Za-z0-9]*$/;
@@ -55,43 +191,6 @@ $(document).ready(function(){
 	$(".comment").mouseout(function(){
 		$(this).attr("src", "<c:url value='/icons/comment.png' />");
 	});
-	$("#searchResult").hide();
-	$("#keyword").blur(function(){
-		$("#searchResult").hide();
-	});
-	$("#keyword").keyup(function(e){
-		var keyword = searchForm.keyword.value;
-		setTimeout(function(){
-			//console.log("aaa");
-			//console.log(e.keyCode);
-			$.ajax({
-				url:"autocomplete",
-				data: "keyword=" + keyword,
-				success: function(data){
-					console.log(data)
-					var str = "";
-					$(data).each(function(index, objArr){
-						//arr = objArr.datas[index];
-						//console.log(index);
-						//console.log(objArr.name);
-						//console.log(objArr.datas[0].id);
-						str += "<li class='result' style='width:23%;display:inline-block;'><a class='suggestionList' href=\"javascript:search('" + objArr.name + "')\">" + objArr.name + "</a></li>";
-						//str = objArr.name
-						$("#searchResult").html(str);
-						if(objArr == "" || objArr == null) $("#searchResult").hide(); 
-						$("#searchResult").show();
-					});
-					if(keyword == "" || keyword == null) $("#searchResult").hide();
-					if(ck_keyword.test(keyword)) $("#searchResult").hide();
-					//$("#searchResult").autocomplete({source:[str]});
-				}
-			});
-			console.log(e.keyCode);
-			if(e.keyCode == 13){
-				searchForm.submit();
-			}
-		}, 1300);
-	})	
 })
 </script>
 </head>
@@ -123,27 +222,27 @@ $(document).ready(function(){
 			<div class="step" id="step1">
 				<div class="stepTitle">카테고리</div>
 				<div class="stepContents">
-					<div class="stepContent"><a href="#">카&nbsp;&nbsp;&nbsp;페</a></div>
-					<div class="stepContent"><a href="#">전시&nbsp;/&nbsp;공연</a></div>
-					<div class="stepContent"><a href="#">액&nbsp;티&nbsp;비&nbsp;티</a></div>
-					<div class="stepContent"><a href="#">영&nbsp;&nbsp;&nbsp;화</a></div>
+					<div id="stepContent-place" class="stepContent"><div class="box-font" id="place" onclick="javascript:cateShow('place')">장&nbsp;&nbsp;&nbsp;소</div></div>
+					<div id="stepContent-exibition" class="stepContent"><div class="box-font" id="exibition" onclick="javascript:cateShow('exibition')">전시&nbsp;/&nbsp;공연</div></div>
+					<div id="stepContent-activity" class="stepContent"><div class="box-font" id="activity" onclick="javascript:cateShow('activity')">액&nbsp;티&nbsp;비&nbsp;티</div></div>
+					<div id="stepContent-movie" class="stepContent"><div class="box-font" id="movie" onclick="javascript:cateShow('movie')">영&nbsp;&nbsp;&nbsp;화</div></div>
 				</div>
 			</div>
 			<div class="step" id="step2">
 				<div class="stepTitle">지역</div>
 				<div class="stepContents">
-					<div class="stepContent"><a href="#">강남/압구정/가로수</a></div>
-					<div class="stepContent"><a href="#">홍대/합정/상수</a></div>
-					<div class="stepContent"><a href="#">시청/종로/광화문</a></div>
-					<div class="stepContent"><a href="#">강동/송파/천호</a></div>
-					<div class="stepContent"><a href="#">양천/구로/영등포</a></div>
+					<div id="stepContent-gangnam" class="stepContent"><div class="box-font" id="gangnam" onclick="javascript:addrShow('강남')">강남/압구정/가로수</div></div>
+					<div id="stepContent-hongdae" class="stepContent"><div class="box-font" id="hongdae" onclick="javascript:addrShow('마포')">홍대/합정/상수</div></div>
+					<div id="stepContent-sichung" class="stepContent"><div class="box-font" id="sichung" onclick="javascript:addrShow('중구')">시청/종로/광화문</div></div>
+					<div id="stepContent-gangdong" class="stepContent"><div class="box-font" id="gangdong" onclick="javascript:addrShow('강동')">강동/송파/천호</div></div>
+					<div id="stepContent-yangcheon" class="stepContent"><div class="box-font" id="yangcheon" onclick="javascript:addrShow('양천')">양천/구로/영등포</div></div>
 				</div>
 			</div>
 			<div class="step" id="step3">
 				<div class="stepTitle">장소</div>
-				<div class="stepContents">
+				<div class="stepContents" id="markerList">
 					<c:forEach var="l" items="${list}" >
-						<div class="stepContent"><div class="box-font" id="${l.p_id}" onclick="javascript:variable('${l.p_id}','${l.p_name}',${l.p_lat},${l.p_lng},1)">${l.p_name}</div></div>
+						<div id="stepContent-${l.p_id}" class="stepContent"><div class="box-font ${l.p_category}" id="${l.p_id}" onclick="javascript:variable('${l.p_id}','${l.p_name}',${l.p_lat},${l.p_lng},1)">${l.p_name}</div></div>
 					</c:forEach>
 				</div>
 			</div>
@@ -184,7 +283,9 @@ $(document).ready(function(){
 						var tagId = "#" + id;
 						//console.log($(tagId));
 						$(".box-font-active").attr("class","box-font");
+						$(".stepContent-active").attr("class","stepContent");
 						$(tagId).toggleClass("box-font-active");
+						$("#stepContent-" + id).toggleClass("stepContent-active");
 					}
 					
 					// Data for the markers consisting of a name, a LatLng and a zIndex for the
@@ -256,48 +357,22 @@ $(document).ready(function(){
 		<div class="detailWrapper">
 			<div class="detailWrapperTitle">우리가 추천함</div>
 			<div class="details">
-				<div class="detail">
-					<div class="detailImgWrapper"><img class="detailImg" src="<c:url value="/icons/1.jpg" />"></div>
-					<div class="detailContents">
-						<div class="detailTitle">오빠랑 다녀온 쩌는 맛집</div>
-						<div class="detailContent">
-							<div class="description" style="margin-left:15px;">므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣</div>
-							<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
-								<div class="likes" style="font-size:0.8em;margin-bottom:6px;"><span style="color:#69D2E7;">121</span>명이 좋아합니다.&nbsp;댓글&nbsp;<span style="color:#69D2E7;">21</span>개 </div>
-								<div style="display:inline-block;margin-right:10px;"><a href="#"><img class="like" style="width:30px;" src="<c:url value="/icons/unlike.png" />"></a></div>
-								<div style="display:inline-block;"><a href=""><img class="comment" style="width:30px;" src="<c:url value="/icons/comment.png" />"></a></div>
+				<c:forEach var="p" items="${psList}" >
+					<div class="detail">
+						<div class="detailImgWrapper"><img class="detailImg" src="<c:url value="/icons/${p.ps_image}" />"></div>
+						<div class="detailContents">
+							<div class="detailTitle">${p.ps_title}</div>
+							<div class="detailContent">
+								<div class="description" style="margin-left:15px;">${p.ps_context}</div>
+								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
+									<div class="likes" style="font-size:0.8em;margin-bottom:6px;"><span style="color:#69D2E7;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#69D2E7;">${p.ps_hits}</span></div>
+									<div style="display:inline-block;margin-right:10px;"><a href="#"><img class="like" style="width:30px;" src="<c:url value="/icons/unlike.png" />"></a></div>
+									<div style="display:inline-block;"><a href=""><img class="comment" style="width:30px;" src="<c:url value="/icons/comment.png" />"></a></div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="detail">
-					<div class="detailImgWrapper"><img class="detailImg" src="<c:url value="/icons/1.jpg" />"></div>
-					<div class="detailContents">
-						<div class="detailTitle">오빠랑 다녀온 쩌는 맛집</div>
-						<div class="detailContent">
-							<div class="description" style="margin-left:15px;">므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣</div>
-							<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
-								<div class="likes" style="font-size:0.8em;margin-bottom:6px;"><span style="color:#69D2E7;">121</span>명이 좋아합니다.</div>
-								<div style="display:inline-block;margin-right:10px;"><a href="#"><img class="like" style="width:30px;" src="<c:url value="/icons/unlike.png" />"></a></div>
-								<div style="display:inline-block;"><a href=""><img class="comment" style="width:30px;" src="<c:url value="/icons/comment.png" />"></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="detail">
-					<div class="detailImgWrapper"><img class="detailImg" src="<c:url value="/icons/1.jpg" />"></div>
-					<div class="detailContents">
-						<div class="detailTitle">오빠랑 다녀온 쩌는 맛집</div>
-						<div class="detailContent">
-							<div class="description" style="margin-left:15px;">므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣므흣</div>
-							<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
-								<div class="likes" style="font-size:0.8em;margin-bottom:6px;"><span style="color:#69D2E7;">121</span>명이 좋아합니다.</div>
-								<div style="display:inline-block;margin-right:10px;"><a href="#"><img class="like" style="width:30px;" src="<c:url value="/icons/unlike.png" />"></a></div>
-								<div style="display:inline-block;"><a href=""><img class="comment" style="width:30px;" src="<c:url value="/icons/comment.png" />"></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 			<div class="detailWrapperTitle">네이버 블로그</div>
 			<div class="details">
