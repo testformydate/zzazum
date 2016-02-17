@@ -25,24 +25,42 @@ $.get('/mydate/resources/js/hashencode.js', function(data) {
     prettyPrint();
 }, 'text');
 </script>
-<link rel="stylesheet" href="<c:url value="/css/signupform.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/signupform.css" />">
 </head>
-<body>
-	<p class='mempage'>회원가입</p>
-<div class="Registro">
-<form action="#" autocomplete="off" method="post">
-<input type="text" id="message" name="mem_id" placeholder="아이디(이메일)를 입력해주세요" autofocus />
-<input type="text" name="mem_nick" placeholder="닉네임을 입력하세요(2자~8자)" />
-<input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(8~20자)" />
-<input type="password" name="mem_pwok" placeholder="비밀번호를 한번 더 입력하세요" />
-<input type="text" name="mem_tel" placeholder="휴대폰번호를  입력하세요" />
-<input type="text" name="mem_bhday" placeholder="생년월일을 - 없이 입력하세요" />
-
-</form>
-<button style="z-index:9999;width:100%;height:100px;" id="generate-hash"></button>
-<input type="text" id="hash">
+<body class="back-img">
+<div class="member_insert_body">
+   <div class='member_insert_title'>회원가입</div>
+   <div class="member_insert_content" style="border: 1px solid white; padding: 20px; text-align: center;">
+      <form action="insert" style="margin: -3px">
+         <div class="insert_input">
+            <div class="insert_subtitle">아이디</div>
+            <input type="text" name="mem_id" placeholder="아이디(이메일)를 입력해주세요">
+         </div>
+         <div class="insert_input">
+            <div class="insert_subtitle">닉네임</div>
+            <input type="text" name="mem_nick" placeholder="닉네임을 입력하세요(2자~8자)">
+         </div>
+         <div class="insert_input">
+            <div class="insert_subtitle">비밀번호</div>
+            <input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(8~20자)">
+         </div>
+         <div class="insert_input">
+            <input type="password" name="mem_pwOk" placeholder="비밀번호를 한번 더 입력하세요">
+         </div>
+         <div class="insert_input">
+            <div class="insert_subtitle">휴대폰</div>
+            <input type="text" name="mem_tel" placeholder="휴대폰번호를  입력하세요" />
+         </div>
+         <div class="insert_input">
+            <div class="insert_subtitle">생일</div>
+            <input type="text" name="mem_bhday" placeholder="생년월일을 - 없이 입력하세요" />
+         </div>
+         <div class="insert_input">
+            <input class="insert_button" type="submit" value="submit">
+         </div>
+      </form>
+   </div>
 </div>
-
 </body>
 </html>
 

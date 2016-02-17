@@ -113,16 +113,10 @@ public class PlannerController {
 	
 	@RequestMapping(value="selectionBox", method=RequestMethod.GET)
 	@ResponseBody
-	public ArrayList<LocationVo> selection(@RequestParam("keyword")String keyword, @RequestParam("addr")String addr, @RequestParam("cate")String cate){
+	public ArrayList<LocationVo> selection(@RequestParam("keyword")String keyword){
 		ArrayList<LocationVo> list = new ArrayList<LocationVo>();
 		
-		if(addr == null || addr.equals("")) {
-			if(cate == null || cate.equals("")){
-		//		System.out.println(keyword);
-				list = service.selection(keyword);
-				
-			}
-		}
+		list = service.selection(keyword);
 		
 		if(list.isEmpty()) list = service.selectAllData();
 		

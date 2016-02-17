@@ -30,6 +30,18 @@
 			$(".searchBtn").on("click", function(){
 				$(this).css("background-color","#c1134e");
 			});
+			$("#goPlannerSweet").click(function(){
+				location.href = 'planner';
+			});
+			$("#goPlannerWar").click(function(){
+				location.href = 'planner';
+			});
+			$("#goPlannerHot").click(function(){
+				location.href = 'planner';
+			});
+			$("#goPlannerCool").click(function(){
+				location.href = 'planner';
+			});
 		});
 	</script>
 </head>

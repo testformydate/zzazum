@@ -209,9 +209,9 @@ function addrShow(addr){
 	});
 }
 
-var ck_keyword = /^[A-Za-z0-9]*$/;
 
 $(document).ready(function(){
+
 	/* $(".unlike").mouseover(function(){
 		$(this).attr("src", "resources/icons/like.png");
 	});

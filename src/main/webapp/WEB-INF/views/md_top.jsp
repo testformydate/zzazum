@@ -108,6 +108,7 @@ function search(keyword){
 }
 
 $(document).ready(function(){
+	var ck_keyword = /^[A-Za-z0-9]*$/;
 	var autocompleteListId = 0; 
 	var rowIdx = 0;
 	$(".body").click(function(){
