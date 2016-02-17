@@ -9,5 +9,6 @@ public interface MemberInter {
 	int memberDel(String mem_id);
 	MemberVo memberInfo(String mem_id);
 	boolean memberModify(MemberVo member);
+	int loginAuthentication(String mem_hash);
 	/*boolean memberDel(String mem_id);*/
 }

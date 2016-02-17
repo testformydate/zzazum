@@ -43,7 +43,7 @@ function readURL(input) {
 	<form id="insertSubmit" enctype="multipart/form-data">
 	<div class="ps_insert_ti">Title</div>
 	<div class="ps_insert_title">
-		<input type="text" name="ps_title" value="제목을 입력해주세요~">
+		<input type="text" name="ps_title" placeholder="제목을 입력해주세요~">
 	</div>
 	<div class="ps_insert_file">
 			<input type="file" multiple="multiple" id="upload_btn" name="pd_image">

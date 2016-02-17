@@ -72,7 +72,7 @@
 						<img src="resources/ps_images/profile/${userP.mem_primg }">
 					</div>
 					<div class="ps_detail_user_input">
-						<input type="text" class="enter_click" id="${listD.pd_no}" >
+						<textarea class='ps_insert_content enter_click'></textarea>
 					</div>
 					</div>
 				</div>

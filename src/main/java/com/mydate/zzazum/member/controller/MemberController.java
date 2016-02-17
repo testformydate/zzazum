@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.mydate.zzazum.member.service.MailService;
 import com.mydate.zzazum.member.service.MemberService;
 import com.mydate.zzazum.member.vo.MemberVo;
 
@@ -24,6 +27,9 @@ public class MemberController {
 	@Qualifier("memberService")
 	private MemberService memberService;
 	
+	@Autowired
+	private MailService mailService;
+	
 	//회원가입 뷰로 이동하는 컨트롤러
 	@RequestMapping("memberinsview")
 	public String MemberInsView(){
@@ -34,6 +40,13 @@ public class MemberController {
 	//회원가입 프로세스 진행하는 컨트롤러
 	@RequestMapping(value = "memberins", method=RequestMethod.POST)
 	public void MemberIns(MemberVo memberVo, HttpServletResponse response) throws IOException{
+		
+		try{
+			memberVo.setMem_auth(mailService.createHash(memberVo.getMem_pw(), memberVo.getMem_id()));
+		}catch (Exception e){
+			System.out.println("메일 전송 및 해쉬코드 생성 오류 " + e);
+		}
+		
 		memberService.memberIns(memberVo);
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -42,7 +55,7 @@ public class MemberController {
 	      		+ "location.href='/mydate/home';</script>");
 		out.println("</body></html>");
 		out.close();
-	
+
 	}
 	
 	//로그인 뷰로 이동하는 컨트롤러
@@ -123,6 +136,20 @@ public class MemberController {
 		out.println("</body></html>");
 		out.close();
 		
+	}
+	
+	@RequestMapping(value="loginAuthentication", method=RequestMethod.GET)
+	public ModelAndView loginAuthentication(@RequestParam("mem_auth") String mem_hash){
+		ModelAndView model = new ModelAndView();
+		boolean b = memberService.loginAuthentication(mem_hash);
+		
+		if(b){
+			model.setViewName("redirect:/home");
+		}else{
+			model.setViewName("authFail");
+		}
+		
+		return model;
 	}
 	
 }

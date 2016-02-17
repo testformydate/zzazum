@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Bean 정리 및 SqlSessionFactory 통합, 주석 정리: 광민 2016.02.03 01:30 -->
 	
@@ -45,12 +47,19 @@
     <!-- 2016.02.07 추가 : 이서연 - 파일처리를 위한  bean -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	
-	<!-- jusqu'a ici -->
-	
-	<!-- 삭제: 광민 2016.2.3 01:50
-	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-    	<property name="contentType" value="text/html;charset=utf-8"/>
-    </bean>
-    -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+       <property name="host" value="smtp.gmail.com" />
+       <property name="port" value="587" />
+       <property name="username" value="spoi2308@gmail.com" />
+       <property name="password" value="dnsehd1617" />
+     	<property name="javaMailProperties">
+       <props>
+       	<prop key="mail.transport.protocol">smtp</prop>
+       	<prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.starttls.enable">true</prop>
+        <prop key="mail.debug">true</prop>
+       </props>
+      </property>
+	</bean>
 		
 </beans>
