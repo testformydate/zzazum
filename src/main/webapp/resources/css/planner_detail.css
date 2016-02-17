@@ -37,6 +37,7 @@ img.detailImg{
 	margin-right:20px;
 	border-top-left-radius:10px;
 	border-bottom-left-radius:10px;
+	cursor:pointer;
 }
 
 div.detailContents{
@@ -52,4 +53,5 @@ div.detailTitle{
 	font-weight:500;
 	margin-top: 10px;
 	color:#ee5488;
+	cursor:pointer;
 }

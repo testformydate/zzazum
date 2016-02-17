@@ -134,12 +134,15 @@ public class PlannerController {
 	public String likeOrDislike(ClikeVo like){
 		String likeOrUnlike = like.getLikeOrNot();
 		String ps_no = like.getPs_no();
+		System.out.println(ps_no);
 		boolean b = false;
-		if(likeOrUnlike.equals("like")){			
+		if(likeOrUnlike.equals("like")){
 			b = service.deleteLikeData(ps_no);
+			b = service.minusLike(ps_no);
 			likeOrUnlike = "unlike";
 		}else if(likeOrUnlike.equals("unlike")){
 			b = service.insertLikeData(like);
+			b = service.plusLike(ps_no);
 			likeOrUnlike = "like";
 		}
 		/*

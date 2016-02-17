@@ -224,6 +224,11 @@ $(document).ready(function(){
 	$(".comment").mouseout(function(){
 		$(this).attr("src", "resources/icons/comment.png");
 	});
+	$(".detailTitle").click(function(){
+		var no = $(this).attr("id");
+		//alert(no);
+		$("#detailForm" + no).submit();
+	});
 })
 </script>
 </head>
@@ -394,14 +399,18 @@ $(document).ready(function(){
 					<div class="detail">
 						<div class="detailImgWrapper"><img class="detailImg" src="<c:url value="/icons/${p.ps_image}" />"></div>
 						<div class="detailContents">
-							<div class="detailTitle">${p.ps_title}</div>
+							<div id="${p.ps_no}" class="detailTitle">${p.ps_title}</div>
 							<div class="detailContent">
-								<div class="description" style="margin-left:15px;">${p.ps_context}</div>
+								<div class="description" style="margin-left:15px;cursor:pointer;">${p.ps_context}</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
 									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#69D2E7;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#69D2E7;">${p.ps_hits}</span></div>
-									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
+									<div style="display:inline-block;margin-right:10px;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
 									<div style="display:inline-block;cursor:pointer;"><img id="commentImg${p.ps_no}" class="comment" style="width:30px;" src="resources/icons/comment.png"></div>
 								</div>
+								<form id="detailForm${p.ps_no}" name="detailForm${p.ps_no}" action="psListDetail" method="post">
+									<input type="hidden" id="detailId" name="ps_email" value="<%=session.getAttribute("mem_id") %>">
+									<input type="hidden" id="detailNo" name="ps_no" value="${p.ps_no}">
+								</form>
 							</div>
 						</div>
 					</div>

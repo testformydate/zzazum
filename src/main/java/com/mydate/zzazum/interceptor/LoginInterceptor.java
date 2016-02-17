@@ -15,15 +15,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Autowired
 	private MemberService memberService;
 	
-	
-	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		String mem_id = (String)request.getSession().getAttribute("mem_id");
 		
 		if(mem_id == null){
-			System.out.println("no");
 			response.sendRedirect("member/memberlogview"); 
             return false;
 		}else{

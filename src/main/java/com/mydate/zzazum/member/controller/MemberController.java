@@ -55,7 +55,6 @@ public class MemberController {
 	      		+ "location.href='/mydate/home';</script>");
 		out.println("</body></html>");
 		out.close();
-
 	}
 	
 	//로그인 뷰로 이동하는 컨트롤러
