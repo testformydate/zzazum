@@ -48,7 +48,7 @@
 .ps_detail_user_img{position:relative; top:0px;}
 .ps_detail_user_img>img{ width: 36px; height: 36px;}
 .ps_detail_user_input{position: relative; width:100%; padding: 0px;}
-.ps_detail_user_input>input{width:93%; height: 20px; font-size:12pt; line-height: 43px; margin-left: 5px; padding: 5px 10px;}
+.ps_insert_content{background-color:transparent; width:100%; wrap:hard; width:92%; height: 25px; font-size:12pt; margin-left: 5px; padding: 5px 10px;}
 
 .like_click:hover{cursor: pointer;}
 

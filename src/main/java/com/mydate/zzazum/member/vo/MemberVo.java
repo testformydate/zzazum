@@ -14,8 +14,15 @@ public class MemberVo {
 	private String mem_bhday;
 	private String mem_primg;
 	private String mem_love;
+	private String mem_auth;
 	
 	
+	public String getMem_auth() {
+		return mem_auth;
+	}
+	public void setMem_auth(String mem_auth) {
+		this.mem_auth = mem_auth;
+	}
 	public String getMem_primg() {
 		return mem_primg;
 	}

@@ -37,12 +37,24 @@ public class MemberService {
 	
 	public MemberVo memberInfo(String mem_id) {
 		MemberVo member = memberInter.memberInfo(mem_id);
+		System.out.println("vv");
+		System.out.println(member.getMem_auth());
 		return member;
 	}
 	
 	public boolean memberModify(MemberVo member) {
 		boolean b = false;
 		b =	memberInter.memberModify(member);
+		return b;
+	}
+	
+	public boolean loginAuthentication(String mem_hash){
+		boolean b = false;
+		
+		if(memberInter.loginAuthentication(mem_hash)>0){
+			b = true;
+		}
+		
 		return b;
 	}
 	

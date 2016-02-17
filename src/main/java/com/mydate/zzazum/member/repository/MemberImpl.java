@@ -50,6 +50,11 @@ public class MemberImpl implements MemberInter{
 		return b;
 	}
 	
+	@Override
+	public int loginAuthentication(String mem_hash) {
+		return memberDao.loginAuthentication(mem_hash);
+	}
+	
 	/*@Override
 	public boolean memberDel(String mem_id) {
 		boolean b = false;
