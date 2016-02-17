@@ -15,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mydate.zzazum.location.repository.LocationDao;
+import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -85,4 +86,21 @@ public class LocationDataService{
 	public ArrayList<LocationVo> selection(String keyword){
 		return locationDao.selection(keyword);
 	}
+	
+	public boolean insertLikeData(ClikeVo like){
+		return locationDao.insertLikeData(like);
+	}
+	
+	public boolean minusLike(String ps_no){
+		return locationDao.minusLike(ps_no);
+	}
+	
+	public boolean plusLike(String ps_no){
+		return locationDao.plusLike(ps_no);
+	}
+	
+	public boolean deleteLikeData(String ps_no){
+		return locationDao.deleteLikeData(ps_no);
+	}
+
 }

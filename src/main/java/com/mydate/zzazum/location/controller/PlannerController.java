@@ -132,12 +132,21 @@ public class PlannerController {
 	@RequestMapping(value="likeUpdate", method=RequestMethod.POST)
 	@ResponseBody
 	public String likeOrDislike(ClikeVo like){
-		String likeOrDislike = "like";
-		
+		String likeOrUnlike = like.getLikeOrNot();
+		String ps_no = like.getPs_no();
+		boolean b = false;
+		if(likeOrUnlike.equals("like")){			
+			b = service.deleteLikeData(ps_no);
+			likeOrUnlike = "unlike";
+		}else if(likeOrUnlike.equals("unlike")){
+			b = service.insertLikeData(like);
+			likeOrUnlike = "like";
+		}
+		/*
 		System.out.println(like.getLikeOrNot());
 		System.out.println(like.getMem_id());
-		System.out.println(like.getPs_no());
+		System.out.println(like.getPs_no());*/
 		
-		return likeOrDislike; 
+		return likeOrUnlike; 
 	}
 }

@@ -2,9 +2,12 @@ package com.mydate.zzazum.location.repository;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.location.vo.SearchResultVo;
@@ -34,4 +37,16 @@ public interface LocationDao {
 	//for selection box
 	@Select("select * from vmd_location where p_category like #{keyword}")
 	public ArrayList<LocationVo> selection(String keyword);
+	
+	@Insert("insert into md_pslike(mem_id,ps_no,li_date) values(#{mem_id},#{ps_no},now())")
+	public boolean insertLikeData(ClikeVo like);
+	
+	@Update("update md_postscript set ps_like=pslike-1 where ps_no=#{ps_no}")
+	public boolean minusLike(String ps_no);
+	
+	@Update("update md_postscript set ps_like=ps_like+1 where ps_no=#{ps_no}")
+	public boolean plusLike(String ps_no);
+	
+	@Delete("delete from md_pslike where ps_no=#{ps_no}")
+	public boolean deleteLikeData(String ps_no);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 
@@ -43,5 +44,25 @@ public class LocationDataImpl implements LocationDataInter{
 	@Override
 	public ArrayList<LocationVo> selection(String keyword) {
 		return locationUpdateDao.selection(keyword);
+	}
+	
+	@Override
+	public boolean insertLikeData(ClikeVo like) {
+		return locationUpdateDao.insertLikeData(like);
+	}
+	
+	@Override
+	public boolean minusLike(String ps_no) {
+		return locationUpdateDao.minusLike(ps_no);
+	}
+	
+	@Override
+	public boolean plusLike(String ps_no) {
+		return locationUpdateDao.plusLike(ps_no);
+	}
+	
+	@Override
+	public boolean deleteLikeData(String ps_no) {
+		return locationUpdateDao.deleteLikeData(ps_no);
 	}
 }

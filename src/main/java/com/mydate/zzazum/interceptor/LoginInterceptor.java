@@ -15,6 +15,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Autowired
 	private MemberService memberService;
 	
+	
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		

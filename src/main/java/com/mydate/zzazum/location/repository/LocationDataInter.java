@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.springframework.dao.DataAccessException;
 
+import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 
@@ -16,4 +17,8 @@ public interface LocationDataInter {
 	public boolean insertApiData(LocationVo location) throws DataAccessException;
 	public boolean insertSearchKeyword(SearchKeywordVo keyword);
 	public ArrayList<LocationVo> selection(String keyword);
+	public boolean insertLikeData(ClikeVo like);
+	public boolean minusLike(String ps_no);
+	public boolean plusLike(String ps_no);
+	public boolean deleteLikeData(String ps_no);
 }

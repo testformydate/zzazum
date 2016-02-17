@@ -290,7 +290,7 @@ $(document).ready(function(){
 	// to fade in on page load
     $(".body").css("display", "none").slideDown();
 	/* $(".body").css("width", "0"); */
-    $(".body").fadeIn(400);
+    /* $(".body").fadeIn(400); */
 	//$(".body").show( "slide", {direction: "up" }, 2000 );
     /* $(".body").animate({width:'toggle'},350); */
     // Set the effect type
@@ -304,7 +304,7 @@ $(document).ready(function(){
 
     $('.body').toggle(effect, options, duration); */
     // to fade out before redirect
-    $('a').click(function(e){
+    $('.pageLinks').click(function(e){
         redirect = $(this).attr('href');
         e.preventDefault();
         $('.body').slideUp();
@@ -328,7 +328,7 @@ $(document).ready(function(){
 					<li class="navili">
 						<div id="nav-toggle"><span></span></div>
 					</li>
-					<li class="navili"><div class="logo"><a href="${path}/home"><img src="">MyDate</a></div></li>
+					<li class="navili"><div class="logo"><a class="pageLinks" href="${path}/home"><img src="">MyDate</a></div></li>
 					<%-- <li class="navili" id="planner"><a id="planner" href="${path}/planner">내가 짜줌</a></li>
 					<li class="navili" id="psList"><a id="psList" href="${path}/psList?method=listAll">다녀왔어요</a></li>
 					<li class="navili hurry" id="hurry"><a id="hurry" href="#">급한 마음<img id="emergency" style="width:15px;height:15px;" src="<c:url value="/icons/emergency.png" />"></a></li> --%>
@@ -349,8 +349,8 @@ $(document).ready(function(){
 							<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
 							<% }else{ %>
 								<div class="member"><%=mem_id %>님 환영합니다.</div>
-								<div class="member"><a href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
-								<div class="member"><a href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
+								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
+								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
 								<c:set var="mem_id" value="<%=mem_id %>" />
 							<%} %>
 						</div>						

@@ -9,14 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/ps_list.css"/>
 <title>Insert title here</title>
+<%@include file="../md_top.jsp" %>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="${path}/resources/js/ps_list.js" >
-
-</script>
+<script type="text/javascript" src="${path}/resources/js/ps_list.js" ></script>
 </head>
 <body>
-<%@include file="../md_top.jsp" %>
+<div class="body">
 	<div class="ps_body">
 		<div class="ps_search">
 			<input type="text"><img src="resources/ps_icon/search.png">
@@ -95,5 +94,6 @@
 	<input type="hidden" id="detailNo" name="ps_no">
 </form>
 <%@include file="../subMenu.jsp" %>
+</div>
 </body>
 </html>
