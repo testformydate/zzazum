@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.repository.PostScriptDataInter;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Service
@@ -70,15 +73,88 @@ public class PostScriptService {
 		return postScriptDataInter.psBest();
 	}
 	
-	public ArrayList<PostScriptDetail> psDetail(int ps_no){
+	public ArrayList<PostScriptDetail> psDetail(PostScriptList list){
+		ArrayList<PostScriptDetail> result = postScriptDataInter.psDetail(list.getPs_no());
+		ArrayList<PostScriptLike> like = postScriptDataInter.psLike(list);
+		ArrayList<PostScriptComment> comment = postScriptDataInter.psListComment(list.getPs_no());
 		
-		return postScriptDataInter.psDetail(ps_no);
+		for(PostScriptDetail pd : result){
+			for(PostScriptLike pl : like){
+				if(pd.getPd_no() == pl.getPd_no()){
+					pd.setPd_clike("like");
+				}
+			}
+			if(pd.getPd_clike()==null) pd.setPd_clike("dislike");
+		}
+		
+		for(PostScriptDetail pd: result){
+			ArrayList<PostScriptComment> pdList = new ArrayList<PostScriptComment>();
+			PostScriptComment comm;
+			for(PostScriptComment pc: comment){
+				if(pd.getPd_no() == pc.getCo_pdno()){
+					//System.out.println(pc.getMem_nick());
+					comm = new PostScriptComment();
+					comm.setMem_primg(pc.getMem_primg());
+					comm.setMem_nick(pc.getMem_nick());
+					comm.setCo_context(pc.getCo_context());
+					
+					pdList.add(comm);
+				}
+			}
+			pd.setPd_comment(pdList);
+		}
+		
+		return result;
 	}
 	
-	public PostScriptList psDetailMain(int ps_no){
-		
-		return postScriptDataInter.psDetailMain(ps_no);
+	public int pdCommentInsert(PostScriptComment comment){	
+		return postScriptDataInter.pdCommentInsert(comment);
 	}
+	
+	public PostScriptList psDetailMain(PostScriptList list){
+		PostScriptList result = postScriptDataInter.psDetailMain(list.getPs_no());
+		PostScriptLike like = postScriptDataInter.psLikeMain(list);
+		if(like != null){
+			result.setPs_clike("like");
+		}else{
+			result.setPs_clike("dislike");
+		}
+		return result;
+	}
+	
+	public String psDeleteLike(PostScriptLike like) {
+		postScriptDataInter.psDeleteLike(like);
+		return "dislike";
+	}
+	
+	public String psInsertLike(PostScriptLike like) {
+		postScriptDataInter.psInsertLike(like);
+		return "like";
+	}
+	
+	public int psUpdateLike(PostScriptLike like) {
+		return postScriptDataInter.psUpdateLike(like);
+	}
+	
+	public String pdDeleteLike(PostScriptLike like) {
+		postScriptDataInter.pdDeleteLike(like);
+		return "dislike";
+	}
+	
+	public String pdInsertLike(PostScriptLike like) {
+		postScriptDataInter.pdInsertLike(like);
+		return "like";
+	}
+	
+	public int pdUpdateLike(PostScriptLike like) {
+		return postScriptDataInter.pdUpdateLike(like);
+	}
+	
+	public void psHits(String ps_no){
+		postScriptDataInter.psHits(ps_no);
+	}
+	
+
 	
 	private void upload(HttpServletRequest request){
 		MultipartHttpServletRequest req = (MultipartHttpServletRequest)request;

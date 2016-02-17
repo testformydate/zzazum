@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.location.service.LocationDataService;
+import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -37,8 +38,10 @@ public class PlannerController {
 	private PostScriptService postService;
 	
 	@RequestMapping("planner")
-	public ModelAndView planner() throws IOException{
+	public ModelAndView planner(HttpSession session) throws IOException{
 		ModelAndView modelAndView = new ModelAndView();
+		
+		/*if(session.getAttribute("mem_id")) */
 		
 		ArrayList<LocationVo> list = service.selectAllData();
 		ArrayList<PostScriptList> postList = postService.psListAll();
@@ -124,5 +127,17 @@ public class PlannerController {
 		if(list.isEmpty()) list = service.selectAllData();
 		
 		return list;
+	}
+	
+	@RequestMapping(value="likeUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String likeOrDislike(ClikeVo like){
+		String likeOrDislike = "like";
+		
+		System.out.println(like.getLikeOrNot());
+		System.out.println(like.getMem_id());
+		System.out.println(like.getPs_no());
+		
+		return likeOrDislike; 
 	}
 }

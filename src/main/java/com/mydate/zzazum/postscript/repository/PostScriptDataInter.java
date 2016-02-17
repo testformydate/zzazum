@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.springframework.dao.DataAccessException;
 
 import com.mydate.zzazum.member.vo.MemberVo;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 public interface PostScriptDataInter {
@@ -25,4 +27,21 @@ public interface PostScriptDataInter {
 	
 	//검색을 위한 메소드
 	ArrayList<PostScriptList> selectPsSearch(String keyword);
+	
+	PostScriptLike psLikeMain(PostScriptList list);
+	ArrayList<PostScriptLike> psLike(PostScriptList list);
+	
+	int psInsertLike(PostScriptLike like);
+	int psDeleteLike(PostScriptLike like);
+	int psUpdateLike(PostScriptLike like);
+	
+	int pdInsertLike(PostScriptLike like);
+	int pdDeleteLike(PostScriptLike like);
+	int pdUpdateLike(PostScriptLike like);
+	
+	void psHits(String ps_no);
+	
+	int pdCommentInsert(PostScriptComment comment);
+	
+	ArrayList<PostScriptComment> psListComment(int co_psno);
 }

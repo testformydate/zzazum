@@ -351,7 +351,7 @@ $(document).ready(function(){
 								<div class="member"><%=mem_id %>님 환영합니다.</div>
 								<div class="member"><a href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
 								<div class="member"><a href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
-								
+								<c:set var="mem_id" value="<%=mem_id %>" />
 							<%} %>
 						</div>						
 					</li>

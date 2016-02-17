@@ -2,23 +2,20 @@ package com.mydate.zzazum.postscript.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
+import com.mydate.zzazum.postscript.vo.PostScriptComment;
+import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Controller
@@ -130,14 +127,25 @@ public class PostScriptController {
 	}
 	
 	@RequestMapping(value="psListDetail")
-	public ModelAndView psListDetail(@RequestParam("ps_no") int ps_no){
+	public ModelAndView psListDetail(PostScriptList list){
 		ModelAndView model = new ModelAndView();
 		
-		model.addObject("psDM", postScriptService.psDetailMain(ps_no));
-		model.addObject("psD", postScriptService.psDetail(ps_no));
+		model.addObject("userP", memberInter.memberInfo(list.getPs_email()));
+		model.addObject("psDM", postScriptService.psDetailMain(list));
+		model.addObject("psD", postScriptService.psDetail(list));
 		model.setViewName("postscript/ps_detail");
 		
 		return model;	
+	}
+	
+	@RequestMapping(value="commentInsert")
+	public String commentInsert(PostScriptComment comment){
+		postScriptService.pdCommentInsert(comment);
+		//System.out.println(comment.getCo_email());
+		//System.out.println(comment.getCo_context());
+
+		
+		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
 	}
 	
 	@RequestMapping(value="psListInsert")
@@ -148,16 +156,40 @@ public class PostScriptController {
 		
 		return model;
 	}
+
 	
-	@RequestMapping(value="fileInsert",method = RequestMethod.POST)
+	@RequestMapping(value="psUpdateLike")
 	@ResponseBody
-	public String fileInsert(MultipartHttpServletRequest req){
-		//postScriptService.psImage(request);
-		Iterator<String> itr = req.getFileNames();
-		System.out.println(itr);
-		System.out.println(req.getFileNames());
-		System.out.println(itr.hasNext());
-		return "success";
+	public String psUpdateLike(@RequestParam("sortLike") String sortLike, PostScriptLike like){
+		String result="dislike";
+		
+		if(like.getPd_no()== 0){
+			if(sortLike.equals("dislike")){
+				like.setLikeVal(1);
+				result = postScriptService.psInsertLike(like);
+				postScriptService.psUpdateLike(like);
+			}else if(sortLike.equals("like")){
+				like.setLikeVal(-1);
+				result = postScriptService.psDeleteLike(like);
+				postScriptService.psUpdateLike(like);
+			}
+		}else{
+			if(sortLike.equals("dislike")){
+				like.setLikeVal(1);
+				result = postScriptService.pdInsertLike(like);
+				postScriptService.pdUpdateLike(like);
+			}else if(sortLike.equals("like")){
+				like.setLikeVal(-1);
+				result = postScriptService.pdDeleteLike(like);
+				postScriptService.pdUpdateLike(like);
+			}	
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="psHits")
+	public void psHits(@RequestParam("ps_no") String ps_no){
+		postScriptService.psHits(ps_no);
 	}
 
 }

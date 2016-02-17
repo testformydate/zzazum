@@ -1,21 +1,32 @@
 @CHARSET "UTF-8";
 
-.ps_detail_body{position:absolute; top:15%; left:15%; width:70%; margin:auto; height:auto; text-align: center;}
+.ps_detail_body{position:absolute; top:10%; left:15%; width:70%; margin:auto; height:auto; text-align: center;}
 
-.ps_detail_title{text-align: center; margin: 0px; padding:0px;}
+.ps_detail_title{position:absolute; width:100%; text-align: right; margin-bottom: 0; padding:0px; table-layout: fixed;}
+.ps_detail_title>div{display: table-cell;}
+.ps_detail_title>h1{margin-bottom: 30px; padding:0px;}
+.ps_main_title{float:left; width: 80%; text-align: left; margin-left:30px;}
+.ps_main_like{float:right; width:70px; height: 70px; margin: 10px;}
+.ps_main_like>img{width:70px; height: 70px; z-index: 1;}
 
-.ps_detail_timeline{padding: 20px 0; magin:0px; list-style: none;}
-.ps_detail_timeline:before{position:absolute; top: 6%;bottom: 0; content: " "; width: 3px;background-color: #eee; left: 50%;
+.ps_detail_timeline{-webkit-column-count: 2;-webkit-column-gap: 0px;-webkit-column-fill: auto;-moz-column-count: 2;
+            -moz-column-gap: 0px;-moz-column-fill: auto;column-count: 2; column-gap: 0px;column-fill: auto;
+            background-color:#fff;}
+
+.ps_detail_timeline{position:absolute; top:110px; padding: 20px 0; magin:0px; list-style: none; }
+.ps_detail_timeline:before{position:absolute; top: 0%;bottom: 0; content: " "; width: 3px;background-color: #eee; left: 50%;
 	margin-left: -1.5px;}
-.ps_detail_timeline>ul{maring:0px; padding:0px;}
+.ps_detail_timeline>ul{margin-top:10px; padding:0px;}
 .ps_detail_timeline>ul>li:nth-child(1){margin-top: 0px;}
 .ps_detail_timeline>ul>li:nth-child(2){margin-top: 60px; margin-bottom: 40px;}
-.ps_detail_li{position:relative; width:50%; padding:0px; margin:20px 0px; list-style: none;}
+.ps_detail_li{position:relative; width:100%; padding:0px; margin:20px 0px; list-style: none;}
 .ps_detail_card{position:relative; display:inline-block; width:90%; border: 1px solid #d4d4d4; margin:0px auto; padding:10px;}
 .detail_card_img{position:relative; width:100%; margin: 0px auto; padding:0px;}
 .detail_card_img>img{position:relative; width:100%;}
-.detail_facade{float:left;}
-.detail_inverted{float:right;}
+/* .detail_facade{float:left;}
+.detail_inverted{float:right;} */
+
+.like_click:hover{cursor: pointer;}
 
 .ps_detail_context{margin: 15px 0px; padding:0px; text-align: left;}
 .detail_hr{width: 95%}
@@ -23,17 +34,23 @@
 .ps_detail_like>span>img{width:20px; height: 20px; margin: 0px 4px;}
 .ps_detail_like>span{ margin:0px 1px; padding:0px; float:left;}
 .ps_detail_comment{margin: 0px; padding:0px; text-align: left;}
-.ps_detail_comment>p{margin:0 0 0 12px; padding:0px;}
+.pd_comment_link{margin:0 0 10px 12px; padding:0px;}
 
-.ps_detail_user{position: relative; top:0px; left:0%; width: 100%; height:40px; padding: 0px; margin: 0px; table-layout: fixed;}
+.pd_comment_body{border:1px solid #d4d4d4; padding:5px; table-layout: auto;}
+.pd_comment_body>div{ margin: 0px; padding:3px; display: table-cell;}
+.pd_comment_profile{position:relative; top:10px margin:0px; padding:0px;}
+.pd_comment_profile>img{width:36px; height: 36px;}
+.pd_comment_context{ border-left: 1px solid #d4d4d4;}
+.pd_comment_context>hr{border: 1px dotted #d4d4d4;}
+
+.ps_detail_user{position: relative; top:0px; left:0%; width: 100%; height:40px; padding: 0px;  margin: 10px 0 0 0; table-layout: fixed;}
 .ps_detail_user>div{display:table-cell;}
 .ps_detail_user_img{position:relative; top:0px;}
 .ps_detail_user_img>img{ width: 36px; height: 36px;}
 .ps_detail_user_input{position: relative; width:100%; padding: 0px;}
-.ps_detail_user_input>input{width:98%; height: 29px; line-height: 55px; margin-left: 5px;}
+.ps_detail_user_input>input{width:93%; height: 20px; font-size:12pt; line-height: 43px; margin-left: 5px; padding: 5px 10px;}
 
 .like_click:hover{cursor: pointer;}
 
-.ps_detail_timeline > li > .ps_detail_card:before {position: absolute;top: 26px;right: -15px;display: inline-block;
-		content: " ";}
+.ps_detail_timeline > li > .ps_detail_card:before {position: absolute;top: 26px;right: -15px; display: inline-block; content: " ";}
 

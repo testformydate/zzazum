@@ -45,8 +45,17 @@ $(document).ready(function() {
         });
     
     $(".card_detail_click").click(function(){
-    	var ps_no = $(this).attr('id');
-    	location.href="psListDetail?ps_no="+$("."+ps_no).val();
+    	var ps_no = $("."+$(this).attr('id')).val();
+    	
+    	$.ajax({
+    		url:'psHits',
+    		type:'post',
+    		data:{"ps_no":ps_no},
+    		success:function(){}});
+    	
+    	$("#detailNo").attr("value", ps_no);
+    	$("#detailForm").attr("action","psListDetail");
+    	$("#detailForm").submit();
     });
     
     $(".bestPlanner_Click").click(function(){

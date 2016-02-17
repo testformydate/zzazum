@@ -36,6 +36,39 @@ div.stepContent > a:hover{
 }
 </style>
 <script type="text/javascript">
+function like(no){
+	
+	var like = $("#like" + no).attr("class");
+	var mem_id = "${mem_id}";
+	var likeCount = parseInt($("#likeCount" + no).html());
+	//alert(no + " " + like + " " + likeCount);
+	/* var likeNode = $(this).prev();
+	var likeVal = parseInt(likeNode.html());
+	*/
+	if(mem_id == "" || mem_id == 'null' ){
+		alert("로그인해주세요!")
+		return;
+	}
+	
+	$.ajax({
+   		type: "post",
+   		url: "likeUpdate",
+   		data: {"likeOrNot": like ,"ps_no" : no, "mem_id" : mem_id},
+   		success: function(jdata){
+       		if(jdata.trim() === "like"){
+	   			//alert("#like" + no);
+       			$("#like" + no).attr("class","like");
+       			$("#like" + no).attr("src","resources/icons/like.png");
+       			$("#likeCount" + no).html(likeCount + 1);
+       		}else if(jdata.trim() === "unlike"){
+       			$("#like" + no).attr("class","unlike");
+       			$("#like" + no).attr("src","resources/icons/unlike.png");
+       			$("#likeCount" + no).html(likeCount - 1);
+       		}
+       			
+       	}
+   	});
+}
 function cateShow(cate){
 	/* var category = "div:not(." + cate + ")";
 	//alert(category);
@@ -179,17 +212,17 @@ function addrShow(addr){
 var ck_keyword = /^[A-Za-z0-9]*$/;
 
 $(document).ready(function(){
-	$(".like").mouseover(function(){
-		$(this).attr("src", "<c:url value='/icons/like.png' />");
+	/* $(".unlike").mouseover(function(){
+		$(this).attr("src", "resources/icons/like.png");
 	});
-	$(".like").mouseout(function(){
-		$(this).attr("src", "<c:url value='/icons/unlike.png' />");
-	});
+	$(".unlike").mouseout(function(){
+		$(this).attr("src", "resources/icons/unlike.png");
+	}); */
 	$(".comment").mouseover(function(){
-		$(this).attr("src", "<c:url value='/icons/commentactif.png' />");
+		$(this).attr("src", "resources/icons/commentactif.png");
 	});
 	$(".comment").mouseout(function(){
-		$(this).attr("src", "<c:url value='/icons/comment.png' />");
+		$(this).attr("src", "resources/icons/comment.png");
 	});
 })
 </script>
@@ -365,9 +398,9 @@ $(document).ready(function(){
 							<div class="detailContent">
 								<div class="description" style="margin-left:15px;">${p.ps_context}</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
-									<div class="likes" style="font-size:0.8em;margin-bottom:6px;"><span style="color:#69D2E7;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#69D2E7;">${p.ps_hits}</span></div>
-									<div style="display:inline-block;margin-right:10px;"><a href="#"><img class="like" style="width:30px;" src="<c:url value="/icons/unlike.png" />"></a></div>
-									<div style="display:inline-block;"><a href=""><img class="comment" style="width:30px;" src="<c:url value="/icons/comment.png" />"></a></div>
+									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#69D2E7;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#69D2E7;">${p.ps_hits}</span></div>
+									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
+									<div style="display:inline-block;cursor:pointer;"><img id="commentImg${p.ps_no}" class="comment" style="width:30px;" src="resources/icons/comment.png"></div>
 								</div>
 							</div>
 						</div>
