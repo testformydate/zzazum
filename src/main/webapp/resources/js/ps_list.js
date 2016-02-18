@@ -6,7 +6,7 @@ $(document).ready(function() {
     
     $(window).scroll(function() { //detect page scroll
     	if(track_Size > track_Num){
-    		 if($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+    		 if(Math.ceil($(window).scrollTop()) + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
     	        {	
     	        	console.log("스크롤이 맨 밑까지 내려왔어요");
     	        	$(".ps_loading_image").show();

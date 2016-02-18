@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-.subMenu_body{position:fixed; bottom: 5%; right: 5%; text-align: center;}
+.subMenu_body{position:fixed; bottom: 3%; right: 2%; text-align: center;}
 .subMenu_img{margin: 0; padding:0;}
 .subMenu_img>img:hover{cursor: pointer;}
 .subMenu_img>img{ width: 60px; height: 60px; margin: 0; padding: 0; box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);}

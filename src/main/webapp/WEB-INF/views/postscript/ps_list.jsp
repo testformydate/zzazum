@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@include file="../md_top.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath }" /> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/ps_list.css"/>
 <title>Insert title here</title>
-<%@include file="../md_top.jsp" %>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/ps_list.js" ></script>
@@ -90,7 +89,7 @@
 	<input id="bestPLIn" type="hidden" name="ps_data">
 </form>
 <form id="detailForm" method="post">
-	<input type="hidden" id="detailId" name="ps_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type="hidden" id="detailId" name="ps_email" value="<%=(String)session.getAttribute("mem_id") %>">
 	<input type="hidden" id="detailNo" name="ps_no">
 </form>
 <%@include file="../subMenu.jsp" %>
