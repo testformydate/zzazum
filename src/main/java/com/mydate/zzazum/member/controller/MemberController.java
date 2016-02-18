@@ -83,7 +83,8 @@ public class MemberController {
 	//로그아웃 (세션 초기화하는 컨트롤러)
 	@RequestMapping("memberlogout")
 	public void memberLogout(HttpSession session, HttpServletResponse response) throws IOException{
-		session.removeAttribute("mem_info");
+		session.removeAttribute("mem_id");
+		session.removeAttribute("mem_nick");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");

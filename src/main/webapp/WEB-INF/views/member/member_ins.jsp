@@ -32,7 +32,7 @@
 .insert_button{background-color: #69D2E7; color: white; outline:0;}
 </style>
 <title>Insert title here</title>
-<%-- <%@include file="../md_top.jsp" %> --%>
+<%@include file="../md_top.jsp" %>
 <script type="text/javascript" src="../resources/js/hashencode.js"></script>
 <script type="text/javascript">
 function calc(){
@@ -49,14 +49,13 @@ function calc(){
 		/* document.getElementById('txt2').value = strHash; */
 		document.insForm.mem_pw.value = strHash;
 		document.insForm.mem_pwOk.value = strHash;
-		document.insForm.submit();
-		//alert(strHash);
+		//document.insForm.submit();
+		alert(strHash);
 }
 </script>
-<link rel="stylesheet" href="<c:url value="/resources/css/signupform.css" />">
 </head>
 <body class="back-img">
-<div class="member_insert_body">
+<div class="member_insert_body body">
    <div class='member_insert_title'>회원가입</div>
    <div class="member_insert_content" style="border: 1px solid white; padding: 20px; text-align: center;">
       <form name="insForm" action="memberins" method="post" style="margin: -3px">

@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.member_login_body{position: absolute; top:15%; left:35%;}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
-<div class="member_login_body">
+<%@include file="../md_top.jsp" %>
+<div class="member_login_body body">
 	<form action="memberlog" method="post">
 	<div>
 	아이디 : <input type="text" name="mem_id">

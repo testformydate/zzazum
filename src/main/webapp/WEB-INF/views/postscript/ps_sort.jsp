@@ -17,7 +17,7 @@
 </head>
 <body>
 <%@include file="../md_top.jsp" %>
-	<div class="ps_body">
+	<div class="ps_body body">
 		<div class="ps_search">
 			<input type="text"><img src="resources/ps_icon/search.png">
 		</div>

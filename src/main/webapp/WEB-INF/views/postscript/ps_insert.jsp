@@ -39,7 +39,7 @@ function readURL(input) {
 </head>
 <body>
 <%@include file="../md_top.jsp" %>
-<div class="ps_insert_body">
+<div class="ps_insert_body body">
 	<form id="insertSubmit" enctype="multipart/form-data">
 	<div class="ps_insert_ti">Title</div>
 	<div class="ps_insert_title">
