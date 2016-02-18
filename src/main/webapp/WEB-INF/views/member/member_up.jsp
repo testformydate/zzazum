@@ -1,10 +1,8 @@
-<%@page import="com.mydate.zzazum.member.vo.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<% 
-	MemberInfo mem = (MemberInfo)session.getAttribute("mem_info");
-%>
+<%
+	 String mem =(String)session.getAttribute("mem_id");
+%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +12,7 @@
 <body>
 <div class="Registro">
 <form action="memberup" method="post">
-아이디 : <input type="text" name="mem_id" readonly="readonly" value="<%=mem.getMem_id()%>" /><br/>
+아이디 : <input type="text" name="mem_id" readonly="readonly" value="<%=mem%>" /><br/>
 닉네임 : <input type="text" name="mem_nick"  /><br/>
 패스워드 : <input type="password" name="mem_pw"  /><br/>
 패스워드확인 : <input type="password" name="mem_pwok"  /><br/>
