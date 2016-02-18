@@ -11,6 +11,7 @@ import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.location.vo.SearchResultVo;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 public interface LocationDao {
 	
@@ -26,13 +27,16 @@ public interface LocationDao {
 	@Insert("insert into md_location(p_id,p_name,p_addr,p_lat,p_lng,p_image) values(#{p_id},#{p_name},#{p_addr},#{p_lat},#{p_lng},#{p_image})")
 	public boolean insertApiData(LocationVo location);
 	
+	@Select("select ps_no from md_pslike where mem_id=#{mem_id}")
+	public ArrayList<String> selectLikedNo(String mem_id);
+	
 	//For search
 	
 	@Insert("insert into md_searchkeyword(k_mid, k_word, k_sdate) values(#{k_mid},#{k_word}, now())")
 	public boolean insertSearchKeyword(SearchKeywordVo keyword);
 	
-	@Select("select * from vmd_location where mem_id like concat('%',#{keyword},'%') or ps_title like concat('%',#{keyword},'%') or ps_content like concat('%',#{keyword},'%')")
-	public ArrayList<SearchResultVo> selectSearchResult(String keyword);
+	@Select("select * from vmd_pslistall where (ps_email like concat('%',#{keyword1},'%') or ps_title like concat('%',#{keyword1},'%') or ps_context like concat('%',#{keyword1},'%')) and (ps_email like concat('%',#{keyword2},'%') or ps_title like concat('%',#{keyword2},'%') or ps_context like concat('%',#{keyword2},'%'))")
+	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword);
 	
 	//for selection box
 	@Select("select * from vmd_location where p_category like #{keyword}")

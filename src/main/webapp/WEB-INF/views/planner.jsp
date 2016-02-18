@@ -211,7 +211,7 @@ function addrShow(addr){
 
 
 $(document).ready(function(){
-
+	var id = "${mem_id}";
 	/* $(".unlike").mouseover(function(){
 		$(this).attr("src", "resources/icons/like.png");
 	});
@@ -229,6 +229,17 @@ $(document).ready(function(){
 		//alert(no);
 		$("#detailForm" + no).submit();
 	});
+	
+	$.ajax({
+   		type: "post",
+   		url: "likeUpdate",
+   		data: {"mem_id" : id},
+   		success: function(jdata){
+	   			//alert("#like" + no);
+       			$("#like" + no).attr("class","like");
+       			$("#like" + no).attr("src","resources/icons/like.png");
+       	}
+   	});
 })
 </script>
 </head>

@@ -6,24 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="../md_top.jsp" %>
-<script type="text/javascript" src="<c:url value='/resources/js/hashencode.js' />"></script>
+<%-- <%@include file="../md_top.jsp" %> --%>
+<script type="text/javascript" src="../resources/js/hashencode.js"></script>
 <script type="text/javascript">
-//hash listener
-$('#generate-hash').click( function() {
-	alert("aa");
-    var t = new Date();
-    hash = Sha256.hash($('#message').val());
-    $('#hash-time').html(((new Date() - t))+'ms');
-    $('#hash').val(hash);
-});
-
-// show source code
-$.get('/mydate/resources/js/hashencode.js', function(data) {
-    var src = data.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') // replace &, <, >
-    $('#src-code').html(src);
-    prettyPrint();
-}, 'text');
+function calc(){
+	//alert("dddd");
+	var strTxt = document.insForm.mem_pw.value;
+	if( strTxt.length == 0 )
+	{
+		return;
+	}
+		if( strTxt.search("\r")>0 ) strTxt=replaceAll( "\r", "", strTxt );
+		var strHash = hex_sha256( strTxt );
+		strHash = strHash.toUpperCase();
+	
+		/* document.getElementById('txt2').value = strHash; */
+		document.insForm.mem_pw.value = strHash;
+		document.insForm.mem_pwOk.value = strHash;
+		document.insForm.submit();
+		//alert(strHash);
+}
 </script>
 <link rel="stylesheet" href="<c:url value="/resources/css/signupform.css" />">
 </head>
@@ -31,7 +33,7 @@ $.get('/mydate/resources/js/hashencode.js', function(data) {
 <div class="member_insert_body">
    <div class='member_insert_title'>회원가입</div>
    <div class="member_insert_content" style="border: 1px solid white; padding: 20px; text-align: center;">
-      <form action="insert" style="margin: -3px">
+      <form name="insForm" action="memberins" method="post" style="margin: -3px">
          <div class="insert_input">
             <div class="insert_subtitle">아이디</div>
             <input type="text" name="mem_id" placeholder="아이디(이메일)를 입력해주세요">
@@ -56,11 +58,13 @@ $.get('/mydate/resources/js/hashencode.js', function(data) {
             <input type="text" name="mem_bhday" placeholder="생년월일을 - 없이 입력하세요" />
          </div>
          <div class="insert_input">
-            <input class="insert_button" type="submit" value="submit">
+            <!-- <input class="insert_button" type="submit" value="submit"> -->
          </div>
       </form>
+            <button onclick="calc()" width="100%" height="50px"></button>
    </div>
 </div>
+<div id="txt2" style="top:40px;left:20px;"></div>
 </body>
 </html>
 

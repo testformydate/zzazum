@@ -19,6 +19,7 @@ import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Service
 public class LocationDataService{
@@ -102,5 +103,12 @@ public class LocationDataService{
 	public boolean deleteLikeData(String ps_no){
 		return locationDao.deleteLikeData(ps_no);
 	}
+	
+	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword){
+		return locationDao.selectSearchResult(keyword);
+	}
 
+	public ArrayList<String> selectLikedNo(String mem_id){
+		return locationDao.selectLikedNo(mem_id);
+	}
 }

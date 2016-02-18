@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 public interface LocationDataInter {
 	public ArrayList<LocationVo> selectAllData() throws DataAccessException;
@@ -21,4 +22,6 @@ public interface LocationDataInter {
 	public boolean minusLike(String ps_no);
 	public boolean plusLike(String ps_no);
 	public boolean deleteLikeData(String ps_no);
+	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword);
+	public ArrayList<String> selectLikedNo(String mem_id);
 }

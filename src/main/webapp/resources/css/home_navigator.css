@@ -72,8 +72,7 @@ li.hurry:hover{
 } */
 
 .logo{
-	font-size:20pt;
-	font-weight:600;
+	width:40px;
 	float:left;
 	margin-right:15px;
 }

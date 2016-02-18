@@ -67,7 +67,7 @@ div#search{
   border-radius: 1px;
   height: 3px;
   width: 20px;
-  background: #69D2E7;
+  background: lightgray;
   position: absolute;
   display: block;
   content: '';
@@ -329,7 +329,7 @@ $(document).ready(function(){
 					<li class="navili">
 						<div id="nav-toggle"><span></span></div>
 					</li>
-					<li class="navili"><div class="logo"><a class="pageLinks" href="${path}/home"><img src="">MyDate</a></div></li>
+					<li class="navili"><div class="logo"><a class="pageLinks" href="${path}/home"><img class="logo" src="<c:url value="/icons/mydatelogo.png" />"></a></div></li>
 					<%-- <li class="navili" id="planner"><a id="planner" href="${path}/planner">내가 짜줌</a></li>
 					<li class="navili" id="psList"><a id="psList" href="${path}/psList?method=listAll">다녀왔어요</a></li>
 					<li class="navili hurry" id="hurry"><a id="hurry" href="#">급한 마음<img id="emergency" style="width:15px;height:15px;" src="<c:url value="/icons/emergency.png" />"></a></li> --%>

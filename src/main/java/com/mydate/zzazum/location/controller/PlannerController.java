@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,14 +41,16 @@ public class PlannerController {
 	@RequestMapping("planner")
 	public ModelAndView planner(HttpSession session) throws IOException{
 		ModelAndView modelAndView = new ModelAndView();
-		
+		String mem_id = (String)session.getAttribute("mem_id");
 		/*if(session.getAttribute("mem_id")) */
 		
 		ArrayList<LocationVo> list = service.selectAllData();
 		ArrayList<PostScriptList> postList = postService.psListAll();
+		ArrayList<String> noLisst = service.selectLikedNo(mem_id);
 		//System.out.println(postList);
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("psList", postList);
+		modelAndView.addObject("noList", noLisst);
 		
 		/*modelAndView.setViewName("planner");*/
 		/*modelAndView.setViewName("navitest");*/
@@ -81,6 +84,10 @@ public class PlannerController {
 	
 	@RequestMapping(value="keyword", method=RequestMethod.GET)
 	public ModelAndView dataSearchResult(String keyword, HttpSession session, HttpServletRequest request) throws IOException{
+		String keyword1 = "";
+		String keyword2 = "";
+		ArrayList<LocationVo> resultList = null;
+		ArrayList<PostScriptList> postList = null;
 		ModelAndView model = new ModelAndView();
 		String mem_id = "";
 		mem_id = (String)session.getAttribute("mem_id");
@@ -97,10 +104,25 @@ public class PlannerController {
 		service.insertSearchKeyword(keywordVo);
 //		System.out.println(naverList);
 		
+		StringTokenizer st = new StringTokenizer(keyword);
+//		System.out.println(st.countTokens());
+		if(st.countTokens() > 1){
+			while(st.hasMoreElements()){
+				keyword1 = st.nextElement().toString();
+				keyword2 = st.nextElement().toString();
+				//System.out.println(keyword1 + " success " + keyword2);
+				SearchKeywordVo kWord = new SearchKeywordVo();
+				kWord.setKeyword1(keyword1);
+				kWord.setKeyword2(keyword2);
+				postList = service.selectSearchResult(kWord);
+			}
+		}else{
+			resultList = service.selectSearchData(keyword);
+			postList = postService.selectPsSearch(keyword);
+		}
 		
-		ArrayList<LocationVo> resultList = service.selectSearchData(keyword);
-		ArrayList<PostScriptList> postList = postService.selectPsSearch(keyword);
 		//System.out.println(postList);
+		if(resultList == null || resultList.isEmpty()) resultList = service.selectAllData();
 		if(postList == null || postList.isEmpty()) postList = postService.psListAll();
 		
 		model.addObject("list", resultList);

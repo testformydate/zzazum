@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
+import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Repository
 public class LocationDataImpl implements LocationDataInter{
@@ -64,5 +65,15 @@ public class LocationDataImpl implements LocationDataInter{
 	@Override
 	public boolean deleteLikeData(String ps_no) {
 		return locationUpdateDao.deleteLikeData(ps_no);
+	}
+	
+	@Override
+	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword) {
+		return locationUpdateDao.selectSearchResult(keyword);
+	}
+	
+	@Override
+	public ArrayList<String> selectLikedNo(String mem_id) {
+		return locationUpdateDao.selectLikedNo(mem_id);
 	}
 }
