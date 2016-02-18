@@ -91,7 +91,7 @@
 	<input id="bestPLIn" type="hidden" name="ps_data">
 </form>
 <form id="detailForm" method="post">
-	<input type="hidden" id="detailId" name="ps_email" value="<%=mem.getMem_id() %>">
+	<input type="hidden" id="detailId" name="ps_email" value="<%=(String)session.getAttribute("mem_id") %>">
 	<input type="hidden" id="detailNo" name="ps_no">
 </form>
 <%@include file="../subMenu.jsp" %>

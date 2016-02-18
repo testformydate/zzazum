@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.member.service.MailService;
 import com.mydate.zzazum.member.service.MemberService;
-import com.mydate.zzazum.member.vo.MemberInfo;
 import com.mydate.zzazum.member.vo.MemberVo;
 
 
@@ -68,12 +67,10 @@ public class MemberController {
 	//로그인 프로세스 진행하는 컨트롤러
 	@RequestMapping(value = "memberlog", method=RequestMethod.POST)
 	public void memberLog(MemberVo memberVo, HttpSession session, HttpServletResponse response) throws IOException{
-		MemberInfo memberInfo = new MemberInfo();
 		MemberVo member = memberService.memberLog(memberVo);
-		memberInfo.setMem_id(member.getMem_id());
-		memberInfo.setMem_nick(member.getMem_nick());
 		
-		session.setAttribute("mem_info", memberInfo);
+		session.setAttribute("mem_nick", member.getMem_nick());
+		session.setAttribute("mem_id", member.getMem_id());
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
@@ -86,7 +83,7 @@ public class MemberController {
 	//로그아웃 (세션 초기화하는 컨트롤러)
 	@RequestMapping("memberlogout")
 	public void memberLogout(HttpSession session, HttpServletResponse response) throws IOException{
-		session.removeAttribute("mem_id");
+		session.removeAttribute("mem_info");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");

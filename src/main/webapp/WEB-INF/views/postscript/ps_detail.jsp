@@ -93,12 +93,12 @@
 
 <form id="insertComment" method="post">
 	<input type="hidden" name="co_psno" value="${psDM.ps_no}">
-	<input type="hidden" id="getId" name="co_email" value="<%=mem.getMem_id() %>">
+	<input type="hidden" id="getId" name="co_email" value="<%=(String)session.getAttribute("mem_id") %>">
 	<input type="hidden" name="co_pdno" id="co_pdno">
 	<input type="hidden" name="co_context" id="co_comment">
 </form>
 <input type="hidden" id="detailNo" value="${psDM.ps_no}">
-<input type="hidden" id="getId" value="<%=mem.getMem_id() %>">
+<input type="hidden" id="getId" value="<%=session.getAttribute("mem_id") %>">
 </div>
 </body>
 </html>

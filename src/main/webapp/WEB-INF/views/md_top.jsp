@@ -1,9 +1,8 @@
-<%@page import="com.mydate.zzazum.member.vo.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	MemberInfo mem = (MemberInfo)session.getAttribute("mem_info");
+	 String mem =(String)session.getAttribute("mem_id");
 %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/home_navigator.css" />">
@@ -350,10 +349,10 @@ $(document).ready(function(){
 							<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
 							<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
 							<% }else{ %>
-								<div class="member"><%=mem.getMem_nick() %>님 환영합니다.</div>
+								<div class="member"><%=session.getAttribute("mem_nick") %>님 환영합니다.</div>
 								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
 								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
-								<c:set var="mem_id" value="<%=mem.getMem_id() %>" />
+								<c:set var="mem_id" value="<%=mem %>" />
 							<%} %>
 						</div>						
 					</li>
