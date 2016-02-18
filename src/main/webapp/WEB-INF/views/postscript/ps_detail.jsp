@@ -70,7 +70,14 @@
 					</div>
 					<div class="ps_detail_user">
 					<div class="ps_detail_user_img">
-						<img src="resources/ps_images/profile/${userP.mem_primg }">
+					<c:choose>
+						<c:when test="${!empty userP.mem_primg }">
+							<img src="resources/ps_images/profile/${userP.mem_primg }">
+						</c:when>
+						<c:otherwise>
+							<img src="resources/ps_images/profile/no_primg.png">
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="ps_detail_user_input">
 						<textarea class='ps_insert_content enter_click'></textarea>
@@ -86,12 +93,12 @@
 
 <form id="insertComment" method="post">
 	<input type="hidden" name="co_psno" value="${psDM.ps_no}">
-	<input type="hidden" id="getId" name="co_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type="hidden" id="getId" name="co_email" value="<%=mem.getMem_id() %>">
 	<input type="hidden" name="co_pdno" id="co_pdno">
 	<input type="hidden" name="co_context" id="co_comment">
 </form>
 <input type="hidden" id="detailNo" value="${psDM.ps_no}">
-<input type="hidden" id="getId" value="<%=session.getAttribute("mem_id") %>">
+<input type="hidden" id="getId" value="<%=mem.getMem_id() %>">
 </div>
 </body>
 </html>

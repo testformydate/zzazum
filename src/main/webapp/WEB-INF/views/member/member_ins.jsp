@@ -5,6 +5,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.back-img {
+ /*  background-image:-webkit-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
+   background-image:-moz-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
+  background-image:-o-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
+   background-image:-ms-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
+   background-image:linear-gradient(to left,#1b1e24,#1b1e24 50%,#1b1e24); */
+     text-align: center;
+   font-family: NanumGothic;
+   font-size: 13px;
+   line-height: 1.5em;
+   background-image: url('<c:url value="../resources/ps_images/member/main.png" />');
+   opacity: 1.5;
+   background-repeat: no-repeat;
+   background-size: 1600px 900px;
+   color: gray;
+}
+.member_insert_body{position: absolute;top:12%; left: 38%; margin: auto; }
+.member_insert_title{text-align: center; font-size:20pt;}
+.member_insert_content{margin: 20px 0;}
+.insert_input{margin:10px 0;}
+.insert_input>input{radius:5px; border-radius: 10px; padding-left: 10px; border-style: none;}
+.insert_input>input{ width:300px; height: 40px; font-size: 12pt;}
+.insert_subtitle{margin: 5px 0px; text-align: left; font-size: 12pt;}
+.insert_button{background-color: #69D2E7; color: white; outline:0;}
+</style>
 <title>Insert title here</title>
 <%@include file="../md_top.jsp" %>
 <script type="text/javascript" src="<c:url value='/resources/js/hashencode.js' />"></script>

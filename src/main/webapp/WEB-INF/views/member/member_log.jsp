@@ -7,10 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="memberlog" method="post">
-아이디 : <input type="text" name="mem_id">
-패스워드 : <input type="password" name="mem_pw">
-<input type="submit" value="로그인">
-</form>
+<div class="member_login_body">
+	<form action="memberlog" method="post">
+	<div>
+	아이디 : <input type="text" name="mem_id">
+	</div>
+	<div>
+	패스워드 : <input type="password" name="mem_pw">
+	</div>
+	<div >
+	<input type="submit" value="로그인">
+	</div>
+	</form>
+</div>
 </body>
 </html>
