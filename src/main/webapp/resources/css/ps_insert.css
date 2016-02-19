@@ -17,3 +17,20 @@
 .ps_insert_card:hover{cursor:pointer;}
 .ps_insert_card>img{margin: 0px; width:150px; height: 150px;}
 .ps_insert_content{background-color:transparent; width:100%; border:0; resize: none; wrap:hard;}
+
+.modal{position: fixed;font-family: Arial, Helvetica, sans-serif;top: -150px;;right: 0;bottom: 0;
+    left: 0;background: rgba(0, 0, 0, 0.8);z-index: 99999; opacity:0;
+    -webkit-transition: opacity 400ms ease-in;-moz-transition: opacity 400ms ease-in;transition: opacity 400ms ease-in;pointer-events: none;}
+.modal:target {opacity:1; pointer-events: auto;}
+.modal>div{width: 600px; position: relative; margin: 10% auto; padding: 5px 20px 13px 20px; border-radius: 10px; background: #fff;
+    background: -moz-linear-gradient(#fff, #fff); background: -webkit-linear-gradient(#fff, #fff); background: -o-linear-gradient(#fff, #fff);}
+.modal_attr{margin: 10px 0;}
+.modal_title{margin-left: 30px;}
+.modal_context{margin:auto; text-align: center;}
+.modal_context>input{width:550px; font-size: 12pt; radius:10px; margin: 5px auto;}
+.modal_button{width:580px; text-align: right;}
+.modal_button>input{background-color: #69D2E7; radius:5px; width:50px; height: 30px;}
+.modal_button>input:hover{cursor: pointer;}
+.modal_img{width: 550px; height: 550px; margin: 5px auto;}
+
+.modal_border{border: 3px solid; border-color: #eee;}
