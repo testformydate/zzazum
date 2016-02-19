@@ -5,8 +5,8 @@
 	height:55px;
 	top:0;
 	left:0;
-	/* background-color:#69D2E7; */
-	background-color:white;
+	/* background-color:#00cdcd; */
+	background-color:#00cdcd;
 	border-bottom:1px solid lightgray;
 	position:fixed;
 	z-index:5;
@@ -54,7 +54,7 @@ a{
 /* li.navili:hover{
 	background-color:#27bedc;
 	font-weight:600;
-	border-bottom:1px solid #69D2E7;
+	border-bottom:1px solid #00cdcd;
 } */
 
 /* #hurry{
@@ -75,10 +75,11 @@ li.hurry:hover{
 	width:40px;
 	float:left;
 	margin-right:15px;
+	border-radius:20%;
 }
 
 .logo a{
-	color:#69D2E7;
+	color:#00cdcd;
 	font-family:Veranda, Sans-serif !important;
 }
 
@@ -87,5 +88,5 @@ li.hurry:hover{
 }
 
 .member a:hover{
-	color:#69D2E7;
+	color:#00cdcd;
 }

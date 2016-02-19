@@ -49,8 +49,8 @@ function calc(){
 		/* document.getElementById('txt2').value = strHash; */
 		document.insForm.mem_pw.value = strHash;
 		document.insForm.mem_pwOk.value = strHash;
-		//document.insForm.submit();
-		alert(strHash);
+		document.insForm.submit();
+		//alert(strHash);
 }
 </script>
 </head>
@@ -61,7 +61,7 @@ function calc(){
       <form name="insForm" action="memberins" method="post" style="margin: -3px">
          <div class="insert_input">
             <div class="insert_subtitle">아이디</div>
-            <input type="text" name="mem_id" placeholder="아이디(이메일)를 입력해주세요">
+            <input type="text" name="mem_id" placeholder="이메일을 입력해주세요">
          </div>
          <div class="insert_input">
             <div class="insert_subtitle">닉네임</div>
@@ -69,14 +69,14 @@ function calc(){
          </div>
          <div class="insert_input">
             <div class="insert_subtitle">비밀번호</div>
-            <input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(8~20자)">
+            <input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(영문,숫자,특수문자 포함 8~10자)">
          </div>
          <div class="insert_input">
             <input type="password" name="mem_pwOk" placeholder="비밀번호를 한번 더 입력하세요">
          </div>
          <div class="insert_input">
             <div class="insert_subtitle">휴대폰</div>
-            <input type="text" name="mem_tel" placeholder="휴대폰번호를  입력하세요" />
+            <input type="text" name="mem_tel" placeholder="휴대전화번호를  입력하세요" />
          </div>
          <div class="insert_input">
             <div class="insert_subtitle">생일</div>

@@ -22,14 +22,14 @@
 <style>
 li.navili#planner{
 	font-weight:600;
-	border-bottom:1px solid #69D2E7;
+	border-bottom:1px solid #00cdcd;
 }
 .suggestionList:hover{
-	color:#69D2E7;
+	color:#00cdcd;
 }
 div.stepContent > a:hover{
 	font-weight:600;
-	color:#69D2E7;
+	color:#00cdcd;
 }
 #map{
 	height: 100%;
@@ -232,12 +232,15 @@ $(document).ready(function(){
 	
 	$.ajax({
    		type: "post",
-   		url: "likeUpdate",
+   		url: "likedList",
    		data: {"mem_id" : id},
-   		success: function(jdata){
-	   			//alert("#like" + no);
-       			$("#like" + no).attr("class","like");
-       			$("#like" + no).attr("src","resources/icons/like.png");
+   		success: function(like){
+   			$(like).each(function(index, no){
+	    		$("#like" + no).attr("class","like");
+	     		$("#like" + no).attr("src","resources/icons/like.png");   				
+   			});
+   			//alert(like);
+   			//alert("#like" + no);
        	}
    	});
 })
@@ -404,7 +407,7 @@ $(document).ready(function(){
 		
 		<!-- placeDetail -->
 		<div class="detailWrapper">
-			<div class="detailWrapperTitle">우리가 추천함</div>
+			<div class="detailWrapperTitle">우리 다녀왔어요</div>
 			<div class="details">
 				<c:forEach var="p" items="${psList}" >
 					<div class="detail">
@@ -414,7 +417,7 @@ $(document).ready(function(){
 							<div class="detailContent">
 								<div class="description" style="margin-left:15px;cursor:pointer;">${p.ps_context}</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
-									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#69D2E7;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#69D2E7;">${p.ps_hits}</span></div>
+									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#00cdcd;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#00cdcd;">${p.ps_hits}</span></div>
 									<div style="display:inline-block;margin-right:10px;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
 									<div style="display:inline-block;cursor:pointer;"><img id="commentImg${p.ps_no}" class="comment" style="width:30px;" src="resources/icons/comment.png"></div>
 								</div>
@@ -427,7 +430,7 @@ $(document).ready(function(){
 					</div>
 				</c:forEach>
 			</div>
-			<div class="detailWrapperTitle">네이버 블로그</div>
+			<%-- <div class="detailWrapperTitle">네이버 블로그</div>
 			<div class="details">
 				<div class="detail">
 					<div class="detailImgWrapper"><img class="detailImg" src="<c:url value="/icons/1.jpg" />"></div>
@@ -456,7 +459,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 <%@include file="md_bottom.jsp" %>
