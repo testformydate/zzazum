@@ -60,7 +60,7 @@ function calc(){
    <div class="member_insert_content" style="border: 1px solid white; padding: 20px; text-align: center;">
       <form name="insForm" action="memberins" method="post" style="margin: -3px">
          <div class="insert_input">
-            <div class="insert_subtitle">아이디</div>
+            <div class="insert_subtitle">이메일</div>
             <input type="text" name="mem_id" placeholder="이메일을 입력해주세요">
          </div>
          <div class="insert_input">
