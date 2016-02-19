@@ -15,7 +15,7 @@ div#search{
 	/* position:relative;
 	margin-top:-300px;
 	margin-left:485px; */
-	background-color:#e0e0e0;
+	background-color:white;
 	width:500px;
 	height:30px;
 	line-height:30px;
@@ -33,7 +33,7 @@ div#search{
 .searchMain{
 	height:25px;
 	outline-style:none;
-	background-color:#e0e0e0;
+	background-color:white;
 	font-size:15pt;
 	border:none;
 	float:left;
@@ -48,20 +48,25 @@ div#search{
 	float:right;
 	width:40px;
 	height:30px;
-	background-color:#69D2E7;
+	background-color:#00cdcd;
 	font-size:13pt;
 	font-family:Sans-serif;
 	color:white;
 	border-top-right-radius:5px;
 	border-bottom-right-radius:5px;
 	cursor:pointer;
+	border:2px solid white;
+}
+
+.searchBtn:hover{
+	background-color:#c1134e;
 }
 
 /*navigation box*/
 
 /* #nav-toggle { position: absolute; left: 5%; top: 50%; }
  */
-#nav-toggle { cursor: pointer; padding: 10px 35px 16px 0px; margin-top:10px;}
+#nav-toggle { cursor: pointer; padding: 15px 35px 16px 0px; margin-top:10px;}
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
   cursor: pointer;
   border-radius: 1px;
@@ -100,7 +105,7 @@ div#search{
 <script type="text/javascript">
 function search(keyword){
 	//alert(keyword);
-	$(".box-font-active").attr("class","box-font");
+// 	$(".box-font-active").attr("class","box-font");
 	$(".stepContent-active").attr("class","stepContent");
 	$("#keyword").attr("value", keyword);
 	searchForm.keyword.focus();
@@ -339,7 +344,8 @@ $(document).ready(function(){
 								<input type="hidden" id="resultIndex" name="resultIndex" value="0" />
 								<img class="icon-search" src="<c:url value="/icons/search.png" />">
 								<input type="text" class="searchMain" id="keyword" name="keyword" value="${exKeyword}" placeholder="예:서울,여의도, 강남" autocomplete="off" autofocus>
-								<input type="submit" class="searchBtn" value="GO!">
+								<button class="searchBtn"><img width="20px;" src="resources/icons/enter-arrow.png"></button>
+								<!-- <input type="submit" class="searchBtn" value="GO!"> -->
 							</form>
 						</div>
 					</li>

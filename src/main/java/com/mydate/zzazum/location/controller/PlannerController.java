@@ -42,11 +42,17 @@ public class PlannerController {
 	public ModelAndView planner(HttpSession session) throws IOException{
 		ModelAndView modelAndView = new ModelAndView();
 		String mem_id = (String)session.getAttribute("mem_id");
-		/*if(session.getAttribute("mem_id")) */
 		
+		ArrayList<String> noLisst = null;
+		/*if(session.getAttribute("mem_id")) */
 		ArrayList<LocationVo> list = service.selectAllData();
 		ArrayList<PostScriptList> postList = postService.psListAll();
-		ArrayList<String> noLisst = service.selectLikedNo(mem_id);
+		if(mem_id == null || mem_id.equals("")) {
+			modelAndView.setViewName("planner");
+			return modelAndView;
+		}else{
+			noLisst = service.selectLikedNo(mem_id);
+		}
 		//System.out.println(postList);
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("psList", postList);
@@ -150,7 +156,7 @@ public class PlannerController {
 	public String likeOrDislike(ClikeVo like){
 		String likeOrUnlike = like.getLikeOrNot();
 		String ps_no = like.getPs_no();
-		System.out.println(ps_no);
+		//System.out.println(ps_no);
 		boolean b = false;
 		if(likeOrUnlike.equals("like")){
 			b = service.deleteLikeData(ps_no);
@@ -167,5 +173,13 @@ public class PlannerController {
 		System.out.println(like.getPs_no());*/
 		
 		return likeOrUnlike; 
+	}
+	
+	@RequestMapping(value="likedList", method=RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<String> selectLikedNo(String mem_id){
+		ArrayList<String> likedList = service.selectLikedNo(mem_id);
+		
+		return likedList;
 	}
 }

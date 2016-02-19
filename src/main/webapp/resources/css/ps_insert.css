@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 .ps_insert_body{position:absolute; top:20%; left:15%; width:70%; margin:auto; height:auto; padding-bottom:30px; text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);}
 
-.ps_insert_ti{font-size:25pt; color: #69D2E7; margin: 20px 0 10px 0; }
+.ps_insert_ti{font-size:25pt; color: #00cdcd; margin: 20px 0 10px 0; }
 .ps_insert_title{position:relative; width:350px; height:20px; margin: auto; margin-top:20px; margin-bottom:30px; padding:0px;}
 .ps_insert_title>input{width:100%;; padding:5px; margin:auto;}
 .ps_insert_file{margin:auto; width:10%; height:40px; background-size:100%; }
