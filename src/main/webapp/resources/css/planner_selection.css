@@ -19,7 +19,7 @@ div#selectionTable{
 	display:block;
 	margin: 0;
 	padding: 0;
-	background-color:#ff9797;
+	background-color:#df5757;
 	color: white;
 	width:253px;
 	height:50px;
@@ -92,7 +92,7 @@ div#map{
 
 .box-font:hover{
 	font-weight:600;
-	color:#69D2E7;
+	color:#00cdcd;
 }
 
 .stepContent:hover{
@@ -101,7 +101,7 @@ div#map{
 
 .box-font-active{
 	font-weight:600;
-	color:#69D2E7;
+	color:#00cdcd;
 }
 
 .stepContent-active{
