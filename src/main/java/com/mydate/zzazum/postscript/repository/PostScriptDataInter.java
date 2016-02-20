@@ -44,4 +44,6 @@ public interface PostScriptDataInter {
 	int pdCommentInsert(PostScriptComment comment);
 	
 	ArrayList<PostScriptComment> psListComment(int co_psno);
+	
+	int psDataInsert(PostScriptDetail bean);
 }
