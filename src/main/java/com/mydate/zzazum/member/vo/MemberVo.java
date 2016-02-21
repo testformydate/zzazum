@@ -15,8 +15,14 @@ public class MemberVo {
 	private String mem_primg;
 	private String mem_love;
 	private String mem_auth;
+	private int mem_gender;
 	
-	
+	public int getMem_gender() {
+		return mem_gender;
+	}
+	public void setMem_gender(int mem_gender) {
+		this.mem_gender = mem_gender;
+	}
 	public String getMem_auth() {
 		return mem_auth;
 	}

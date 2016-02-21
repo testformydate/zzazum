@@ -3,9 +3,14 @@
 /*To make footer*/
 
 footer{
-	clear:both;
+	width:100%;
+	top:650px;
+	left:0;
+	position:fixed;
+	/* clear:both; */
 	background-color:#00cdcd;
-	padding: 1em 0;
+	padding: 1.5em 0;
+	z-index:5;
 }
 
 footer > div{

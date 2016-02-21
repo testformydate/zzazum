@@ -7,7 +7,7 @@
 	left:0;
 	/* background-color:#00cdcd; */
 	background-color:#00cdcd;
-	border-bottom:1px solid lightgray;
+	/* border-bottom:1px solid lightgray; */
 	position:fixed;
 	z-index:5;
 }
@@ -25,6 +25,7 @@
 }
 
 ul.naviul{
+	width:70%;
 	margin:0;
 	padding:0;
 	margin:auto;
