@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mydate.zzazum.location.service.LocationDataService;
+import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
+import com.mydate.zzazum.postscript.vo.PostScriptDetail;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
@@ -26,6 +29,9 @@ public class PostScriptController {
 	
 	@Autowired
 	private MemberInter memberInter;
+	
+	@Autowired
+	private LocationDataService locationDataService;
 	
 	@RequestMapping(value="psListAll")
 	public ModelAndView psListAll(){
@@ -141,19 +147,26 @@ public class PostScriptController {
 	@RequestMapping(value="commentInsert")
 	public String commentInsert(PostScriptComment comment){
 		postScriptService.pdCommentInsert(comment);
-		//System.out.println(comment.getCo_email());
-		//System.out.println(comment.getCo_context());
-
-		
 		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
 	}
 	
 	@RequestMapping(value="psListInsert")
 	public ModelAndView psListInsert(){
 		ModelAndView model = new ModelAndView();
-		
+		ArrayList<LocationVo> list = locationDataService.selectAllData();
+		model.addObject("pdLocation", list);
 		model.setViewName("postscript/ps_insert");
 		
+		return model;
+	}
+	
+	@RequestMapping(value="psDataInsert")
+	public ModelAndView psDataInsert(PostScriptDetail bean){
+		ModelAndView model = new ModelAndView();
+		
+		postScriptService.psDataInsert(bean);
+		
+		model.setViewName("psListAll");
 		return model;
 	}
 

@@ -149,4 +149,33 @@ public class PostScriptImpl implements PostScriptDataInter{
 		return 0;
 	}
 	
+	@Override
+	public int psDataInsert(PostScriptDetail bean) {
+		PostScriptList ps = new PostScriptList();
+		int main_num = Integer.parseInt(bean.getMain_img().substring(14, 15));
+		String mem_id = bean.getPd_email();
+		
+		ps.setPs_email(mem_id);
+		ps.setPs_image(bean.getPd_images()[main_num].getOriginalFilename());
+		ps.setPs_title(bean.getPs_title());
+		ps.setPs_context(bean.getPd_contexts()[main_num]);
+		
+		postScriptDao.psDataInssert(ps);
+		int ps_no = postScriptDao.psInsertNum(mem_id);
+		
+		for(int i=0; i<bean.getPd_images().length; i++){
+			PostScriptDetail pd = new PostScriptDetail();
+			
+			pd.setPs_no(ps_no);
+			pd.setPl_id(bean.getPl_ids()[i]);
+			pd.setPd_email(mem_id);
+			pd.setPd_context(bean.getPd_contexts()[i]);
+			pd.setPd_image(bean.getPd_images()[i].getOriginalFilename());
+			
+			postScriptDao.pdDataInsert(pd);
+		}
+		
+		return 0;
+	}
+	
 }
