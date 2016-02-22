@@ -19,14 +19,14 @@ div#selectionTable{
 	display:block;
 	margin: 0;
 	padding: 0;
-	background-color:#df5757;
+	background-color:#DC797C;
 	color: white;
-	width:253px;
+	width:280px;
 	height:50px;
 	line-height:50px;
 	text-align:center;
-	font-family:나눔고딕;
-	font-weight:300;
+	font-family:'Nanum Gothic';
+	font-weight:400;
 	font-size:14pt;
 	/* border: 1px solid lightgray; */
 }
@@ -69,7 +69,7 @@ div#selectionTable{
 }
 
 div#googleMapTitle{
-	width:269.5px;
+	width:397px;
 }
 
 div#map{
