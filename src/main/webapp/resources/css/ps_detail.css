@@ -7,7 +7,7 @@
 .ps_detail_title>h1{margin-bottom: 30px; padding:0px;}
 .ps_main_title{float:left; width: 80%; text-align: left; margin-left:30px;}
 .ps_main_like{float:right; width:70px; height: 70px; margin: 10px;}
-.ps_main_like>img{width:70px; height: 70px; z-index: 1;}
+.ps_main_like>img{width:50px; height: 50px; z-index: 1;}
 
 .ps_detail_timeline{-webkit-column-count: 2;-webkit-column-gap: 0px;-webkit-column-fill: auto;-moz-column-count: 2;
             -moz-column-gap: 0px;-moz-column-fill: auto;column-count: 2; column-gap: 0px;column-fill: auto;

@@ -166,7 +166,7 @@ public class PostScriptController {
 		
 		postScriptService.psDataInsert(bean);
 		
-		model.setViewName("psListAll");
+		model.setViewName("postscript/ps_list");
 		return model;
 	}
 

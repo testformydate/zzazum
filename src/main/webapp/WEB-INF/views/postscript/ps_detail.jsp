@@ -28,7 +28,7 @@
 <div class = "ps_detail_body">
 	<div class="ps_detail_title">
 		<div class="ps_main_title"><h1>${psDM.ps_title}</h1></div>
-		<div class="ps_main_like"><span>${psDM.ps_like }</span><img class="like_click ps_like" id="pslike${psDM.ps_no}" src="resources/ps_icon/${psDM.ps_clike }.png">
+		<div class="ps_main_like"><img class="like_click ps_like" id="pslike${psDM.ps_no}" src="resources/ps_icon/${psDM.ps_clike }.png"><span>${psDM.ps_like }</span>
 			<input type="hidden" class="pslike${psDM.ps_no}" value="${psDM.ps_clike }">
 		</div>
 	</div>
@@ -80,7 +80,7 @@
 					</c:choose>
 					</div>
 					<div class="ps_detail_user_input">
-						<textarea class='ps_insert_content enter_click'></textarea>
+						<textarea id="pdComm${listD.pd_no}" class='ps_insert_content enter_click'></textarea>
 					</div>
 					</div>
 				</div>
@@ -92,13 +92,12 @@
 <%@include file="../subMenu.jsp" %>
 
 <form id="insertComment" method="post">
-	<input type="hidden" name="co_psno" value="${psDM.ps_no}">
+	<input type="hidden" id="detailNo" name="co_psno" value="${psDM.ps_no}">
 	<input type="hidden" id="getId" name="co_email" value="<%=(String)session.getAttribute("mem_id") %>">
 	<input type="hidden" name="co_pdno" id="co_pdno">
 	<input type="hidden" name="co_context" id="co_comment">
 </form>
-<input type="hidden" id="detailNo" value="${psDM.ps_no}">
-<input type="hidden" id="getId" value="<%=session.getAttribute("mem_id") %>">
+
 </div>
 </body>
 </html>

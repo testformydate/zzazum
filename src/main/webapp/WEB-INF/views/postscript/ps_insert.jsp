@@ -102,6 +102,13 @@ function hisBack(){
 }
 
 function insertSubmit(){
+	
+	if($("#ps_main_title").val() == ""){
+		alert("제목을 입력해주세요!");
+		$("#ps_main_title").focus();
+		return;
+	}
+	
 	$("#insertSubmit").attr("action", "psDataInsert");
 	$("#insertSubmit").submit();
 }
@@ -111,25 +118,25 @@ function insertSubmit(){
 <%@include file="../md_top.jsp" %>
 <div class="ps_insert_body body">
 	<form id="insertSubmit" enctype="multipart/form-data" method="post">
-	<div class="ps_insert_button">
-		<input type="button" value="작성" onclick="insertSubmit()">
-		<input type="button" value="취소" onclick="hisBack()">
-	</div>
 	<div class="ps_insert_ti img_click">Title</div>
 	<div class="ps_insert_title">
-		<input type="text" name="ps_title" placeholder="제목을 입력해주세요~">
+		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~">
 	</div>
 	<div class="ps_insert_file">
-			<input type="file" multiple="multiple" id="upload_btn" name="pd_images">
+			<img class="ps_icon" src="resources/ps_icon/picture_add.png"><input type="file" multiple="multiple" id="upload_btn" name="pd_images">
 	</div>
 	<div class="ps_insert_label">
 		<span class="comment_color">ㅁ</span>Comment작성
-		<span class="title_color">ㅁ</span>Main 사진 선택
+		<span class="title_color">ㅁ</span>대표 사진 선택
 	</div>
 	<div class="ps_insert_show">
 	</div>
 	<div class="contentSubmit">
 		
+	</div>
+	<div class="ps_insert_button">
+		<input type="button" value="작성" onclick="insertSubmit()">
+		<input type="button" value="취소" onclick="hisBack()">
 	</div>
 	<input type="hidden" id="main_val" name="main_img">
 	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">	

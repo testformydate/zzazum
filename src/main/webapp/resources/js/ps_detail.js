@@ -44,7 +44,7 @@ $(document).ready(function(){
 		$.ajax({
     		type: "post",
     		url: "psUpdateLike",
-    		data: {"sortLike" : like, "ps_no" : $("#detailNo").val(), "mem_id" : mem_id, "pd_no" : xlike.substr(6,7)},
+    		data: {"sortLike" : like, "ps_no" : $("#detailNo").val(), "mem_id" : mem_id, "pd_no" : xlike.substr(6)},
     		success: function(jdata){
         		if(jdata.trim() ==="like"){
         			$("." + xlike).attr("value",'like');
@@ -77,7 +77,7 @@ $(document).ready(function(){
     			return;
     		}
         	$("#insertComment").attr('action',"commentInsert");
-        	$("#co_pdno").attr('value', xlike);
+        	$("#co_pdno").attr('value', xlike.substr(6));
         	$("#co_comment").attr('value', content);
         	$("#insertComment").submit();
         }

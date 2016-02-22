@@ -92,7 +92,6 @@ public class PostScriptService {
 			PostScriptComment comm;
 			for(PostScriptComment pc: comment){
 				if(pd.getPd_no() == pc.getCo_pdno()){
-					//System.out.println(pc.getMem_nick());
 					comm = new PostScriptComment();
 					comm.setMem_primg(pc.getMem_primg());
 					comm.setMem_nick(pc.getMem_nick());
@@ -152,34 +151,6 @@ public class PostScriptService {
 	
 	public void psHits(String ps_no){
 		postScriptDataInter.psHits(ps_no);
-	}
-	
-
-	
-	private void upload(HttpServletRequest request){
-		MultipartHttpServletRequest req = (MultipartHttpServletRequest)request;
-		String path="C:/Users/user/git2/mydate/src/main/webapp/resources/ps_data";
-		File f;
-		MultipartFile file;
-		Iterator<String> itr =  req.getFileNames();
-		file = req.getFile("pd_image");
-		System.out.println(req.getFile("pd_image"));
-		while(itr.hasNext()){
-			/*String fileName = itr.next();
-			file = req.getFile(fileName);*/
-			f = new File(path, file.getOriginalFilename());
-			System.out.println(file.getOriginalFilename());
-			
-			try {
-				file.transferTo(f);
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	public ArrayList<PostScriptList> selectPsSearch(String keyword){

@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class PostScriptDetail {
 	private int pd_no, ps_no, pd_like;
-	private String pd_email, pd_location, pd_context, pd_date, pd_image, mem_primg, mem_nick, pd_clike, ps_title, main_img,pl_id;
+	private String pd_email, pd_location, pd_context, pd_date, pd_image, mem_primg, mem_nick, pd_clike, ps_title, main_img, pl_id;
 	private MultipartFile[] pd_images;
 	private String[] pd_locations, pd_contexts, pl_ids; 
 	

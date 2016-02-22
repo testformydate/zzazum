@@ -1,14 +1,15 @@
 $(document).ready(function() {
     var track_Num = 7; //total loaded record group(s)
     var track_Count = 7;
-    var loading  = false; //to prevents multipal ajax loads
+    var loading  = false; //to prevents multiple ajax loads
     var track_Size = $("#psListSize").val();
+    var sycro = 'false';
     
     $(window).scroll(function() { //detect page scroll
     	if(track_Size > track_Num){
-    		 if(Math.ceil($(window).scrollTop()) + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+    		 if(Math.ceil($(window).scrollTop()) + $(window).height() == $(document).height()&& sycro=="false")  //user scrolled to bottom of the page?
     	        {	
-    	        	console.log("스크롤이 맨 밑까지 내려왔어요");
+    			 sycro="true";
     	        	$(".ps_loading_image").show();
     	        	setTimeout(function(){
 	    	        	$.ajax({
@@ -33,6 +34,7 @@ $(document).ready(function() {
 		    	        		track_Num += track_Count;
 		    	        		
 		    	        		if(track_Num >= track_Size) track_Num= track_Size;
+		    	        		sycro="false";
 		    	        		}
 	    	        	});
     	        	},1000);

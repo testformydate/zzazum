@@ -94,10 +94,10 @@ public interface PostScriptDao {
 	@Insert("insert into md_postscript(ps_email, ps_date, ps_image, ps_title, ps_context, ps_like, ps_hits) values(#{ps_email}, now(), #{ps_image}, #{ps_title}, #{ps_context}, 0, 0)")
 	public int psDataInssert(PostScriptList dto);
 	
-	@Select("select max(*) from md_postscript where ps_email=#{ps_email}")
+	@Select("select max(ps_no) from md_postscript where ps_email=#{ps_email}")
 	public int psInsertNum(String ps_email);
 	
-	@Insert("insert into md_psdetail(ps_no, pl_id, pd_email, pd_context, pd_like, pd_date, pd_image) value(#{ps_no}, #{pl_id}, #{pd_email}, #{pd_context}, 0, now(), #{pd_image}")
+	@Insert("insert into md_psdetail(ps_no, pl_id, pd_email, pd_context, pd_like, pd_date, pd_image) value(#{ps_no}, #{pl_id}, #{pd_email}, #{pd_context}, 0, now(), #{pd_image})")
 	public int pdDataInsert(PostScriptDetail dto);
 
 }

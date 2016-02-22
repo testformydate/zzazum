@@ -1,5 +1,6 @@
 package com.mydate.zzazum.postscript.repository;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -7,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
@@ -145,8 +147,7 @@ public class PostScriptImpl implements PostScriptDataInter{
 	
 	@Override
 	public int pdCommentInsert(PostScriptComment comment) {
-		// TODO Auto-generated method stub
-		return 0;
+		return postScriptDao.pdCommentInsert(comment);
 	}
 	
 	@Override
@@ -172,10 +173,22 @@ public class PostScriptImpl implements PostScriptDataInter{
 			pd.setPd_context(bean.getPd_contexts()[i]);
 			pd.setPd_image(bean.getPd_images()[i].getOriginalFilename());
 			
+			try {
+				bean.getPd_images()[i].transferTo(upload(bean.getPd_images()[i]));
+			} catch (Exception e) {
+				System.out.println("file upload err" + e);
+			}
 			postScriptDao.pdDataInsert(pd);
 		}
 		
 		return 0;
+	}
+	
+	private File upload(MultipartFile file){
+		String path="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_images/postscirpt/" + file.getOriginalFilename();
+		File f = new File(path);
+		
+		return f;
 	}
 	
 }
