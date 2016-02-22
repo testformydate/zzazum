@@ -68,9 +68,11 @@ public class MemberController {
 	@RequestMapping(value = "memberlog", method=RequestMethod.POST)
 	public void memberLog(MemberVo memberVo, HttpSession session, HttpServletResponse response) throws IOException{
 		MemberVo member = memberService.memberLog(memberVo);
-		
+//		System.out.println(member.getMem_primg());
 		session.setAttribute("mem_nick", member.getMem_nick());
 		session.setAttribute("mem_id", member.getMem_id());
+		session.setAttribute("mem_primg", member.getMem_primg());
+		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
@@ -83,7 +85,7 @@ public class MemberController {
 	@RequestMapping("loading")
 	public String memberLoading(){
 		
-		return "loading";
+		return "member/loading";
 	}
 	
 	//로그아웃 (세션 초기화하는 컨트롤러)

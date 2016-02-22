@@ -195,6 +195,7 @@ function calc(){
 				</div>
 	            <input class="insert_input" type="text" name="mem_tel" placeholder="휴대전화번호" />
 	            <input class="insert_input" type="text" name="mem_bhday" placeholder="생년월일" />
+	            <input class="insert_input" type="text" name="mem_love" placeholder="그/그녀의 이메일" />
 	      </form>
 	            <button class="submitBtn" onclick="calc()">가입하기</button>
 	   </div>

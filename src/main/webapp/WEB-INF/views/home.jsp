@@ -10,6 +10,22 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home_cardlayout.css" />">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home_slider.css" />">
 <%@include file="md_top.jsp" %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#goPlannerSweet").click(function(){
+		location.href = "planner";
+	});
+	$("#goPlannerWar").click(function(){
+		location.href = "planner";
+	});
+	$("#goPlannerHot").click(function(){
+		location.href = "planner";
+	});
+	$("#goPlannerCool").click(function(){
+		location.href = "planner";
+	});
+});
+</script>
 </head>
 		<!-- body -->
 		<div class="body">

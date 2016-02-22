@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-window.onload = function(){
-	setTimeOut(function(){
+$(document).ready(function(){
+	setTimeout(function(){
 		location.href = '/mydate/home';
 	}, 1800);
-}
+});
 </script>
 </head>
 <body>
-Loading... Please wait...
+<h3 style="">Loading... Please wait...</h3>
 </body>
 </html>

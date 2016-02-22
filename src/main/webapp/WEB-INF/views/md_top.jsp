@@ -116,6 +116,72 @@ div#search{
 	color:white !important;
 	font-family:'Nanum Gothic';
 }
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999;
+    top: 55px;
+    left: 0;
+    background-color: #00cdcd;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #c1134e;
+}
+
+.sidenav-actif {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 999;
+    top: 55px;
+    left: 0;
+    background-color: #00cdcd;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav-actif a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav-actif a:hover, .offcanvas a:focus{
+    color: #c1134e;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -127,6 +193,14 @@ function search(keyword){
 	$("#keyword").attr("value", keyword);
 	searchForm.keyword.focus();
 	searchForm.submit();
+}
+
+function openNav() {
+    document.getElementById("sideNav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
 }
 
 $(document).ready(function(){
@@ -262,7 +336,7 @@ $(document).ready(function(){
 			//console.log("aaa");
 			//console.log(e.keyCode);
 			$.ajax({
-				url:"autocomplete",
+				url:"${path}/autocomplete",
 				data: "keyword=" + keyword,
 				success: function(data){
 					//console.log(data)
@@ -338,13 +412,24 @@ $(document).ready(function(){
 	// navigation box
 	$("#nav-toggle").click(function(){
 		//alert("aa");
-	    $(this).toggleClass("active");	
+	    $(this).toggleClass("active");
+ 	    $("#sideNav").toggleClass("sidenav-actif");
+	});
+	$(".body").click(function(){
+		$("#sideNav").css("width","0");
+		$("#nav-toggle").attr("class","");
 	});
 });
 </script>
 <title>MyDate - Find Your Own Date</title>
+		<div id="sideNav" class="sidenav">
+		  <!-- <a href="javascript:void(0)" class="closebtn">X</a> -->
+		  <a href="${path}/home">메인으로</a>
+		  <a href="${path}/planner">데이트 짜기</a>
+		  <a href="${path}/psListAll">서연이가 함</a>
+		  <a href="#">Contact</a>
+		</div>
 <header class="navi-wrapper">
-
 		<div class="navigator">
 			<div style="float:left;width:100%;">
 				<ul class="naviul">
@@ -372,6 +457,7 @@ $(document).ready(function(){
 						<div class="member"><a class="pageLinks" href="${path}/member/memberlogview">로그인</a></div>
 						<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
 						<% }else{ %>
+							<div class="memberImgWrapper"><img class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
 							<div class="member"><%=session.getAttribute("mem_nick") %></div>
 							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
 							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
