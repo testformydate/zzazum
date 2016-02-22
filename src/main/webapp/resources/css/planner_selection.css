@@ -32,7 +32,7 @@ div#selectionTable{
 }
 
 .stepContents{
-	width:253px;
+	width:280px;
 	height:320px;
 	overflow:auto;
 }
@@ -40,7 +40,7 @@ div#selectionTable{
 .stepContent{
 	text-align:center;
 	padding: 10px 0;
-	font-family:나눔고딕;
+	font-family:'Nanum Gothic';
 	font-weight:400;
 	font-size:12pt;
 	white-space: nowrap;
@@ -74,12 +74,12 @@ div#googleMapTitle{
 
 div#map{
 	margin:auto;
-	width:270px;
+	width:397px;
 	height:320px;
 }
 
 .googleMapWrapper{
-	width:253px;
+	width:397px;
 	height:320px;
 }
 
