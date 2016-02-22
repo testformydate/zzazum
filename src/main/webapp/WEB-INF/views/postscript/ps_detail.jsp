@@ -43,7 +43,7 @@
 			<li class="ps_detail_li <%=timeline[jump] %>">
 				<div class="ps_detail_card">
 					<div class="detail_card_img">
-						<img src="resources/ps_images/postscirpt/${listD.pd_image }">					
+						<img src="resources/ps_images/postscript/${listD.pd_image }">					
 					</div>
 					<div class="ps_detail_context">
 						${listD.pd_context }
