@@ -3,8 +3,9 @@
 /*To make footer*/
 
 footer{
+	position:absolute;
 	width:100%;
-	top:720px;
+	bottom:0;
 	left:0;
 	/* position:fixed; */
 	clear:both;

@@ -6,8 +6,12 @@
 %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/home_navigator.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_selection.css" />">
 <!-- navigator -->
 <style>
+body{
+	margin-bottom:70px;
+}
 /* search bar */
 div#search{
 	margin:12px auto;
@@ -72,7 +76,7 @@ div#search{
   border-radius: 1px;
   height: 3px;
   width: 20px;
-  background: lightgray;
+  background: white;
   position: absolute;
   display: block;
   content: '';
@@ -98,6 +102,19 @@ div#search{
 }
 #nav-toggle.active span:after {
   transform: rotate(-45deg);
+}
+
+.pageLinks{
+	color:white;
+	padding:7px;
+	font-family:'Nanum Gothic';
+	border-radius:3px;
+}
+
+.pageLinks:hover{
+	background-color:#2FAEAE;
+	color:white !important;
+	font-family:'Nanum Gothic';
 }
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -334,7 +351,7 @@ $(document).ready(function(){
 					<li class="navili">
 						<div id="nav-toggle"><span></span></div>
 					</li>
-					<li class="navili"><div class="logo"><a class="pageLinks" href="${path}/home"><img class="logo" src="<c:url value="/icons/mydatelogo.png" />"></a></div></li>
+					<li class="navili"><div class="logo"><a href="${path}/home"><img class="logo" src="<c:url value="/icons/mydatelogo.png" />"></a></div></li>
 					<%-- <li class="navili" id="planner"><a id="planner" href="${path}/planner">내가 짜줌</a></li>
 					<li class="navili" id="psList"><a id="psList" href="${path}/psList?method=listAll">다녀왔어요</a></li>
 					<li class="navili hurry" id="hurry"><a id="hurry" href="#">급한 마음<img id="emergency" style="width:15px;height:15px;" src="<c:url value="/icons/emergency.png" />"></a></li> --%>
@@ -350,14 +367,14 @@ $(document).ready(function(){
 						</div>
 					</li>
 				</ul>
-					<div style="float:right;display:inline-block;margin:5px;font-size:10pt;">
+					<div style="float:right;display:inline-block;margin:10px;font-size:10pt;">
 							<%	if(mem==null){ %>
-						<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
-						<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
+						<div class="member"><a class="pageLinks" href="${path}/member/memberlogview">로그인</a></div>
+						<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
 						<% }else{ %>
-							<div class="member"><%=session.getAttribute("mem_nick") %>님 환영합니다.</div>
-							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
-							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
+							<div class="member"><%=session.getAttribute("mem_nick") %></div>
+							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
+							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
 							<c:set var="mem_id" value="<%=mem %>" />
 						<%} %>
 					</div>						

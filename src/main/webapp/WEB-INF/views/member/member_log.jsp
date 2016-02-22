@@ -11,15 +11,14 @@ html {height:100%;}
 body {
 	margin:0;
 	padding:0;
-	height:100%;
    background-image: url('../resources/ps_images/member/main.png');
    background-repeat: no-repeat;
-   background-size: 1600px 900px;
+   background-size: 1600px 785px;
 }
 
 .member_insert_body{
 	width:100%;
-	margin-top:150px;
+	margin-top:230px;
 }
 
 .insert_form{
@@ -44,6 +43,7 @@ body {
 	width:100%;
 	height:50px;
 	background-color:#00cdcd;
+	cursor:pointer;
 }
 
 .insert_input{
@@ -91,6 +91,7 @@ function calc(){
 </script>
 </head>
 <body>
+<div class="body">
 <div class="member_insert_body">
 	<div class="insert_form">
 		<div class="member_insert_title"><img class="formLogo" src="../icons/mydatelogo.png"></div>
@@ -102,6 +103,7 @@ function calc(){
 			<button id="check" class="submitBtn" onclick="calc()">로그인</button>
 	   </div>
 	</div>
+</div>
 </div>
 <%@include file="../md_bottom.jsp" %>
 </body>

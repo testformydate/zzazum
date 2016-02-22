@@ -462,6 +462,5 @@ $(document).ready(function(){
 			</div> --%>
 		</div>
 	</div>
-<%@include file="md_bottom.jsp" %>
 </body>
 </html>

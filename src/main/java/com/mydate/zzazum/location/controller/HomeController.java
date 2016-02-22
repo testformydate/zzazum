@@ -29,7 +29,7 @@ public class HomeController {
 	
 	@Autowired
 	private PostScriptService postService;
-	/**
+	/** 
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
