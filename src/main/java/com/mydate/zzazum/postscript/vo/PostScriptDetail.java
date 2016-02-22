@@ -3,14 +3,60 @@ package com.mydate.zzazum.postscript.vo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PostScriptDetail {
 	private int pd_no, ps_no, pd_like;
-	private String pd_email, pd_location, pd_context, pd_date, pd_image, mem_primg, mem_nick, pd_clike;
+	private String pd_email, pd_location, pd_context, pd_date, pd_image, mem_primg, mem_nick, pd_clike, ps_title, main_img,pl_id;
+	private MultipartFile[] pd_images;
+	private String[] pd_locations, pd_contexts, pl_ids; 
 	
 	private int co_psno, co_pdno;
 	private ArrayList<PostScriptComment> pd_comment;
 	
 	
+	public String getPl_id() {
+		return pl_id;
+	}
+	public void setPl_id(String pl_id) {
+		this.pl_id = pl_id;
+	}
+	public String getMain_img() {
+		return main_img;
+	}
+	public void setMain_img(String main_img) {
+		this.main_img = main_img;
+	}
+	public String getPs_title() {
+		return ps_title;
+	}
+	public void setPs_title(String ps_title) {
+		this.ps_title = ps_title;
+	}
+	public String[] getPl_ids() {
+		return pl_ids;
+	}
+	public void setPl_ids(String[] pl_ids) {
+		this.pl_ids = pl_ids;
+	}
+	public MultipartFile[] getPd_images() {
+		return pd_images;
+	}
+	public void setPd_images(MultipartFile[] pd_images) {
+		this.pd_images = pd_images;
+	}
+	public String[] getPd_locations() {
+		return pd_locations;
+	}
+	public void setPd_locations(String[] pd_locations) {
+		this.pd_locations = pd_locations;
+	}
+	public String[] getPd_contexts() {
+		return pd_contexts;
+	}
+	public void setPd_contexts(String[] pd_contexts) {
+		this.pd_contexts = pd_contexts;
+	}
 	public ArrayList<PostScriptComment> getPd_comment() {
 		return pd_comment;
 	}

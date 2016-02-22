@@ -329,7 +329,7 @@ $(document).ready(function(){
 <header class="navi-wrapper">
 
 		<div class="navigator">
-			<div style="float:left;">
+			<div style="float:left;width:100%;">
 				<ul class="naviul">
 					<li class="navili">
 						<div id="nav-toggle"><span></span></div>
@@ -344,35 +344,23 @@ $(document).ready(function(){
 								<input type="hidden" id="resultIndex" name="resultIndex" value="0" />
 								<img class="icon-search" src="<c:url value="/icons/search.png" />">
 								<input type="text" class="searchMain" id="keyword" name="keyword" value="${exKeyword}" placeholder="예:서울,여의도, 강남" autocomplete="off" autofocus>
-								<button class="searchBtn"><img width="20px;" src="resources/icons/enter-arrow.png"></button>
+								<button class="searchBtn"><img width="20px;" src="<c:url value="/icons/enter-arrow.png" />"></button>
 								<!-- <input type="submit" class="searchBtn" value="GO!"> -->
 							</form>
 						</div>
 					</li>
-					<li class="navili" style="float:right;">
-						<div style="float:right;margin:5px;font-size:10pt;">
-								<%	if(mem==null){ %>
-							<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
-							<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
-							<% }else{ %>
-								<div class="member"><%=session.getAttribute("mem_nick") %>님 환영합니다.</div>
-								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
-								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
-								<c:set var="mem_id" value="<%=mem %>" />
-							<%} %>
-						</div>						
-					</li>
-					<li class="navili">
-						<!-- <ul style="list-style:none;">
-							<li> -->
-								<!-- <div class="ui-widget" style="margin:auto;">
-									<div id="autocompleteClose" style="color:lightgray;font-weight:600;font-size:1.5em;cursor:pointer;">X</div>
-									<ul id="searchResult" style="list-style:none; margin:auto;padding:0;background-color:white;border:1px solid lightgray;height:300px;overflow:auto;" class="results"></ul>
-								</div> -->
-							<!-- </li>
-						</ul> -->
-					</li>
 				</ul>
+					<div style="float:right;display:inline-block;margin:5px;font-size:10pt;">
+							<%	if(mem==null){ %>
+						<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
+						<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
+						<% }else{ %>
+							<div class="member"><%=session.getAttribute("mem_nick") %>님 환영합니다.</div>
+							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
+							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
+							<c:set var="mem_id" value="<%=mem %>" />
+						<%} %>
+					</div>						
 			</div>
 		</div>
 		<div id="searchResult" style="background-color:white;border-bottom:1px solid lightgray;width:100%;height:300px;overflow:auto;">

@@ -47,6 +47,9 @@ public class PlannerController {
 		/*if(session.getAttribute("mem_id")) */
 		ArrayList<LocationVo> list = service.selectAllData();
 		ArrayList<PostScriptList> postList = postService.psListAll();
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("psList", postList);
+		
 		if(mem_id == null || mem_id.equals("")) {
 			modelAndView.setViewName("planner");
 			return modelAndView;
@@ -54,8 +57,6 @@ public class PlannerController {
 			noLisst = service.selectLikedNo(mem_id);
 		}
 		//System.out.println(postList);
-		modelAndView.addObject("list", list);
-		modelAndView.addObject("psList", postList);
 		modelAndView.addObject("noList", noLisst);
 		
 		/*modelAndView.setViewName("planner");*/

@@ -75,9 +75,15 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<script>alert('내가 짜줌!!');"
-	      		+ "location.href='/mydate/home';</script>");
+	      		+ "location.href='/mydate/member/loading';</script>");
 		out.println("</body></html>");
 		out.close();
+	}
+	
+	@RequestMapping("loading")
+	public String memberLoading(){
+		
+		return "loading";
 	}
 	
 	//로그아웃 (세션 초기화하는 컨트롤러)

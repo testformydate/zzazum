@@ -6,33 +6,151 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-.back-img {
- /*  background-image:-webkit-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
-   background-image:-moz-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
-  background-image:-o-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
-   background-image:-ms-linear-gradient(right,#1b1e24,#1b1e24 50%,#1b1e24);
-   background-image:linear-gradient(to left,#1b1e24,#1b1e24 50%,#1b1e24); */
-     text-align: center;
-   font-family: NanumGothic;
-   font-size: 13px;
-   line-height: 1.5em;
-   background-image: url('<c:url value="../resources/ps_images/member/main.png" />');
-   opacity: 1.5;
+html {height:100%;}
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+   background-image: url('../resources/ps_images/member/main.png');
    background-repeat: no-repeat;
    background-size: 1600px 900px;
-   color: gray;
 }
-.member_insert_body{position: absolute;top:12%; left: 38%; margin: auto; }
-.member_insert_title{text-align: center; font-size:20pt;}
-.member_insert_content{margin: 20px 0;}
-.insert_input{margin:10px 0;}
-.insert_input>input{radius:5px; border-radius: 10px; padding-left: 10px; border-style: none;}
-.insert_input>input{ width:300px; height: 40px; font-size: 12pt;}
-.insert_subtitle{margin: 5px 0px; text-align: left; font-size: 12pt;}
-.insert_button{background-color: #69D2E7; color: white; outline:0;}
+
+.member_insert_body{
+	width:100%;
+	margin-top:150px;
+}
+
+.insert_form{
+	margin:auto;
+	width:25%;
+	padding:30px;
+	border-radius:6px;
+	background-color:white;
+	box-shadow:0 0 10px 1px gray;
+}
+
+.submitBtn{
+	padding:0;
+	margin:0;
+	border:0;
+	border-radius:4px;
+	margin-top:20px;
+	font-size:1.2em;
+	font-weight:600;
+	font-family:'Nanum Gothic';
+	color:white;
+	width:100%;
+	height:50px;
+	background-color:#00cdcd;
+}
+
+.insert_input{
+	padding:0;
+	margin:0;
+	border:1px solid lightgray;
+	width:100%;
+	border-radius:4px;
+	height:40px;
+	font-size:1.5em;
+	font-weight:400;
+	font-family:'Nanum Gothic';
+	margin-bottom:6px;
+	box-border:0;
+}
+.member_insert_title{
+	text-align:center;
+	margin-bottom:13px;
+	font-size:2em;
+}
+.logo{
+	border-radius:8px;
+	width:60px;
+}
+
+.genBoxWrapper{
+	/* float:left; */
+	display:inline-block;
+	margin:auto;
+	margin-bottom: 10px;
+}
+
+.genBox {
+	clear: both;
+	/* float:left; */
+	margin-left:60px;
+	display:inline-block;
+	/* margin:auto; */
+}
+
+label {
+  width: 100px;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-size:13pt;
+  font-family:'Nanum Gothic';
+}
+
+/* hide input */
+input.radio:empty {
+	margin-left: -999px;
+}
+
+/* style label */
+input.radio:empty ~ label {
+	position: relative;
+	float: left;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	/* margin-top: 2em; */
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input.radio:empty ~ label:before {
+	position: absolute;
+	/* display: block; */
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2.5em;
+	background: #D1D3D4;
+	border-radius: 3px 0 0 3px;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #C2C2C2;
+}
+
+input.radio:hover:not(:checked) ~ label {
+	color: #888;
+}
+
+/* toggle on */
+input.radio:checked ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #9CE2AE;
+	background-color: #4DCB6D;
+}
+
+input.radio:checked ~ label {
+	color: #777;
+}
+
+/* radio focus */
+input.radio:focus ~ label:before {
+	box-shadow: 0 0 0 3px #999;
+}
 </style>
 <title>Insert title here</title>
-<%@include file="../md_top.jsp" %>
 <script type="text/javascript" src="../resources/js/hashencode.js"></script>
 <script type="text/javascript">
 function calc(){
@@ -54,51 +172,33 @@ function calc(){
 }
 </script>
 </head>
-<body class="back-img">
-<div class="member_insert_body body">
-   <div class='member_insert_title'>회원가입</div>
-   <div class="member_insert_content" style="border: 1px solid white; padding: 20px; text-align: center;">
-      <form name="insForm" action="memberins" method="post" style="margin: -3px">
-         <div class="insert_input">
-            <div class="insert_subtitle">아이디</div>
-            <input type="text" name="mem_id" placeholder="이메일을 입력해주세요">
-         </div>
-         <div class="insert_input">
-            <div class="insert_subtitle">닉네임</div>
-            <input type="text" name="mem_nick" placeholder="닉네임을 입력하세요(2자~8자)">
-         </div>
-         <div class="insert_input">
-            <div class="insert_subtitle">비밀번호</div>
-            <input type="password" name="mem_pw" placeholder="비밀번호를 입력하세요(영문,숫자,특수문자 포함 8~10자)">
-         </div>
-         <div class="insert_input">
-            <input type="password" name="mem_pwOk" placeholder="비밀번호를 한번 더 입력하세요">
-         </div>
-         <div class="insert_input">
-            <div class="insert_subtitle">휴대폰</div>
-            <input type="text" name="mem_tel" placeholder="휴대전화번호를  입력하세요" />
-         </div>
-         <div class="insert_input">
-            <div class="insert_subtitle">생일</div>
-            <input type="text" name="mem_bhday" placeholder="생년월일을 - 없이 입력하세요" />
-         </div>
-         <div class="insert_input">
-            <!-- <input class="insert_button" type="submit" value="submit"> -->
-         </div>
-      </form>
-            <button onclick="calc()" width="100%" height="50px"></button>
-   </div>
+<body>
+<div class="member_insert_body">
+	<div class="insert_form">
+		<div class="member_insert_title"><img class="logo" src="../icons/mydatelogo.png"></div>
+	   <div class="member_insert_content">
+	      <form name="insForm" action="memberins" method="post">
+	            <input class="insert_input" type="text" name="mem_id" placeholder="이메일">
+	            <input class="insert_input" type="text" name="mem_nick" placeholder="닉네임">
+	            <input class="insert_input" type="password" name="mem_pw" placeholder="비밀번호">
+	            <input class="insert_input" type="password" name="mem_pwOk" placeholder="비밀번호 재입력">
+	            <div class="genBoxWrapper">
+		            <div class="genBox">
+						<input type="radio" name="mem_gender" id="radio1" class="radio" value="1" checked/>
+						<label for="radio1">남자</label>
+					</div>
+					<div class="genBox">
+						<input type="radio" name="mem_gender" id="radio2" value="2" class="radio"/>
+						<label for="radio2">여자</label>
+					</div>
+				</div>
+	            <input class="insert_input" type="text" name="mem_tel" placeholder="휴대전화번호" />
+	            <input class="insert_input" type="text" name="mem_bhday" placeholder="생년월일" />
+	      </form>
+	            <button class="submitBtn" onclick="calc()">가입하기</button>
+	   </div>
+	</div>
 </div>
-<div id="txt2" style="top:40px;left:20px;"></div>
+<%@ include file="../md_bottom.jsp" %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

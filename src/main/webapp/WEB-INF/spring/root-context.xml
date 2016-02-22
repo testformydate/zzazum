@@ -48,9 +48,6 @@
    		<property name="mapperInterface" value="com.mydate.zzazum.community.repository.CommunityDao"></property>
    		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
-    
- <!-- 2016.02.07 추가 : 이서연 - 파일처리를 위한  bean -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
        <property name="host" value="smtp.gmail.com" />
