@@ -20,7 +20,7 @@ $(document).ready(function() {
 		    	        		var str = "<div class='ps_card'><div class='ps_card_title'>";
 		    	        			str += "<p class='ps_card_location card_click'><a href='#'><b>"+objArr.ps_location+"</b></a></p>";
 		    	        			str += "</div><div class='ps_card_body card_click'>";
-		    	        			str += "<img class='card_best_image' src='resources/ps_images/postscirpt/"+objArr.ps_image+"'>";
+		    	        			str += "<img class='card_best_image' src='resources/ps_images/postscript/"+objArr.ps_image+"'>";
 		    	        			str += "<div class='ps_card_profile'><img src='resources/ps_images/profile/"+objArr.mb_image+"'>";
 		    	        			str += "</div><div class='ps_card_content'><div class='ps_card_day'>"+objArr.ps_date +"</div>";
 		    	        			str += "<div class='ps_card_title ellipsText'>"+objArr.ps_title+"</div>";
