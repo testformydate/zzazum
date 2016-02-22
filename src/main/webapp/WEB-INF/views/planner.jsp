@@ -411,7 +411,7 @@ $(document).ready(function(){
 			<div class="details">
 				<c:forEach var="p" items="${psList}" >
 					<div class="detail">
-						<div class="detailImgWrapper"><img class="detailImg" src="mydate/resources/ps_images/postscript/${p.ps_image}"></div>
+						<div class="detailImgWrapper"><img class="detailImg" src="resources/ps_images/postscirpt/${p.ps_image}"></div>
 						<div class="detailContents">
 							<div id="${p.ps_no}" class="detailTitle">${p.ps_title}</div>
 							<div class="detailContent">
