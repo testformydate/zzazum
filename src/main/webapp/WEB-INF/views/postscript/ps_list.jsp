@@ -32,7 +32,7 @@
 				<p class="ps_card_location"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
 			</div>
 			<div class="ps_card_body card_click card_detail_click" id="psB${psB.ps_no }">
-					<img class="card_best_image" src="resources/ps_images/postscirpt/${psB.ps_image }">
+					<img class="card_best_image" src="resources/ps_images/postscript/${psB.ps_image }">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${psB.mem_primg}">
 					</div>
@@ -62,7 +62,7 @@
 				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${list.ps_location }"><b>${list.ps_location }</b></a></p>
 			</div>
 			<div class="ps_card_body card_click card_detail_click" id="list${list.ps_no }">
-					<img class="card_all_image" src="resources/ps_images/postscirpt/${list.ps_image }">
+					<img class="card_all_image" src="resources/ps_images/postscript/${list.ps_image }">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${list.mem_primg }">
 					</div>
