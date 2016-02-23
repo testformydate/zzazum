@@ -39,7 +39,7 @@ $(document).ready(function(){
 	내 용 : <textarea name="comt_content" cols="40" rows="10" ></textarea><br/>
 	<input type="submit" value="댓글등록">
 </form>
-		<table>
+		<table border="1">
 		<tr><th>1</th><th>2</th><th>3</th></tr>
 	<c:forEach items="${comt_List}" var="c">
 		<tr>
