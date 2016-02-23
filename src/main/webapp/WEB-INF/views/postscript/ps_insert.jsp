@@ -42,6 +42,12 @@ function readURL(input) {
 function modal(card_id){
 	card_imgNum= card_id;
 	
+	if($("#pd_lc").val()=="none"){
+		alert("지역을 선택해주세요!");
+		$("#pd_lc").focus();
+		return;
+	}
+	
 	if(main_imgNum==card_imgNum){
 		$("#main_btn").attr("value","대표사진");
 	}else{
@@ -103,14 +109,47 @@ function hisBack(){
 
 function insertSubmit(){
 	
+	if($("#pd_lc").val()=="none"){
+		alert("지역을 선택해주세요!");
+		$("#pd_lc").focus();
+		return;
+	}
+	
 	if($("#ps_main_title").val() == ""){
 		alert("제목을 입력해주세요!");
 		$("#ps_main_title").focus();
 		return;
 	}
 	
+	if($("#upload_btn").val()==""){
+		alert("사진을 넣어주세요!");
+		$("#upload_btn").focus();
+		return;
+	}
+	
+	if($("#main_val").val()==""){
+		alert("대표 사진을 선택해주세요!");
+		return;
+	}
+	
 	$("#insertSubmit").attr("action", "psDataInsert");
 	$("#insertSubmit").submit();
+}
+
+function modalLocation(){
+	addr = $(pd_lc).val();
+	$.ajax({
+		url:"autocomplete",
+		data: "keyword=" + addr,
+		success: function(data){
+			var str = "<option id='modal_loc_init' selected='selected' value=''>지역 선택</option>";
+			$(data).each(function(index, objArr){
+				 str += "<option value='"+ objArr.id +"'> " +objArr.name + "</option>";
+			});
+			
+			$(".modal_main_btn>select").html(str);
+		}
+	});
 }
 </script>
 </head>
@@ -118,6 +157,14 @@ function insertSubmit(){
 <%@include file="../md_top.jsp" %>
 <div class="ps_insert_body body">
 	<form id="insertSubmit" enctype="multipart/form-data" method="post">
+	<div class="ps_insert_location">
+	<select name="pd_location" id="pd_lc" onchange="modalLocation()">
+		<option value="none" selected="selected">지역선택 해주세요</option>
+		<c:forEach var="lc" items="${psLo}">
+			<option value="${lc.lc_val}">${lc.lc_name}</option>
+		</c:forEach>
+	</select>
+	</div>
 	<div class="ps_insert_ti img_click">Title</div>
 	<div class="ps_insert_title">
 		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~">
@@ -138,20 +185,17 @@ function insertSubmit(){
 		<input type="button" value="작성" onclick="insertSubmit()">
 		<input type="button" value="취소" onclick="hisBack()">
 	</div>
-	<input type="hidden" id="main_val" name="main_img">
+	<input type="hidden" id="main_val" name="main_img" valeu="">
 	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">	
 	</form>
 </div>
 <div id="openModal" class="modal">
 	<div class="modalBody">
 		<div class="modal_main_btn">
-			<select id="modal_loc">
-				<option id="modal_loc_init" selected="selected" value="">선택</option>
-				<c:forEach var="lo" items="${pdLocation}">
-					<option value="${lo.p_id}">${lo.p_name }</option>
-				</c:forEach>
-			</select>
 			<input id="main_btn" type="button" value="대표선택" onclick="title_img()">
+			<select id="modal_loc">
+				
+			</select>
 		</div>
 		<div class="modal_attr modal_img">
 		</div>

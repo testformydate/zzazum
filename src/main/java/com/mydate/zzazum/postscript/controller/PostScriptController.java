@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.location.service.LocationDataService;
 import com.mydate.zzazum.location.vo.LocationVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
@@ -154,6 +155,7 @@ public class PostScriptController {
 	public ModelAndView psListInsert(){
 		ModelAndView model = new ModelAndView();
 		ArrayList<LocationVo> list = locationDataService.selectAllData();
+		model.addObject("psLo", locationDataService.selectLoCate());
 		model.addObject("pdLocation", list);
 		model.setViewName("postscript/ps_insert");
 		
@@ -166,7 +168,7 @@ public class PostScriptController {
 		
 		postScriptService.psDataInsert(bean);
 		
-		model.setViewName("postscript/ps_list");
+		model.setViewName("redirect:/psListAll");
 		return model;
 	}
 

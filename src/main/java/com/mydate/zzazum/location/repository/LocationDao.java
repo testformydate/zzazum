@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.location.vo.SearchResultVo;
@@ -53,4 +54,7 @@ public interface LocationDao {
 	
 	@Delete("delete from md_pslike where ps_no=#{ps_no}")
 	public boolean deleteLikeData(String ps_no);
+	
+	@Select("select * from md_locategory")
+	public ArrayList<LocationCategory> selectLoCate();
 }
