@@ -91,7 +91,7 @@ public interface PostScriptDao {
 	@Insert("insert into md_comment(co_psno, co_pdno, co_email, co_context) values(#{co_psno}, #{co_pdno}, #{co_email}, #{co_context})")
 	public int pdCommentInsert(PostScriptComment comment);
 	
-	@Insert("insert into md_postscript(ps_email, ps_date, ps_image, ps_title, ps_context, ps_like, ps_hits, ps_location) values(#{ps_email}, now(), #{ps_image}, #{ps_title}, #{ps_context}, 0, 0, #{ps_location})")
+	@Insert("insert into md_postscript(ps_email, ps_date, ps_image, ps_title, ps_context, ps_clip, ps_like, ps_hits, ps_location) values(#{ps_email}, now(), #{ps_image}, #{ps_title}, #{ps_context}, 0, 0, 0, #{ps_location})")
 	public int psDataInssert(PostScriptList dto);
 	
 	@Select("select max(ps_no) from md_postscript where ps_email=#{ps_email}")
