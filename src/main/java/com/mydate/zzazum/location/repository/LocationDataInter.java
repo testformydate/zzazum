@@ -6,7 +6,10 @@ import java.util.ArrayList;
 
 import org.springframework.dao.DataAccessException;
 
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.ClipVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -19,9 +22,16 @@ public interface LocationDataInter {
 	public boolean insertSearchKeyword(SearchKeywordVo keyword);
 	public ArrayList<LocationVo> selection(String keyword);
 	public boolean insertLikeData(ClikeVo like);
-	public boolean minusLike(String ps_no);
-	public boolean plusLike(String ps_no);
-	public boolean deleteLikeData(String ps_no);
+	public boolean minusLike(ClikeVo like);
+	public boolean plusLike(ClikeVo like);
+	public boolean deleteLikeData(ClikeVo like);
 	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword);
 	public ArrayList<String> selectLikedNo(String mem_id);
+	public ArrayList<LocationCategory> selectLoCate();
+	public ArrayList<CategoryVo> selectCategoryAllData();
+	public boolean insertClipData(ClipVo clip);
+	public boolean minusClip(ClipVo clip);
+	public boolean plusClip(ClipVo clip);
+	public boolean deleteClipData(ClipVo clip);
+	public ArrayList<String> selectClipedNo(String mem_id);
 }

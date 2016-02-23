@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mydate.zzazum.community.vo.CommentVo;
 import com.mydate.zzazum.community.vo.CommunityVo;
 
 @Repository
@@ -53,4 +54,21 @@ public class CommunityImpl implements CommunityInter{
 		return communityDao.cm_Del(cm_no);
 	}
 	
+	@Override
+	public ArrayList<CommunityVo> communityPartList(String part_no) {
+		
+		return communityDao.communityPartList(part_no);
+	}
+	
+	@Override
+	public int cm_Rcnt(String cm_no) {
+		
+		return communityDao.cm_Rcnt(cm_no);
+	}
+	
+	@Override
+	public ArrayList<CommentVo> commentList(String comt_bono) {
+		
+		return communityDao.commentList(comt_bono);
+	}
 }

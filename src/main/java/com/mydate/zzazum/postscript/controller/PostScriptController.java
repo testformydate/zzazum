@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.location.service.LocationDataService;
 import com.mydate.zzazum.location.vo.LocationVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
@@ -93,6 +94,7 @@ public class PostScriptController {
 			map.put("ps_like", Integer.toString(ps.getPs_like()));
 			map.put("ps_hits", Integer.toString(ps.getPs_hits()));
 			map.put("mb_image", ps.getMem_primg());
+			map.put("ps_clip", Integer.toString(ps.getPs_clip()));
 			
 			data.add(map);
 			
@@ -154,6 +156,7 @@ public class PostScriptController {
 	public ModelAndView psListInsert(){
 		ModelAndView model = new ModelAndView();
 		ArrayList<LocationVo> list = locationDataService.selectAllData();
+		model.addObject("psLo", locationDataService.selectLoCate());
 		model.addObject("pdLocation", list);
 		model.setViewName("postscript/ps_insert");
 		
@@ -166,7 +169,7 @@ public class PostScriptController {
 		
 		postScriptService.psDataInsert(bean);
 		
-		model.setViewName("postscript/ps_list");
+		model.setViewName("redirect:/psListAll");
 		return model;
 	}
 
@@ -175,6 +178,21 @@ public class PostScriptController {
 	@ResponseBody
 	public String psUpdateLike(@RequestParam("sortLike") String sortLike, PostScriptLike like){
 		String result="dislike";
+		
+		if(sortLike.equals("pslike")){
+			PostScriptLike pan = postScriptService.psLikeMain(like);
+			if(pan != null){
+				like.setLikeVal(-1);
+				result = postScriptService.psDeleteLike(like);
+				postScriptService.psUpdateLike(like);
+			}else{
+				like.setLikeVal(1);
+				result = postScriptService.psInsertLike(like);
+				postScriptService.psUpdateLike(like);
+			}
+			
+			return result;
+		}
 		
 		if(like.getPd_no()== 0){
 			if(sortLike.equals("dislike")){

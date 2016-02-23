@@ -39,7 +39,7 @@ public class MemberController {
 	
 	//회원가입 프로세스 진행하는 컨트롤러
 	@RequestMapping(value = "memberins", method=RequestMethod.POST)
-	public void MemberIns(MemberVo memberVo, HttpServletResponse response) throws IOException{
+	public String MemberIns(MemberVo memberVo, HttpServletResponse response) throws IOException{
 		
 		try{
 			memberVo.setMem_auth(mailService.createHash(memberVo.getMem_pw(), memberVo.getMem_id()));
@@ -48,13 +48,14 @@ public class MemberController {
 		}
 		
 		memberService.memberIns(memberVo);
-		response.setContentType("text/html;charset=utf-8");
+		/*response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<script>alert('이제부터는 저희가 짜줌!');"
 	      		+ "location.href='/mydate/home';</script>");
 		out.println("</body></html>");
-		out.close();
+		out.close();*/
+		return "member/loading";
 	}
 	
 	//로그인 뷰로 이동하는 컨트롤러
@@ -66,20 +67,21 @@ public class MemberController {
 	
 	//로그인 프로세스 진행하는 컨트롤러
 	@RequestMapping(value = "memberlog", method=RequestMethod.POST)
-	public void memberLog(MemberVo memberVo, HttpSession session, HttpServletResponse response) throws IOException{
+	public String memberLog(MemberVo memberVo, HttpSession session, HttpServletResponse response) throws IOException{
 		MemberVo member = memberService.memberLog(memberVo);
 //		System.out.println(member.getMem_primg());
 		session.setAttribute("mem_nick", member.getMem_nick());
 		session.setAttribute("mem_id", member.getMem_id());
 		session.setAttribute("mem_primg", member.getMem_primg());
 		
-		response.setContentType("text/html;charset=utf-8");
+		/*response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<script>alert('내가 짜줌!!');"
-	      		+ "location.href='/mydate/member/loading';</script>");
+	      		+ "location.href='/mydate/home';</script>");
 		out.println("</body></html>");
-		out.close();
+		out.close();*/
+		return "member/loading";
 	}
 	
 	@RequestMapping("loading")
@@ -90,17 +92,19 @@ public class MemberController {
 	
 	//로그아웃 (세션 초기화하는 컨트롤러)
 	@RequestMapping("memberlogout")
-	public void memberLogout(HttpSession session, HttpServletResponse response) throws IOException{
+	public String memberLogout(HttpSession session, HttpServletResponse response) throws IOException{
 		session.removeAttribute("mem_id");
 		session.removeAttribute("mem_nick");
-		response.setContentType("text/html;charset=utf-8");
+		session.removeAttribute("mem_primg");
+		/*response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<script>alert('다음에 또 짜줌');"
 	      		+ "location.href='/mydate/home';</script>");
 		out.println("</body></html>");
-		out.close();
+		out.close();*/
 		/*return "redirect:/home";*/
+		return "member/loading";
 	}
 	
 	//마이페이지로 이동하기 위한 컨트롤러

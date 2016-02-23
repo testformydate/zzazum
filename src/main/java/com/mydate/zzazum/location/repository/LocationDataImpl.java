@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.ClipVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -53,18 +56,18 @@ public class LocationDataImpl implements LocationDataInter{
 	}
 	
 	@Override
-	public boolean minusLike(String ps_no) {
-		return locationUpdateDao.minusLike(ps_no);
+	public boolean minusLike(ClikeVo like) {
+		return locationUpdateDao.minusLike(like);
 	}
 	
 	@Override
-	public boolean plusLike(String ps_no) {
-		return locationUpdateDao.plusLike(ps_no);
+	public boolean plusLike(ClikeVo like) {
+		return locationUpdateDao.plusLike(like);
 	}
 	
 	@Override
-	public boolean deleteLikeData(String ps_no) {
-		return locationUpdateDao.deleteLikeData(ps_no);
+	public boolean deleteLikeData(ClikeVo like) {
+		return locationUpdateDao.deleteLikeData(like);
 	}
 	
 	@Override
@@ -75,5 +78,40 @@ public class LocationDataImpl implements LocationDataInter{
 	@Override
 	public ArrayList<String> selectLikedNo(String mem_id) {
 		return locationUpdateDao.selectLikedNo(mem_id);
+	}
+	
+	@Override
+	public ArrayList<LocationCategory> selectLoCate() {
+		return locationUpdateDao.selectLoCate();
+	}
+	
+	@Override
+	public ArrayList<CategoryVo> selectCategoryAllData() {
+		return locationUpdateDao.selectCategoryAllData();
+	}
+	
+	@Override
+	public boolean insertClipData(ClipVo clip) {
+		return locationUpdateDao.insertClipData(clip);
+	}
+	
+	@Override
+	public boolean minusClip(ClipVo clip) {
+		return locationUpdateDao.minusClip(clip);
+	}
+	
+	@Override
+	public boolean plusClip(ClipVo clip) {
+		return locationUpdateDao.plusClip(clip);
+	}
+	
+	@Override
+	public boolean deleteClipData(ClipVo clip) {
+		return locationUpdateDao.deleteClipData(clip);
+	}
+	
+	@Override
+	public ArrayList<String> selectClipedNo(String mem_id) {
+		return locationUpdateDao.selectClipedNo(mem_id);
 	}
 }

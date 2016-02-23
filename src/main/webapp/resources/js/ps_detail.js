@@ -3,7 +3,7 @@ $(document).ready(function(){
 		xlike = $(this).attr("id");
 		var like = $("." + xlike).val();
 		var mem_id = $("#getId").val();
-		var likeNode = $(this).prev();
+		var likeNode = $(this).next();
 		var likeVal = parseInt(likeNode.html());
 		if(mem_id == "" || mem_id == 'null' ){
 			alert("로그인해주세요!")
@@ -83,3 +83,15 @@ $(document).ready(function(){
         }
     });
 });
+
+function psBack(){
+	location.href="psListAll";
+}
+
+function psTop(){
+	window.scrollTo(0, 0);
+}
+
+function psInsert(){
+	location.href="psListInsert";
+}

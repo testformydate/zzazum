@@ -15,7 +15,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mydate.zzazum.location.repository.LocationDao;
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.ClipVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -30,7 +33,6 @@ public class LocationDataService{
 	private LocationDao locationDao;
 	
 	public boolean insertApiData(LocationVo location) throws DataAccessException,IOException {
-			
 		return locationDao.insertApiData(location);
 	}
 	
@@ -87,21 +89,21 @@ public class LocationDataService{
 	public ArrayList<LocationVo> selection(String keyword){
 		return locationDao.selection(keyword);
 	}
-	
+	//like
 	public boolean insertLikeData(ClikeVo like){
 		return locationDao.insertLikeData(like);
 	}
 	
-	public boolean minusLike(String ps_no){
-		return locationDao.minusLike(ps_no);
+	public boolean minusLike(ClikeVo like){
+		return locationDao.minusLike(like);
 	}
 	
-	public boolean plusLike(String ps_no){
-		return locationDao.plusLike(ps_no);
+	public boolean plusLike(ClikeVo like){
+		return locationDao.plusLike(like);
 	}
 	
-	public boolean deleteLikeData(String ps_no){
-		return locationDao.deleteLikeData(ps_no);
+	public boolean deleteLikeData(ClikeVo like){
+		return locationDao.deleteLikeData(like);
 	}
 	
 	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword){
@@ -110,5 +112,34 @@ public class LocationDataService{
 
 	public ArrayList<String> selectLikedNo(String mem_id){
 		return locationDao.selectLikedNo(mem_id);
+	}
+	
+	public ArrayList<LocationCategory> selectLoCate() {
+		return locationDao.selectLoCate();
+	}
+	
+	public ArrayList<CategoryVo> selectCategoryAllData(){
+		return locationDao.selectCategoryAllData();
+	}
+	
+	//clip
+	public boolean insertClipData(ClipVo clip){
+		return locationDao.insertClipData(clip);
+	}
+	
+	public boolean minusClip(ClipVo clip){
+		return locationDao.minusClip(clip);
+	}
+	
+	public boolean plusClip(ClipVo clip){
+		return locationDao.plusClip(clip);
+	}
+	
+	public boolean deleteClipData(ClipVo clip){
+		return locationDao.deleteClipData(clip);
+	}
+	
+	public ArrayList<String> selectClipedNo(String mem_id){
+		return locationDao.selectClipedNo(mem_id);
 	}
 }

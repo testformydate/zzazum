@@ -71,11 +71,14 @@ $(document).ready(function(){
 									</div>
 								</div>
 								<div class="cardBottom">
-									<img class="cardProfile" src="<c:url value="/icons/userm.png" />"><span class="count">${p.ps_email}</span>
+									<img class="cardProfile" src="<c:url value="resources/ps_images/profile/${p.mem_primg}" />"><span class="count">${p.mem_nick}</span>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
+				</div>
+				<div class="ps_loading">
+					<img class="ps_loading_image" src="resources/ps_icon/loding.gif">
 				</div>
 			</div>
 		</div>

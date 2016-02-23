@@ -182,6 +182,13 @@ div#search{
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+.cardProfile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -416,8 +423,14 @@ $(document).ready(function(){
  	    $("#sideNav").toggleClass("sidenav-actif");
 	});
 	$(".body").click(function(){
-		$("#sideNav").css("width","0");
-		$("#nav-toggle").attr("class","");
+		var state = $("#sideNav").attr("class");
+//		alert(state);
+		if(state == "sidenav sidenav-actif"){
+			$("#sideNav").attr("class","sidenav");
+//			alert($("#sideNav").attr("class"));
+			$("#nav-toggle").attr("class","");
+ 			/* $("#sideNav").css("width","0"); */
+		}
 	});
 });
 </script>
@@ -427,6 +440,7 @@ $(document).ready(function(){
 		  <a href="${path}/home">메인으로</a>
 		  <a href="${path}/planner">데이트 짜기</a>
 		  <a href="${path}/psListAll">서연이가 함</a>
+		  <a href="${path}/community/cm_list?part_no=0">커뮤니티 미완성</a>
 		  <a href="#">Contact</a>
 		</div>
 <header class="navi-wrapper">

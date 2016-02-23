@@ -13,28 +13,27 @@
 .ps_list_body{position: relative; left:4%; height:120%;}
 .ps_card{display:inline-block;width : 300px; }
 
-.ps_card_location{margin:10px 0 0 0; padding: 5px 0 5px 0; text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);
-	transition: box-shadow 0.5s; border-radius:10px;}
+.ps_card_location{margin:10px 0 0 0; padding: 5px 0 5px 0; text-align: center; border-radius:10px;}
 .ps_card_location>a{margin: 0px; padding: 0px; font-size: 20px;}
 .ps_card_location>a{text-decoration: none;}
 
-.ps_card_body{text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);
-	transition: box-shadow 0.5s; border-radius:10px; padding-top: 10px; margin : 0px 0px 10px 0px;}
+.ps_card_body{text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.3); height:320px; border-radius:10px; padding-top: 10px; margin : 0px 0px 10px 0px;}
+.ps_card_list_body{text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.3); border-radius:10px; padding-top: 10px; margin : 0px 0px 10px 0px;}
 .card_best_image{width:270px;height:180px; border-radius:10px;}
-.card_click:hover{cursor: pointer; box-shadow: 0px 0px 50px rgba(0,0,0, 0.3);}
+.card_click:hover{cursor: pointer; border:3px soild black;}
 
 .ps_card_profile{position:relative; top:-50px; right:10px; text-align: right; margin: 0px; padding: 0px; z-index: 1;}
 .ps_card_profile>p{position: relative; right:10px; margin: 0px; padding: 0px;}
 .ps_card_profile>img{width:90px; height:90px; border-radius:50%; margin:0px; padding: 0px; border: 1px solid #fff;}
 
-.ps_card_content{position: relative; top:-55px; margin:0 10px;}
-.ps_card_day{position:relative; width:100%; padding-right:30px; margin-right:10px; text-align: left; font-size: 10pt;}
-.ps_card_etc{position:relative; width:100%; padding-right:30px; margin-right:10px; margin-top:5px; text-align: right; font-size: 10pt;}
+.ps_card_content{position: relative; top:-55px; margin:0 10px; padding: 0 10px;}
+.ps_card_day{position:relative; width:100%;  margin-right:10px; text-align: left; font-size: 10pt;}
+.ps_card_etc{position:relative; width:100%;  margin-right:10px; margin-top:25px; text-align: right; font-size: 10pt;}
 .ps_card_context{left:10px; text-align: left; margin-top: 16px;}
 
 .ps_card_title{left:10px; text-align: left; margin:2px 0px 10px 0px; padding: 0px; font-size: 12pt;}
 .ps_card_content>p{margin: 0px; padding: 0px;}
-.ps_icon{margin: 0 5px; padding:0px; width:11px; height: 11px;}
+.ps_icon{margin: 0 5px; padding:0px; width:22px; height: 25px;}
 
 .ellipsText{overflow : hidden; white-space: nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; -ms-text-overflow:ellipsis; -moz-text-overflow:ellipsis}
 
@@ -50,3 +49,6 @@
             
 .ps_loading {position:relative; left:3%;}
 .ps_loading_image{width:70px; height: 70px;margin:auto; display:none;}
+
+.ps_planner_best{ position: absolute; left:-24px; top:-21px;}
+.ps_planner_best>img{width: 100px; height: 50px;}

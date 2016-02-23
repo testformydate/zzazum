@@ -16,33 +16,31 @@
 <body>
 <div class="body">
 	<div class="ps_body">
-		<div class="ps_search">
-			<input type="text"><img src="resources/ps_icon/search.png">
-		</div>
 		<div class="ps_planner">
+		<div class="ps_planner_best"><img src="resources/ps_icon/best_img.png"></div>
 		<c:forEach var="bp" items="${psBestPlanner }">
 			<img class="card_click bestPlanner_Click" id="${bp.mem_id }" src="resources/ps_images/profile/${bp.mem_primg }">
 		</c:forEach>
 		</div>
 	<div class="ps_list_body ">
 		<c:forEach var="psB" items="${psBest }">
-		<input type="hidden" class="psB${psB.ps_no }" value="${psB.ps_no }">
+		<input type="hidden" class="psB${psB.ps_no } psTitle${psB.ps_no } malike${psB.ps_no}" value="${psB.ps_no }">
 		<div class="ps_card">
 			<div class="ps_card_title">
 				<p class="ps_card_location"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body card_click card_detail_click" id="psB${psB.ps_no }">
-					<img class="card_best_image" src="resources/ps_images/postscript/${psB.ps_image }">
+			<div class="ps_card_body" >
+					<img class="card_best_image card_click" src="resources/ps_images/postscript/${psB.ps_image }" onclick="detailClick(${psB.ps_no })">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${psB.mem_primg}">
 					</div>
 				<div class="ps_card_content">
 						<div class="ps_card_day">${psB.ps_date }</div>
-						<div class="ps_card_title ellipsText">${psB.ps_title }</div>
-						<div class="ps_card_context ellipsText">${psB.ps_context }</div>
+						<div class="ps_card_title ellipsText card_click"onclick="detailClick(${psB.ps_no })">${psB.ps_title }</div>
 						<div class="ps_card_etc">
-							<span class="ps_card_likes"><img class="ps_icon" src="resources/ps_icon/like.png">${psB.ps_like }</span> 
-							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/comment.png">${psB.ps_hits }</span>
+							<span class="ps_card_clip"><img class="ps_icon" src="resources/ps_icon/clip.png">${psB.ps_clip}</span>
+							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/views.png">${psB.ps_hits }</span>
+							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${psB.ps_no})"><span>${psB.ps_like }</span></span> 
 						</div>
 				</div>
 			</div>
@@ -56,23 +54,23 @@
 	</div>	
 	<div class="ps_show_list">
 		<c:forEach var="list" items="${psListAll}">
-			<input type="hidden" class="ps_no list${list.ps_no }" value="${list.ps_no }">
+			<input type="hidden" class="ps_no list${list.ps_no } pdTitle${list.ps_no } pslike${list.ps_no}" value="${list.ps_no }">
 			<div class="ps_card" >
 			<div class="ps_card_title">
 				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${list.ps_location }"><b>${list.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body card_click card_detail_click" id="list${list.ps_no }">
-					<img class="card_all_image" src="resources/ps_images/postscript/${list.ps_image }">
+			<div class="ps_card_list_body">
+					<img class="card_all_image card_click" src="resources/ps_images/postscript/${list.ps_image }" onclick="detailClick(${list.ps_no })">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${list.mem_primg }">
 					</div>
 				<div class="ps_card_content">
 						<div class="ps_card_day">${list.ps_date }</div>
-						<div class="ps_card_title ellipsText">${list.ps_title }</div>
-						<div class="ps_card_context ellipsText">${list.ps_context }</div>
+						<div class="ps_card_title ellipsText card_click card_detail_click" onclick="detailClick(${list.ps_no })">${list.ps_title }</div>
 						<div class="ps_card_etc">
-							<span class="ps_card_likes"><img class="ps_icon" src="resources/ps_icon/like.png">${list.ps_like }</span> 
-							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/comment.png">${list.ps_hits }</span>
+							<span class="ps_card_clip"><img class="ps_icon" src="resources/ps_icon/clip.png">${list.ps_clip}</span>
+							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/views.png">${list.ps_hits }</span>
+							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${list.ps_no})"><span>${list.ps_like }</span></span> 
 						</div>
 				</div>
 			</div>
@@ -81,7 +79,7 @@
 	</div>
 	<div class="ps_loading">
 		<img class="ps_loading_image" src="resources/ps_icon/loding.gif">
-	</div>			
+	</div>
 	</div>
 <input type="hidden" id="psListSize" value="${psListSize }">
 <form id="bestPL" method="post">
