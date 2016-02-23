@@ -69,11 +69,32 @@ body {
 	width:60px;
 }
 </style>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript" src="../resources/js/hashencode.js"></script>
 <script type="text/javascript">
 function calc(){
    //alert("dddd");
+   
+   var email = document.insForm.mem_id.value;
+   var pw = document.insForm.mem_pw.value;
+   
+   
+   var e_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+   var pw_regExp = /^([a-zA-Z0-9])$/; 	   
+
+   if(!e_regExp.test(email) || email == null || email == ""){
+	   alert("email err");
+	   		document.insForm.mem_id.focus();
+	   		return false;
+   };
+   if(!pw_regExp.test(pw) || pw == null || pw == ""){
+	   alert("pw err");
+	   		document.insForm.mem_pw.focus();
+	   		return false;
+   };
+   
    var strTxt = document.insForm.mem_pw.value;
    if( strTxt.length == 0 )
    {
