@@ -79,7 +79,7 @@
 	</div>
 	<div class="ps_loading">
 		<img class="ps_loading_image" src="resources/ps_icon/loding.gif">
-	</div>			
+	</div>
 	</div>
 <input type="hidden" id="psListSize" value="${psListSize }">
 <form id="bestPL" method="post">

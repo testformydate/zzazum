@@ -444,7 +444,10 @@ $(document).ready(function(){
 						<div class="detailContents">
 							<div id="${p.ps_no}" class="detailTitle">${p.ps_title}</div>
 							<div class="detailContent">
-								<div class="description" style="margin-left:15px;cursor:pointer;">${p.ps_context}</div>
+								<div class="description" style="margin-left:15px;cursor:pointer;">
+									<span><img class="cardProfile" src="resources/ps_images/profile/${p.mem_primg}"></span><span class="count">${p.mem_nick}</span>
+									<div class="descContext">${p.ps_context}</div>
+								</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
 									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#00cdcd;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#00cdcd;">${p.ps_hits}</span></div>
 									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
@@ -459,6 +462,9 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</c:forEach>
+			</div>
+			<div class="ps_loading">
+				<img class="ps_loading_image" src="resources/ps_icon/loding.gif">
 			</div>
 			<%-- <div class="detailWrapperTitle">네이버 블로그</div>
 			<div class="details">
