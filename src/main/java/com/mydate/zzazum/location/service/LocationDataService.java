@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.mydate.zzazum.location.repository.LocationDao;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -110,5 +111,9 @@ public class LocationDataService{
 
 	public ArrayList<String> selectLikedNo(String mem_id){
 		return locationDao.selectLikedNo(mem_id);
+	}
+	
+	public ArrayList<LocationCategory> selectLoCate() {
+		return locationDao.selectLoCate();
 	}
 }

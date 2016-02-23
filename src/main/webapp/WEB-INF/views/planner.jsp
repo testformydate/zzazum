@@ -139,7 +139,7 @@ function cateShow(cate){
 }
 
 function addrShow(addr){
-	//alert(addr);
+	/* alert(addr); */
 	$.ajax({
 		url:"autocomplete",
 		data: "keyword=" + addr,

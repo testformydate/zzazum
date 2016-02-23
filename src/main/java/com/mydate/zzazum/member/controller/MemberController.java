@@ -77,9 +77,11 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<script>alert('내가 짜줌!!');"
-	      		+ "location.href='/mydate/member/loading';</script>");
+	      		+ "location.href='/mydate/home';</script>");
 		out.println("</body></html>");
 		out.close();
+		
+		
 	}
 	
 	@RequestMapping("loading")

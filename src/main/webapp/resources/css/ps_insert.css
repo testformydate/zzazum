@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
-.ps_insert_body{position:absolute; top:15%; left:15%; width:70%; margin:auto; height:auto; padding-bottom:30px; text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);}
+.ps_insert_body{position:absolute; top:10%; left:15%; width:70%; margin:auto; height:auto; padding-bottom:30px; text-align: center; box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);}
 
 .ps_insert_button{margin:15px auto; width: 100%;}
 .ps_insert_button>input{width:50px; height: 30px; margin: auto;}
 
-.ps_insert_ti{font-size:25pt; color: #00cdcd; margin: 20px 0 10px 0; }
+.ps_insert_ti{font-size:25pt; color: #00cdcd; margin: 0 0 10px 0; }
 .ps_insert_title{position:relative; width:350px; height:20px; margin: auto; margin-top:20px; margin-bottom:30px; padding:0px;}
 .ps_insert_title>input{width:100%;; padding:5px; margin:auto;}
 .ps_insert_file{margin:auto; width:100%; height:30px; line-height:50px; background-size:100%; }
@@ -35,7 +35,7 @@
 .modal_button>input{background-color: #00cdcd; radius:5px; width:50px; height: 30px;}
 .modal_button>input:hover{cursor: pointer;}
 .modal_img{width: 550px; height: 550px; margin: 5px auto;}
-.modal_main_btn{text-align: right; margin: 0; padding: 0 23px;}
+.modal_main_btn{text-align: left; margin: 0; padding: 0 23px;}
 .modal_main_btn>input{width:65px; height: 30px;}
 
 .ps_insert_label{margin: 0; text-align: right; padding: 0 40px;}
@@ -45,3 +45,5 @@
 .modal_border{border: 3px solid; border-color: #eee;}
 
 .ps_icon{margin: 0 5px; padding:0px; width:25px; height: 25px;}
+
+.ps_insert_location{text-align: left; margin-left: 35px; margin-top: 10px;}

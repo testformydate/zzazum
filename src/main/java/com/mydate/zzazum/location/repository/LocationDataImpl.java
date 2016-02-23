@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -75,5 +76,10 @@ public class LocationDataImpl implements LocationDataInter{
 	@Override
 	public ArrayList<String> selectLikedNo(String mem_id) {
 		return locationUpdateDao.selectLikedNo(mem_id);
+	}
+	
+	@Override
+	public ArrayList<LocationCategory> selectLoCate() {
+		return locationUpdateDao.selectLoCate();
 	}
 }

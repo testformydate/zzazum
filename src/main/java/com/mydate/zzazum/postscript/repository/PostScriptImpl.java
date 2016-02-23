@@ -160,6 +160,7 @@ public class PostScriptImpl implements PostScriptDataInter{
 		ps.setPs_image(bean.getPd_images()[main_num].getOriginalFilename());
 		ps.setPs_title(bean.getPs_title());
 		ps.setPs_context(bean.getPd_contexts()[main_num]);
+		ps.setPs_location(bean.getPd_location());
 		
 		postScriptDao.psDataInssert(ps);
 		int ps_no = postScriptDao.psInsertNum(mem_id);
@@ -185,7 +186,7 @@ public class PostScriptImpl implements PostScriptDataInter{
 	}
 	
 	private File upload(MultipartFile file){
-		String path="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_images/postscirpt/" + file.getOriginalFilename();
+		String path="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_images/postscript/" + file.getOriginalFilename();
 		File f = new File(path);
 		
 		return f;

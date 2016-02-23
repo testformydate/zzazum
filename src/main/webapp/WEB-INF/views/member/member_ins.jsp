@@ -173,7 +173,7 @@ function calc(){
 </script>
 </head>
 <body>
-<div class="body">
+<div class="member_insert_body body">
 <div class="member_insert_body">
 	<div class="insert_form">
 		<div class="member_insert_title"><a href="/mydate/home"><img class="logo" src="../icons/mydatelogo.png"></a></div>
