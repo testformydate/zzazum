@@ -163,15 +163,16 @@ public class PlannerController {
 	@ResponseBody
 	public String likeOrDislike(ClikeVo like){
 		String likeOrUnlike = like.getLikeOrNot();
+		System.out.println(like.getPs_no());
 		//System.out.println(ps_no);
 		boolean b = false;
 		if(likeOrUnlike.equals("like")){
 			b = service.deleteLikeData(like);
-			b = service.minusLike(like);
+			b = service.minusLike(like.getPs_no());
 			likeOrUnlike = "unlike";
 		}else if(likeOrUnlike.equals("unlike")){
 			b = service.insertLikeData(like);
-			b = service.plusLike(like);
+			b = service.plusLike(like.getPs_no());
 			likeOrUnlike = "like";
 		}
 		/*
@@ -198,11 +199,11 @@ public class PlannerController {
 		boolean b = false;
 		if(clipOrUnclip.equals("clip")){
 			b = service.deleteClipData(clip);
-			b = service.minusClip(clip);
+			b = service.minusClip(clip.getPs_no());
 			clipOrUnclip = "unclip";
 		}else if(clipOrUnclip.equals("unclip")){
 			b = service.insertClipData(clip);
-			b = service.plusClip(clip);
+			b = service.plusClip(clip.getPs_no());
 			clipOrUnclip = "clip";
 		}
 		return clipOrUnclip; 

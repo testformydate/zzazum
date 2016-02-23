@@ -37,7 +37,7 @@ div.stepContent > a:hover{
 </style>
 <script type="text/javascript">
 function like(no){
-	
+	//alert(no);
 	var like = $("#like" + no).attr("class");
 	var mem_id = "${mem_id}";
 	var likeCount = parseInt($("#likeCount" + no).html());
@@ -53,7 +53,7 @@ function like(no){
 	$.ajax({
    		type: "post",
    		url: "likeUpdate",
-   		data: {"likeOrNot": like ,"ps_no" : no, "mem_id" : mem_id},
+   		data: {"likeOrNot": like ,"ps_no" : no, "mem_id" : mem_id, "ps_email" : mem_id},
    		success: function(jdata){
        		if(jdata.trim() === "like"){
 	   			//alert("#like" + no);
@@ -73,7 +73,7 @@ function clip(no){
 	
 	var clip = $("#clip" + no).attr("class");
 	var mem_id = "${mem_id}";
-	var likeCount = parseInt($("#clipCount" + no).html());
+	//var likeCount = parseInt($("#clipCount" + no).html());
 	//alert(no + " " + like + " " + likeCount);
 	/* var likeNode = $(this).prev();
 	var likeVal = parseInt(likeNode.html());
@@ -82,21 +82,21 @@ function clip(no){
 		alert("로그인해주세요!")
 		return;
 	}
-	
+	//alert(clip + " " + mem_id);
 	$.ajax({
    		type: "post",
    		url: "clipUpdate",
-   		data: {"clipOrNot": like ,"ps_no" : no, "mem_id" : mem_id},
+   		data: {"clipOrNot": clip ,"ps_no" : no, "mem_id" : mem_id, "ps_email" : mem_id},
    		success: function(jdata){
-       		if(jdata.trim() === "like"){
+       		if(jdata.trim() === "clip"){
 	   			//alert("#like" + no);
-       			$("#clip" + no).attr("class","like");
-       			$("#clip" + no).attr("src","resources/icons/like.png");
-       			$("#clipCount" + no).html(likeCount + 1);
+       			$("#clip" + no).attr("class","clip");
+       			$("#clip" + no).attr("src","resources/icons/clip.png");
+       			//$("#clipCount" + no).html(likeCount + 1);
        		}else if(jdata.trim() === "unlike"){
-       			$("#clip" + no).attr("class","unlike");
-       			$("#clip" + no).attr("src","resources/icons/unlike.png");
-       			$("#clipCount" + no).html(likeCount - 1);
+       			$("#clip" + no).attr("class","unclip");
+       			$("#clip" + no).attr("src","resources/icons/unclip.png");
+       			//$("#clipCount" + no).html(likeCount - 1);
        		}
        	}
    	});
@@ -270,6 +270,19 @@ $(document).ready(function(){
    			$(like).each(function(index, no){
 	    		$("#like" + no).attr("class","like");
 	     		$("#like" + no).attr("src","resources/icons/like.png");   				
+   			});
+   			//alert(like);
+   			//alert("#like" + no);
+       	}
+   	});
+	$.ajax({
+   		type: "post",
+   		url: "clipedList",
+   		data: {"mem_id" : id},
+   		success: function(like){
+   			$(like).each(function(index, no){
+	    		$("#clip" + no).attr("class","clip");
+	     		$("#clip" + no).attr("src","resources/icons/clip.png");   				
    			});
    			//alert(like);
    			//alert("#like" + no);

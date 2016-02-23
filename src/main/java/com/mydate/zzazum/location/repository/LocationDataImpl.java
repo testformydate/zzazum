@@ -56,13 +56,13 @@ public class LocationDataImpl implements LocationDataInter{
 	}
 	
 	@Override
-	public boolean minusLike(ClikeVo like) {
-		return locationUpdateDao.minusLike(like);
+	public boolean minusLike(String ps_no) {
+		return locationUpdateDao.minusLike(ps_no);
 	}
 	
 	@Override
-	public boolean plusLike(ClikeVo like) {
-		return locationUpdateDao.plusLike(like);
+	public boolean plusLike(String ps_no) {
+		return locationUpdateDao.plusLike(ps_no);
 	}
 	
 	@Override
@@ -96,13 +96,13 @@ public class LocationDataImpl implements LocationDataInter{
 	}
 	
 	@Override
-	public boolean minusClip(ClipVo clip) {
-		return locationUpdateDao.minusClip(clip);
+	public boolean minusClip(String ps_no) {
+		return locationUpdateDao.minusClip(ps_no);
 	}
 	
 	@Override
-	public boolean plusClip(ClipVo clip) {
-		return locationUpdateDao.plusClip(clip);
+	public boolean plusClip(String ps_no) {
+		return locationUpdateDao.plusClip(ps_no);
 	}
 	
 	@Override

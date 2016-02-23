@@ -52,13 +52,13 @@ public interface LocationDao {
 	@Insert("insert into md_pslike(mem_id,ps_no,li_date) values(#{mem_id},#{ps_no},now())")
 	public boolean insertLikeData(ClikeVo like);
 	
-	@Update("update md_postscript set ps_like=ps_like-1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
-	public boolean minusLike(ClikeVo like);
+	@Update("update vmd_pslistall set ps_like=ps_like-1 where ps_no=#{ps_no}")
+	public boolean minusLike(String ps_no);
 	
-	@Update("update md_postscript set ps_like=ps_like+1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
-	public boolean plusLike(ClikeVo like);
+	@Update("update vmd_pslistall set ps_like=ps_like+1 where ps_no=#{ps_no}")
+	public boolean plusLike(String ps_no);
 	
-	@Delete("delete from md_pslike where ps_no=#{ps_no}")
+	@Delete("delete from md_pslike where ps_no=#{ps_no} and mem_id=#{mem_id}")
 	public boolean deleteLikeData(ClikeVo like);
 	
 	@Select("select * from md_locategory")
@@ -67,13 +67,13 @@ public interface LocationDao {
 	@Insert("insert into md_clip(mem_id,ps_no,c_date) values(#{mem_id},#{ps_no},now())")
 	public boolean insertClipData(ClipVo clip);
 	
-	@Update("update md_postscript set ps_clip=ps_clip-1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
-	public boolean minusClip(ClipVo clip);
+	@Update("update vmd_pslistall set ps_clip=ps_clip-1 where ps_no=#{ps_no}")
+	public boolean minusClip(String ps_no);
 	
-	@Update("update md_postscript set ps_clip=ps_clip+1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
-	public boolean plusClip(ClipVo clip);
+	@Update("update vmd_pslistall set ps_clip=ps_clip+1 where ps_no=#{ps_no}")
+	public boolean plusClip(String ps_no);
 	
-	@Delete("delete from md_clip where ps_no=#{ps_no}")
+	@Delete("delete from md_clip where ps_no=#{ps_no} and mem_id=#{mem_id}")
 	public boolean deleteClipData(ClipVo clip);
 	
 	@Select("select ps_no from md_clip where mem_id=#{mem_id}")
