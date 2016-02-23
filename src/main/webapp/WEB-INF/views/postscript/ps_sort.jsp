@@ -31,17 +31,18 @@
 				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${psB.ps_location }"><b>${psB.ps_location }</b></a></p>
 			</div>
 			<div class="ps_card_body">
-					<img class="card_best_image card_click card_detail_click" id="psB${psB.ps_no }"" src="resources/ps_images/postscript/${psB.ps_image }">
+					<img class="card_best_image card_click" src="resources/ps_images/postscript/${psB.ps_image }" onclick="detailClick(${psB.ps_no })">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${psB.mem_primg}">
 					</div>
 				<div class="ps_card_content">
 						<div class="ps_card_day">${psB.ps_date }</div>
-						<div class="ps_card_title ellipsText card_click card_detail_click" id="psTitle${psB.ps_no }"">${psB.ps_title }</div>
-						<div class="ps_card_context ellipsText">${psB.ps_context }</div>
+						<div class="ps_card_title ellipsText card_click" onclick="detailClick(${psB.ps_no })">${psB.ps_title }</div>
+
 						<div class="ps_card_etc">
-							<span class="ps_card_likes"><img class="ps_icon card_click ps_like" id="malike${psB.ps_no}" src="resources/ps_icon/like.png"><span>${psB.ps_like }</span></span> 
-							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/comment.png">${psB.ps_hits }</span>
+							<span class="ps_card_clip"><img class="ps_icon" src="resources/ps_icon/clip.png">${psB.ps_clip}</span>
+							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${psB.ps_no})"><span>${psB.ps_like }</span></span> 
+							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/views.png">${psB.ps_hits }</span>
 						</div>
 				</div>
 			</div>
@@ -60,18 +61,18 @@
 			<div class="ps_card_title">
 				<p class="ps_card_location card_click"><a href="psListSort?sortCate=Location&ps_data=${list.ps_location }"><b>${list.ps_location }</b></a></p>
 			</div>
-			<div class="ps_card_body">
-					<img class="card_all_image card_click card_detail_click" id="list${list.ps_no }" src="resources/ps_images/postscript/${list.ps_image }">
+			<div class="ps_card_list_body">
+					<img class="card_all_image card_click" src="resources/ps_images/postscript/${list.ps_image }" onclick="detailClick(${list.ps_no })">
 					<div class="ps_card_profile">
 						<img src="resources/ps_images/profile/${list.mem_primg }">
 					</div>
 				<div class="ps_card_content">
 						<div class="ps_card_day">${list.ps_date }</div>
-						<div class="ps_card_title ellipsText card_click card_detail_click" id="pdTitle${list.ps_no }">${list.ps_title }</div>
-						<div class="ps_card_context ellipsText">${list.ps_context }</div>
+						<div class="ps_card_title ellipsText card_click" onclick="detailClick(${list.ps_no })">${list.ps_title }</div>
 						<div class="ps_card_etc">
-							<span class="ps_card_likes"><img class="ps_icon card_click ps_like" id="pslike${list.ps_no}" src="resources/ps_icon/like.png"><span>${list.ps_like }</span></span> 
-							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/comment.png">${list.ps_hits }</span>
+							<span class="ps_card_clip"><img class="ps_icon" src="resources/ps_icon/clip.png">${list.ps_clip}</span>
+							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${list.ps_no})"><span>${list.ps_like }</span></span> 
+							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/views.png">${list.ps_hits }</span>
 						</div>
 				</div>
 			</div>

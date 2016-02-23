@@ -83,3 +83,15 @@ $(document).ready(function(){
         }
     });
 });
+
+function psBack(){
+	location.href="psListAll";
+}
+
+function psTop(){
+	window.scrollTo(0, 0);
+}
+
+function psInsert(){
+	location.href="psListInsert";
+}

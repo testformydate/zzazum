@@ -89,15 +89,17 @@
 		</ul>
 	</div>
 </div>
-<%@include file="../subMenu.jsp" %>
-
+<div class="subMenu_body">
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write1.jpg" onclick="javascript:psInsert()"></div>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/top1.jpg" onclick="javascript:psTop()"></div>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/back1.jpg" onclick="javascript:psBack()"></div>
+</div>
 <form id="insertComment" method="post">
 	<input type="hidden" id="detailNo" name="co_psno" value="${psDM.ps_no}">
 	<input type="hidden" id="getId" name="co_email" value="<%=(String)session.getAttribute("mem_id") %>">
 	<input type="hidden" name="co_pdno" id="co_pdno">
 	<input type="hidden" name="co_context" id="co_comment">
 </form>
-
 </div>
 </body>
 </html>

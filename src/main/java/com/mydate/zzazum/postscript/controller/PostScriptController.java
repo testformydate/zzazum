@@ -94,6 +94,7 @@ public class PostScriptController {
 			map.put("ps_like", Integer.toString(ps.getPs_like()));
 			map.put("ps_hits", Integer.toString(ps.getPs_hits()));
 			map.put("mb_image", ps.getMem_primg());
+			map.put("ps_clip", Integer.toString(ps.getPs_clip()));
 			
 			data.add(map);
 			
