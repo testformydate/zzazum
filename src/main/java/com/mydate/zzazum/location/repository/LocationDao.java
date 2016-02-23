@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.ClipVo;
 import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -47,18 +48,34 @@ public interface LocationDao {
 	@Select("select * from vmd_location where p_category like #{keyword}")
 	public ArrayList<LocationVo> selection(String keyword);
 	
+	//like
 	@Insert("insert into md_pslike(mem_id,ps_no,li_date) values(#{mem_id},#{ps_no},now())")
 	public boolean insertLikeData(ClikeVo like);
 	
-	@Update("update md_postscript set ps_like=ps_like-1 where ps_no=#{ps_no}")
-	public boolean minusLike(String ps_no);
+	@Update("update md_postscript set ps_like=ps_like-1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
+	public boolean minusLike(ClikeVo like);
 	
-	@Update("update md_postscript set ps_like=ps_like+1 where ps_no=#{ps_no}")
-	public boolean plusLike(String ps_no);
+	@Update("update md_postscript set ps_like=ps_like+1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
+	public boolean plusLike(ClikeVo like);
 	
 	@Delete("delete from md_pslike where ps_no=#{ps_no}")
-	public boolean deleteLikeData(String ps_no);
+	public boolean deleteLikeData(ClikeVo like);
 	
 	@Select("select * from md_locategory")
 	public ArrayList<LocationCategory> selectLoCate();
+	
+	@Insert("insert into md_clip(mem_id,ps_no,c_date) values(#{mem_id},#{ps_no},now())")
+	public boolean insertClipData(ClipVo clip);
+	
+	@Update("update md_postscript set ps_clip=ps_clip-1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
+	public boolean minusClip(ClipVo clip);
+	
+	@Update("update md_postscript set ps_clip=ps_clip+1 where ps_no=#{ps_no} and mem_id=#{mem_id}")
+	public boolean plusClip(ClipVo clip);
+	
+	@Delete("delete from md_clip where ps_no=#{ps_no}")
+	public boolean deleteClipData(ClipVo clip);
+	
+	@Select("select ps_no from md_clip where mem_id=#{mem_id}")
+	public ArrayList<String> selectClipedNo(String mem_id);
 }
