@@ -36,7 +36,8 @@ public class PostScriptService {
 	}
 	
 	public ArrayList<PostScriptList> psListAll(){
-		return postScriptDataInter.psListAll();
+		ArrayList<PostScriptList> list = postScriptDataInter.psListAll();	
+		return list;
 	}
 	
 	public String psSortEmailCnt(String ps_data){
@@ -119,6 +120,13 @@ public class PostScriptService {
 			result.setPs_clike("dislike");
 		}
 		return result;
+	}
+	
+	public PostScriptLike psLikeMain(PostScriptLike like){
+		PostScriptList list = new PostScriptList();
+		list.setPs_email(like.getMem_id());
+		list.setPs_no(like.getPs_no());
+		return postScriptDataInter.psLikeMain(list);
 	}
 	
 	public String psDeleteLike(PostScriptLike like) {

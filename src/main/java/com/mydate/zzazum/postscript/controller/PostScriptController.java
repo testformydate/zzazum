@@ -178,6 +178,21 @@ public class PostScriptController {
 	public String psUpdateLike(@RequestParam("sortLike") String sortLike, PostScriptLike like){
 		String result="dislike";
 		
+		if(sortLike.equals("pslike")){
+			PostScriptLike pan = postScriptService.psLikeMain(like);
+			if(pan != null){
+				like.setLikeVal(-1);
+				result = postScriptService.psDeleteLike(like);
+				postScriptService.psUpdateLike(like);
+			}else{
+				like.setLikeVal(1);
+				result = postScriptService.psInsertLike(like);
+				postScriptService.psUpdateLike(like);
+			}
+			
+			return result;
+		}
+		
 		if(like.getPd_no()== 0){
 			if(sortLike.equals("dislike")){
 				like.setLikeVal(1);
