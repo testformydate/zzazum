@@ -11,12 +11,12 @@
 .ps_insert_file:hover{cursor: pointer;}
 .ps_insert_file>form>input{opacity:1;}
 
-.ps_insert_show{width:93%; height:400px; margin: auto; margin-top:0px; background-color: #eee; overflow-x:hidden; overflow-y:auto; padding-left:10px; }
+.ps_insert_show{width:93%; height:400px; display:inline-block;  margin-top:0px; background-color: #eee; overflow-x:hidden; overflow-y:auto; padding-left:10px; }
 .ps_insert_show::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); background-color: #F5F5F5; border-radius:10px;}
 .ps_insert_show::-webkit-scrollbar{width: 6px;background-color: #6e6e6e; border-radius:30%;}
 .ps_insert_show::-webkit-scrollbar-thumb{background-color: #474747; border-radius:10px;}
 
-.ps_insert_card{float:left; margin: 10px; width:150px; height: 150px;}
+.ps_insert_card{float:left; margin: 20px 10px 0 10px; width:150px; height: 150px;}
 .ps_insert_card:hover{cursor:pointer;}
 .ps_insert_card>img{margin: 0px; width:150px; height: 150px;}
 .ps_insert_content{background-color:transparent; width:100%; border:0; resize: none; wrap:hard;}
@@ -47,3 +47,6 @@
 .ps_icon{margin: 0 5px; padding:0px; width:25px; height: 25px;}
 
 .ps_insert_location{text-align: left; margin-left: 35px; margin-top: 10px;}
+
+.close_btn{position:relative; top:-17px; left: 3px; width:15px; height: 15px;}
+.close_btn>img{width:15px; height: 15px;}

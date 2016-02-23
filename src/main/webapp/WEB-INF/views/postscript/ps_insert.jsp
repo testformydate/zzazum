@@ -27,7 +27,8 @@ function readURL(input) {
 	$(".ps_insert_show").html('');
 	var cnt=0;
 	for(ima=0; ima<input.files.length; ima++){
-		$(".ps_insert_show").append("<div class='ps_insert_card img_click modal_border' id='ps_insert_card"+ima+"'><input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'><input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'></div>");
+		alert(input.files[ima].name);
+		$(".ps_insert_show").append("<div class='ps_insert_card img_click modal_border' id='ps_insert_card"+ima+"'><input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'><input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'><div class='close_btn'><img src='resources/icons/can.PNG' onclick='deletePicture(ps_insert_card"+ima+", "+input.files[ima].name+")'></div></div>");
 	   	$("#ps_insert_card"+ima).attr('onclick',"modal('ps_insert_card"+ima+"')");
 		var reader = new FileReader();
         reader.readAsDataURL(input.files[ima]);
@@ -150,6 +151,12 @@ function modalLocation(){
 			$(".modal_main_btn>select").html(str);
 		}
 	});
+}
+
+function deletePicture(ps_id, fileName){
+	$("#"+ps_id).remove();
+	$("#upload_btn").clear(fileName);
+	
 }
 </script>
 </head>

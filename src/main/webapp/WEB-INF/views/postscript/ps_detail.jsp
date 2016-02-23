@@ -90,7 +90,8 @@
 	</div>
 </div>
 <div class="subMenu_body">
-		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write1.jpg" onclick="javascript:psInsert()"></div>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/edit_pen.png" onclick=""></div>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/add_pen.png" onclick="javascript:psInsert()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/top1.jpg" onclick="javascript:psTop()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/back1.jpg" onclick="javascript:psBack()"></div>
 </div>
