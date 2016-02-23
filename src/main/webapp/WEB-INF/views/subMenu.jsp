@@ -29,7 +29,6 @@ function psInsert(){
 </head>
 <body>
 <div class="subMenu_body">
-		<div class="usbMenu_img"><img class="click_cursor" src="resources/icons/write1.jpg" onclick="javascript:psInsert()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write1.jpg" onclick="javascript:psInsert()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/top1.jpg" onclick="javascript:psTop()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/back1.jpg" onclick="javascript:psBack()"></div>

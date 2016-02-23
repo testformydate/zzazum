@@ -41,8 +41,8 @@
 
 						<div class="ps_card_etc">
 							<span class="ps_card_clip"><img class="ps_icon" src="resources/ps_icon/clip.png">${psB.ps_clip}</span>
-							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${psB.ps_no})"><span>${psB.ps_like }</span></span> 
 							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/views.png">${psB.ps_hits }</span>
+							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${psB.ps_no})"><span>${psB.ps_like }</span></span> 
 						</div>
 				</div>
 			</div>
@@ -71,8 +71,8 @@
 						<div class="ps_card_title ellipsText card_click" onclick="detailClick(${list.ps_no })">${list.ps_title }</div>
 						<div class="ps_card_etc">
 							<span class="ps_card_clip"><img class="ps_icon" src="resources/ps_icon/clip.png">${list.ps_clip}</span>
-							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${list.ps_no})"><span>${list.ps_like }</span></span> 
 							<span class="ps_card_comments"><img class="ps_icon" src="resources/ps_icon/views.png">${list.ps_hits }</span>
+							<span class="ps_card_likes"><img class="ps_icon card_click" src="resources/ps_icon/like.png" onclick="likeClick(${list.ps_no})"><span>${list.ps_like }</span></span> 
 						</div>
 				</div>
 			</div>
