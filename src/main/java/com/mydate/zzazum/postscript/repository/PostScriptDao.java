@@ -20,7 +20,7 @@ public interface PostScriptDao {
 	@Select("select count(*) from md_postscript")
 	public String psListCnt();
 	
-	@Select("select * from vmd_pslistall limit 0,7")
+	@Select("select * from vmd_pslistall limit 0,15")
 	public ArrayList<PostScriptList> psListAll();
 	
 	@Select("select count(*) from md_postscript where ps_email=#{ps_data}")
