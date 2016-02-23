@@ -41,4 +41,8 @@ public interface CommunityDao {
 	@Select("select * from md_comt where comt_bono=#{comt_bono}")
 	public ArrayList<CommentVo> commentList(String comt_bono);
 	
+	@Select("select * from md_cm where cm_title like concat('%',#{cm_search},'%')")
+	public ArrayList<CommunityVo> communitySearch(CommunityVo communityVo);
+		
+	
 }

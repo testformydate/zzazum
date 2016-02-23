@@ -56,7 +56,10 @@ $(document).ready(function(){
 	$("#cm_wr").click(function(){
 		//alert("aa");
 		location.href = "cm_wrview?part_no="+${part_no};
-	});	
+	});
+	$("#cm_searchs").click(function(){
+		cm_form_search.submit();
+	})
 });
 
 function detail(cm_no){
@@ -152,19 +155,17 @@ function detail(cm_no){
  </table>
  </div>
  <div class="board_search">
-	<form name="listContentFooterForm" onsubmit="return false;" method="get" action="#">
-
-			<!-- 검색어 대상 -->
-			
+	<form name="cm_form_search" method="get" action="cm_list">
+		<!-- 검색어 대상 -->
 			<div class="inline_box">
-			<select name="searchClass" id="country_id" tabindex="1">
-				<option value="1" >제목+내용</option>
-				<option value="2" >제목</option>
-				<option value="3" >내용</option>
-							</select>
-			
-				<input name="searchText" type="text" title="검색어 입력" value="">
-				<button class="ir" onclick="boardSubmitSearch_();"><span>검색</span></button>
+			<!-- <select name="cm_sc" >
+				<option value="cm_title" >제목</option>
+				<option value="cm_content" >내용</option>
+				<option value="cm_nick" >작성자</option>
+			</select> -->
+				<input type="text" size="3" readonly="readonly" value="내용">
+				<input name="cm_search" type="text" title="검색어 입력" >
+				<button type="button" id="cm_searchs" class="ir" ><span>검색</span></button>
 			</div>    
 	</form>
 </div>

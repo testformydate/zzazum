@@ -20,7 +20,25 @@ public class CommunityVo {
 	private String cm_content;
 	private String cm_wdate;
 	private String cm_fdate;
+	private String cm_search;
+	private String cm_sc;
 	
+	public void setCm_sc(String cm_sc) {
+		this.cm_sc = cm_sc;
+	}
+	
+	public String getCm_sc() {
+		return cm_sc;
+	}
+	
+	public String getCm_search() {
+		return cm_search;
+	}
+
+	public void setCm_search(String cm_search) {
+		this.cm_search = cm_search;
+	}
+
 	public int getCm_like() {
 		return cm_like;
 	}

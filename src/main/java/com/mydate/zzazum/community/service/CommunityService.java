@@ -61,4 +61,9 @@ public class CommunityService {
 		
 		return communityInter.commentList(comt_bono);
 	}
+	
+	public ArrayList<CommunityVo> communitySearch(CommunityVo communityVo){
+		
+		return communityInter.communitySearch(communityVo);
+	}
 }

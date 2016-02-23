@@ -28,6 +28,13 @@ $(document).ready(function(){
 	$("#cm_back").click(function(){
 		location.href = history.back();
 	});
+	$("#comt_submit").click(function(){
+		if($("#comt_content").val() == ""){
+			alert("내용을 입력좀 하구..")
+			return;
+		}
+		comt.submit();
+	});
 });
 </script>
 </head>
@@ -67,7 +74,7 @@ $(document).ready(function(){
 				</div>
 				<!-- 본문내용 -->
 				<div class="view_content">
-				 ${cm_Detail.cm_content }
+				 <pre>${cm_Detail.cm_content }</pre>
 				</div>
 				<div class="response_area">
 				<!-- 좋아요 -->
@@ -124,13 +131,13 @@ $(document).ready(function(){
 							</h4>
 							<a href="cm_rule" target="_blank" class="link">짜줌 운영원칙</a>
 								</div>
-							<form method = "post" action="comt_wr">
+							<form name="comt" method = "post" action="comt_wr">
 							<input type="hidden" name="comt_part" value="${cm_Detail.cm_partno }"><br/>
 							<input type="hidden" name="comt_bono" value="${cm_Detail.cm_no }"><br/>
 							<input type="hidden" name="comt_id" value="${mem_id }"><br/>
 							<input type="hidden" name="comt_nick" value="${mem_nick }"><br/>
-							<textarea name="comt_content" cols="92" rows="3" style="border:1px solid; border-color:lightgray; "></textarea>
-							<button type="submit" class="edit btn_100x36_wg text_h36" style="height:40px;">
+							<textarea id = "comt_content" name="comt_content" cols="92" rows="3" style="border:1px solid; border-color:lightgray; "></textarea>
+							<button type="button" id="comt_submit" class="edit btn_100x36_wg text_h36" style="height:40px;">
 							<span>댓글 쓰기</span>
 							</button>
 							</form>

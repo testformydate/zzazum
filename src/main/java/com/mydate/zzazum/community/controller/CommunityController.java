@@ -144,31 +144,38 @@ public class CommunityController {
 		
 	//커뮤니티 파트리스트를 뿌려주기 위한 컨트롤러지만 이따쓰겠음
 		@RequestMapping("cm_list")
-		public String communityPartList(HttpServletRequest request, Model model, HttpSession session){
-			String part_no = request.getParameter("part_no");
-			String mem =(String)session.getAttribute("mem_id");
-			String role;
-			if(mem==null){ 
-				role="none";
+		public String communityPartList(CommunityVo communityVo, HttpServletRequest request, Model model, HttpSession session){
+				ArrayList<CommunityVo> list = null;
+				String role;
+				String part_no = request.getParameter("part_no");
+				String mem =(String)session.getAttribute("mem_id");
+				model.addAttribute("part_no", part_no);
+				if(mem==null){ 
+					role="none";
+				}else{
+					role="user";
+				}
+			if(communityVo.getCm_search() == null){
+				if(part_no.equals("0")){
+					list=communityService.communityList();
+				}else{
+					list=communityService.communityPartList(part_no);
+				}
+				model.addAttribute("cmlist",list);
+				model.addAttribute("role", role);
 			}else{
-				role="user";
+				list = communityService.communitySearch(communityVo);
+				model.addAttribute("cmlist",list);
+				model.addAttribute("role", role);
 			}
-			model.addAttribute("part_no", part_no);
-			ArrayList<CommunityVo> list = null;
-			if(part_no.equals("0")){
-				list=communityService.communityList();
-			}else{
-				list=communityService.communityPartList(part_no);
-			}
-			model.addAttribute("cmlist",list);
-			model.addAttribute("role", role);
 			return "community/cm_list";
 		}
 		
+		//짜줌 약관
 	@RequestMapping("cm_rule")
 	public String communityRule(){
 		
 		return "community/cm_rule";
 	}
-		
-}
+	
+	}
