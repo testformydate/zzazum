@@ -48,6 +48,11 @@
    		<property name="mapperInterface" value="com.mydate.zzazum.community.repository.CommunityDao"></property>
    		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
+    
+    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="mapperInterface" value="com.mydate.zzazum.community.repository.CommentDao"></property>
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
 	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
        <property name="host" value="smtp.gmail.com" />

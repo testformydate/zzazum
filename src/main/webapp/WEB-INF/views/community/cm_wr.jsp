@@ -12,6 +12,8 @@ function aa(){
 </head>
 <body>
 <form name="form" action="cm_wr" method ="post">
+<input type="hidden" name="cm_partno" value="${part_no }">
+<input type="hidden" name="part_no" value="${part_no }">
 	글쓴이 : <input type="text" name="cm_id"><br/>
 	제목 : <input type="text" name="cm_title"><br/>
 	내용 : <textarea name="cm_content" rows="4" cols="50"></textarea><br/>

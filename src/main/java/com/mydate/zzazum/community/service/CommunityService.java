@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mydate.zzazum.community.repository.CommunityInter;
+import com.mydate.zzazum.community.vo.CommentVo;
 import com.mydate.zzazum.community.vo.CommunityVo;
 
 @Service
@@ -46,4 +47,18 @@ public class CommunityService {
 		return communityInter.cm_Del(cm_no); 
 	}
 	
+	public ArrayList<CommunityVo> communityPartList(String part_no){
+		
+		return communityInter.communityPartList(part_no);
+	}
+	
+	public int cm_Rcnt(String cm_no){
+		
+		return communityInter.cm_Rcnt(cm_no);
+	}
+	
+	public ArrayList<CommentVo> commentList(String comt_bono){
+		
+		return communityInter.commentList(comt_bono);
+	}
 }
