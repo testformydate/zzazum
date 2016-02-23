@@ -32,7 +32,7 @@ public class PostScriptImpl implements PostScriptDataInter{
 		ArrayList<PostScriptList> list = postScriptDao.psSortEmail(ps_data);
 		return list;
 	}
-	
+
 	@Override
 	public ArrayList<PostScriptList> psListPart(PostScriptList bean) {
 		ArrayList<PostScriptList> list = postScriptDao.psListPart(bean);

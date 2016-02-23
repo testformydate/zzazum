@@ -64,4 +64,29 @@ $(document).ready(function() {
     	$("#bestPL").attr("action","psListSort");;
     	$("#bestPL").submit();
     });
+    
+    $(".ps_like").click(function(){
+		xlike = $(this).attr("id");
+		var mem_id = $("#detailId").val();
+		var likeValNode = $(this).next();
+		var likeVal = parseInt(likeValNode.text());
+		if(mem_id == "" || mem_id == 'null' ){
+			alert("로그인해주세요!")
+			return;
+		}
+		$.ajax({
+    		type: "post",
+    		url: "psUpdateLike",
+    		data: {"sortLike" : "pslike", "ps_no" : xlike.substr(6), "mem_id" : mem_id},
+    		success: function(jdata){
+        		if(jdata.trim() ==="like"){
+        			likeVal += 1;
+        			likeValNode.html(likeVal);
+        		}else if(jdata.trim() === "dislike"){
+        			likeVal -= 1;
+        			likeValNode.html(likeVal);
+        		}	
+        	}
+    	});
+	});
 });
