@@ -15,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mydate.zzazum.location.repository.LocationDao;
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
@@ -115,5 +116,9 @@ public class LocationDataService{
 	
 	public ArrayList<LocationCategory> selectLoCate() {
 		return locationDao.selectLoCate();
+	}
+	
+	public ArrayList<CategoryVo> selectCategoryAllData(){
+		return locationDao.selectCategoryAllData();
 	}
 }

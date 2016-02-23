@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.springframework.dao.DataAccessException;
 
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
@@ -26,4 +27,5 @@ public interface LocationDataInter {
 	public ArrayList<PostScriptList> selectSearchResult(SearchKeywordVo keyword);
 	public ArrayList<String> selectLikedNo(String mem_id);
 	public ArrayList<LocationCategory> selectLoCate();
+	public ArrayList<CategoryVo> selectCategoryAllData();
 }

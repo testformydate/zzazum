@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
@@ -81,5 +82,10 @@ public class LocationDataImpl implements LocationDataInter{
 	@Override
 	public ArrayList<LocationCategory> selectLoCate() {
 		return locationUpdateDao.selectLoCate();
+	}
+	
+	@Override
+	public ArrayList<CategoryVo> selectCategoryAllData() {
+		return locationUpdateDao.selectCategoryAllData();
 	}
 }
