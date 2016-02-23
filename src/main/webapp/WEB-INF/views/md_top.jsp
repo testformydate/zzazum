@@ -423,8 +423,14 @@ $(document).ready(function(){
  	    $("#sideNav").toggleClass("sidenav-actif");
 	});
 	$(".body").click(function(){
-		$("#sideNav").css("width","0");
-		$("#nav-toggle").attr("class","");
+		var state = $("#sideNav").attr("class");
+//		alert(state);
+		if(state == "sidenav sidenav-actif"){
+			$("#sideNav").attr("class","sidenav");
+//			alert($("#sideNav").attr("class"));
+			$("#nav-toggle").attr("class","");
+ 			/* $("#sideNav").css("width","0"); */
+		}
 	});
 });
 </script>
