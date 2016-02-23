@@ -27,9 +27,9 @@ function readURL(input) {
 	$(".ps_insert_show").html('');
 	var cnt=0;
 	for(ima=0; ima<input.files.length; ima++){
-		alert(input.files[ima].name);
-		$(".ps_insert_show").append("<div class='ps_insert_card img_click modal_border' id='ps_insert_card"+ima+"'><input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'><input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'><div class='close_btn'><img src='resources/icons/can.PNG' onclick='deletePicture(ps_insert_card"+ima+", "+input.files[ima].name+")'></div></div>");
+		$(".ps_insert_show").append("<div class='ps_insert_card_body'><input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'><input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'><div class='close_btn'><img src='resources/icons/can.PNG' id='card_cancel"+ima+"'></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+ima+"'></div></div>");
 	   	$("#ps_insert_card"+ima).attr('onclick',"modal('ps_insert_card"+ima+"')");
+	   	$("#card_cancel"+ima).attr('onclick',"deletePicture('"+ima+"','"+input.files[ima].name+"')");
 		var reader = new FileReader();
         reader.readAsDataURL(input.files[ima]);
         reader.onload = function(){
@@ -154,7 +154,10 @@ function modalLocation(){
 }
 
 function deletePicture(ps_id, fileName){
-	$("#"+ps_id).remove();
+	alert(ps_id);
+	alert(fileName);
+	$("#ps_insert_card"+ps_id).remove();
+	$("#card_cancel"+ps_id).remove();
 	$("#upload_btn").clear(fileName);
 	
 }

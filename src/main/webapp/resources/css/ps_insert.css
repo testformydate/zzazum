@@ -16,10 +16,13 @@
 .ps_insert_show::-webkit-scrollbar{width: 6px;background-color: #6e6e6e; border-radius:30%;}
 .ps_insert_show::-webkit-scrollbar-thumb{background-color: #474747; border-radius:10px;}
 
-.ps_insert_card{float:left; margin: 20px 10px 0 10px; width:150px; height: 150px;}
+.ps_insert_card_body{position:relative; float:left; width: 150px; height: 150px; margin: 5px 10px;}
+.ps_insert_card{position:relative;top:0px; left:0px; width:150px; height: 150px;}
 .ps_insert_card:hover{cursor:pointer;}
 .ps_insert_card>img{margin: 0px; width:150px; height: 150px;}
 .ps_insert_content{background-color:transparent; width:100%; border:0; resize: none; wrap:hard;}
+.close_btn{position:relative; top:2px; left: 3px; float:right; width:15px; height: 15px; z-index: 10;}
+.close_btn>img{width:15px; height: 15px;}
 
 .modal{position: fixed;font-family: Arial, Helvetica, sans-serif;top: -150px;;right: 0;bottom: 0;
     left: 0;background: rgba(0, 0, 0, 0.8);z-index: 99999; opacity:0;
@@ -47,6 +50,3 @@
 .ps_icon{margin: 0 5px; padding:0px; width:25px; height: 25px;}
 
 .ps_insert_location{text-align: left; margin-left: 35px; margin-top: 10px;}
-
-.close_btn{position:relative; top:-17px; left: 3px; width:15px; height: 15px;}
-.close_btn>img{width:15px; height: 15px;}
