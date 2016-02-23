@@ -2,9 +2,14 @@ package com.mydate.zzazum.location.vo;
 
 public class LocationCategory {
 	private int lc_no;
-	private String lc_name, lc_val;
+	private String lc_name, lc_val, lc_valeng;
 	
-	
+	public void setLc_valeng(String lc_valeng) {
+		this.lc_valeng = lc_valeng;
+	}
+	public String getLc_valeng() {
+		return lc_valeng;
+	}
 	public String getLc_val() {
 		return lc_val;
 	}
