@@ -5,6 +5,7 @@
 .cards{
 	width:80%;
 	margin:auto;
+	margin-top:20px;
 	background-color:#ededed;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .card{
-	width:230px;
+	width:300px;
 	margin: 7px 7px;
 	border: 1px solid lightgray;
 	border-radius:7px;

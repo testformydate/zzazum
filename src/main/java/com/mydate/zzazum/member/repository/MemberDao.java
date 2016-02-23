@@ -11,7 +11,7 @@ import com.mydate.zzazum.member.vo.MemberVo;
 @Repository
 public interface MemberDao {
 
-	@Insert("insert into md_member(mem_id, mem_nick, mem_pw, mem_tel, mem_bhday, mem_auth) values(#{mem_id}, #{mem_nick}, #{mem_pw}, #{mem_tel}, #{mem_bhday}, #{mem_auth})")
+	@Insert("insert into md_member(mem_id, mem_nick, mem_pw, mem_gender, mem_tel, mem_bhday, mem_love, mem_auth) values(#{mem_id}, #{mem_nick}, #{mem_pw}, #{mem_gender}, #{mem_tel}, #{mem_bhday}, #{mem_love}, #{mem_auth})")
 	public boolean memberIns(MemberVo memberVo);
 	
 	@Select("select * from md_member where mem_id=#{mem_id} and mem_pw=#{mem_pw}")

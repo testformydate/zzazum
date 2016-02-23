@@ -10,15 +10,14 @@ html {height:100%;}
 body {
 	margin:0;
 	padding:0;
-	height:100%;
    background-image: url('../resources/ps_images/member/main.png');
    background-repeat: no-repeat;
-   background-size: 1600px 900px;
+   background-size: 1600px 785px;
 }
 
 .member_insert_body{
 	width:100%;
-	margin-top:150px;
+	margin-top:100px;
 }
 
 .insert_form{
@@ -43,6 +42,7 @@ body {
 	width:100%;
 	height:50px;
 	background-color:#00cdcd;
+	cursor:pointer;
 }
 
 .insert_input{
@@ -174,8 +174,9 @@ function calc(){
 </head>
 <body>
 <div class="member_insert_body body">
+<div class="member_insert_body">
 	<div class="insert_form">
-		<div class="member_insert_title"><img class="logo" src="../icons/mydatelogo.png"></div>
+		<div class="member_insert_title"><a href="/mydate/home"><img class="logo" src="../icons/mydatelogo.png"></a></div>
 	   <div class="member_insert_content">
 	      <form name="insForm" action="memberins" method="post">
 	            <input class="insert_input" type="text" name="mem_id" placeholder="이메일">
@@ -194,10 +195,12 @@ function calc(){
 				</div>
 	            <input class="insert_input" type="text" name="mem_tel" placeholder="휴대전화번호" />
 	            <input class="insert_input" type="text" name="mem_bhday" placeholder="생년월일" />
+	            <input class="insert_input" type="text" name="mem_love" placeholder="그/그녀의 이메일" />
 	      </form>
 	            <button class="submitBtn" onclick="calc()">가입하기</button>
 	   </div>
 	</div>
+</div>
 </div>
 <%@ include file="../md_bottom.jsp" %>
 </body>

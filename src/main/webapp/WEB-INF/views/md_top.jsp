@@ -6,8 +6,12 @@
 %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/home_navigator.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/planner_selection.css" />">
 <!-- navigator -->
 <style>
+body{
+	margin-bottom:70px;
+}
 /* search bar */
 div#search{
 	margin:12px auto;
@@ -72,7 +76,7 @@ div#search{
   border-radius: 1px;
   height: 3px;
   width: 20px;
-  background: lightgray;
+  background: white;
   position: absolute;
   display: block;
   content: '';
@@ -99,6 +103,85 @@ div#search{
 #nav-toggle.active span:after {
   transform: rotate(-45deg);
 }
+
+.pageLinks{
+	color:white;
+	padding:7px;
+	font-family:'Nanum Gothic';
+	border-radius:3px;
+}
+
+.pageLinks:hover{
+	background-color:#2FAEAE;
+	color:white !important;
+	font-family:'Nanum Gothic';
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999;
+    top: 55px;
+    left: 0;
+    background-color: #00cdcd;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #c1134e;
+}
+
+.sidenav-actif {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 999;
+    top: 55px;
+    left: 0;
+    background-color: #00cdcd;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav-actif a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav-actif a:hover, .offcanvas a:focus{
+    color: #c1134e;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -110,6 +193,14 @@ function search(keyword){
 	$("#keyword").attr("value", keyword);
 	searchForm.keyword.focus();
 	searchForm.submit();
+}
+
+function openNav() {
+    document.getElementById("sideNav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
 }
 
 $(document).ready(function(){
@@ -245,7 +336,7 @@ $(document).ready(function(){
 			//console.log("aaa");
 			//console.log(e.keyCode);
 			$.ajax({
-				url:"autocomplete",
+				url:"${path}/autocomplete",
 				data: "keyword=" + keyword,
 				success: function(data){
 					//console.log(data)
@@ -321,20 +412,31 @@ $(document).ready(function(){
 	// navigation box
 	$("#nav-toggle").click(function(){
 		//alert("aa");
-	    $(this).toggleClass("active");	
+	    $(this).toggleClass("active");
+ 	    $("#sideNav").toggleClass("sidenav-actif");
+	});
+	$(".body").click(function(){
+		$("#sideNav").css("width","0");
+		$("#nav-toggle").attr("class","");
 	});
 });
 </script>
 <title>MyDate - Find Your Own Date</title>
+		<div id="sideNav" class="sidenav">
+		  <!-- <a href="javascript:void(0)" class="closebtn">X</a> -->
+		  <a href="${path}/home">메인으로</a>
+		  <a href="${path}/planner">데이트 짜기</a>
+		  <a href="${path}/psListAll">서연이가 함</a>
+		  <a href="#">Contact</a>
+		</div>
 <header class="navi-wrapper">
-
 		<div class="navigator">
 			<div style="float:left;width:100%;">
 				<ul class="naviul">
 					<li class="navili">
 						<div id="nav-toggle"><span></span></div>
 					</li>
-					<li class="navili"><div class="logo"><a class="pageLinks" href="${path}/home"><img class="logo" src="<c:url value="/icons/mydatelogo.png" />"></a></div></li>
+					<li class="navili"><div class="logo"><a href="${path}/home"><img class="logo" src="<c:url value="/icons/mydatelogo.png" />"></a></div></li>
 					<%-- <li class="navili" id="planner"><a id="planner" href="${path}/planner">내가 짜줌</a></li>
 					<li class="navili" id="psList"><a id="psList" href="${path}/psList?method=listAll">다녀왔어요</a></li>
 					<li class="navili hurry" id="hurry"><a id="hurry" href="#">급한 마음<img id="emergency" style="width:15px;height:15px;" src="<c:url value="/icons/emergency.png" />"></a></li> --%>
@@ -350,14 +452,15 @@ $(document).ready(function(){
 						</div>
 					</li>
 				</ul>
-					<div style="float:right;display:inline-block;margin:5px;font-size:10pt;">
+					<div style="float:right;display:inline-block;margin:10px;font-size:10pt;">
 							<%	if(mem==null){ %>
-						<div class="member"><a href="${path}/member/memberlogview">로그인&nbsp;</a></div>
-						<div class="member"><a href="${path}/member/memberinsview">&nbsp;회원가입</a></div>
+						<div class="member"><a class="pageLinks" href="${path}/member/memberlogview">로그인</a></div>
+						<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
 						<% }else{ %>
-							<div class="member"><%=session.getAttribute("mem_nick") %>님 환영합니다.</div>
-							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃&nbsp;</a></div>
-							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지&nbsp;</a></div>
+							<div class="memberImgWrapper"><img class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
+							<div class="member"><%=session.getAttribute("mem_nick") %></div>
+							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
+							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
 							<c:set var="mem_id" value="<%=mem %>" />
 						<%} %>
 					</div>						
