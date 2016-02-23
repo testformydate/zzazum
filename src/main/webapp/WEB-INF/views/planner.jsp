@@ -69,6 +69,38 @@ function like(no){
        	}
    	});
 }
+function clip(no){
+	
+	var clip = $("#clip" + no).attr("class");
+	var mem_id = "${mem_id}";
+	var likeCount = parseInt($("#clipCount" + no).html());
+	//alert(no + " " + like + " " + likeCount);
+	/* var likeNode = $(this).prev();
+	var likeVal = parseInt(likeNode.html());
+	*/
+	if(mem_id == "" || mem_id == 'null' ){
+		alert("로그인해주세요!")
+		return;
+	}
+	
+	$.ajax({
+   		type: "post",
+   		url: "clipUpdate",
+   		data: {"clipOrNot": like ,"ps_no" : no, "mem_id" : mem_id},
+   		success: function(jdata){
+       		if(jdata.trim() === "like"){
+	   			//alert("#like" + no);
+       			$("#clip" + no).attr("class","like");
+       			$("#clip" + no).attr("src","resources/icons/like.png");
+       			$("#clipCount" + no).html(likeCount + 1);
+       		}else if(jdata.trim() === "unlike"){
+       			$("#clip" + no).attr("class","unlike");
+       			$("#clip" + no).attr("src","resources/icons/unlike.png");
+       			$("#clipCount" + no).html(likeCount - 1);
+       		}
+       	}
+   	});
+}
 function cateShow(cate){
 	/* var category = "div:not(." + cate + ")";
 	//alert(category);
@@ -274,20 +306,17 @@ $(document).ready(function(){
 			<div class="step" id="step1">
 				<div class="stepTitle">카테고리</div>
 				<div class="stepContents">
-					<div id="stepContent-place" class="stepContent"><div class="box-font" id="place" onclick="javascript:cateShow('place')">장&nbsp;&nbsp;&nbsp;소</div></div>
-					<div id="stepContent-exibition" class="stepContent"><div class="box-font" id="exibition" onclick="javascript:cateShow('exibition')">전시&nbsp;/&nbsp;공연</div></div>
-					<div id="stepContent-activity" class="stepContent"><div class="box-font" id="activity" onclick="javascript:cateShow('activity')">액&nbsp;티&nbsp;비&nbsp;티</div></div>
-					<div id="stepContent-movie" class="stepContent"><div class="box-font" id="movie" onclick="javascript:cateShow('movie')">영&nbsp;&nbsp;&nbsp;화</div></div>
+					<c:forEach var="ca" items="${categoryList}">
+						<div id="stepContent-${ca.ca_val}" class="stepContent"><div class="box-font" id="${ca.ca_val}" onclick="javascript:cateShow('${ca.ca_val}')">${ca.ca_name}</div></div>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="step" id="step2">
 				<div class="stepTitle">지역</div>
 				<div class="stepContents">
-					<div id="stepContent-gangnam" class="stepContent"><div class="box-font" id="gangnam" onclick="javascript:addrShow('강남')">강남/압구정/가로수</div></div>
-					<div id="stepContent-hongdae" class="stepContent"><div class="box-font" id="hongdae" onclick="javascript:addrShow('마포')">홍대/합정/상수</div></div>
-					<div id="stepContent-sichung" class="stepContent"><div class="box-font" id="sichung" onclick="javascript:addrShow('중구')">시청/종로/광화문</div></div>
-					<div id="stepContent-gangdong" class="stepContent"><div class="box-font" id="gangdong" onclick="javascript:addrShow('강동')">강동/송파/천호</div></div>
-					<div id="stepContent-yangcheon" class="stepContent"><div class="box-font" id="yangcheon" onclick="javascript:addrShow('양천')">양천/구로/영등포</div></div>
+					<c:forEach var="lo" items="${locationList}">
+						<div id="stepContent-${lo.lc_valeng}" class="stepContent"><div class="box-font" id="${lo.lc_valeng}" onclick="javascript:addrShow('${lo.lc_val}')">${lo.lc_name}</div></div>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="step" id="step3">
@@ -418,7 +447,8 @@ $(document).ready(function(){
 								<div class="description" style="margin-left:15px;cursor:pointer;">${p.ps_context}</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
 									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#00cdcd;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#00cdcd;">${p.ps_hits}</span></div>
-									<div style="display:inline-block;margin-right:10px;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
+									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
+									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="clip${p.ps_no}" class="unclip" style="width:30px;" src="resources/icons/unclip.png" onclick="javascript:clip(${p.ps_no})"></div>
 									<div style="display:inline-block;cursor:pointer;"><img id="commentImg${p.ps_no}" class="comment" style="width:30px;" src="resources/icons/comment.png"></div>
 								</div>
 								<form id="detailForm${p.ps_no}" name="detailForm${p.ps_no}" action="psListDetail" method="post">

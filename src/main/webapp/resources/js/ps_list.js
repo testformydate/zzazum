@@ -19,14 +19,13 @@ $(document).ready(function() {
 		    	        		$(jdata).each(function(index,objArr){
 		    	        		var str = "<div class='ps_card'><div class='ps_card_title'>";
 		    	        			str += "<p class='ps_card_location card_click'><a href='#'><b>"+objArr.ps_location+"</b></a></p>";
-		    	        			str += "</div><div class='ps_card_body card_click'>";
-		    	        			str += "<img class='card_best_image' src='resources/ps_images/postscript/"+objArr.ps_image+"'>";
+		    	        			str += "</div><div class='ps_card_list_body'>";
+		    	        			str += "<img class='card_all_image card_click card_detail_click'id='list"+objArr.ps_no+"' src='resources/ps_images/postscript/"+objArr.ps_image+"' onclick='detailClick("+ objArr.ps_no +")'>";
 		    	        			str += "<div class='ps_card_profile'><img src='resources/ps_images/profile/"+objArr.mb_image+"'>";
 		    	        			str += "</div><div class='ps_card_content'><div class='ps_card_day'>"+objArr.ps_date +"</div>";
-		    	        			str += "<div class='ps_card_title ellipsText'>"+objArr.ps_title+"</div>";
-		    	        			str += "<div class='ps_card_context ellipsText'>"+objArr.ps_context+"</div>";
-		    	        			str += "<div class='ps_card_etc'><span class='ps_card_likes'><img class='ps_icon' src='resources/ps_icon/like.png'>"+objArr.ps_like +"</span>";
-		    	        			str += "<span class='ps_card_comments'><img class='ps_icon' src='resources/ps_icon/comment.png'>"+objArr.ps_hits +"</span></div></div></div></div>";
+		    	        			str += "<div class='ps_card_title ellipsText card_click' onclick='detailClick("+ objArr.ps_no +")'>"+objArr.ps_title+"</div>";
+		    	        			str += "<div class='ps_card_etc'><span class='ps_card_clip'><img class='ps_icon' src='resources/ps_icon/clip.png'>"+ objArr.ps_clip + "</span><span class='ps_card_likes'><img class='ps_icon card_click' id='pslike"+ objArr.ps_no +"' src='resources/ps_icon/like.png' onclick='likeClick("+ objArr.ps_no +")'><span>"+ objArr.ps_like+"</span></span>";
+		    	        			str += "<span class='ps_card_comments'><img class='ps_icon' src='resources/ps_icon/views.png'>"+objArr.ps_hits +"</span></div></div></div></div>";
 		    	        			
 		    	        			$(".ps_show_list").append(str);
 		    	        		});
@@ -44,20 +43,6 @@ $(document).ready(function() {
        
         });
     
-    $(".card_detail_click").click(function(){
-    	var ps_no = $("."+$(this).attr('id')).val();
-    	
-    	$.ajax({
-    		url:'psHits',
-    		type:'post',
-    		data:{"ps_no":ps_no},
-    		success:function(){}});
-    	
-    	$("#detailNo").attr("value", ps_no);
-    	$("#detailForm").attr("action","psListDetail");
-    	$("#detailForm").submit();
-    });
-    
     $(".bestPlanner_Click").click(function(){
     	var ps_id = $(this).attr('id');
     	$("#bestPLIn").attr("value",ps_id);
@@ -65,3 +50,41 @@ $(document).ready(function() {
     	$("#bestPL").submit();
     });
 });
+
+function detailClick(ps_no){
+	$.ajax({
+		url:'psHits',
+		type:'post',
+		data:{"ps_no":ps_no},
+		success:function(){}});
+	
+	$("#detailNo").attr("value", ps_no);
+	$("#detailForm").attr("action","psListDetail");
+	$("#detailForm").submit();
+}
+
+function likeClick(ps_no){
+	var mem_id = $("#detailId").val();
+	var likeValNode = $("#pslike"+ps_no).next();
+	var likeVal = parseInt(likeValNode.text());
+	
+	if(mem_id == "" || mem_id == 'null' ){
+		alert("로그인해주세요!")
+		return;
+	}
+	
+	$.ajax({
+		type: "post",
+		url: "psUpdateLike",
+		data: {"sortLike" : "pslike", "ps_no" : ps_no, "mem_id" : mem_id},
+		success: function(jdata){
+    		if(jdata.trim() ==="like"){
+    			likeVal += 1;
+    			likeValNode.html(likeVal);
+    		}else if(jdata.trim() === "dislike"){
+    			likeVal -= 1;
+    			likeValNode.html(likeVal);
+    		}	
+    	}
+	});
+}

@@ -94,6 +94,7 @@ public class PostScriptController {
 			map.put("ps_like", Integer.toString(ps.getPs_like()));
 			map.put("ps_hits", Integer.toString(ps.getPs_hits()));
 			map.put("mb_image", ps.getMem_primg());
+			map.put("ps_clip", Integer.toString(ps.getPs_clip()));
 			
 			data.add(map);
 			
@@ -177,6 +178,21 @@ public class PostScriptController {
 	@ResponseBody
 	public String psUpdateLike(@RequestParam("sortLike") String sortLike, PostScriptLike like){
 		String result="dislike";
+		
+		if(sortLike.equals("pslike")){
+			PostScriptLike pan = postScriptService.psLikeMain(like);
+			if(pan != null){
+				like.setLikeVal(-1);
+				result = postScriptService.psDeleteLike(like);
+				postScriptService.psUpdateLike(like);
+			}else{
+				like.setLikeVal(1);
+				result = postScriptService.psInsertLike(like);
+				postScriptService.psUpdateLike(like);
+			}
+			
+			return result;
+		}
 		
 		if(like.getPd_no()== 0){
 			if(sortLike.equals("dislike")){

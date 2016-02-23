@@ -71,7 +71,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 								<div class="cardBottom">
-									<img class="cardProfile" src="<c:url value="/icons/userm.png" />"><span class="count">${p.ps_email}</span>
+									<img class="cardProfile" src="<c:url value="/icons/userm.png" />"><span class="count">${p.mem_nick}</span>
 								</div>
 							</div>
 						</c:forEach>

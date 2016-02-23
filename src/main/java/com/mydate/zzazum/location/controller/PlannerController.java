@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.location.service.LocationDataService;
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.ClipVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -47,8 +50,12 @@ public class PlannerController {
 		/*if(session.getAttribute("mem_id")) */
 		ArrayList<LocationVo> list = service.selectAllData();
 		ArrayList<PostScriptList> postList = postService.psListAll();
+		ArrayList<CategoryVo> categoryList = service.selectCategoryAllData();
+		ArrayList<LocationCategory> locationList = service.selectLoCate();
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("psList", postList);
+		modelAndView.addObject("categoryList", categoryList);
+		modelAndView.addObject("locationList", locationList);
 		
 		if(mem_id == null || mem_id.equals("")) {
 			modelAndView.setViewName("planner");
@@ -156,16 +163,15 @@ public class PlannerController {
 	@ResponseBody
 	public String likeOrDislike(ClikeVo like){
 		String likeOrUnlike = like.getLikeOrNot();
-		String ps_no = like.getPs_no();
 		//System.out.println(ps_no);
 		boolean b = false;
 		if(likeOrUnlike.equals("like")){
-			b = service.deleteLikeData(ps_no);
-			b = service.minusLike(ps_no);
+			b = service.deleteLikeData(like);
+			b = service.minusLike(like);
 			likeOrUnlike = "unlike";
 		}else if(likeOrUnlike.equals("unlike")){
 			b = service.insertLikeData(like);
-			b = service.plusLike(ps_no);
+			b = service.plusLike(like);
 			likeOrUnlike = "like";
 		}
 		/*
@@ -182,5 +188,31 @@ public class PlannerController {
 		ArrayList<String> likedList = service.selectLikedNo(mem_id);
 		
 		return likedList;
+	}
+	
+	@RequestMapping(value="clipUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String clipOrNot(ClipVo clip){
+		String clipOrUnclip = clip.getClipOrNot();
+		//System.out.println(ps_no);
+		boolean b = false;
+		if(clipOrUnclip.equals("clip")){
+			b = service.deleteClipData(clip);
+			b = service.minusClip(clip);
+			clipOrUnclip = "unclip";
+		}else if(clipOrUnclip.equals("unclip")){
+			b = service.insertClipData(clip);
+			b = service.plusClip(clip);
+			clipOrUnclip = "clip";
+		}
+		return clipOrUnclip; 
+	}
+	
+	@RequestMapping(value="clipedList", method=RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<String> selectclipedNo(String mem_id){
+		ArrayList<String> clipedList = service.selectClipedNo(mem_id);
+		
+		return clipedList;
 	}
 }
