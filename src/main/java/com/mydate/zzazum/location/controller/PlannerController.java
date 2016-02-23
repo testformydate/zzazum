@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.location.service.LocationDataService;
+import com.mydate.zzazum.location.vo.CategoryVo;
 import com.mydate.zzazum.location.vo.ClikeVo;
+import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
 import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
@@ -47,8 +49,12 @@ public class PlannerController {
 		/*if(session.getAttribute("mem_id")) */
 		ArrayList<LocationVo> list = service.selectAllData();
 		ArrayList<PostScriptList> postList = postService.psListAll();
+		ArrayList<CategoryVo> categoryList = service.selectCategoryAllData();
+		ArrayList<LocationCategory> locationList = service.selectLoCate();
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("psList", postList);
+		modelAndView.addObject("categoryList", categoryList);
+		modelAndView.addObject("locationList", locationList);
 		
 		if(mem_id == null || mem_id.equals("")) {
 			modelAndView.setViewName("planner");
