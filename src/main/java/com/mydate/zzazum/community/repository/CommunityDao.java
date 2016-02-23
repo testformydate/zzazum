@@ -14,7 +14,7 @@ import com.mydate.zzazum.community.vo.CommunityVo;
 @Repository
 public interface CommunityDao {
 
-	@Insert("insert into md_cm(cm_id, cm_title, cm_content, cm_partno, cm_wdate) values(#{cm_id}, #{cm_title}, #{cm_content}, #{cm_partno}, sysdate())")
+	@Insert("insert into md_cm(cm_id, cm_nick, cm_title, cm_content, cm_partno, cm_wdate) values(#{cm_id}, #{cm_nick}, #{cm_title}, #{cm_content}, #{cm_partno}, sysdate())")
 	public boolean communityWrite(CommunityVo communityvo); 
 	
 	@Select("select * from md_cm")

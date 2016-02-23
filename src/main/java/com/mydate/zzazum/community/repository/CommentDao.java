@@ -11,7 +11,7 @@ import com.mydate.zzazum.community.vo.CommentVo;
 @Repository
 public interface CommentDao {
 
-	@Insert("insert into md_comt(comt_part, comt_bono, comt_id, comt_nik, comt_content, comt_wdate, comt_fdate) values(#{comt_part}, #{comt_bono}, #{comt_id}, #{comt_nik}, #{comt_content}, sysdate(), sysdate())")
+	@Insert("insert into md_comt(comt_part, comt_bono, comt_id, comt_nick, comt_content, comt_wdate, comt_fdate) values(#{comt_part}, #{comt_bono}, #{comt_id}, #{comt_nick}, #{comt_content}, sysdate(), sysdate())")
 	public boolean commentWrite(CommentVo commentVo);
 	
 }

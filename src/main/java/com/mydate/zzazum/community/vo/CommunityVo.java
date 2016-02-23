@@ -15,7 +15,7 @@ public class CommunityVo {
 	private int cm_nested;
 	private int cm_like;
 	private String cm_id;
-	private String cm_nik;
+	private String cm_nick;
 	private String cm_title;
 	private String cm_content;
 	private String cm_wdate;
@@ -83,11 +83,11 @@ public class CommunityVo {
 	public void setCm_id(String cm_id) {
 		this.cm_id = cm_id;
 	}
-	public String getCm_nik() {
-		return cm_nik;
+	public String getCm_nick() {
+		return cm_nick;
 	}
-	public void setCm_nik(String cm_nik) {
-		this.cm_nik = cm_nik;
+	public void setCm_nick(String cm_nick) {
+		this.cm_nick = cm_nick;
 	}
 	public String getCm_title() {
 		return cm_title;
