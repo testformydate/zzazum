@@ -2,8 +2,14 @@ package com.mydate.zzazum.location.vo;
 
 public class ClipVo {
 	private int c_no;
-	private String mem_id, c_date, clipOrNot, ps_no;
+	private String mem_id, c_date, clipOrNot, ps_no, ps_email;
 
+	public String getPs_email() {
+		return ps_email;
+	}
+	public void setPs_email(String ps_email) {
+		this.ps_email = ps_email;
+	}
 	public String getClipOrNot() {
 		return clipOrNot;
 	}

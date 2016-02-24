@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ include file="cm_top.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,7 +10,7 @@
 <title>Insert title here</title>
 <style>
 .cm_title{
-	color: green;
+	color: #00cdcd;
 	font-size: 24px;
 	margin-top: 10px;
 	margin-left: 10px;
@@ -55,7 +56,10 @@ $(document).ready(function(){
 	$("#cm_wr").click(function(){
 		//alert("aa");
 		location.href = "cm_wrview?part_no="+${part_no};
-	});	
+	});
+	$("#cm_searchs").click(function(){
+		cm_form_search.submit();
+	})
 });
 
 function detail(cm_no){
@@ -112,7 +116,11 @@ function detail(cm_no){
  			<c:when test="${part_no ==0 }">
  		</c:when>
  		<c:otherwise>
- 			<li><input type="button" id="cm_wr" name="cm_wr" value="글쓰기"></li>
+ 			<c:choose>
+ 				<c:when test="${role == 'user' }">
+ 					<li><input type="button" id="cm_wr" name="cm_wr" value="글쓰기"></li>
+ 				</c:when>
+ 			</c:choose>
  		</c:otherwise>
  		</c:choose>
 	</ul>
@@ -121,8 +129,8 @@ function detail(cm_no){
 	</tr>
 	<tr>
 		<td>No</td>
+		<td>닉네임</td>
 		<td>제목</td>
-		<td>글쓴이</td>
 		<td>조회</td>
 		<td>추천</td>
 		<td>등록일</td>
@@ -135,8 +143,8 @@ function detail(cm_no){
 		<c:forEach var="md" items="${cmlist }">
 	<tr class = "cm_click" onclick="detail(${md.cm_no })">
 		<td>${md.cm_no }</td>
+		<td>${md.cm_nick }</td>
 		<td>${md.cm_title }</td>
-		<td>${md.cm_id }</td>
 		<td>${md.cm_rcnt }</td>
 		<td>${md.cm_like }</td>
 		<td>${md.cm_wdate }</td>
@@ -147,21 +155,22 @@ function detail(cm_no){
  </table>
  </div>
  <div class="board_search">
-	<form name="listContentFooterForm" onsubmit="return false;" method="get" action="#">
-
-			<!-- 검색어 대상 -->
-			
+	<form name="cm_form_search" method="get" action="cm_list">
+		<!-- 검색어 대상 -->
 			<div class="inline_box">
-			<select name="searchClass" id="country_id" tabindex="1">
-				<option value="1" >제목+내용</option>
-				<option value="2" >제목</option>
-				<option value="3" >내용</option>
-							</select>
-			
-				<input name="searchText" type="text" title="검색어 입력" value="">
-				<button class="ir" onclick="boardSubmitSearch_();"><span>검색</span></button>
+			<!-- <select name="cm_sc" >
+				<option value="cm_title" >제목</option>
+				<option value="cm_content" >내용</option>
+				<option value="cm_nick" >작성자</option>
+			</select> -->
+				<input type="text" size="3" readonly="readonly" value="내용">
+				<input name="cm_search" type="text" title="검색어 입력" >
+				<button type="button" id="cm_searchs" class="ir" ><span>검색</span></button>
 			</div>    
 	</form>
+</div>
+<div style="height:200px;">
+
 </div>
 </body>
 </html>

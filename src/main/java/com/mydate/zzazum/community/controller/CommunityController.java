@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,7 +55,9 @@ public class CommunityController {
 	
 	//디테일 프로세스 뷰로 이동!!
 	@RequestMapping("cm_detail")
-	public ModelAndView cm_Detail(@RequestParam("sm2")String cm_no, CommunityVo communityVo){
+	public ModelAndView cm_Detail(@RequestParam("sm2")String cm_no, CommunityVo communityVo, HttpSession session){
+		 String mem_id = (String)session.getAttribute("mem_id");
+		 String mem_nick = (String)session.getAttribute("mem_nick");
 		 communityService.cm_Rcnt(cm_no);
 		 ArrayList<CommentVo> comt_list = communityService.commentList(cm_no);
 		 ModelAndView model = new ModelAndView("/community/cm_detail");
@@ -62,7 +65,29 @@ public class CommunityController {
 		 System.out.println(cm_detail.getCm_no());
 		 model.addObject("cm_Detail", cm_detail);
 		 model.addObject("comt_List", comt_list);
+		 	
+		 boolean b;
 		 
+		 if(mem_id == null){
+			 b = false;
+		 }else if(mem_id.equals("admin")){
+			 b = true;
+		 }else{
+			 b = false;
+		 }
+		 
+		 boolean a;
+		 if(mem_id == null){
+			 a = false;
+		 }else if(mem_id.equals(cm_detail.getCm_id())){
+			 a = true;
+		 }else{
+			 a = false;
+		 }
+		 model.addObject("a", a);
+		 model.addObject("b", b);
+		 model.addObject("mem_id", mem_id);
+		 model.addObject("mem_nick", mem_nick);
 		 return model;
 	}
 	
@@ -87,8 +112,7 @@ public class CommunityController {
 			PrintWriter out = response.getWriter();
 		      out.println("<html><body>");
 		      out.println("<script>alert('수정되었습니다');"
-		      		+ "location.href='cm_list';</script>");
-		      
+		      		+ "location.href='cm_list?part_no=" + communityVo.getCm_partno() + "';</script>");
 		      out.println("</body></html>");
 		      
 		      out.close();
@@ -96,13 +120,13 @@ public class CommunityController {
 		
 	//삭제 프로세스를 위한 컨트롤러
 		@RequestMapping("cm_del")
-		public void cm_Del(@RequestParam("sm3") String cm_no, HttpServletResponse response) throws IOException {
+		public void cm_Del(@RequestParam("sm3") String cm_no, HttpServletResponse response, HttpServletRequest request) throws IOException {
 			response.setContentType("text/html;charset=utf-8");
 			communityService.cm_Del(cm_no);
 			PrintWriter out = response.getWriter();
 		      out.println("<html><body>");
 		      out.println("<script>alert('삭제되었습니다');"
-		      		+ "location.href='cm_list';</script>");
+		      		+ "location.href='cm_list?part_no=" + request.getParameter("p_no") + "';</script>");
 		      
 		      out.println("</body></html>");
 		      
@@ -120,20 +144,38 @@ public class CommunityController {
 		
 	//커뮤니티 파트리스트를 뿌려주기 위한 컨트롤러지만 이따쓰겠음
 		@RequestMapping("cm_list")
-		public String communityPartList(HttpServletRequest request, Model model){
-			String part_no = request.getParameter("part_no");
-			
-			model.addAttribute("part_no", part_no);
-			ArrayList<CommunityVo> list = null;
-			if(part_no.equals("0")){
-				list=communityService.communityList();
+		public String communityPartList(CommunityVo communityVo, HttpServletRequest request, Model model, HttpSession session){
+				ArrayList<CommunityVo> list = null;
+				String role;
+				String part_no = request.getParameter("part_no");
+				String mem =(String)session.getAttribute("mem_id");
+				model.addAttribute("part_no", part_no);
+				if(mem==null){ 
+					role="none";
+				}else{
+					role="user";
+				}
+			if(communityVo.getCm_search() == null){
+				if(part_no.equals("0")){
+					list=communityService.communityList();
+				}else{
+					list=communityService.communityPartList(part_no);
+				}
+				model.addAttribute("cmlist",list);
+				model.addAttribute("role", role);
 			}else{
-				list=communityService.communityPartList(part_no);
+				list = communityService.communitySearch(communityVo);
+				model.addAttribute("cmlist",list);
+				model.addAttribute("role", role);
 			}
-			model.addAttribute("cmlist",list);
 			return "community/cm_list";
 		}
 		
-	
+		//짜줌 약관
+	@RequestMapping("cm_rule")
+	public String communityRule(){
 		
-}
+		return "community/cm_rule";
+	}
+	
+	}

@@ -17,4 +17,5 @@ public interface CommunityInter {
 	ArrayList<CommunityVo> communityPartList(String part_no);
 	int cm_Rcnt(String cm_no);
 	ArrayList<CommentVo> commentList(String comt_bono);
+	ArrayList<CommunityVo> communitySearch(CommunityVo communityVo);
 }
