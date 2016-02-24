@@ -26,15 +26,21 @@ $(document).ready(function(){
 		location.href = "cm_del?sm3=${cm_Detail.cm_no}&p_no=" + p_no;
 	});	
 	$("#cm_back").click(function(){
-		location.href = history.back();
+		location.href = "cm_list?part_no=${cm_Detail.cm_partno}";
+		//location.href = history.back();
 	});
 	$("#comt_submit").click(function(){
 		if($("#comt_content").val() == ""){
-			alert("내용을 입력좀 하구..")
+			alert("내용을 입력좀 하구..");
 			return;
-		}
+		}else if("${mem_id}" == ""){
+			alert("로그인 하세요")
+			return;
+		}else{
 		comt.submit();
+		}
 	});
+	
 });
 </script>
 </head>
@@ -136,7 +142,7 @@ $(document).ready(function(){
 							<input type="hidden" name="comt_bono" value="${cm_Detail.cm_no }"><br/>
 							<input type="hidden" name="comt_id" value="${mem_id }"><br/>
 							<input type="hidden" name="comt_nick" value="${mem_nick }"><br/>
-							<textarea id = "comt_content" name="comt_content" cols="92" rows="3" style="border:1px solid; border-color:lightgray; "></textarea>
+							<textarea id = "comt_content" name="comt_content" cols="122" rows="3" style="border:1px solid; border-color:lightgray;"></textarea>
 							<button type="button" id="comt_submit" class="edit btn_100x36_wg text_h36" style="height:40px;">
 							<span>댓글 쓰기</span>
 							</button>

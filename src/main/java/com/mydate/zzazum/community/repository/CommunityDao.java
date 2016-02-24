@@ -17,10 +17,10 @@ public interface CommunityDao {
 	@Insert("insert into md_cm(cm_id, cm_nick, cm_title, cm_content, cm_partno, cm_wdate) values(#{cm_id}, #{cm_nick}, #{cm_title}, #{cm_content}, #{cm_partno}, sysdate())")
 	public boolean communityWrite(CommunityVo communityvo); 
 	
-	@Select("select * from md_cm")
+	@Select("select * from md_cm order by cm_no desc")
 	public ArrayList<CommunityVo> communityList();
 	
-	@Select("select * from md_cm where cm_partno = #{cm_partno}")
+	@Select("select * from md_cm where cm_partno = #{cm_partno} order by cm_no desc")
 	public ArrayList<CommunityVo> communityPartList(String part_no);
 	
 	@Select("select * from md_cm where cm_no=#{cm_no}")
