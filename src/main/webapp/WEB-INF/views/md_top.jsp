@@ -459,7 +459,7 @@ $(document).ready(function(){
 							<form action="${path}/keyword" name="searchForm">
 								<input type="hidden" id="resultIndex" name="resultIndex" value="0" />
 								<img class="icon-search" src="<c:url value="/icons/search.png" />">
-								<input type="text" class="searchMain" id="keyword" name="keyword" value="${exKeyword}" placeholder="예:서울,여의도, 강남" autocomplete="off" autofocus>
+								<input type="text" class="searchMain" id="keyword" name="keyword" value="${exKeyword}" placeholder="예:서울,여의도, 강남" autocomplete="off">
 								<button class="searchBtn"><img width="20px;" src="<c:url value="/icons/enter-arrow.png" />"></button>
 								<!-- <input type="submit" class="searchBtn" value="GO!"> -->
 							</form>

@@ -15,12 +15,13 @@ body {
 	padding: 0;
 	background-image: url('../resources/ps_images/member/main.png');
 	background-repeat: no-repeat;
-	background-size: 1600px 785px;
+	/* background-size: 1600px 785px; */
+	background-size: 100% 100%;
 }
 
 .member_insert_body {
 	width: 100%;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 .insert_form {
@@ -48,6 +49,10 @@ body {
 	cursor: pointer;
 }
 
+.submitBtn:hover{
+	background-color:#00CC88;
+}
+
 .insert_input {
 	padding: 0;
 	margin: 0;
@@ -58,7 +63,7 @@ body {
 	font-size: 1.5em;
 	font-weight: 400;
 	font-family: 'Nanum Gothic';
-	margin-bottom: 6px;
+	margin-top: 6px;
 	box-border: 0;
 }
 
@@ -77,7 +82,7 @@ body {
 	/* float:left; */
 	display: inline-block;
 	margin: auto;
-	margin-bottom: 10px;
+	margin-top: 6px;
 }
 
 .genBox {
@@ -154,95 +159,20 @@ input.radio:checked ~ label {
 input.radio:focus ~ label:before {
 	box-shadow: 0 0 0 3px #999;
 }
+
+p{
+	color:#e91e63;
+	padding:0;
+	margin:0;
+	font-size:0.8em;
+}
 </style>
 <title>Insert title here</title>
-
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/hashencode.js"></script>
 <script type="text/javascript">
-function calc(){
-
-	//input values
-	var email = document.insForm.mem_id.value;
-	var name = document.insForm.mem_nick.value;
-	var pw1 = document.insForm.mem_pw.value;		//비밀번호 특수문자 최소 하나 이상 입력 가능하도록.
-	var pw2 = document.insForm.mem_pwOk.value;
-	var gen = document.insForm.mem_gender.value; 
-	var tel = document.insForm.mem_tel.value;	
-	var bhday = document.insForm.mem_bhday.value; // 생년월일 조건식 ex 1900~2000몇년 12월 40일 불가
-	var l_email = document.insForm.mem_love.value;
-	//regular expression
-	var id_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-	var name_regExp = /^[a-zA-Z0-9가-힣]{4,12}$/;
-	var pw1_regExp = /^([a-zA-Z0-9]){8,16}$/;
-	var tel_regExp = /^\d{3}\d{3,4}\d{4}$/; 
-	var bhday_regExp = /^\d{2}\d{4}$/;
-	var lovem_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-	
-	
-	if(!id_regExp.test(email)){
-		alert("이메일을 확인해 주세요");
-		document.insForm.mem_id.focus();
-		return;
-	};
-	if(email == null || email == ""){
-		alert("이메일을 입력해 주세요");
-		document.insForm.mem_id.focus();
-		return;
-	}
-	if(!name_regExp.test(name)){
-		alert("별명은 한글, 영문, 숫자만 가능합니다.");
-		document.insForm.mem_nick.focus();
-		return;
-	};
-	if(name == null || name == ""){
-		alert("별명을 입력해주세요.");
-		document.insForm.mem_nick.focus();
-		return;
-	}
-	if(!pw1_regExp.test(pw1)){
-		alert("보안을 위해서 비밀번호는 8~16자의 영문 대소문자, 숫자를 반드시 포함해주셔야 해요!");
-		$("#mem_pw").val('');
-		$("#mem_pwOk").val('');
-		document.insForm.mem_pw.focus();
-		return;
-	};
-	if(pw1==null || pw1==""){
-		alert("비밀번호를 입력해주세요.");
-		$("#mem_pw").val('');
-		$("#mem_pwOk").val('');
-		document.insForm.mem_pw.focus();
-		return;
-	}
-	if(pw1!=pw2){
-		alert("비밀번호가 일치하지 않습니다.");
-		$("#mem_pw").val('');
-		$("#mem_pwOk").val('');
-		document.insForm.mem_pw.focus();
-		return;
-	}
-	if(!tel_regExp.test(tel)){
-		alert("-를 제외한 숫자를 입력해주세요.");
-		document.insForm.mem_tel.focus();
-		return;
-	};
-	if(tel == null || tel == ""){
-		alert("휴대전화번호를 입력해주세요.");
-		document.insForm.mem_tel.focus();
-		return;
-	}
-	if(!bhday_regExp.test(bhday)){
-		alert("숫자만 입력해주세요. 예)930214");
-		document.insForm.mem_bhday.focus();
-		return;
-	};
-	if(!lovem_regExp.test(l_email)){
-		alert("이메일을 확인해주세요!");
-			document.insForm.mem_love.focus();
-			return;
-	};
-	
-	
-	
+function encode(){
 	var strTxt = document.insForm.mem_pw.value;
 	if( strTxt.length == 0 )
 	{
@@ -258,6 +188,342 @@ function calc(){
 		document.insForm.submit();
 		//alert(strHash);
 }
+
+function check(){
+var gen = document.insForm.mem_gender.value;
+	
+var email = document.insForm.mem_id.value;
+if(email == null || email == ""){
+	$("#mem_id").css("border","1px solid #e91e63");
+	$("#mem_idInfo").html("<p>이메일을 입력해 주세요.</p>");
+	return;
+}else if(!id_regExp.test(email)){
+	$("#mem_id").css("border","1px solid #e91e63");
+	$("#mem_idInfo").html("<p>이메일을 확인해 주세요.</p>");
+	return;
+}else{
+	$("#mem_idInfo").html("");
+}
+
+$.ajax({
+	type: "post",
+	url: "memberIdCheck",
+	data: {"mem_id": email},
+	success: function(b){
+		if(b == true || b == "true"){
+			$("#mem_id").css("border","1px solid #4DCB6D");
+			$("#mem_idInfo").html("");
+		}else{
+			$("#mem_id").css("border","1px solid #e91e63");
+			$("#mem_idInfo").html("<p>이미 존재하는 이메일입니다.</p>");
+		}
+	}
+});
+
+var name = document.insForm.mem_nick.value;
+if(name == null || name == ""){
+	$("#mem_nick").css("border","1px solid #e91e63");
+	$("#mem_nickInfo").html("<p>별명을 입력해주세요.</p>");
+	return;
+}else if(!name_regExp.test(name)){
+	$("#mem_nick").css("border","1px solid #e91e63");
+	$("#mem_nickInfo").html("<p>별명은 4~12자의 한글, 영문, 숫자만 가능합니다.</p>");
+	return;
+}else{
+	$("#mem_nickInfo").html("");
+}
+
+$.ajax({
+	type: "post",
+	url: "memberNameCheck",
+	data: {"mem_nick": name},
+	success: function(b){
+		if(b == true || b == "true"){
+			$("#mem_nick").css("border","1px solid #4DCB6D");
+			$("#mem_nickInfo").html("");
+		}else{
+			$("#mem_nick").css("border","1px solid #e91e63");
+			$("#mem_nickInfo").html("<p>이미 존재하는 애칭입니다.</p>");
+		}
+	},
+});
+
+var pw1 = document.insForm.mem_pw.value;		//비밀번호 특수문자 최소 하나 이상 입력 가능하도록.
+if(pw1==null || pw1==""){
+	$("#mem_pw").css("border","1px solid #e91e63");
+	$("#mem_pwInfo").html("<p>비밀번호를 입력해주세요.</p>");
+	$("#mem_pw").val('');
+	$("#mem_pwOk").val('');
+	return;
+}else if(!pw1_regExp.test(pw1)){
+	$("#mem_pw").css("border","1px solid #e91e63");
+	$("#mem_pwInfo").html("<p>보안을 위해서 비밀번호는 8~16자의 영문 대소문자, 숫자를 반드시 포함해주셔야 해요!</p>");
+	$("#mem_pw").val('');
+	$("#mem_pwOk").val('');
+	return;
+}else{
+	$("#mem_pw").css("border","1px solid #4DCB6D");
+	$("#mem_pwInfo").html("");
+}
+
+var pw1 = document.insForm.mem_pw.value;
+var pw2 = document.insForm.mem_pwOk.value;
+if(pw1!=pw2){
+	$("#mem_pwOk").css("border","1px solid #e91e63");
+	$("#mem_pwOkInfo").html("<p>비밀번호가 일치하지 않습니다.</p>");
+	$("#mem_pw").val('');
+	$("#mem_pwOk").val('');
+	return;
+}else{
+	$("#mem_pwOk").css("border","1px solid #4DCB6D");
+	$("#mem_pwOkInfo").html("");
+}	
+
+var tel = document.insForm.mem_tel.value;
+if(!tel == null || !tel == ""){
+	if(!tel_regExp.test(tel)){
+		$("#mem_tel").css("border","1px solid #e91e63");
+		$("#mem_telInfo").html("<p>-를 제외한 숫자를 입력해주세요.</p>");
+		return;
+	}else{
+		$("#mem_tel").css("border","1px solid #4DCB6D");
+		$("#mem_telInfo").html("");
+	}
+}
+
+var bhday = document.insForm.mem_bhday.value; // 생년월일 조건식 ex 1900~2000몇년 12월 40일 불가
+if(!bhday == null || !bhday == ""){
+	if(!bhday_regExp.test(bhday)){
+		$("#mem_bhday").css("border","1px solid #e91e63");
+		$("#mem_bhdayInfo").html("<p>숫자만 입력해주세요. 예)930214</p>");
+		return;
+	}else{
+		$("#mem_bhday").css("border","1px solid #4DCB6D");
+		$("#mem_bhdayInfo").html("");
+	}
+}
+
+var l_email = document.insForm.mem_love.value;
+if(!l_email == null || !l_email == ""){
+	if(!lovem_regExp.test(l_email)){
+		$("#mem_love").css("border","1px solid #e91e63");
+		$("#mem_loveInfo").html("<p>이메일을 확인해주세요!</p>");
+		return;
+	}else{
+		$("#mem_love").css("border","1px solid #4DCB6D");
+		$("#mem_loveInfo").html("");
+	}
+}
+	
+	encode();
+}
+
+//regular expression
+var id_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+var name_regExp = /^[a-zA-Z0-9가-힣]{4,12}$/;
+var pw1_regExp = /^([a-zA-Z0-9!@#$%^&*]){8,16}$/;
+var tel_regExp = /^\d{3}\d{3,4}\d{4}$/;
+var bhday_regExp = /^\d{4}\d{4}$/;
+var lovem_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+
+$(document).ready(function(){
+	var gen = document.insForm.mem_gender.value;
+	
+	$("#mem_id").blur(function(){
+		var email = document.insForm.mem_id.value;
+		if(email == null || email == ""){
+			$("#mem_id").css("border","1px solid #e91e63");
+			$("#mem_idInfo").html("<p>이메일을 입력해 주세요.</p>");
+			return;
+		}else if(!id_regExp.test(email)){
+			$("#mem_id").css("border","1px solid #e91e63");
+			$("#mem_idInfo").html("<p>이메일을 확인해 주세요.</p>");
+			return;
+		}else{
+			$("#mem_idInfo").html("");
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "memberIdCheck",
+			data: {"mem_id": email},
+			success: function(b){
+				if(b == true || b == "true"){
+					$("#mem_id").css("border","1px solid #4DCB6D");
+					$("#mem_nickInfo").html("");
+				}else{
+					$("#mem_id").css("border","1px solid #e91e63");
+					$("#mem_idInfo").html("<p>이미 존재하는 이메일입니다.</p>");
+				}
+			}
+		});
+	});
+	
+	$("#mem_id").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_nick.focus();
+		}
+	});
+	
+	$("#mem_nick").blur(function(){
+		var name = document.insForm.mem_nick.value;
+		if(name == null || name == ""){
+			$("#mem_nick").css("border","1px solid #e91e63");
+			$("#mem_nickInfo").html("<p>별명을 입력해주세요.</p>");
+			return;
+		}else if(!name_regExp.test(name)){
+			$("#mem_nick").css("border","1px solid #e91e63");
+			$("#mem_nickInfo").html("<p>별명은 4~12자의 한글, 영문, 숫자만 가능합니다.</p>");
+			return;
+		}else{
+			$("#mem_nickInfo").html("");
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "memberNameCheck",
+			data: {"mem_nick": name},
+			success: function(b){
+				if(b == true || b == "true"){
+					$("#mem_nick").css("border","1px solid #4DCB6D");
+					$("#mem_nickInfo").html("");
+				}else{
+					$("#mem_nick").css("border","1px solid #e91e63");
+					$("#mem_nickInfo").html("<p>이미 존재하는 애칭입니다.</p>");
+				}
+			},
+		});
+	});
+	
+	$("#mem_nick").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_pw.focus();
+		}
+	});
+	
+	$("#mem_pw").blur(function(){
+		var pw1 = document.insForm.mem_pw.value;		//비밀번호 특수문자 최소 하나 이상 입력 가능하도록.
+		if(pw1==null || pw1==""){
+			$("#mem_pw").css("border","1px solid #e91e63");
+			$("#mem_pwInfo").html("<p>비밀번호를 입력해주세요.</p>");
+			$("#mem_pw").val('');
+			$("#mem_pwOk").val('');
+			return;
+		}else if(!pw1_regExp.test(pw1)){
+			$("#mem_pw").css("border","1px solid #e91e63");
+			$("#mem_pwInfo").html("<p>보안을 위해서 비밀번호는 8~16자의 영문 대소문자, 숫자를 반드시 포함해주셔야 해요!</p>");
+			$("#mem_pw").val('');
+			$("#mem_pwOk").val('');
+			return;
+		}else{
+			$("#mem_pw").css("border","1px solid #4DCB6D");
+			$("#mem_pwInfo").html("");
+		}
+	});
+	
+	$("#mem_pw").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_pwOk.focus();
+		}
+	});
+	
+	$("#mem_pwOk").blur(function(){
+		var pw1 = document.insForm.mem_pw.value;
+		var pw2 = document.insForm.mem_pwOk.value;
+		if(pw1!=pw2){
+			$("#mem_pwOk").css("border","1px solid #e91e63");
+			$("#mem_pwOkInfo").html("<p>비밀번호가 일치하지 않습니다.</p>");
+			$("#mem_pw").val('');
+			$("#mem_pwOk").val('');
+			return;
+		}else{
+			$("#mem_pwOk").css("border","1px solid #4DCB6D");
+			$("#mem_pwOkInfo").html("");
+		}
+	});
+	
+	$("#mem_pwOk").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.radio1.focus();
+		}
+	});
+	
+	$("#radio1").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_tel.focus();
+		}
+	});
+	
+	$("#radio2").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_tel.focus();
+		}
+	});
+	
+	$("#mem_tel").blur(function(){
+		var tel = document.insForm.mem_tel.value;
+		if(!tel == null || !tel == ""){
+			if(!tel_regExp.test(tel)){
+				$("#mem_tel").css("border","1px solid #e91e63");
+				$("#mem_telInfo").html("<p>-를 제외한 숫자를 입력해주세요.</p>");
+				return;
+			}else{
+				$("#mem_tel").css("border","1px solid #4DCB6D");
+				$("#mem_telInfo").html("");
+			}
+		}
+	});
+	
+	$("#mem_tel").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_bhday.focus();
+		}
+	});
+	
+	$("#mem_bhday").blur(function(){
+		var bhday = document.insForm.mem_bhday.value; // 생년월일 조건식 ex 1900~2000몇년 12월 40일 불가
+		if(!bhday == null || !bhday == ""){
+			if(!bhday_regExp.test(bhday)){
+				$("#mem_bhday").css("border","1px solid #e91e63");
+				$("#mem_bhdayInfo").html("<p>숫자만 입력해주세요. 예)930214</p>");
+				return;
+			}else{
+				$("#mem_bhday").css("border","1px solid #4DCB6D");
+				$("#mem_bhdayInfo").html("");
+			}
+		}
+	});
+	
+	$("#mem_bhday").keyup(function(e){
+		if(e.keyCode == 13){
+			document.insForm.mem_love.focus();
+		}
+	});
+	
+	$("#mem_love").blur(function(){
+		var l_email = document.insForm.mem_love.value;
+		if(!l_email == null || !l_email == ""){
+			if(!lovem_regExp.test(l_email)){
+				$("#mem_love").css("border","1px solid #e91e63");
+				$("#mem_loveInfo").html("<p>이메일을 확인해주세요!</p>");
+				return;
+			}else{
+				$("#mem_love").css("border","1px solid #4DCB6D");
+				$("#mem_loveInfo").html("");
+			}
+		}
+	});
+	
+	$("#mem_love").keyup(function(e){
+		if(e.keyCode == 13){
+			check();
+		}
+	});
+	
+	$("#submitBtn").click(function(){
+		check();
+	});
+});
 </script>
 </head>
 <body>
@@ -270,10 +536,14 @@ function calc(){
 				</div>
 				<div class="member_insert_content">
 					<form name="insForm" action="memberins" method="post">
-						<input class="insert_input" type="text" name="mem_id"placeholder="이메일"> 
-						<input class="insert_input"type="text" name="mem_nick" placeholder="애칭">
-						<input class="insert_input" type="password" name="mem_pw"placeholder="비밀번호"> 
-						<input class="insert_input" type="password" name="mem_pwOk" placeholder="비밀번호 재입력">
+						<input class="insert_input" type="text" id="mem_id" name="mem_id"placeholder="이메일" autofocus> 
+						<div id="mem_idInfo"></div>
+						<input class="insert_input"type="text" id="mem_nick" name="mem_nick" placeholder="애칭">
+						<div id="mem_nickInfo"></div>
+						<input class="insert_input" type="password" id="mem_pw" name="mem_pw"placeholder="비밀번호">
+						<div id="mem_pwInfo"></div> 
+						<input class="insert_input" type="password" id="mem_pwOk" name="mem_pwOk" placeholder="비밀번호 재입력">
+						<div id="mem_pwOkInfo"></div>
 						<div class="genBoxWrapper">
 							<div class="genBox">
 								<input type="radio" name="mem_gender" id="radio1" class="radio"
@@ -284,11 +554,14 @@ function calc(){
 									class="radio" /> <label for="radio2">여자</label>
 							</div>
 						</div>
-						<input class="insert_input" type="text" name="mem_tel" placeholder="휴대전화번호(선택)" /> 
-						<input class="insert_input" type="text" name="mem_bhday" placeholder="생년월일(선택)" /> 
-						<input class="insert_input" type="text" name="mem_love" placeholder="그/그녀의 이메일(선택)" />
+						<input class="insert_input" type="text" id="mem_tel" name="mem_tel" placeholder="휴대전화번호(선택)" />
+						<div id="mem_telInfo"></div> 
+						<input class="insert_input" type="text" id="mem_bhday" name="mem_bhday" placeholder="생년월일(선택)" />
+						<div id="mem_bhdayInfo"></div> 
+						<input class="insert_input" type="text" id="mem_love" name="mem_love" placeholder="그/그녀의 이메일(선택)" />
+						<div id="mem_loveInfo"></div>
 					</form>
-					<button class="submitBtn" onclick="calc()">가입하기</button>
+					<button id="submitBtn" class="submitBtn">가입하기</button>
 				</div>
 			</div>
 		</div>
