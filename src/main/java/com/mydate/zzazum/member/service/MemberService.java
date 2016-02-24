@@ -58,6 +58,18 @@ public class MemberService {
 		return b;
 	}
 	
+	public String idChecker(String mem_id){
+		return memberInter.idChecker(mem_id);
+	}
+	
+	public String nameChecker(String mem_nick){
+		return memberInter.nameChecker(mem_nick);
+	}
+	
+	public String logChecker(MemberVo memberVo){
+		return memberInter.logChecker(memberVo);
+	}
+	
 	/*public boolean memberDel(String mem_id) {
 		boolean b = false;
 		b = memberInter.memberDel(mem_id);

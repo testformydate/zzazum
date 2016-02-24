@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	 String mem =(String)session.getAttribute("mem_id");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
@@ -36,48 +41,45 @@ li a:hover:not(.active) {
     background-color: #4CAF50;
 }
 
-.dropdown{
-	position: relative;
-	display: inline-block;
+.cardProfile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 10px;
 }
 
-.dropdown-content{
-	display: none;
-	position: absolute;
-	background-color : #00cdcd;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	padding: 12px 16px;
+.logo{
+	width:40px;
+	float:left;
+	margin-right:15px;
+	border-radius:20%;
 }
 
-.dropdown:hover .dropdown-content {
-	display: block;
-}
 </style>
 </head>
 <body>
-<div class="dropdown">
-		<span>연애</span>
-	<div class="dropdown-content">
-		<p>야호</p>
-	</div>
-
-</div>
 <ul>
+	<li><a href="${path}/home"><img class="logo" src="<c:url value="/icons/mydatelogo.png" />"></a></li>
+
+
   <li><a href="cm_list?part_no=0">전체</a></li>
   <li><a href="cm_list?part_no=1">연애</a></li>
   <li><a href="cm_list?part_no=2">솔까말</a></li>
   <li><a href="cm_list?part_no=3">야한19	</a></li>
-  <li><a href="cm_list?part_no=4">석민이방</a></li>
-  <li><a href="cm_list?part_no=5">광민이방</a></li>
-  <li><a href="cm_list?part_no=6">원중이방</a></li>
-  <li><a href="cm_list?part_no=7">서연이방</a></li>
-  <li><a href="cm_list?part_no=8">수민이방</a></li>
-  <li><a href="cm_list?part_no=9">지상이방</a></li>
+  <li><a href="cm_list?part_no=4">짜줌에게 한마디</a></li>
   
   <ul style="float:right;list-style-type:none;">
-    <li><a href="../member/memberlogview">Login</a></li>
-    <li><a href="../member/memberinsview">Join</a></li>
+  
+  <%if(mem==null){ %>
+	<li><a href="${path}/member/memberlogview">로그인</a></li>
+	<li><a href="${path}/member/memberinsview">회원가입</a></li>
+	<% }else{ %>
+	<li><a><img class="cardProfile" src="../resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></a></li>
+	<li><a><%=session.getAttribute("mem_nick") %></a></li>
+	<li><a href="${path}/member/memberlogout">로그아웃</a></li>
+	<li><a href="${path}/member/membermypage">마이페이지</a></li>
+	<c:set var="mem_id" value="<%=mem %>" />
+	<%} %>
   </ul>
 </ul>
 
