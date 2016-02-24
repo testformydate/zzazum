@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
-
+import javax.swing.plaf.synth.SynthStyle;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptFile;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
@@ -153,32 +154,35 @@ public class PostScriptImpl implements PostScriptDataInter{
 	@Override
 	public int psDataInsert(PostScriptDetail bean) {
 		PostScriptList ps = new PostScriptList();
-		int main_num = Integer.parseInt(bean.getMain_img().substring(14, 15));
+		int main_num = Integer.parseInt(bean.getMain_img().substring(14));
 		String mem_id = bean.getPd_email();
 		
 		ps.setPs_email(mem_id);
-		ps.setPs_image(bean.getPd_images()[main_num].getOriginalFilename());
+		ps.setPs_image(bean.getPd_images()[main_num]);
 		ps.setPs_title(bean.getPs_title());
 		ps.setPs_context(bean.getPd_contexts()[main_num]);
 		ps.setPs_location(bean.getPd_location());
 		
 		postScriptDao.psDataInssert(ps);
-		int ps_no = postScriptDao.psInsertNum(mem_id);
 		
-		for(int i=0; i<bean.getPd_images().length; i++){
+		int ps_no = postScriptDao.psInsertNum(mem_id);
+		System.out.println("aaa");
+		System.out.println(bean.getPd_images().length);
+		point : for(int i=0; i < bean.getPd_images().length; i++){
 			PostScriptDetail pd = new PostScriptDetail();
+			
+			if(bean.getDeleteFile() != null){
+				for(String deFi : bean.getDeleteFile()){
+					if(bean.getPd_images()[i].equals(deFi)) continue point;
+				}
+			}
 			
 			pd.setPs_no(ps_no);
 			pd.setPl_id(bean.getPl_ids()[i]);
 			pd.setPd_email(mem_id);
 			pd.setPd_context(bean.getPd_contexts()[i]);
-			pd.setPd_image(bean.getPd_images()[i].getOriginalFilename());
+			pd.setPd_image(bean.getPd_images()[i]);
 			
-			try {
-				bean.getPd_images()[i].transferTo(upload(bean.getPd_images()[i]));
-			} catch (Exception e) {
-				System.out.println("file upload err" + e);
-			}
 			postScriptDao.pdDataInsert(pd);
 		}
 		
@@ -192,4 +196,23 @@ public class PostScriptImpl implements PostScriptDataInter{
 		return f;
 	}
 	
+	@Override
+	public int tempFileUp(PostScriptFile beanFile) {
+		return postScriptDao.tempFileUp(beanFile);
+	}
+	
+	@Override
+	public ArrayList<PostScriptFile> tempFileSe(PostScriptFile beanFile) {
+		ArrayList<PostScriptFile> list = new ArrayList<PostScriptFile>();
+		list = postScriptDao.tempFileSe(beanFile);
+		
+		postScriptDao.tmepFileSet(beanFile);
+		
+		return list;
+	}
+	
+	@Override
+	public int tempFileMa(PostScriptFile dtoFile) {
+		return postScriptDao.tempFileMa(dtoFile);
+	}
 }

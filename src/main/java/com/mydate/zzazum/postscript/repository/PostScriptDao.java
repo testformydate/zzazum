@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptFile;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
@@ -99,5 +100,17 @@ public interface PostScriptDao {
 	
 	@Insert("insert into md_psdetail(ps_no, pl_id, pd_email, pd_context, pd_like, pd_date, pd_image) value(#{ps_no}, #{pl_id}, #{pd_email}, #{pd_context}, 0, now(), #{pd_image})")
 	public int pdDataInsert(PostScriptDetail dto);
+	
+	@Insert("insert into md_psfile(pf_name, pf_email, pf_auth) values(#{pf_name}, #{pf_email}, 0)")
+	public int tempFileUp(PostScriptFile dtoFile);
+	
+	@Update("update md_psfile set pf_auth = 1 where pf_email = #{pf_email}")
+	public void tmepFileSet(PostScriptFile dtoFile);
+	
+	@Select("select * from md_psfile where pf_email = #{pf_email} and pf_auth=0")
+	public ArrayList<PostScriptFile> tempFileSe(PostScriptFile dtoFile);
+	
+	@Select("select count(pf_name) from md_psfile where pf_email = #{pf_email}")
+	public int tempFileMa(PostScriptFile dtoFile);
 
 }

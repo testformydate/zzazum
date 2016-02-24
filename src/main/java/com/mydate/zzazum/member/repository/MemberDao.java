@@ -32,6 +32,14 @@ public interface MemberDao {
 	@Update("update md_member set mem_auth='auth' where mem_auth=#{mem_hash}")
 	public int loginAuthentication(String mem_hash);
 	
+	@Select("select mem_no from md_member where mem_id=#{mem_id}")
+	public String idChecker(String mem_id);
+	
+	@Select("select mem_no from md_member where mem_nick=#{mem_nick}")
+	public String nameChecker(String mem_nick);
+	
+	@Select("select mem_no from md_member where mem_id=#{mem_id} and mem_pw=#{mem_pw}")
+	public String logChecker(MemberVo memberVo);
 	
 	/*@Delete("delete from md_member where mem_id=#{mem_id}")
 	public boolean memberDel(String mem_id);*/

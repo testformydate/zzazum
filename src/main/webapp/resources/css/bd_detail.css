@@ -1,0 +1,1103 @@
+@charset "utf-8";
+
+/* PC Reset */
+@font-face {
+	font-family: 'Nanum Gothic';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../font/NanumGothic-Regular.eot);
+	src: url(../font/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+	url(../font/NanumGothic-Regular.woff2) format('woff2'),
+	url(../font/NanumGothic-Regular.woff) format('woff'),
+	url(../font/NanumGothic-Regular.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Nanum Gothic';
+	font-style: bold;
+	font-weight: 600;
+	src: url(../font/NanumGothic-Bold.eot);
+	src: url(../font/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
+	url(../font/NanumGothic-Bold.woff2) format('woff2'),
+	url(../font/NanumGothic-Bold.woff) format('woff'),
+	url(../font/NanumGothic-Bold.ttf) format('truetype');
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button,a,em { margin:0; padding:0; letter-spacing:-1px; font:13px/1.5 'Nanum Gothic', NanumGothic, '나눔고딕', NanumGothicWeb, serif, malgun Gothic, '맑은고딕', Dotum, '돋움', Gulim, '굴림', sans-serif; vertical-align:middle; color:#444 }
+fieldset,img { border:0 none }
+dl,ul,ol,menu,li { list-style:none }
+body { height:100%; overflow-y:scroll; *overflow-y:hidden; background:#fff }
+hr { display:block; height:1px; border:0; margin:0; padding:0 }
+legend, caption, .skip{ position:absolute; left:-5000px; top:0; overflow:hidden; line-height:0.1%; font-size:0.1%; width:0.1%; height:0.1% }
+input,select,textarea,button { vertical-align:middle; outline:none; background:none; border:none }
+button { border:0 none; background-color:transparent; cursor:pointer }
+label,button { cursor:pointer; vertical-align:middle }
+textarea { overflow:auto; resize:none }
+select { -webkit-appearance:menulist-text; border:0; -webkit-appearance:none }
+a { color:#444; text-decoration:none }
+a:link,a:visited { color:#767676; text-decoration:none }
+a:active,a:hover,a:focus { outline:0; color:#fc7093 /*text-decoration:underline*/ }
+address,caption,cite,code,dfn,em,var { font-style:normal; font-weight:normal }
+img { border:0; -ms-interpolation-mode:bicubic; vertical-align:top }
+b, strong { font-weight:600 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block }
+body { line-height: 1 }
+ol, ul { list-style: none }
+blockquote, q { quotes: none }
+blockquote:before, blockquote:after,q:before, q:after { content: ''; content: none }
+table { border-collapse: collapse; border-spacing: 0 }
+
+/* Global CSS */
+#skip_nav { width:100%; display:block; position:relative; left:0; top:0; z-index:100; text-align:center }
+#skip_nav a, 
+#skip_nav a:link { overflow: hidden; position: absolute; top: -1px; left: 0; display: block; margin: 0 0 -1px; width: 100%; height: 1px; font-size: 14px; line-height: 30px; font-weight: bold }
+#skip_nav a:hover, 
+#skip_nav a:focus, 
+#skip_nav a:active { background:#fbfbfb; padding:3px; border:1px solid #999; height:auto; color:#333; text-decoration:underline }
+
+.sc_out { overflow:hidden; position:absolute; width:0; height:0; line-height:0; text-indent:-9999px } /* 대체텍스트가 아닌 접근성을 위한 숨김텍스트를 제공할때 */
+.p_show { display:block }
+.p_hide { display:none !important }
+.f_left { float:left }
+.f_right { float:right }
+.clear { zoom:1 }
+.clear:after{ content:''; display:block; clear:both }
+.point { color:#fc7093 }
+
+/*파폭 버튼 대응*/
+button::-moz-focus-inner { padding:0; border:0; margin-top:-2px; margin-bottom:-2px }
+* html button { margin:0 1px }
+*+html button { margin:0 1px }
+
+/* input_placeholder */
+::-webkit-input-placeholder { color:#aaa }
+:-moz-placeholder { /* Firefox 18- */ color:#aaa }
+::-moz-placeholder { /* Firefox 19+ */ color:#aaa }
+:-ms-input-placeholder { color:#aaa }
+
+/************************************************** 기존 **************************************************************************/
+
+/* CSS Document */
+
+/* 첨부파일 */
+.addfile{margin-top: 20px; padding-bottom: 8px }
+.addfile p{width: 100%; margin-top: 5px }
+.addfile2{width: 680px }
+.addfile2 p{width: 750px }
+.addfile input{width: 90%; height: 20px; margin-left: 10px; vertical-align: middle }
+.addfile label{cursor: pointer }
+.addfile button{width: 82px; height: 24px; margin-left: 5px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/board_btn_find.gif) no-repeat; vertical-align: middle }
+.addfile p.copy{margin-top: 15px; font-weight: normal; text-align:left }
+.addfile p.copy input{width: 13px; height: 13px; margin-right: 5px; padding-bottom: 2px; vertical-align: middle }
+.addfile2 input{width: 75% }
+
+/* board_list */
+.board_list{position: relative; width: 680px } 
+.board_top_nav{height: 38px; margin: 0 0 25px 0 }
+.board_top_nav ul{_padding-left: 2px; *zoom: 1 }
+.board_top_nav ul:after{content:""; visibility:hidden; display:block; clear:both }
+.board_top_nav a{display: inline-block; width:79px; height:28px; padding-top:10px; text-decoration: none; color: #444 }
+.board_top_nav li{float: left; width: 79px; height: 38px; text-align: center }
+.board_top_nav li.board_nav_off{width: 79px; margin-left: -1px; background: url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/board_top_nav_off.gif) no-repeat top }
+.board_top_nav li.board_nav_on{width: 79px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/board_top_nav_on.gif) no-repeat }
+.board_top_nav li.board_nav_on a{color: #fff }
+.board_top_etc{width: 100%; height: 21px; margin: 10px 0; clear:both; *zoom: 1 }
+.board_top_etc:after{content:""; visibility:hidden; display:block; clear:both }
+.border_top_content{float: left }
+.board_explanation{margin-left: 10px; font-size: 11px }
+.board_explanation span.blue{display: inline-block; margin-left: 20px; color: #2c76f2 }
+.board_explanfation span.board_popularity{color: #888 }
+.board_array{float: right; *zoom:1 } 
+.board_array:after{content:""; visibility:hidden; display:block; clear:both }
+.board_array ul:after{content:""; visibility:hidden; display:block; clear:both }
+.board_array2 ul{float: right; margin-right: 15px; *zoom: 1 }
+.board_array > ul > li{float: left; vertical-align:middle; height:20px}
+.board_array li.thema_list { position:relative; width:120px; height:34px; margin:-6px -14px 0 5px }
+.board_array li.thema_list > a { display:inline-block; position:absolute; top:0; left:0; z-index:10; width:106px; height:20px; padding:7px; text-align:left; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -185px -40px; color:#444 }
+.hot_list li.thema_list { margin-right:-2px }
+.all_board .board_array li.thema_list { margin-right:-2px }
+.all_board #division_choice { overflow:hidden; right:0; padding-top:10px }
+.board_list .icon_photo { margin-right:5px }
+.board_list .title3 .icon_photo { float:left; margin:0 8px 0 0 }
+.btn_board_write3{position: absolute; bottom: 225px; right: 0px; margin-right: 3px }
+.btn_board_write3 button{width: 74px; height: 27px; background: url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/board_btn_write.gif) no-repeat }
+.notice_title a{color: #fc7093 }
+.notice_title img{vertical-align: middle }
+.board_list table.list{width: 100% }
+
+
+.board_list table.my_date {width:860px }
+
+.board_list table.my_date thead { width:100% }
+
+
+.board_list table.list tr.list_hot{background: #fbfbfb }
+.board_list table.list th{height: 30px; padding: 0; text-align: center; border-top: 2px solid #666; border-bottom: 1px solid #999 }
+.board_list table.all_list th.title { width:470px }
+.board_list table.list th.nickname { width:160px }
+.board_list table.list th.inquiry{width: 60px; text-align: center }
+.board_list table.list th.recommend{width: 60px; text-align: center }
+.board_list table.list th.date { width:110px }
+.board_list table.list td{height: 36px; border-bottom: 1px solid #e6e6e6; line-height: 18px; padding-top: 2px; padding-right: 5px }
+.board_list table.list td span{ vertical-align:middle }
+.board_list table.list td.notice{border-bottom: 1px solid #e6e6e6; background: #fcfcfc }
+.board_list table.list td.notice img{margin: 0 3px 0 10px }
+.board_list table.list td.notice_title{ border-bottom: 1px solid #e6e6e6; background: #fcfcfc; font-weight: bold }
+.board_list table.list td.notice_title span{font-weight: normal }
+.board_list table.list td.hot_motel{padding: 0 }
+.board_list table.list td.hot_motel img{margin: 0 }
+.board_list table.list td.list_hot_title{width: 12%; display: inline-block; margin-left: -5px; padding-bottom: -2px; padding-left: 5px; color: #f52606; font-size: 11px; border:1px solid }
+.board_list table.list td.nickname{width: 17% }
+.board_list table.list td.nickname a{color: #444; word-wrap: word-break: break-all; white-space: pre-line }
+.board_list table.list td.nickname a:hover{color: #444 }
+.board_list table.list td a.nickname,
+.board_list table.list td a.nickname2{word-wrap: word-break: break-all; white-space: pre-line }
+.board_list table.list td.anonymity{width: 10%; text-align: center }
+.board_list table.list td.nickname .members_profile_on{position: relative }
+.board_list table.list td.nickname .members_profile{position: absolute; top: 5px; left: -80px; z-index: 1 }
+.board_list table.list td.nickname img{margin-right: 3px; vertical-align: middle }
+.board_list table.list td.division{padding-right: 8px; *padding-right: 10px; _text-align:left; color: #fc7093 }
+.board_list table.list td.number{width: 70px }
+.board_list table.list td.inquiry,
+.board_list table.list td.recommend{width: 60px; text-align: center }
+.board_list table.list td.inquiry2,
+.board_list table.list td.recommend2{color: #444 }
+.board_list table.list td.date{width: 90px; text-align: center }
+.board_list table.list td.motel_name{padding-right: 5px; font-size: 11px; letter-spacing: -1px; color: #fc7093; line-height: 14px }
+.board_list table.list td.motel_title{ width:412px; padding-right: 5px }
+.board_list table.list td.motel_title a { display:inline-block; color:#444 }
+.board_list table.list td.motel_title b { display:inline-block; }
+.board_list table.list td.motel_title img{vertical-align: middle }
+.board_list table.list td.title{padding-left: 5px; padding-top: 2px }
+.board_list table.list td.title2,
+.board_list table.list td.title3{padding-left: 5px; padding-right: 5px; padding-top: 2px; word-wrap: break-word; white-space: normal }
+.board_list table.list td.title4,
+.board_list table.list td.title5{width:470px; padding: 2px 5px 0; padding-top: 4px\9; word-wrap: break-word; white-space: normal }
+.board_list table.list td.title2 a,
+.board_list table.list td.title3 a,
+.board_list table.list td.title4 a,
+.board_list table.list td.title5 a { color:#444 }
+.board_list table.list td.title7{width: 16%; font-size: 11px }
+.board_list table.list td.list_hot{padding-right: 10px; font-size: 11px; color: #fc7093; letter-spacing: -1px }
+.board_list table.list td.title img{margin: -2px 5px 0 0; vertical-align: middle }
+.board_list table.list td.subject{padding-left: 5px; font-size: 11px; color: #fc7093 }
+.board_list table.list td.subject2{ width:77px; text-align:center; font-size: 12px; color: #fc7093 }
+.board_list table.list td.subject a{color: #fc7093 }
+.board_list table.list td.nickname2{width: 19%; height: 37px; padding: 2px 0; *zoom: 1 }
+.board_list table.list td.nickname2:after{content:""; visibility:hidden; display:block; clear:both }
+.board_list table.list td.nickname2 span.icon{ float:left; position:relative; top:0; left:0; width:38px; height:38px; margin-right:3px }
+.board_list table.list td.nickname2 span.name{width: 65px; margin-top: -1px; margin-top: 1px\9; font-size: 12px; word-break: break-all; white-space: pre-line; line-height: 28px }
+.board_list table.list td.nickname3{width: 160px; *zoom: 1; word-wrap: break-word; white-space: normal }
+.board_list table.list td.nickname3:after{content:""; visibility:hidden; display:block; clear:both }
+.board_list table.list td.nickname3 span.icon{float: left; *width: 24px; margin-right: 3px; *margin-right: 1px }
+.board_list table.list td.nickname2 span.name,
+.board_list table.list td.nickname3 span.name{float: left; width: 95px; margin-top: -1px; margin-top: 1px\9; font-size: 12px; word-break: break-all; white-space: pre-line; line-height: 36px }
+.board_list table.list td.nickname5 span.name{float: left; width: 96px; margin-top: 1px; margin-top: -14px\9; #margin-top: 1px; _margin-top: 1px; font-size: 12px; word-break: break-all; white-space: pre-line; line-height: 16px }
+.board_list table.list td.nickname3 img,
+.board_list table.list td.nickname2 img { width:38px; height:38px }
+:root .board_list table.list td.nickname5 span.name {margin-top: 1px \0/IE9 }
+@media screen and(-webkit-min-device-pixel-ratio:0) {.board_list table.list td.nickname5 span.name {margin-top: -14px }}
+.board_list table.list td.title_nonpaid{border-bottom: none }
+.board_list table.list td.title_nonpaid span{font-size: 12px }
+
+
+
+
+.board_number_list{position:relative; width: 100%; margin: 0 auto; padding: 110px 0 52px 0; text-align: center; z-index: 10 }
+.board_number_list2{padding: 74px 0 35px 0 }
+.board_number_list .number_list_prev { margin-right:10px }
+.board_number_list .number_list_next { margin-left:10px }
+.board_number_list .number_list_prev,
+.board_number_list .number_list_next { display:inline-block; width:40px; height:30px; background:url('http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_numberlist_bg.gif') no-repeat 0 0; vertical-align: middle }
+.board_number_list .number_list_prev span,
+.board_number_list .number_list_next span{ visibility: visible; z-index:0; display:block; font-size:11px; color:#666 }
+.board_number_list .board_needs{ position:absolute; left: 10px; top: 21px; *zoom: 1 }
+.board_number_list .board_needs:after{content:""; visibility:hidden; display:block; clear:both }
+.board_number_list .board_needs li{float: left; font-size: 11px; letter-spacing: -1px }
+.board_number_list .board_needs li .bar{ display: inline-block; color: #bbb; margin: 0 7px }
+.board_number_list .board_needs li .pink{ color: #2c76f2 }
+.board_number_list .board_needs li a{ color: #999}
+.board_number_list .board_needs li a:hover { color: #fc7093 }
+.board_number_list .board_needs_rule{position: absolute; top: 21px; left: 2px; font-size: 11px; letter-spacing: -1px }
+.board_number_list .board_needs_rule a{text-decoration: underline; color: #707070 }
+.board_number_list1{position:relative; width: 100%; margin: 0 auto; padding: 30px 0 35px 0; text-align: center }
+.board_number_list1 .number_list_link a{margin:0 5px; font-weight: bold }
+.board_number_list1 .number_list_link a.on{text-decoration:underline; color: #fc7093 }
+.board_number_list1 .number_list_prev{display: inline-block; width: 18px; height: 18px; margin-top: -3px; _margin-top : 0; margin-right:5px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_numberlist_prev.gif) no-repeat; vertical-align: middle }
+.board_number_list1 .number_list_prev span{ text-indent:-9999px }
+.board_number_list1 .number_list_next span{ text-indent:-9999px }
+.board_number_list1 .number_list_next{display: inline-block; width: 18px; height: 18px; margin-top: -3px; margin-left:5px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_numberlist_next.gif) no-repeat; vertical-align: middle }
+.myyanolja_community .board_number_list{padding-top: 20px }
+.btn_board_write2{position: absolute; top: 10px; *bottom: 230px; right: 0px; margin-right: 3px }
+.btn_board_write2 button{width: 74px; height: 27px; background: url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/board_btn_write.gif) no-repeat }
+
+/* board_write */
+.board_write{position: relative; width: 860px; margin: 0 auto; *zoom: 1 }
+.board_write:after{content:""; visibility:hidden; display:block; clear:both }
+.board_write_editor iframe{width: 100%; height: 530px; margin-top: 22px; margin: 0 auto }
+.write_editor iframe{width: 100%; height: 530px; margin-top: 22px; margin: 0 auto }
+.board_write .addfile p{padding-left:0}
+.board_write .addfile p.notice { color:#666 }
+.board_write .addfile p.notice strong { color:#444 }
+.concur_box{margin:15px 0 15px 15px }
+.board_nav_write{width: 100%; margin: 0 auto; margin-top: 55px; margin-bottom: 35px; text-align: center }
+.board_nav_write button{margin-left: 5px }
+.board_nav_write p { position:relative }
+.board_nav_write .preview { position:absolute; top:0; left:0 }
+.write_consent{width: 638px; margin: 20px 0; padding: 20px; border: 1px solid #dcdcdc; background: #f9f9f9 }
+.write_consent p{margin-bottom: 20px; font-weight: bold }
+.write_consent dl{margin-top: 10px; *zoom: 1 }
+.write_consent dl:after{content:""; visibility:hidden; display:block; clear:both }
+.write_consent dl dt{float: left; font-weight: bold }
+.write_consent dl dd{float: left; margin-left: 10px; line-height: 20px }
+div.consent{width: 680px; margin-bottom: 30px; text-align: center }
+div.consent input{display: inline-block; padding-bottom: 3px; *margin-top: -3px; vertical-align: middle }
+
+/* 모텔이용후기 write */
+.board_write_motel_search{float: left; width: 20%; padding-top: 20px; margin-left: 5px }
+.board_write_motel_search li{font-weight: bold; text-align: center }
+.board_write_motel_search li p{width: 132px; height: 82px; margin-bottom: -5px; border:1px solid #CCC }
+.board_write_motel_search li button{width: 132px; height: 21px; margin-top: 5px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_search_stay.gif) no-repeat }
+.board_write_motel_search li button.date_search{width: 132px; height: 21px; margin-top: 5px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_date_place_search.gif) no-repeat }
+.board_write_motel_search .concur_box{border:1px solid #F00 }
+
+/* 모텔이용후기 list */
+.motel_name{ width:100px !important; padding-right: 0 }
+.motel_name a{color: #fc7093 }
+.motel_review_list{position: relative; width: 680px }
+.motel_review_list img{margin: 0 0 25px 20px }
+.motel_review_list p.motel_review_btn{position: absolute; top: 185px; left: 52px; width: 464px; *zoom: 1 }
+.motel_review_list p.motel_review_btn:after{content:""; visibility:hidden; display:block; clear:both }
+.motel_review_list p.motel_review_btn button{width: 123px; height:29px }
+.motel_review_list p.motel_review_btn button.motel_review_btn1{float: left; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_list1.gif) no-repeat }
+.motel_review_list p.motel_review_btn button.motel_review_btn2{float: right; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_list2.gif) no-repeat }
+.motel_review_list2 {position: relative }
+.motel_review_list2 img{padding: 0 0 25px 0; z-index: -100px }
+.motel_review_list2 p.motel_review_btn button{font-size: 11px; color: #bbb6b6; letter-spacing: -1px; z-index: 100 }
+.motel_review_list2 p.motel_review_btn button span {display: block; margin-top: 2px }
+.motel_review_list2 p.motel_review_btn button.motel_review_btn3{float: left; position: absolute; bottom: 44px; left: 25px; width: 121px; height: 26px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_list3.gif) no-repeat }
+.motel_review_list2 p.motel_review_btn button.motel_review_btn4{float: left; position: absolute; bottom: 44px; left: 197px; width: 121px; height: 26px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_list3.gif) no-repeat }
+.motel_review_list2 p.motel_review_btn button.motel_review_btn5{float: left; position: absolute; bottom: 44px; left: 365px; width: 121px; height: 26px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_list3.gif) no-repeat }
+.motel_review_list2 p.motel_review_btn button.motel_review_btn6{float: left; position: absolute; bottom: 44px; left: 535px; width: 121px; height: 26px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_motel_list3.gif) no-repeat }
+
+/* 데이트다이어리 list */
+.motel_review_list p.date_diary_btn{position: absolute; top: 188px; left: 49px; width: 305px; height: 29px; *zoom: 1 }
+.motel_review_list p.date_diary_btn:after{content:""; visibility:hidden; display:block; clear:both }
+.motel_review_list p.date_diary_btn button.date_diary_btn1{float: left; width: 155px; height: 29px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_date_diary_list1.gif) no-repeat }
+.motel_review_list p.date_diary_btn button.date_diary_btn2{float: right; width: 145px; height: 29px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_date_diary_list2.gif) no-repeat }
+
+/* 데이트& 이용후기 list */
+.motel_review_list p.date_n_btn{position: absolute; top: 205px; left: 49px; width: 296px; height: 29px; *zoom: 1 }
+.motel_review_list p.date_n_btn button.date_n_btn1{float: left; width: 145px; height: 29px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_date_n_list1.gif) no-repeat }
+.motel_review_list p.date_diary_btn button.date_n_btn2{float: right; width: 145px; height: 29px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2011/btn_date_n_list2.gif) no-repeat }
+.date_place_name{padding-right: 5px; font-size: 11px; color: #fc7093 }
+.date_place_name a{color: #fc7093 }
+.date_place_title{padding: 0 7px }
+
+/* 전문의 의학상담 */
+.doctor_counsel img{position: relative }
+.doctor_counsel button{position: absolute; top: 89px; right: 105px; width: 71px; height: 22px; background:url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2012/btn_hompage.gif) no-repeat }
+.board_nav button.answer2{width: 74px; height: 27px; background: url(http://image2.yanolja.com/site/imageFile/images/siteBoardNew/2012/board_btn_answer2.gif) no-repeat }
+.doctor_answer{width: 670px; margin-top: 50px; margin-bottom: -5px; padding-right: 10px; text-align: right; color: #f00 }
+.doctor_answer span{font-size: 11px }
+.division_choice { position: absolute; top: 25px !important; right: 88px; width: 118px; padding-bottom:2px; z-index: 1; overflow-y: auto; border:1px solid #e5e5e5; border-top:none; background:#fff }
+.division_choice li { height:30px; line-height:32px; padding:0 10px; text-align:left }
+.division_choice a{ display:block; padding:5px 0; text-align:left }
+.division_choice a:link, .division_choice a:visited{ text-decoration: none }
+.hot_list .division_choice, .hot_list.division_choice { right:0 }
+#division_choice{ display:block; padding:5px 0; text-align:left }
+#division_choice ul { width:100% }
+.division_choice2 {position: absolute; top: 56px; *top: 58px; top: 56px\9; .top: 56px; left: -1px; width: 302px; z-index:11 }
+:root .division_choice2{top: 58px\9 }
+.division_choice2 ul{ width: 300px; background: #fff; border: 1px solid #666; *zoom: 1 }
+.division_choice2 ul:after{content:""; visibility:hidden; display:block; clear:both }
+.division_choice2 li{ float: left; width: 100px; padding: 10px 0 8px; font-size: 11px; border-bottom: 1px solid #dedede; text-align: center }
+.division_choice2 li a{color: #666 }
+.division_choice2 li a:hover{color: #fc7093 }
+
+/* 데이트후기, 모텔후기 페이지 지역분류 탭메뉴 생성 */
+.board_title .list_view_all li, .board_title_list .list_view_all li{float: left }
+.board_title_list .reply_donation,
+.board_title .reply_donation { margin-bottom: 50px; padding-top: 17px; line-height: 18px }
+td.f11{/* text-align: left; padding: 0 0 0 10px; */font-size: 11px }
+td.f11.subject2{padding: 0 0 0 10px }
+td.f11.number, td.f11.notice, td.f11.hot_motel{text-align: center }
+.photo_gallary ul li.photogallary dl dt .thum_title img{border: 0px }
+.photo_gallary span.thum_title{*zoom: 1; width: 150px }
+.photo_gallary span.thum_title img{float: left; padding-right: 4px }
+.photo_gallary span.thum_title a{padding: 2px 0 0 0px; max-width: 115px; height: 18px; overflow: hidden; text-overflow:ellipsis; white-space:nowrap }
+.photo_gallary .inquiry{clear: both }
+.photo_gallary .nickname2.nickname3 .icon{float: left }
+.photo_gallary .nickname2.nickname3 .name{float: left; padding: 8px 0 0 4px }
+.photo_gallary{clear: left }
+
+/* 20131021 */
+.board_explanation{margin-left: 2px; font-size: 11px }
+.board_array > ul{float: right; margin-right: 2px; *zoom: 1 }
+.board_number_list .board_needs{ left: 2px }
+.board_title_list.my_board_h3{padding-bottom: 22px }
+td.nickname2.nickname3 span.name{margin-top: -1px; margin-top: 1px\9; padding: 0 0 0 0 }
+td.nickname2.nickname3 span.icon{ display: inline-block;margin-top: 0px }
+td.nickname2.nickname3 span.levelicon{ margin-top: 4px }
+td.nickname2.nickname3 span.levelicon2{ margin-top: 0px }
+.levelicon img { width:46px; height:46px; border-radius:50% }
+.board_read_title li img{margin-top: 0px; _margin-top: 0px; vertical-align: middle }
+#bNameValue{font-weight: bold }
+.board_list table.list td.nickname3.nickname5 span.name{margin-top: -8px; margin-top: 7px\9; line-height: 16px }
+@-moz-document url-prefix(){.board_list table.list td.nickname3.nickname5 span.name{margin-top: 7px }
+}
+
+/************ 기존 *************************/
+
+/* 수정 */
+.off { display:none !important }
+.ir span { display:none }
+#container { position:relative; margin-top:40px; background:none }
+.snb_sub { position:absolute; top:0; right:-200px }
+#content { float:none; width:860px; margin:0 auto; z-index:100 }
+.board_border { width:860px }
+.board_title_list { width:100% }
+.board_list { width:100% }
+.menu_box { display:none }
+.list_view_all { }
+.list_view_all .board_bar { display:none }
+.board_title h4, .board_title_list h3, .motel_wrap .board_title_list h3{ float:none }
+.board_title .list_view_all,
+.board_title_list .list_view_all { float:none; padding:0; *zoom:1 }
+.board_title .list_view_all:after,
+.board_title_list .list_view_all:after { content:''; display:block; clear:both }
+.board_title_list h3 { font-size:30px; margin-bottom:33px }
+.board_title_list p { font-size:13px }
+.board_title_list .reply_donation { color:#666 }
+.board_explanation { font-size:13px; color:#444 }
+.board_explanation span.bold { font-weight:600; color:#fc7093 }
+.board_bar2 { color:#444 }
+.board_array > ul > li > a { display:inline-block; width:50px; text-align:center; color:#888 }
+.board_array .good_array > a { width:64px }
+.board_array a:hover,
+.board_array a b { font-weight:600; color:#444 }
+.board_array .board_bar { margin:0; font-size:11px; color:#ddd }
+.board_array .good_array .board_bar { margin:0 }
+.board_list table.list td { height:59px; padding:0 }
+td.f11 { font-size:13px }
+.notice_title a { font-size:13px; font-weight:600; color:#444 }
+.notice_title a:hover { color:#fc7093 }
+.board_list table.list td.notice_title span { font-weight:600; font-size:14px; background:none }
+.board_list table.list td.notice { font-weight:normal; font-size:12px; color:#666 }
+.board_list table.list tr.list_hot { background:#fcfcfc }
+.board_list table.list tr.list_hot td.f11.hot { width:70px; height:43px; font-weight:600; color:#fc7093; font-size:13px; text-align:center }
+.board_list table.list td.title4 { padding-left:8px; font-size:14px; color:#444 }
+.board_list table.list td.title4, .board_list table.list td.title5 { padding:0 }
+/*.board_list table.list td.title4 > a { display:inline-block; max-width:400px; white-space: nowrap; overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; font-size:14px; color:#444 } */
+.board_list table.list td.title4 > a { display:inline-block; max-width:400px; font-size:14px; color:#444 }
+.board_list table.list td.title4 > a:hover { color:#fc7093 }
+.board_list table.list td.title4 strong, .board_list table.list td.title5 strong { font-weight:normal; font-size:14px }
+.board_list table.list td { line-height:normal }
+.board_list table.list td.inquiry2, .board_list table.list td.recommend2,
+.board_list table.list td.date { font-weight:normal; font-size:12px; color:#666 }
+.board_list table.list td span { font-size:14px }
+.board_list table.list td span.icon_photo { float:left }
+.board_list table.list td.title4, .board_list table.list td.title5 { padding-left:8px }
+.board_list table.list td .motel_name,
+.board_list table.list td .area_name,
+.board_list table.list td .area_name a { display:block; padding-top:4px; font-size:12px; color:#fc7093 }
+.board_list table.list td .area_name a { padding:0 }
+.board_list table.list td .area_name  { display:inline-block; width:340px; }
+.board_list table.date_review_table td span.icon_photo { margin:10px 8px 10px 0 }
+
+.board_list table.date_review_table td { height:79px }
+.board_list table.date_review_table .notice td { height:49px }
+.board_list table.date_review_table .cnt a { font-size:14px; color:#444 }
+.board_list table.date_review_table .cnt a:hover { color:#fc7093 }
+.board_list table.date_review_table .motel_title a { font-size:14px; color:#444 }
+.board_list table.date_review_table .motel_title a:hover { color:#fc7093 }
+
+
+
+.bg_list_f { display:inline-block; width:165px; height:50px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat 0 -55px }
+.bg_list_f.select_bold { background-position:0 0 }
+.bg_list_l { display:inline-block; width:165px; height:50px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat -166px 0 }
+.bg_list_l.select_bold { background-position:-166px -55px }
+.bg_list_c { display:inline-block; width:165px; height:50px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat -166px -110px }
+.bg_list_c.select_bold { background-position:0 -110px }
+.board_title .list_view_all li a,
+.board_title_list .list_view_all li a { height:36px; padding-top:14px; font-size:16px; text-decoration:none; text-align:center; font-weight:normal; color:#666 }
+.board_title_list .list_view_all li a:hover { color:#fc7093 }
+
+
+.board_title .list_view_all li a.select_bold,
+.board_title_list .list_view_all li a.select_bold { font-weight:600; color:#fff }
+.board_top_etc { margin-bottom:13px }
+.board_array button.btn_board_write { display:inline-block; width:80px; height:34px; margin: -6px 0 0 20px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -210px -188px }
+.board_array button.btn_board_write:hover { background-position:-294px -188px }
+.board_list table.list th { height:45px; border-top:2px solid #ccc; border-bottom:1px solid #ccc; font-weight:600 }
+.board_list table.list td.nickname3 span.icon { position:relative; width:38px; height:38px }
+.board_list table.list span.icon em { position:absolute; top:0; left:0 }
+td.nickname2.nickname3 span.levelicon { margin:0 }
+.board_list table.list td.nickname2 span.name,
+.board_list table.list td.nickname3 span.name { padding-top:11px; padding-left:4px; line-height:normal; font-size:13px; color:#444 }
+.board_list table.list td.inquiry,
+.board_list table.list td.recommend,
+.board_list table.list td.number{ font-weight:normal; font-size:12px; color:#666 }
+.board_list table.list td a.nickname, .board_list table.list td a.nickname2 { color:#444 }
+.board_list table.list td.number.notice { font-weight:600; font-size:13px; color:#fc7093 }
+.board_list table.list td.number.notice_title { width:90px; font-weight:600; font-size:13px; color:#fc7093 }
+.board_number_list .number_list_link a { display:inline-block; width:34px; height:27px; padding-top:7px; margin:0 1px; text-decoration:none; color:#767676 }
+.board_number_list .number_list_link a.on,
+.board_number_list .number_list_link a:hover { background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -98px -78px; color:#fc7093 }
+.board_number_list .number_list_prev { width:34px; height:34px; padding-top:7px; margin-right:8px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -107px -40px }
+.board_number_list .number_list_prev:hover { background-position:-310px -40px }
+.board_number_list .number_list_next { width:34px; height:34px; margin-left:8px; padding-top:7px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -146px -40px }
+.board_number_list .number_list_next:hover { background-position:-349px -40px }
+
+
+.board_search{margin: 0 auto }
+.board_search form{width:380px; *width:385px; margin:0 auto; text-align:center; padding: 0 0 84px 0 }
+.board_search form select{height: 30px; vertical-align: middle; border:none; font-size:11px; -moz-border-radius: 3px; -ms-border-radius: 3px; -webkit-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px }
+.board_search .btn_my_look {width: 65px; height: 20px }
+.board_search .inline_box { float:left; margin-left:5px; }
+.board_search form button{ display:inline-block; width:54px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -78px }
+.board_search form button:hover { background-position:-406px -103px }
+.board_search form input { width:180px; height:14px; padding:10px 7px; margin-right:2px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 0 }
+.board_search .thema_list { float:left; position:relative; width:120px; }
+.board_search .thema_list > a { display:inline-block; position:relative; z-index:40; width:106px; height:20px; padding:7px; text-align:left; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -185px -40px; color:#444 }
+
+
+.board_search .thema_list ul { position: absolute; top: 25px !important; right: -2px; z-index:20; width: 118px; padding:10px 0 5px; overflow-y: auto; border:1px solid #e5e5e5; border-top:none; background:#fff }
+.board_search .thema_list li { height:30px; width:98px; line-height:32px; padding:0 10px; text-align:left }
+.board_search .thema_list li a{ display:block; padding:5px 0; text-align:left }
+.board_search .thema_list li a:link, .thema_list.select_area li a:visited{ text-decoration: none }
+
+
+
+
+
+
+
+
+.sbHolder{ position:relative; display:inline-block; width:102px; height:34px; margin:-23px 2px 0 0 }
+.sbHolder:focus .sbSelector:hover { color:#666 }
+#country_id { float:left; display:inline-block; width:102px; height:34px; padding:4px 0 0 9px; border:none; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -39px }
+.sbOptions{ position: absolute; top: 33px !important; left: 0; width: 100px; padding-bottom:2px; z-index: 1; overflow-y: auto; border:1px solid #e5e5e5; border-top:none; background:#fff }
+.sbOptions li { height:30px; line-height:32px; padding:0 10px; text-align:left }
+.sbOptions a{ display:block; padding:5px 0; text-align:left }
+.sbOptions a:link, .sbOptions a:visited{ text-decoration: none }
+
+/* 헤더 */
+.header_rap { z-index:100; min-width:1000px; height:114px; margin:0 auto; background:url(http://image2.yanolja.com/site100/community/bg_header.gif) repeat-x 0 0 }
+.header_rap .header_box { max-width:1280px; height:64px; margin:0 auto }
+
+.header_rap.on { background:url(http://image2.yanolja.com/site100/community/bg_header_on.gif) repeat 0 0 }
+.header_rap > .head_area { max-width:1280px; width:100%; min-width:1000px; margin:0 auto }
+.header_rap h1 { float:left; margin:22px 39px 0 0 }
+.header_rap h1 .logo_community { margin-left:6px }
+
+
+.header_rap .gnb { float:left }
+.header_rap .gnb > li { float:left; position:relative; margin-right:20px }
+.header_rap .gnb > li.yahan { margin-right:41px }
+.header_rap .gnb > li .icon_19 { position:absolute; top:23px; right:-12px }
+.header_rap .gnb > li > a { display:inline-block; height:36px; padding:21px 10px 0; font-size:14px; color:#ffc3ce }
+.header_rap .gnb > li.on > a,
+.header_rap .gnb > li > a:hover { font-weight:600; color:#fff; background:url(http://image2.yanolja.com/site100/community/header_on_bg.gif) no-repeat center bottom }
+
+
+.header_rap .inner_area { position:absolute; top:78px; height:50px; left:-17px; width:500px }
+.header_rap .inner_area li { float:left; margin-right:25px }
+.header_rap .inner_area li a { color:#888 }
+.header_rap .inner_area li a:hover,
+.header_rap .inner_area li.on a{ color:#fc7093 }
+.header_rap .inner_area.inner4 { left:-11px }
+
+
+.header_rap .inner_bg { height:50px; width:100%; background:#fafafa }
+.header_rap .all_search { float:left; margin:21px 0 0 10px }
+.header_rap .all_search.open { position:relative; margin-top:13px }
+.header_rap .all_search.open input { width:142px; height:36px; padding:0 48px 0 10px; font-size:12px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -475px -818px; color:#ffe5ea }
+.header_rap .all_search.open button { position:absolute; top:0; right:0; width:48px; height:36px }
+.header_rap .my_zone { float:right; width:340px }
+.header_rap .login { float:right; margin-top:22px }
+.header_rap .login a { display:inline-block; font-size:14px; color:#fff }
+.header_rap .login a:hover { color:#fff } 
+.header_rap .login .bar { height:10px; margin:0 10px; background:#feb8c9 }
+
+
+.header_rap .my_info { float:right; position:relative; z-index:100; margin-top:-8px; padding-bottom:10px }
+.header_rap .my_info > a { display:block }
+.header_rap .my_info > a > span { display:block; float:left }
+.header_rap .my_info .nickname { padding:11px 13px 11px 0 }
+.header_rap .my_info .list_box { position:absolute; top:42px; right:-13px; z-index:20 }
+.header_rap .my_info .list_box .top { width:144px; height:14px; background:url(http://image2.yanolja.com/site100/community/bg_Speech_balloon.png) no-repeat -131px 0 }
+.header_rap .my_info .list_box .bottom { width:144px; height:6px; background:url(http://image2.yanolja.com/site100/community/bg_Speech_balloon.png) no-repeat -698px 0 }
+.header_rap .my_info .list_box ul { width:144px; padding:2px 0 5px; background:url(http://image2.yanolja.com/site100/community/bg_Speech_balloon.png) repeat-y -414px 0 }
+.header_rap .my_info .list_box a { display:block; padding:9px 0 8px 17px; font-size:14px; color:#666 }
+.header_rap .my_info .list_box a:hover { font-weight:600; color:#fc7093 }
+.header_rap .my_info .list_box a em { width:15px; margin-right:12px; margin-top:-2px }
+.header_rap .login.login_check { margin-top:19px; text-align:left }
+.header_rap .login .my_alarm_box { float:right; margin: -2px 0 0 46px }
+.header_rap .login .my_face { display:inline-block; position:relative; padding:4px; height:34px; width:34px }
+.header_rap .login .my_face img { border-radius:50% }
+.header_rap .login .cover42_p { position:absolute; top:0; left:0 }
+
+
+.head_area .yanolja_menu { float:left; position:relative; z-index:100; margin-top:25px; line-height:1 }
+.head_area .yanolja_menu > a { padding:0 15px 25px 0; line-height:1 } 
+.head_area .yanolja_menu .list_box { position:absolute; top:28px; left:0; z-index:20 }
+.head_area .yanolja_menu .list_box .top { width:121px; height:14px; background:url(http://image2.yanolja.com/site100/community/bg_Speech_balloon.png) no-repeat 0 0 }
+.head_area .yanolja_menu .list_box .bottom { width:121px; height:6px; background:url(http://image2.yanolja.com/site100/community/bg_Speech_balloon.png) no-repeat -567px 0 }
+.head_area .yanolja_menu .list_box ul { width:121px; padding:2px 0 5px; background:url(http://image2.yanolja.com/site100/community/bg_Speech_balloon.png) repeat-y -283px 0 }
+.head_area .yanolja_menu .list_box a { display:block; padding:9px 0 8px 21px; font-size:14px; color:#666 }
+.head_area .yanolja_menu .list_box a:hover { font-weight:600; color:#fc7093 }
+.head_area .yanolja_menu .icon_menu_w { cursor:pointer }
+
+
+/* footer */
+#footer { *z-index:-1; border-top:1px solid #eee; background:#fff }
+#footer > div { position:relative; width:940px; padding:20px; margin:0 auto }
+#footer .link_area { margin-bottom:20px }
+#footer .link_area li { float:left }
+#footer .link_area li .bar { margin:0 10px }
+#footer .link_area li a { color:#666 }
+#footer .link_area li a:hover { color:#fc7093 }
+#footer .yanolja_info { margin-bottom:10px; color:#aaa }
+#footer .yanolja_info .bar { margin:0 8px }
+#footer .copyright { text-align:left; font-size:13px; color:#aaa }
+#footer .select { position:absolute; top:24px; right:0; width:142px; height:34px; margin-right:4px }
+#footer .select .choice_select { position:absolute; top:0; right:0; z-index:10; display:inline-block; width:144px; height:28px; padding:8px 0 0 9px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -435px -701px }
+#footer .select ul { position:absolute; top:-208px; right:0; width:151px; padding:3px 0; border:1px solid #ddd; background:#fff }
+#footer .select li a { display:block; padding:5px 11px }
+
+/* 전문의 상담*/
+.specialist_area { clear:both; width:860px; margin:30px 0 50px; text-align:center; background:url(http://image2.yanolja.com/site100/community/bg_specialist.jpg) no-repeat 0 0 }
+.specialist_area > div { float:left; width:380px; padding:20px 0 0 50px; margin-bottom:20px; height:150px; text-align:left }
+.specialist_area > div .title { padding-bottom:10px; font-size:18px; font-weight:600 }
+.specialist_area > div .title span { margin-left:8px; font-weight:normal; font-size:14px; color:#888 }
+.specialist_area > div .name { margin-bottom:20px; color:#888 }
+.specialist_area > div .text { font-size:14px; color:#666 }
+.specialist_area > div a { display:inline-block; margin-top:20px; font-size:13px; text-decoration:underline; color:#999 }
+.specialist_area > div a:hover { color:#fc7093 }
+.specialist_area > ul { clear:both; text-align:left }
+.specialist_area > ul li { color:#666 }
+.specialist_area > ul li b { margin-right:10px; color:#444 }
+.specialist_area > div > img { float:left }
+.specialist_area > div > div { float:left; margin-left:15px; padding-top:20px }
+
+/* 숙박정보후기 */
+.motel_info_give_text { color:#666 }
+.thema_list.select_area { }
+.board_array .thema_list.select_area > a { position:relative; z-index:30 }
+.thema_list.select_area ul { position: absolute; top: 25px; right: 0; z-index:0; width: 118px; padding:10px 0 5px; overflow-y: auto; border:1px solid #e5e5e5; background:#fff }
+.thema_list.select_area li { height:30px; width:98px; line-height:32px; padding:0 10px; text-align:left }
+.thema_list.select_area li a{ display:block; padding:5px 0; text-align:left }
+.thema_list.select_area li a:link, .thema_list.select_area li a:visited{ text-decoration: none }
+
+/* 여행*/
+.travel_table .icon_best { float:left; margin:10px 8px 10px 0 }
+
+/* 쓰기 */
+.board_border { }
+.board_write_rap .reply_donation { display:none }
+.board_write_title > ul { }
+.board_write_title > ul > li { margin-bottom:22px }
+.board_write_title > ul strong { display:inline-block; width:85px; font-size:15px; font-weight:600 }
+.board_write_title .user_id { margin-right:20px; font-size:15px; color:#666 }
+.board_write_title .name_check { position:relative; color:#666 }
+.board_write_title .name_check input { position:absolute; top:0; left:0; z-index:-1; width:0; height:0 }
+.board_write_title .title_area input { width:752px; height:20px; padding:10px 10px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -953px } /* 자유수다방 쓰기 */
+.board_write_title .title_area.select_box input { width:620px; height:20px; padding:10px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -998px }
+.board_write_title .title_area.select_box select { width:120px; margin-right:9px }
+.board_title2 { height:45px }
+.board_title2 h3 { font-size:30px; margin-bottom:33px }
+.board_write_title2 dt,
+.board_write_title2 dd { float:left; min-height:40px }
+.board_write_title2 dt { width:88px; font-size:15px; font-weight:600 }
+.board_write_title2 dd { width:772px }
+.board_write_title2 .title dt { margin-top:11px }
+.board_write_title2 .title input { width:752px; height:20px; padding:10px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -953px }
+.board_write_title2 .placechoice dt { padding-top:10px }
+.place_choice { position:relative; height:104px }
+.place_choice ul { width:784px; height:104px }
+.place_choice li { float:left; position:relative; width:380px; margin:0 12px 12px 0 }
+.place_choice li input { width:295px; height:20px; padding:10px 75px 10px 10px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -1043px }
+.place_choice .btn_area_add { position:absolute; bottom:12px; right:0 }
+.place_choice .btn_place_del { position:absolute; top:12px; right:50px }
+.place_choice .place_find { position:absolute; top:0; right:0; padding:10px 19px 10px 7px }
+.addfile .concur_box { margin:25px 0 0 }
+.addfile .concur_box a { margin-left:13px; font-size:13px; text-decoration:underline; font-weight:600; color:#999 }
+.addfile .concur_box label input { position:absolute; width:0 !important; height:0 !important; z-index:-1 !important }
+.board_write_rap .list_view_all { display:none }
+.board_write_rap .reply_donation { display:none }
+.board_write .board_rap { margin-bottom:30px }
+.board_write_motel { }
+.board_write_motel .set_area { }
+.board_write_motel .set_area li > strong { display:inline-block; width:88px; font-size:15px; font-weight:600 }
+.board_write_motel .title_box input { width:752px; height:20px; padding:10px 10px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -953px }
+.board_write_motel .title_box { margin:25px 0 12px }
+.board_write_motel .place_box { float:left }
+.board_write_motel .place_box .search { display:inline-block; position:relative }
+.board_write_motel .place_box .search input { width:295px; height:20px; padding:10px 75px 10px 10px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -1043px }
+.board_write_motel .place_box .btn_area_add { position:absolute; bottom:12px; right:0 }
+.board_write_motel .place_box .btn_place_del { position:absolute; top:12px; right:50px }
+.board_write_motel .place_box .place_find { position:absolute; top:0; right:0; padding:10px 19px 10px 7px; *padding-right:10px }
+.board_write_motel .grade_box { float:right }
+.board_write_motel .grade_box strong { margin-top:10px }
+.board_write_motel .grade_box > strong { float:left }
+.board_write_motel .star_box { float:left; position:relative; width:260px }
+.board_write_motel .star_box > a { display:block; position:absolute; top:0; left:0; z-index:20; height:31px; width:250px; padding:9px 0 0 10px; font-size:14px }
+.board_write_motel .star_box > a .icon_star { margin-right:55px; vertical-align:sub }
+.board_write_motel .star_box > a b { font-weight:normal; color:#fc7093 }
+.board_write_motel .star_box .star_list { position:absolute; top:35px; left:0; z-index:10 }
+.star_list { padding-top:5px; border:1px solid #ddd; background:#fff }
+.star_list a { display:block; width:238px; padding:6px 10px; font-size:14px; color:#666 }
+.star_list a:hover { background:#f5f5f5; color:#fc7093 }
+.star_list a .icon_star { margin-right:15px; vertical-align:bottom }
+
+/* 쓰기페이지 모달 */
+.modal_rap { overflow-y:scroll; position:fixed; top:0; left:0; z-index:200; width:100%; height:100%; background:url(http://image2.yanolja.com/site100/community/cover_modal.png) repeat 0 0 }
+.modal_rap .modal_area { position:relative; width:400px; margin:150px auto 50px }
+.modal_rap .bg_top { width:400px; height:10px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat 0 -249px }
+.modal_rap .bg_bottom { width:400px; height:10px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat 0 -264px }
+.modal_rap .bg_bottom_g { width:400px; height:10px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat 0 -324px }
+.modal_rap .icon_close { position:absolute; top:29px; right:20px }
+.modal_rap .modal_content { padding:14px 20px 45px; background:#fff }
+.modal_rap .title { padding-bottom:20px; margin-bottom:15px; border-bottom:1px solid #eaeaea; font-size:18px; font-weight:600 }
+.modal_rap .notice { margin-bottom:10px; color:#666 }
+.modal_rap .find_area .place_select { float:left; position:relative; width:120px; height:40px }
+.modal_rap .place_select > a { display:block; position:absolute; top:0; left:0; z-index:20; width:110px; height:28px; padding:12px 0 0 10px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat 0 -279px; color:#444; cursor:default }
+
+
+
+.modal_rap .place_select ul { position:absolute; top:35px; left:0; z-index:10; width:118px; padding-top:5px; border:1px solid #ddd; background:#fff }
+.modal_rap .place_select ul a { display:block; padding:10px }
+.modal_rap .find_area .find { float:left; position:relative; width:236px; margin-left:4px }
+.modal_rap .find_area .find input { width:176px; height:20px; padding:10px 50px 10px 10px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat -165px -204px }
+.modal_rap .find_area .place_find { position:absolute; top:0; right:0; padding:10px 19px 10px 7px }
+.modal_rap .list_box { margin-top:33px }
+.modal_rap .list_box table { width:100% }
+.modal_rap .list_box th { height:45px; font-weight:600; border-top:2px solid #ccc; border-bottom:1px solid #ccc; text-align:center }
+.modal_rap .list_box td { height:45px; border-bottom:1px solid #eaeaea }
+.modal_rap .list_box td a { color:#444 }
+.modal_rap .list_box td a:hover { text-decoration:underline; color:#fc7093 }
+.modal_rap .list_box .area { width:122px; text-align:center }
+.modal_rap .list_box p { margin-top:15px; color:#888 }
+.modal_rap .list_box .none_data { height:275px; font-size:14px; font-weight:600; text-align:center }
+.modal_on { overflow:hidden }
+.modal .bg_bottom_g { width:600px; height:10px; background:url(http://image2.yanolja.com/site100/community/bg_modal.png) repeat-x 0 -30px }
+.modal .modal_area { position:relative; padding:0 20px; background:#fff }
+.modal h4 { padding:10px 0 20px 0; margin-bottom:20px; border-bottom:1px solid #eaeaea; font-size:18px; font-weight:600 }
+.modal .close { display:block; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 0 }
+.modal_rap .no_alliance_area { padding:20px 18px 40px; margin-top:-20px; background:#fafafa }
+.modal_rap .no_alliance_area .no_alliance_input { width:260px; height:20px; padding: 10px; margin-right:4px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat -125px -279px }
+.modal_rap .no_alliance_area .btn_76x40_g { font-weight:600; color:#fff }
+.modal_rap .no_alliance_area .ment { color:#666 }
+.modal_rap .no_alliance_area .text { color:#888 }
+.modal_rap .no_alliance_area > div { margin:10px 0 15px }
+
+/* 읽기페이지 */
+.view_rap { z-index:100; margin-bottom:100px }
+.view_rap .view_head { position:relative; padding:15px 10px 50px; border-bottom:1px solid #eaeaea }
+.view_rap .view_head .view_title { padding-right:190px; margin-bottom:25px; font-size:32px; line-height:38px; word-break:break-all; }
+.view_rap .view_head .write_user { position:absolute; top:68px; right:10px; font-size:14px }
+.view_rap .view_head .info { color:#888 }
+.view_rap .view_head .info .view { margin-left:15px; color:#666 }
+.view_rap.hospiral_rap .view_head .info .view { margin-left:0 }
+.view_rap .view_head .info .view span { color:#888 }
+.view_rap .view_head .info .date { margin-left:10px; color:#aaa }
+.view_rap .view_head .info .date span { color:#ccc }
+.view_rap .view_head .info .icon_love { margin-right:4px; vertical-align:middle }
+.view_rap .view_content { padding:50px 30px 90px; font-size:15px; word-break:break-all; color:#666 }
+.view_rap .view_content img { max-width:100% }
+.view_rap .view_content p { font-size:15px; color:#666 }
+.view_rap .response_area { position:relative; margin-bottom:80px; text-align:center }
+.view_rap .response_area button { margin:0 2px }
+.view_rap .response_area .sns_box { position:absolute; right:0; top:0 }
+.view_rap .response_area a { margin-left:8px }
+.view_rap .response_area .sns_ss { margin-right:13px }
+.view_rap .move_area { padding-top:15px; border-top:1px solid #eaeaea }
+.view_rap .move_area .change_view { float:left }
+.view_rap .move_area .next { margin-left:-2px }
+.change_view a { display:inline-block; width:99px; height:28px; padding-top:8px; font-size:14px; text-align:center; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -383px; color:#666 }
+.change_view .next a { width:100px; background-position:-310px -383px }
+.change_view a:hover { color:#fc7093 }
+.change_view .prev {}
+.view_rap .move_area .btn_box { float:right }
+.view_rap .move_area .btn_box button { margin-left:2px }
+.view_rap .move_area .btn_box a { height:29px; padding-top:7px; text-align:center; color:#fff }
+.reply_rap .edit_area .check_box { position:absolute; top:13px; right:15px }
+
+/* reply_rap */
+.reply_rap { margin-top:60px }
+.reply_rap .edit_area { position:relative }
+.reply_rap .edit_area h4 { margin-bottom:20px; font-size:16px; font-weight:600; color:#666 }
+.reply_rap .edit_area a { position:absolute; top:7px; right:0; color:#999 }
+.reply_rap .edit_area a:hover { color:#fc7093 }
+.reply_area { padding-top:20px }
+.reply_box { position:relative; padding:15px 0 20px; border-bottom:1px solid #eaeaea }
+.reply_box .user_img { float:left; width:45px }
+.reply_box .user_img .user { display:inline-block; position:relative; width:34px; height:34px; padding:4px; margin-left:-4px; vertical-align:middle }
+.reply_box .user_img .user img { width:34px; height:34px; border-radius:50% }
+.reply_box .user_img .cover42 { position:absolute; top:0; left:0 }
+.reply_box .date { float:right; position:absolute; bottom:20px; right:10px }
+.reply_box .date p { text-align:right; font-size:11px; color:#aaa }
+.reply_box .date a { display:inline-block; float:left; margin-top:40px; color:#aaa }
+.reply_box .date .bar { float:left; margin:44px 8px 0 }
+.reply_box .text { float:left; width:600px; padding-top:10px }
+.reply_box .text .user { padding-bottom:10px }
+.reply_box .text .user .id { font-size:14px; font-weight:600 }
+.reply_box .text .user em { margin:0 5px; color:#aaa }
+.reply_box .text .user .write_time { font-size:12px; color:#aaa }
+.reply_box .text .cnt { padding-bottom:20px; font-size:14px; color:#666 }
+.reply_box .text .user_id { margin-right:5px; font-weight:600; color:#ffa2b6 }
+.reply_box .text .icon_reply { margin-right:8px; margin-top:-2px }
+.reply_box .text img { max-width:100%; padding-bottom:10px }
+.reply_box.reply_re { padding-left:24px; background:url(http://image2.yanolja.com/site100/community/bg_re_reply.png) no-repeat 0 30px }
+.reply_box.reply_re .text { width:476px }
+.reply_box.closed { padding:26px 0; font-size:14px; color:#999 }
+.reply_box.closed.reply_re { padding-left:22px }
+.icon_reply { display:inline-block; width:18px; height:14px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -576px -70px }
+.icon_reply_photo { display:inline-block; width:18px; height:14px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -576px -70px }
+.icon_view { display:inline-block; width:20px; height:14px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -609px -95px }
+.icon_good { display:inline-block; width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -611px -116px }
+a:hover .icon_reply { background-position:-598px -70px }
+.edit_box { position:relative }
+.edit_box iframe { height:130px!important }
+.btn_write_reply { position:absolute; bottom:0; *bottom:7px; right:0; width:100px; height:80px; font-size:15px; font-weight:600; background:url(http://image2.yanolja.com/site100/community/btn_write_reply.jpg) no-repeat 0 0; color:#fff }
+.btn_modify_reply { position:absolute; bottom:0; *bottom:7px; right:0; width:100px; height:80px; font-size:15px; font-weight:600; background:url(http://image2.yanolja.com/site100/community/btn_write_modify.jpg) no-repeat 0 0; color:#fff }
+#repBoard .reply_number{ text-align:center }
+#repBoard .reply_number { margin-top:60px; text-align:center }
+#repBoard .reply_number a { display:inline-block; width:34px; height:27px; margin:0 2px; padding-top:7px }
+#repBoard .reply_number a.on,
+#repBoard .reply_number a:hover { background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -98px -78px; color:#fc7093 }
+#repBoard .reply_number a.prev { font-size:0; margin-right:8px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -107px -40px }
+#repBoard .reply_number a.prev:hover { background-position:-310px -40px }
+#repBoard .reply_number a.next { font-size:0; margin-left:8px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -146px -40px }
+#repBoard .reply_number a.next:hover { background-position:-349px -40px }
+.reply_container.reply_best { display:none }
+.edit_box .icon_check { background-position:-621px -70px }
+.edit_box .on .icon_check { background-position:-108px -117px }
+.edit_box input { position:absolute; top:0; left:0; z-index:-1; width:0; height:0 }
+.write_user .user_img_box { position:relative; display:inline-block; width:46px; height:46px; vertical-align:middle }
+.write_user .user_img_box img { padding:4px }
+.write_user .user { display:inline-block; position:relative; width:34px; height:34px; padding:4px; margin-left:-4px; vertical-align:middle }
+.write_user .cover46 { position:absolute; top:0; left:0 }
+
+/* detail_area_review */
+.detail_area_review { margin-bottom:100px; text-align:center }
+.detail_area_review > span { display:inline-block; width:208px; height:196px; padding:21px 0; margin-left:-4px; border:1px solid #ddd; border-left:none }
+.detail_area_review > span:first-child { margin-left:0; border-left:1px solid #ddd}
+.detail_area_review .title { font-size:16px; color:#fc7093 }
+.detail_area_review .title .icon_spot { margin:-3px 5px 0 0 }
+.detail_area_review .type { font-size:13px; color:#999 }
+.detail_area_review .star_box { margin-top:24px }
+.detail_area_review .point { font-size:32px; color:#444 }
+.detail_area_review .area_type { margin-top:12px } 
+.detail_area_review .area_type > span { margin:0 5px }
+.detail_area_review > span:first-child { border-top-left-radius:5px; border-top-right-radius:5px }
+.detail_area_review > span:last-child { border-bottom-left-radius:5px; border-bottom-right-radius:5px }
+
+/* total_point_area */
+.total_point_area { padding:18px 12px; border-bottom:1px solid #eaeaea }
+.total_point_area .title { float:left }
+.total_point_area .title span { display:inline-block; margin-left:5px; vertical-align:middle; font-size:16px; color:#fc7093 }
+.total_point_area .title a { font-size:16px; color:#fc7093 }
+
+.total_point_area .total_point { float:right }
+.total_point_area .total_point span { font-size:16px; color:#666 }
+.total_point_area .total_point span { margin:-3px 25px 0 }
+.total_point_area .total_point strong { margin-left:10px; font-weight:600; color:#fc7093 }
+.total_point_area .total_point .icon_star { margin-top:-4px }
+
+/* 전문의상담 */
+.caution_hospital { padding:0 0 70px 30px; font-size:15px; color:#fc7093 }
+.reply_rap_hospital { margin-top:90px }
+.reply_rap_hospital h4 { font-size:16px; padding-bottom:20px }
+.reply_rap_hospital .box { padding:40px 0; border-top:1px solid #eaeaea }
+.reply_rap_hospital .box > div { float:left }
+.reply_rap_hospital .img_box { width:135px }
+.reply_rap_hospital .user_img { float:left; width:45px }
+.reply_rap_hospital .user_img .user { display:inline-block; position:relative; width:34px; height:34px; padding:4px; margin-left:-4px; vertical-align:middle }
+.reply_rap_hospital .user_img .cover42 { position:absolute; top:0; left:0 }
+.reply_rap_hospital .user_name { float:left; padding-top:10px; vertical-align:middle; font-size:13px; color:#666 }
+.reply_rap_hospital .cnt{ width:605px; font-size:13px; color:#666 }
+.reply_rap_hospital .date { width:120px; padding-top:3px; font-size:11px; text-align:right; color:#aaa }
+
+/* MY커뮤니티 */
+.myboard_tab { }
+.myboard_tab li { float:left }
+.myboard_tab li a { padding-top:14px; height:36px; text-align:center; font-size:16px; color:#666 } 
+.myboard_tab li.on a { color:#fff }
+.board_number_mylist {padding-top:60px }
+.my_community { }
+.my_community td. { }
+.board_list table.my_community th { width:90px }
+.board_list table.my_community td.subject2 { width:78px; font-size:12px; text-align:center; color:#fc7093 }
+.board_list table.my_community td.title4 > a { max-width:600px; color:#444 }
+.board_list table.my_community td.title4 > a:hover { color:#fc7093 }
+.board_list table.my_community td.title4 b { font-weight:normal; vertical-align:middle }
+.board_list table.my_date th.title {  }
+.board_list table.my_date th.date { width:90px }
+.board_list table.my_date td.title > a { max-width:480px; color:#444 }
+.board_list table.my_date td.title > a:hover { color:#fc7093 }
+.board_list table .icon_star { margin:0 }
+.board_list table.list .spot { font-size:12px; color:#fc7093 }
+
+/* 북마크 */
+.bookmark_rap .board_title_list { margin-bottom:60px }
+.board_list table.bookmark_table { padding-top:60px }
+.board_list table.bookmark_table .check { width:32px }
+.board_list table.bookmark_table .title_area { width:578px }
+.board_list table.bookmark_table .user_area { width:160px }
+.board_list table.bookmark_table .date_area { width:90px }
+.board_list table.bookmark_table td { padding:10px 0 }
+.board_list table.bookmark_table td.check { text-align:center }
+.board_list table.bookmark_table td.date_area { text-align:center; font-size:12px; color:#666 }
+.board_list table.bookmark_table td.title_area { font-size:14px; color:#444 }
+.board_list table.bookmark_table td.title_area a { font-size:14px; color:#444 }
+.board_list table.bookmark_table td.title_area a:hover { color:#fc7093 }
+.board_list table.bookmark_table td.title_area .memo_write a { font-size:12px; color:#aaa }
+.board_list table.bookmark_table td.title_area .memo_write a:hover { color:#fc7093 }
+.bookmark_table .title_area .memo_my { margin-top:3px }
+.bookmark_table .title_area .memo_my .title { margin-right:8px; font-size:12px; color:#fc7093 }
+.bookmark_table .title_area .memo_my .cnt { display:inline-block; max-width:400px; font-size:12px; vertical-align:top; color:#aaa }
+.bookmark_table .title_area .memo_my .edit { margin-left:20px }
+.bookmark_table .title_area .memo_my .edit a { font-size:12px; color:#aaa }
+.bookmark_table .title_area .memo_my .edit a:hover { color:#fc7093 }
+.bookmark_table .title_area .memo_my .edit .bar { margin:0 7px 0 8px }
+.user_area span.icon { float:left; margin-right:3px; position:relative; width:46px; height:46px }
+.user_area span.icon em { position:absolute; top:0; left:0 }
+.user_area span.name,
+.user_area span.name { float:left; width:95px; margin-top:-1px; padding-top:16px; line-height:normal; font-size:13px; color:#444 }
+.bookmark_btn_box { margin-top:16px }
+.bookmark_btn_box .text_h36 { font-weight:normal }
+.bookmark_btn_box button { margin-right:3px }
+.board_list table.bookmark_table.add_star .title_area { width:459px }
+.board_list table.bookmark_table.add_star .grade_area { width:120px }
+.board_list table.bookmark_table.add_star td.grade_area { width:115px; padding-left:5px }
+
+/* gallery_list */
+.gallery_list { width:880px; margin-left:-10px; padding-top:35px; border-bottom:1px solid #eaeaea }
+.gallery_list > li { float:left; width:200px; height:304px; margin:0 10px; }
+.gallery_list > li > a { display:block; position:relative }
+.gallery_list > li > a:hover .title p { color:#fc7093 }
+.gallery_list .user_img { float:left; width:45px }
+.gallery_list .user_img .user { display:inline-block; position:relative; width:34px; height:34px; padding:4px; margin-left:-4px; vertical-align:middle }
+.gallery_list .user_img .cover46 { position:absolute; top:0; left:0 }
+.gallery_list .user { padding-top:15px }
+.gallery_list .user a { float:left }
+.gallery_list .user .title { float:left; width:155px; font-size:16px; color:#444 }
+.gallery_list .user .title a { width:150px }
+.gallery_list .user .title p { padding-top:5px; font-size:16px; line-height:20px; word-break:break-all; color:#444 }
+.gallery_list .user .title span { display:block; padding-top:3px; font-size:12px; color:#888 }
+.gallery_list .info { padding:10px 0 8px 4px }
+.gallery_list .info em { margin-right:5px }
+.gallery_list .info > span { margin-right:10px }
+.gallery_list .info > span > span { vertical-align:middle; font-size:12px; color:#888 }
+.gallery_list .date { padding-left:4px; font-size:12px; color:#aaa }
+.gallery_list .best { position:absolute; top:0; left:0 }
+
+/* 신고모달 */
+.modal_report { overflow-y:scroll; position:fixed; top:0; left:0; z-index:1000; width:100%; height:100%; background:url(http://image2.yanolja.com/site100/community/cover_modal.png) repeat 0 0 }
+.modal_report .modal_report_rap { *padding-top:30px }
+.modal_report .modal_report_rap { width:400px; margin:150px auto }
+.modal_report .bg_top { width:400px; height:10px; background:url(http://image2.yanolja.com/site100/community/bg_modal.png) repeat-x 0 -45px }
+.modal_report .bg_bottom { width:400px; height:10px; background:url(http://image2.yanolja.com/site100/community/bg_modal.png) repeat-x 0 -60px }
+.modal_report .bg_bottom_g { width:400px; height:10px; background:url(http://image2.yanolja.com/site100/community/bg_modal.png) repeat-x 0 -75px }
+.modal_report .modal_area { position:relative; padding:0 20px; width:360px; padding-bottom:40px; *margin-top:-2px; background:#fff }
+.modal_report h4 { padding:10px 0 20px 0; margin-bottom:20px; border-bottom:1px solid #eaeaea; font-size:18px; font-weight:600 }
+.modal_report .close { display:block; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 0 }
+.modal_report .icon_close { position:absolute; top:15px; right:20px }
+.modal_report .head { padding:10px 0; border-top:2px solid #ccc; border-bottom:1px solid #ccc }
+.modal_report .head dl { padding:5px 0; }
+.modal_report .head dt { float:left; width:57px; font-size:14px; font-weight:600; letter-spacing:-2px }
+.modal_report .head dd { float:left; width:303px; font-size:14px; letter-spacing:-2px; color:#666 }
+.modal_report h5 { padding:15px 0; font-size:14px; letter-spacing:-2px; font-weight:600 }
+.modal_report .report_choice {  }
+.modal_report .report_choice li { position:relative; height:40px }
+.modal_report .report_choice span { padding-left:10px; font-size:14px; vertical-align:-1px; letter-spacing:-2px; color:#666 }
+.modal_report .report_choice em { display:inline-block; width:20px; height:20px; vertical-align:middle; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -618px 0 }
+.modal_report .report_choice .on em { background-position: -643px 0 }
+.modal_report .report_choice input { position:absolute; top:0; left:0; z-index:-1; width:0; height:0 }
+.modal_report textarea { width:338px; height:66px; padding:10px; border:1px solid #ccc; font-size:12px }
+.modal_report .photo_report { padding-top:8px }
+.modal_report .photo_report .btn_photo_up { display:inline-block; float:left; width:250px; height:30px; margin-right:10px }
+.modal_report .photo_report .btn_close { float:left; margin-top:8px }
+.modal_report .photo_report .btn_add_photo { float:right }
+.modal_report .notice { padding-top:10px; margin-top:20px; border-top:1px solid #eaeaea; color:#888 }
+.modal_report .notice span { display:block; padding-left:7px; color:#888 }
+.modal_report .btn_area { padding:20px 0 10px; text-align:center; background:#f5f5f5; }
+.modal_report .btn_area button { margin:0 2px; font-weight:600; }
+.modal_bg { position:absolute; top:0; left:0; width:100%; height:100%; }
+.btn_70x30 { width:70px; height:30px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -695px -396px; font-size:12px; letter-spacing:-2px; color:#fff; }
+.btn_70x30:hover { background-position:-620px -396px }
+.btn_close { width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -668px 0 }
+
+/* 19금 키워드 검색시 */
+.search_19 {position: relative;padding: 17px 142px 17px 20px;margin-bottom: -1px;border: solid 1px #ffeaef;background: #fff7f9;z-index: 20;}
+.search_19 a {position: absolute;top: 15px;right: 30px;font-size: 14px;color: #ff6f8d;}
+.search_19 .bl_arrow01 {display: inline-block;position: absolute;top: 23px;right: 20px;width: 5px;height: 7px;margin-left: 8px;}
+
+/*야놀자의약속_20150824_이아름추가*/
+.banner_promise { position:relative; }
+/*.banner_promise .inner_right { position:absolute; top:80px; right:-190px; width:150px; height:auto }*/
+.banner_promise .inner_right { position:fixed; top:232px; right:50%; width:150px; height:auto; margin-right:-620px }
+.banner_promise .inner_top { display:block; width:100%; height:auto; margin-bottom:36px }
+.banner_promise a { display:block; width:100%; height:100% }
+.banner_promise img { display:inline-block; width:100%; height:100% }
+
+/* img */
+em { display:inline-block }
+.icon_table_new { width:16px; height:16px; margin-left:5px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -117px }
+.icon_re_post { width:13px; height:12px; margin-right:5px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -51px -117px }
+.icon_table_hot { width:25px; height:7px; margin-left:5px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -21px -117px }
+.icon_ing { width:46px; height:20px; vertical-align:top; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -196px -78px }
+.icon_end { width:46px; height:20px; vertical-align:top; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -247px -78px }
+.btn_all { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -188px }
+.btn_all:hover { color:#fc7093 }
+.btn_del { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -229px }
+.btn_del:hover { background-position:-105px -229px }
+.icon_check { display:inline-block; width:16px; height:16px; margin-right:5px; vertical-align:text-top; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -87px -117px }
+.on.icon_check,
+.on .icon_check { background-position:-108px -117px }
+.btn_113x40 { display:inline-block; width:113px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -137px }
+.btn_100x36 { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -188px }
+.btn_write { display:inline-block; width:80px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -210px -188px }
+.btn_write:hover { background-position:-294px -188px }
+.btn_100x36_g { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -229px }
+.btn_100x36_g:hover { background-position:-105px -229px }
+.btn_54x34_g { display:inline-block; width:54px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -227px }
+.btn_54x34_g:hover { background-position:-269px -227px }
+.btn_100x36_wg { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -270px }
+.btn_100x36_wg:hover { background-position:-104px -270px }
+.btn_100x36_p { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -311px }
+.btn_100x36_p:hover { background-position:-104px -311px }
+.btn_99x34_g { display:inline-block; width:99px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -266px }
+.btn_99x34_g:hover { background-position:-315px -266px }
+.btn_100x34_wg { display:inline-block; width:100px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -305px }
+.btn_100x34_wg:hover { background-position:-316px -305px }
+.btn_76x40_g { display:inline-block; width:76px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -352px }
+.btn_76x40_g:hover { background-position:-80px -352px }
+.btn_54x34_p { display:inline-block; width:54px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -344px }
+.btn_54x34_p:hover { background-position:-269px -344px }
+.btn_area_add { display:inline-block; width:100px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -397px }
+.btn_area_add:hover { background-position:-104px -397px }
+.btn_l_99x36 { display:inline-block; width:99px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -383px }
+.btn_r_100x36 { display:inline-block; width:100px; height:36px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -310px -383px }
+.btn_star { display:inline-block; width:100px; height:40px; padding-left:17px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -442px }
+.btn_star:hover { background-position:-106px -442px }
+.btn_star.on { background-position:-106px -442px }
+.btn_heart { display:inline-block; width:100px; height:40px; text-align:center; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -442px }
+.btn_160x40 { display:inline-block; width:160px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -487px }
+.btn_144x40 { display:inline-block; width:144px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -165px -487px }
+.btn_113x40 { display:inline-block; width:113px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -314px -487px }
+.btn_113x40_p { display:inline-block; width:113px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -532px }
+.btn_113x40_p:hover { background-position:-119px -532px }
+.text_h34 { font-weight:600; color:#fefefe }
+.text_h36 { font-weight:600; font-size:14px; color:#fefefe }
+.text_h36w { font-size:14px; color:#666 }
+.text_h36w:hover { color:#fc7093 }
+.text_h40 { font-weight:600; color:#fefefe }
+.text_h40_w { font-size:14px; color:#666 }
+.text_h40_w:hover { color:#fc7093 }
+.text_h40_p { font-size:14px; color:#fc7093 }
+.text_h40_p:hover { color:#fff }
+.icon_close { display:inline-block; width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -171px -117px }
+.input80x34 { display:inline-block; width:70px; padding:0 5px; height:34px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -105px -188px }
+.icon_love { display:inline-block; width:18px; height:18px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -363px -78px }
+button .icon_love { margin-right:5px }
+button:hover .icon_love,
+button.on .icon_love { background-position:-621px -44px }
+.sns_f { display:inline-block; width:40px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -388px 0 }
+.sns_t { display:inline-block; width:40px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -433px 0 }
+.sns_ss { display:inline-block; width:40px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -478px 0 }
+.icon_spot { display:inline-block; width:12px; height:17px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -384px -78px }
+.icon_holiday_r { display:inline-block; width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -388px -45px }
+.icon_holiday_b { display:inline-block; width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -409px -45px }
+.icon_reset { display:inline-block; width:12px; height:12px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -401px -78px }
+.icon_img_view { display:inline-block; width:23px; height:20px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -430px -45px }
+.on .icon_img_view, a:hover .icon_img_view { background-position:-430px -70px }
+.icon_map_view { display:inline-block; width:14px; height:19px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -458px -45px }
+.on .icon_map_view, a:hover .icon_map_view { background-position:-458px -70px }
+.cover46g { display:none; width:46px; height:46px; background:url(http://image2.yanolja.com/site100/community/46x46_gray.png) no-repeat 0 }
+.cover46w { display:none; width:46px; height:46px; /*background:url(http://image2.yanolja.com/site100/community/46x46_white.png) no-repeat 0 0 */ }
+.icon_search_w { display:inline-block; width:18px; height:18px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -454px -234px }
+.bar { display:inline-block; width:1px; height:12px; vertical-align:middle; background:#ddd }
+.point_color { color:#fc7093 }
+.cover42 { display:inline-block; width:42px; height:42px; /* background:url(http://image2.yanolja.com/site100/community/42x42_white_reply.png) no-repeat 0 0 */ }
+.cover42_p { display:inline-block; width:42px; height:42px; /* background:url(http://image2.yanolja.com/site100/community/42x42_pink_reply.png) no-repeat 0 0 */ }
+.cover46 { display:inline-block; width:46px; height:46px; background:url(http://image2.yanolja.com/site100/community/46x46_white_reply.png) no-repeat 0 0 }
+.icon_menu { display:inline-block; width:20px; height:15px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -617px -218px }
+.icon_menu_w { display:inline-block; width:20px; height:15px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -642px -218px }
+.icon_search { display:inline-block; width:18px; height:18px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -484px -249px }
+a:hover .icon_search { background-position:-507px -248px }
+.icon_alarm { display:inline-block; width:22px; height:22px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -552px -216px }
+.on .icon_alarm { background-position:-585px -216px }
+.icon_alarm_w { display:inline-block; width:24px; height:25px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -650px -273px }
+.on > a > .icon_alarm_w { background-position:-678px -273px }
+.icon_my1 { display:inline-block; width:11px; height:14px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -553px -248px }
+.icon_my2 { display:inline-block; width:12px; height:15px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -569px -248px }
+.icon_my3 { display:inline-block; width:11px; height:15px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -586px -247px }
+.icon_my4 { display:inline-block; width:15px; height:14px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -602px -247px }
+.icon_my5 { display:inline-block; width:15px; height:12px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -622px -248px }
+.icon_my6 { display:inline-block; width:12px; height:13px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -642px -248px }
+.icon_my7 { display:inline-block; width:12px; height:13px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -659px -247px }
+.icon_my8 { display:inline-block; width:12px; height:17px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -678px -247px }
+.icon_19 { display:inline-block; width:17px; height:17px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -667px -218px } 
+a:hover .icon_19 { background-position:-689px -218px }
+.icon_photo { display:inline-block; width:23px; height:20px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -498px -45px }
+.icon_best { display:inline-block; width:46px; height:20px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -559px -369px }
+.icon_table_19 { display:inline-block; width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -477px -45px }
+.bg_select120x40 { display:inline-block; width:120px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -485px -773px }
+.input640x40 { display:inline-block; width:640px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat 0 -998px }
+.btn_place_del { display:inline-block; width:16px; height:16px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -699px -247px }
+.btn_place_find { display:inline-block; width:20px; height:20px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -720px -247px }
+.select260x40 { display:inline-block; width:260px; height:40px; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -385px -1043px }
+.icon_star { display:inline-block; width:108px; height:20px; margin-left:8px; background:url(http://image2.yanolja.com/site100/community/star.png) no-repeat 0 -300px }
+.icon_star.star0 { background-position:0 -300px }
+.icon_star.star1 { background-position:0 -270px }
+.icon_star.star2 { background-position:0 -240px }
+.icon_star.star3 { background-position:0 -210px }
+.icon_star.star4 { background-position:0 -180px }
+.icon_star.star5 { background-position:0 -150px }
+.icon_star.star6 { background-position:0 -120px }
+.icon_star.star7 { background-position:0 -90px }
+.icon_star.star8 { background-position:0 -60px }
+.icon_star.star9 { background-position:0 -30px }
+.icon_star.star10 { background-position:0 0 }
+.area_type span { display:inline-block; width:48px; height:48px; background:url(http://image2.yanolja.com/site100/community/community_bg.png) no-repeat 0 -339px }
+.area_type .type1 { background-position:0 -339px }
+.area_type .type2 { background-position:-53px -339px }
+.area_type .type3 { background-position:-106px -339px }
+
+
+
+.view_rap { z-index:100; margin-bottom:100px }
+.view_rap .view_head { position:relative; padding:15px 10px 50px; border-bottom:1px solid #eaeaea }
+.view_rap .view_head .view_title { padding-right:190px; margin-bottom:25px; font-size:32px; line-height:38px; word-break:break-all; }
+.view_rap .view_head .write_user { position:absolute; top:68px; right:10px; font-size:14px }
+.view_rap .view_head .info { color:#888 }
+.view_rap .view_head .info .view { margin-left:15px; color:#666 }
+.view_rap.hospiral_rap .view_head .info .view { margin-left:0 }
+.view_rap .view_head .info .view span { color:#888 }
+.view_rap .view_head .info .date { margin-left:10px; color:#aaa }
+.view_rap .view_head .info .date span { color:#ccc }
+.view_rap .view_head .info .icon_love { margin-right:4px; vertical-align:middle }
+.view_rap .view_content { padding:50px 30px 90px; font-size:15px; word-break:break-all; color:#666 }
+.view_rap .view_content img { max-width:100% }
+.view_rap .view_content p { font-size:15px; color:#666 }
+.view_rap .response_area { position:relative; margin-bottom:80px; text-align:center }
+.view_rap .response_area button { margin:0 2px }
+.view_rap .response_area .sns_box { position:absolute; right:0; top:0 }
+.view_rap .response_area a { margin-left:8px }
+.view_rap .response_area .sns_ss { margin-right:13px }
+.view_rap .move_area { padding-top:15px; border-top:1px solid #eaeaea }
+.view_rap .move_area .change_view { float:left }
+.view_rap .move_area .next { margin-left:-2px }
+.change_view a { display:inline-block; width:99px; height:28px; padding-top:8px; font-size:14px; text-align:center; background:url(http://image2.yanolja.com/site100/community/board.png) no-repeat -211px -383px; color:#666 }
+.change_view .next a { width:100px; background-position:-310px -383px }
+.change_view a:hover { color:#fc7093 }
+.change_view .prev {}
+.view_rap .move_area .btn_box { float:right }
+.view_rap .move_area .btn_box button { margin-left:2px }
+.view_rap .move_area .btn_box a { height:29px; padding-top:7px; text-align:center; color:#fff }
+.reply_rap .edit_area .check_box { position:absolute; top:13px; right:15px }

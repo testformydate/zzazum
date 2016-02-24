@@ -14,22 +14,26 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 var card_imgNum="";
-var main_imgNum="";
-
+var main_imgNum="none";
+var count = 0;
 $(document).ready(function(){
-	$("#upload_btn").live("change",function(){
+	/* $("#upload_btn").live("change",function(){
 				readURL(this);
-	});
+	}); */
+	
+	$(".ps_loading").hide;
 	
 });
 
-function readURL(input) {
+/* function readURL(input) {
 	$(".ps_insert_show").html('');
 	var cnt=0;
 	for(ima=0; ima<input.files.length; ima++){
-		$(".ps_insert_show").append("<div class='ps_insert_card_body'><input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'><input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'><div class='close_btn'><img src='resources/icons/can.PNG' id='card_cancel"+ima+"'></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+ima+"'></div></div>");
+		$(".ps_insert_show").append("<div class='ps_insert_card_body'><div class='close_btn'><img src='resources/icons/can.PNG' id='card_cancel"+ima+"'></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+ima+"'></div></div>");
 	   	$("#ps_insert_card"+ima).attr('onclick',"modal('ps_insert_card"+ima+"')");
 	   	$("#card_cancel"+ima).attr('onclick',"deletePicture('"+ima+"','"+input.files[ima].name+"')");
+	   	$(".ps_insert_body>form").append("<input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'>");
+		$(".ps_insert_body>form").append("<input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'>");
 		var reader = new FileReader();
         reader.readAsDataURL(input.files[ima]);
         reader.onload = function(){
@@ -38,9 +42,9 @@ function readURL(input) {
         	cnt+= 1;
         }
 	}
-}
+} */
 
-function modal(card_id){
+function modal(card_id, fileName){
 	card_imgNum= card_id;
 	
 	if($("#pd_lc").val()=="none"){
@@ -56,8 +60,8 @@ function modal(card_id){
 	}
 	
 	img_add = $("#"+card_id).css('background-image');
+	$(".modal_img>img").attr("src","resources/ps_data/"+fileName);
 	$("#modal_context").attr("value", $("."+card_imgNum).val());
-	$(".modal_img").css({"background-image": img_add ,"background-repeat":"no-repeat","background-size":"550px 550px"})
 	location.href="#openModal";
 }
 
@@ -71,14 +75,15 @@ function modalCancel(cate){
 function modalWrite(){
 	$("."+card_imgNum).attr("value",$("#modal_context").val());
 	$("."+card_imgNum+"_loc").attr("value",$("#modal_loc").val());
-	if("value",$("#modal_context").val()==""){
+	
+	if($("#modal_context").val()==""){
 		$("#"+card_imgNum).css("border-color", "#eee");
 	}else{
 		$("#"+card_imgNum).css("border-color", "#69D2E7");
 	}
 	
-	if(main_imgNum != $("#main_val").val()){
-		if($("#"+main_imgNum).val()==""){
+	if(main_imgNum != $("#main_val").val() && main_imgNum != ""){
+		if($("."+main_imgNum).val()==""){
 			$("#"+main_imgNum).css("border-color", "#eee");
 		}else{
 			$("#"+main_imgNum).css("border-color", "#69D2E7");
@@ -86,7 +91,10 @@ function modalWrite(){
 		main_imgNum = card_imgNum;
 	}
 	
-	$("#"+main_imgNum).css("border-color", "red");
+	if($("#main_btn").val()=="대표사진"){
+		$("#"+card_imgNum).css("border-color", "red");
+	}
+	
 	$("#modal_loc_init").attr("selected","selected");
 	$("#main_btn").attr("value","대표선택");
 	card_imgNum="";
@@ -110,7 +118,7 @@ function hisBack(){
 
 function insertSubmit(){
 	
-	if($("#pd_lc").val()=="none"){
+	if($("#pd_lc").val()==""){
 		alert("지역을 선택해주세요!");
 		$("#pd_lc").focus();
 		return;
@@ -153,13 +161,52 @@ function modalLocation(){
 	});
 }
 
-function deletePicture(ps_id, fileName){
-	alert(ps_id);
-	alert(fileName);
-	$("#ps_insert_card"+ps_id).remove();
-	$("#card_cancel"+ps_id).remove();
-	$("#upload_btn").clear(fileName);
+function deleteCard(ps_id, fileName){
 	
+	if(main_imgNum === "ps_insert_card"+ps_id){
+		$("#main_val").attr("value", "");
+	}
+	
+	$("#ps_insert_card"+ps_id).parent().remove();
+	$(".ps_insert_body>form").append("<input type='hidden' class='insert_delete' name='deleteFile' value='"+ fileName +"'>");
+}
+
+function showProgress(evt) {
+	$(".ps_loading").show();
+}
+
+function fileUpload(){
+	var formdata = new FormData() ;
+	var str ="";
+	formdata.append('pf_email', $("#getId").val());
+	$.each($("#upload_btn")[0].files, function(index, fileObj){
+		count++;
+		formdata.append('pd_images', fileObj);
+		str += "<div class='ps_insert_card_body'><div class='close_btn'><img src='resources/icons/close_btn.png' id='card_cancel"+count+"' ></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+count+"'><img src='resources/ps_icon/loding.gif'></div><input type='hidden' class='ps_insert_card"+count+"_loc' value='' name='pl_ids'><input type='hidden' class='ps_insert_card"+count+"' value='' name='pd_contexts'><input type='hidden' value='"+ fileObj.name +"' name='pd_images'></div>";
+		
+	});
+	count -= $("#upload_btn")[0].files.length;
+	$(".ps_insert_show").append(str);
+	
+	$.ajax({
+		url:"tempFileUp",
+		type:'post',
+		data: formdata,
+		processData: false,
+        contentType: false,
+		success:function(data){
+			$.each(data, function(index, fileObj){
+				count++;
+				$("#card_cancel"+count).attr("onclick","deleteCard('"+count+"','"+fileObj.name+"')");
+				$("#ps_insert_card"+count).attr('onclick',"modal('ps_insert_card"+count+"','"+fileObj.pf_name+"')");
+				$("#ps_insert_card"+count+">img").attr('src',"resources/ps_data/"+fileObj.pf_name);
+			});
+		}
+	});
+}
+
+function fileTag(){
+	$("#upload_btn").click();
 }
 </script>
 </head>
@@ -180,7 +227,7 @@ function deletePicture(ps_id, fileName){
 		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~">
 	</div>
 	<div class="ps_insert_file">
-			<img class="ps_icon" src="resources/ps_icon/picture_add.png"><input type="file" multiple="multiple" id="upload_btn" name="pd_images">
+			<img class="ps_icon" src="resources/ps_icon/picture_add.png" onclick="fileTag()">
 	</div>
 	<div class="ps_insert_label">
 		<span class="comment_color">ㅁ</span>Comment작성
@@ -195,7 +242,7 @@ function deletePicture(ps_id, fileName){
 		<input type="button" value="작성" onclick="insertSubmit()">
 		<input type="button" value="취소" onclick="hisBack()">
 	</div>
-	<input type="hidden" id="main_val" name="main_img" valeu="">
+	<input type="hidden" id="main_val" name="main_img" value="">
 	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">	
 	</form>
 </div>
@@ -208,16 +255,24 @@ function deletePicture(ps_id, fileName){
 			</select>
 		</div>
 		<div class="modal_attr modal_img">
+			<img>
 		</div>
 		<div class="modal_title">한 줄 Comment</div>
 		<div class="modal_attr modal_context">
-			<input type="text" id="modal_context">
+			<input type="text" id="modal_context" value="">
 		</div>
 		<div class="modal_attr modal_button">
 			<input type="button" id="write" value="작성" onclick='modalWrite()' ><input id="close" type="button" value="취소" onclick='modalCancel()'>
 		</div>
 	</div>
+	<div class="ps_loading">
+		<img class="ps_loading_image" src="resources/ps_icon/loding.gif">
+	</div>
 </div>
 <%@include file="../subMenu.jsp" %>
+<form action="">
+	<input type="file" multiple="multiple" id="upload_btn" name="pd_images" onchange="fileUpload()">
+</form>
+<input type="hidden" id="getId" value="<%=(String)session.getAttribute("mem_id") %>">
 </body>
 </html>

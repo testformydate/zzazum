@@ -6,7 +6,7 @@ public class CommentVo {
 	int comt_part;
 	int comt_bono;
 	String comt_id;
-	String comt_nik;
+	String comt_nick;
 	String comt_content;
 	String comt_wdate;
 	String comt_fdate;
@@ -35,11 +35,11 @@ public class CommentVo {
 	public void setComt_id(String comt_id) {
 		this.comt_id = comt_id;
 	}
-	public String getComt_nik() {
-		return comt_nik;
+	public String getComt_nick() {
+		return comt_nick;
 	}
-	public void setComt_nik(String comt_nik) {
-		this.comt_nik = comt_nik;
+	public void setComt_nick(String comt_nick) {
+		this.comt_nick = comt_nick;
 	}
 	public String getComt_content() {
 		return comt_content;

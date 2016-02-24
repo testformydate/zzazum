@@ -26,7 +26,6 @@ import com.mydate.zzazum.location.vo.ClikeVo;
 import com.mydate.zzazum.location.vo.ClipVo;
 import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.location.vo.LocationVo;
-import com.mydate.zzazum.location.vo.NaverSearchResultVo;
 import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.postscript.service.PostScriptService;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
@@ -195,15 +194,19 @@ public class PlannerController {
 	@ResponseBody
 	public String clipOrNot(ClipVo clip){
 		String clipOrUnclip = clip.getClipOrNot();
-		//System.out.println(ps_no);
+		String ps_no = clip.getPs_no();
+//		System.out.println("ps_no: " + ps_no + " clip: " + clipOrUnclip);
 		boolean b = false;
 		if(clipOrUnclip.equals("clip")){
+//			System.out.println("clip");
 			b = service.deleteClipData(clip);
-			b = service.minusClip(clip.getPs_no());
+			b = service.minusClip(ps_no);
+//			System.out.println(b);
 			clipOrUnclip = "unclip";
 		}else if(clipOrUnclip.equals("unclip")){
+//			System.out.println("unclip");
 			b = service.insertClipData(clip);
-			b = service.plusClip(clip.getPs_no());
+			b = service.plusClip(ps_no);
 			clipOrUnclip = "clip";
 		}
 		return clipOrUnclip; 

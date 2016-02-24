@@ -10,5 +10,8 @@ public interface MemberInter {
 	MemberVo memberInfo(String mem_id);
 	boolean memberModify(MemberVo member);
 	int loginAuthentication(String mem_hash);
+	public String idChecker(String mem_id);
+	public String nameChecker(String mem_nick);
+	public String logChecker(MemberVo memberVo);
 	/*boolean memberDel(String mem_id);*/
 }

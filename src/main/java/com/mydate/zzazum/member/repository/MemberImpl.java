@@ -55,6 +55,21 @@ public class MemberImpl implements MemberInter{
 		return memberDao.loginAuthentication(mem_hash);
 	}
 	
+	@Override
+	public String idChecker(String mem_id) {
+		return memberDao.idChecker(mem_id);
+	}
+	
+	@Override
+	public String nameChecker(String mem_nick) {
+		return memberDao.nameChecker(mem_nick);
+	}
+	
+	@Override
+	public String logChecker(MemberVo memberVo) {
+		return memberDao.logChecker(memberVo);
+	}
+	
 	/*@Override
 	public boolean memberDel(String mem_id) {
 		boolean b = false;

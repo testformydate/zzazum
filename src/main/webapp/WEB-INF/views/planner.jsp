@@ -46,7 +46,8 @@ function like(no){
 	var likeVal = parseInt(likeNode.html());
 	*/
 	if(mem_id == "" || mem_id == 'null' ){
-		alert("로그인해주세요!")
+		alert("로그인해주세요!");
+		location.href = "member/memberlogview";
 		return;
 	}
 	
@@ -79,7 +80,8 @@ function clip(no){
 	var likeVal = parseInt(likeNode.html());
 	*/
 	if(mem_id == "" || mem_id == 'null' ){
-		alert("로그인해주세요!")
+		alert("로그인해주세요!");
+		location.href = "member/memberlogview";
 		return;
 	}
 	//alert(clip + " " + mem_id);
@@ -93,7 +95,7 @@ function clip(no){
        			$("#clip" + no).attr("class","clip");
        			$("#clip" + no).attr("src","resources/icons/clip.png");
        			//$("#clipCount" + no).html(likeCount + 1);
-       		}else if(jdata.trim() === "unlike"){
+       		}else if(jdata.trim() === "unclip"){
        			$("#clip" + no).attr("class","unclip");
        			$("#clip" + no).attr("src","resources/icons/unclip.png");
        			//$("#clipCount" + no).html(likeCount - 1);
