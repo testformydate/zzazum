@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,15 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mydate.zzazum.location.service.LocationDataService;
 import com.mydate.zzazum.location.vo.LocationVo;
-import com.mydate.zzazum.location.vo.LocationCategory;
 import com.mydate.zzazum.member.repository.MemberInter;
 import com.mydate.zzazum.postscript.service.PostScriptService;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptFile;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 @Controller
+@Scope("prototype")
 public class PostScriptController {
 	
 	@Autowired
@@ -72,7 +74,6 @@ public class PostScriptController {
 	@RequestMapping(value="psListPart")
 	@ResponseBody
 	public List<Map<String, String>> psListPart(@RequestParam("track_Num") int track_Num, @RequestParam("track_Count") int track_Count){
-		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, String> map = null;
 		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 		
@@ -221,6 +222,23 @@ public class PostScriptController {
 	@RequestMapping(value="psHits")
 	public void psHits(@RequestParam("ps_no") String ps_no){
 		postScriptService.psHits(ps_no);
+	}
+	
+	@RequestMapping(value="tempFileUp")
+	@ResponseBody
+	public List<Map<String, String>> tempFileUp(PostScriptFile beanFile){
+		List<Map<String, String>> result = new ArrayList<Map<String, String>>();
+		Map<String, String> map = null;
+		
+		for(PostScriptFile pf : postScriptService.tempFileUp(beanFile)){
+			map = new HashMap<String, String>();
+			map.put("pf_no", Integer.toString(pf.getPf_no()));
+			map.put("pf_name", pf.getPf_name());
+			
+			result.add(map);
+		}
+		
+		return result;
 	}
 
 }
