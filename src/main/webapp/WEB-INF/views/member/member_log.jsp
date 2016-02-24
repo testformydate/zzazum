@@ -83,31 +83,31 @@ p{
 /*loading*/
 .sk-fading-circle {
 	display:none;
-  margin: 100px 200px;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  z-index:999;
+	margin: 140px 780px;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	z-index:999;
 }
 
 .sk-fading-circle .sk-circle {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .sk-fading-circle .sk-circle:before {
-  content: '';
-  display: block;
-  margin: 0 auto;
-  width: 15%;
-  height: 15%;
-  background-color: #333;
-  border-radius: 100%;
-  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
-          animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+	content: '';
+	display: block;
+	margin: 0 auto;
+	width: 15%;
+	height: 15%;
+	background-color: #333;
+	border-radius: 100%;
+	-webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+	animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
 }
 .sk-fading-circle .sk-circle2 {
   -webkit-transform: rotate(30deg);
@@ -217,12 +217,6 @@ p{
 @keyframes sk-circleFadeDelay {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; } 
-}
-
-.loading{
-	background-color:black;
-	opacity:0.5;
-	z-index:5;
 }
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -336,12 +330,14 @@ function calc(email, pw){
 		}
 	}); */
 	document.logForm.mem_pw.value = strHash;
+	$("#loading").css("display","block");
+	$(".member_insert_body").css("opacity","0.7");
 	document.logForm.submit();
 }
 </script>
 </head>
 <body>
-<div class="sk-fading-circle">
+<div id="loading" class="sk-fading-circle">
   <div class="sk-circle1 sk-circle"></div>
   <div class="sk-circle2 sk-circle"></div>
   <div class="sk-circle3 sk-circle"></div>

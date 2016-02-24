@@ -46,6 +46,18 @@ public class MemberController {
 			memberVo.setMem_auth(mailService.createHash(memberVo.getMem_pw(), memberVo.getMem_id()));
 		}catch (Exception e){
 			System.out.println("메일 전송 및 해쉬코드 생성 오류 " + e);
+			return "member/fail";
+		}
+		
+		try {
+			if(memberVo.getMem_love() == null || memberVo.getMem_love().equals("")){
+				
+			}else{
+				mailService.sendLoverMail(memberVo.getMem_love(), memberVo.getMem_nick());
+			}
+		} catch (Exception e) {
+			System.out.println("초대 메일 전송 오류: " + e);
+			return "member/fail";
 		}
 		
 		memberService.memberIns(memberVo);

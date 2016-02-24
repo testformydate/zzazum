@@ -22,10 +22,25 @@ public class MailService {
     	MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
     	
         helper.setTo(email);
-        helper.setSubject("짜줌 인증 Email");
-        mimeMessage.setContent("안녕하세요 짜줌입니다.<br/>다음 아래의 링크를 누르시면 회원인증이 됩니다. <br/><br/> <a target='_blank' href='http://localhost:8080/mydate/member/loginAuthentication?mem_auth="+hashcode + "'>"
-        		+ hashcode + "</a> <br/><br/> 언제나 데이트는 짜줌과 함께!", "text/html; charset=utf-8");
+        helper.setSubject("MyDate 인증 메일");
+        mimeMessage.setContent("<p>안녕하세요! MyDate입니다.</p><p>다음의 링크를 누르시면 회원인증이 됩니다.</p>"
+        		+ "<a target='_blank' href='http://localhost:8080/mydate/member/loginAuthentication?mem_auth="+hashcode + "'>"
+        		+ hashcode + "</a></p><p>Enjoy your hangout with MyDate!</p>", "text/html; charset=utf-8");
         mailSender.send(mimeMessage);
+    }
+    
+    public void sendLoverMail(String email, String nick) throws Exception{
+    	MimeMessage mime = mailSender.createMimeMessage();
+    	MimeMessageHelper helper = new MimeMessageHelper(mime, false, "utf-8");
+    	
+    	helper.setTo(email);
+    	helper.setSubject(nick + "님이 MyDate에 초대하셨습니다!");
+    	mime.setContent("<h3>안녕하세요, 데이트 동반자 MyDate입니다!</h3>"
+    			+ "<script type='text/javascript'>window.onload = location.herf('http://localhost:8080/mydate/home');</script>"
+    			+ "<p>" + nick + "님과 함께 아름다운 추억을 만들어 보세요!</p>"
+    			+ "<p><a href='http://localhost:8080/mydate/member/memberinsview'>MyDate</a>는 당신을 기다리고 있습니다.</p>"
+    			+ "<p>Enjoy your hangout with MyDate!</p>", "text/html; charset=utf-8");
+    	mailSender.send(mime);
     }
     
     public String createHash(String password, String email) throws Exception{
