@@ -2,7 +2,15 @@ package com.mydate.zzazum.location.vo;
 
 public class ClikeVo {
 	
-	private String likeOrNot, mem_id, ps_no;
+	private String likeOrNot, mem_id, ps_no, ps_email;
+	
+	public String getPs_email() {
+		return ps_email;
+	}
+	
+	public void setPs_email(String ps_email) {
+		this.ps_email = ps_email;
+	}
 	
 	public String getLikeOrNot() {
 		return likeOrNot;

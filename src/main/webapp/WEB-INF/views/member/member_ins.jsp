@@ -164,51 +164,81 @@ function calc(){
 	//input values
 	var email = document.insForm.mem_id.value;
 	var name = document.insForm.mem_nick.value;
-	var pw1= document.insForm.mem_pw.value;		//비밀번호 특수문자 최소 하나 이상 입력 가능하도록.
-	var pw2= document.insForm.mem_pwOk.value;
+	var pw1 = document.insForm.mem_pw.value;		//비밀번호 특수문자 최소 하나 이상 입력 가능하도록.
+	var pw2 = document.insForm.mem_pwOk.value;
 	var gen = document.insForm.mem_gender.value; 
-	var tel= document.insForm.mem_tel.value;	
+	var tel = document.insForm.mem_tel.value;	
 	var bhday = document.insForm.mem_bhday.value; // 생년월일 조건식 ex 1900~2000몇년 12월 40일 불가
 	var l_email = document.insForm.mem_love.value;
 	//regular expression
-	var id_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+	var id_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 	var name_regExp = /^[a-zA-Z0-9가-힣]{4,12}$/;
 	var pw1_regExp = /^([a-zA-Z0-9]){8,16}$/;
 	var tel_regExp = /^\d{3}\d{3,4}\d{4}$/; 
-	var bhday_regExp = /^\d{4}\d{4}$/;
-	var lovem_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+	var bhday_regExp = /^\d{2}\d{4}$/;
+	var lovem_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 	
 	
-	if(!id_regExp.test(email) || email==null || email == ""){
-		alert("email err");
-			document.insForm.mem_id.focus();
-			return false
+	if(!id_regExp.test(email)){
+		alert("이메일을 확인해 주세요");
+		document.insForm.mem_id.focus();
+		return;
 	};
-	if(!name_regExp.test(name) || name ==null || name == ""){
-		alert("name err");
-			document.insForm.mem_nick.focus();
-			return false
-	};	
-	if(!pw1_regExp.test(pw1) || pw1==null || pw1=="" || pw1!=pw2){
-		alert("pw err");
+	if(email == null || email == ""){
+		alert("이메일을 입력해 주세요");
+		document.insForm.mem_id.focus();
+		return;
+	}
+	if(!name_regExp.test(name)){
+		alert("별명은 한글, 영문, 숫자만 가능합니다.");
+		document.insForm.mem_nick.focus();
+		return;
+	};
+	if(name == null || name == ""){
+		alert("별명을 입력해주세요.");
+		document.insForm.mem_nick.focus();
+		return;
+	}
+	if(!pw1_regExp.test(pw1)){
+		alert("보안을 위해서 비밀번호는 8~16자의 영문 대소문자, 숫자를 반드시 포함해주셔야 해요!");
 		$("#mem_pw").val('');
-			document.insForm.mem_pw.focus();
-			return false;
+		$("#mem_pwOk").val('');
+		document.insForm.mem_pw.focus();
+		return;
 	};
-	if(!tel_regExp.test(tel) || tel == null || tel == ""){
-		alert("tel err");
-			document.insForm.mem_tel.focus();
-			return false;
+	if(pw1==null || pw1==""){
+		alert("비밀번호를 입력해주세요.");
+		$("#mem_pw").val('');
+		$("#mem_pwOk").val('');
+		document.insForm.mem_pw.focus();
+		return;
+	}
+	if(pw1!=pw2){
+		alert("비밀번호가 일치하지 않습니다.");
+		$("#mem_pw").val('');
+		$("#mem_pwOk").val('');
+		document.insForm.mem_pw.focus();
+		return;
+	}
+	if(!tel_regExp.test(tel)){
+		alert("-를 제외한 숫자를 입력해주세요.");
+		document.insForm.mem_tel.focus();
+		return;
 	};
-	if(!bhday_regExp.test(bhday) || bhday == null || bhday==""){
-		alert("birth day err");
-			document.insForm.mem_bhday.focus();
-			return false;
+	if(tel == null || tel == ""){
+		alert("휴대전화번호를 입력해주세요.");
+		document.insForm.mem_tel.focus();
+		return;
+	}
+	if(!bhday_regExp.test(bhday)){
+		alert("숫자만 입력해주세요. 예)930214");
+		document.insForm.mem_bhday.focus();
+		return;
 	};
 	if(!lovem_regExp.test(l_email)){
-		alert("love email err");
+		alert("이메일을 확인해주세요!");
 			document.insForm.mem_love.focus();
-			return false;
+			return;
 	};
 	
 	
@@ -241,7 +271,7 @@ function calc(){
 				<div class="member_insert_content">
 					<form name="insForm" action="memberins" method="post">
 						<input class="insert_input" type="text" name="mem_id"placeholder="이메일"> 
-						<input class="insert_input"type="text" name="mem_nick" placeholder="이름"> 
+						<input class="insert_input"type="text" name="mem_nick" placeholder="애칭">
 						<input class="insert_input" type="password" name="mem_pw"placeholder="비밀번호"> 
 						<input class="insert_input" type="password" name="mem_pwOk" placeholder="비밀번호 재입력">
 						<div class="genBoxWrapper">
@@ -254,9 +284,9 @@ function calc(){
 									class="radio" /> <label for="radio2">여자</label>
 							</div>
 						</div>
-						<input class="insert_input" type="text" name="mem_tel" placeholder="휴대전화번호" /> 
-						<input class="insert_input" type="text" name="mem_bhday" placeholder="생년월일" /> 
-						<input class="insert_input" type="text" name="mem_love" placeholder="그/그녀의 이메일" />
+						<input class="insert_input" type="text" name="mem_tel" placeholder="휴대전화번호(선택)" /> 
+						<input class="insert_input" type="text" name="mem_bhday" placeholder="생년월일(선택)" /> 
+						<input class="insert_input" type="text" name="mem_love" placeholder="그/그녀의 이메일(선택)" />
 					</form>
 					<button class="submitBtn" onclick="calc()">가입하기</button>
 				</div>

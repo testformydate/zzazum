@@ -14,7 +14,7 @@ import com.mydate.zzazum.community.vo.CommunityVo;
 @Repository
 public interface CommunityDao {
 
-	@Insert("insert into md_cm(cm_id, cm_title, cm_content, cm_partno, cm_wdate) values(#{cm_id}, #{cm_title}, #{cm_content}, #{cm_partno}, sysdate())")
+	@Insert("insert into md_cm(cm_id, cm_nick, cm_title, cm_content, cm_partno, cm_wdate) values(#{cm_id}, #{cm_nick}, #{cm_title}, #{cm_content}, #{cm_partno}, sysdate())")
 	public boolean communityWrite(CommunityVo communityvo); 
 	
 	@Select("select * from md_cm")
@@ -40,5 +40,9 @@ public interface CommunityDao {
 	
 	@Select("select * from md_comt where comt_bono=#{comt_bono}")
 	public ArrayList<CommentVo> commentList(String comt_bono);
+	
+	@Select("select * from md_cm where cm_title like concat('%',#{cm_search},'%')")
+	public ArrayList<CommunityVo> communitySearch(CommunityVo communityVo);
+		
 	
 }

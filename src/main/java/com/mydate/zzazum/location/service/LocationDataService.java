@@ -94,12 +94,12 @@ public class LocationDataService{
 		return locationDao.insertLikeData(like);
 	}
 	
-	public boolean minusLike(ClikeVo like){
-		return locationDao.minusLike(like);
+	public boolean minusLike(String ps_no){
+		return locationDao.minusLike(ps_no);
 	}
 	
-	public boolean plusLike(ClikeVo like){
-		return locationDao.plusLike(like);
+	public boolean plusLike(String ps_no){
+		return locationDao.plusLike(ps_no);
 	}
 	
 	public boolean deleteLikeData(ClikeVo like){
@@ -127,12 +127,12 @@ public class LocationDataService{
 		return locationDao.insertClipData(clip);
 	}
 	
-	public boolean minusClip(ClipVo clip){
-		return locationDao.minusClip(clip);
+	public boolean minusClip(String ps_no){
+		return locationDao.minusClip(ps_no);
 	}
 	
-	public boolean plusClip(ClipVo clip){
-		return locationDao.plusClip(clip);
+	public boolean plusClip(String ps_no){
+		return locationDao.plusClip(ps_no);
 	}
 	
 	public boolean deleteClipData(ClipVo clip){

@@ -71,4 +71,9 @@ public class CommunityImpl implements CommunityInter{
 		
 		return communityDao.commentList(comt_bono);
 	}
+	
+	@Override
+	public ArrayList<CommunityVo> communitySearch(CommunityVo communityVo) {
+		return communityDao.communitySearch(communityVo);
+	}
 }

@@ -50,5 +50,5 @@
 .ps_loading {position:relative; left:3%;}
 .ps_loading_image{width:70px; height: 70px;margin:auto; display:none;}
 
-.ps_planner_best{ position: absolute; left:-50px; top:-20px;}
+.ps_planner_best{ position: absolute; left:-24px; top:-21px;}
 .ps_planner_best>img{width: 100px; height: 50px;}

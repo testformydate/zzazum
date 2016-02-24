@@ -81,19 +81,29 @@ function calc(){
    var pw = document.insForm.mem_pw.value;
    
    
-   var e_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-   var pw_regExp = /^([a-zA-Z0-9])$/; 	   
+   var e_regExp = /^[0-9a-zA-Z][_0-9a-zA-Z\-_.]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+   var pw_regExp = /^([a-zA-Z0-9]){8,16}$/; 	   
 
-   if(!e_regExp.test(email) || email == null || email == ""){
-	   alert("email err");
-	   		document.insForm.mem_id.focus();
-	   		return false;
+   if(!e_regExp.test(email)){
+		alert("이메일을 확인해주세요.");
+   		document.insForm.mem_id.focus();
+   		return;
    };
-   if(!pw_regExp.test(pw) || pw == null || pw == ""){
-	   alert("pw err");
-	   		document.insForm.mem_pw.focus();
-	   		return false;
+   if(email == null || email == ""){
+		alert("아이디를 입력해주세요.")
+		document.insForm.mem_id.focus();
+  		return;
+   }
+   if(!pw_regExp.test(pw)){
+		alert("비밀번호를 다시 확인해주세요.");
+	   	document.insForm.mem_pw.focus();
+	   	return;
    };
+   if(pw == null || pw == ""){
+		alert("비밀번호를 입력 해주세요.");
+	   	document.insForm.mem_pw.focus();
+	   	return;
+   }
    
    var strTxt = document.insForm.mem_pw.value;
    if( strTxt.length == 0 )
