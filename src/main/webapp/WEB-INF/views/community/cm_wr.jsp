@@ -45,7 +45,7 @@
 					<div class="view_head">
 						<!-- 제목 -->
 						<p class="view_title">
-							<input type="text" id="cm_title" name="cm_title" placeholder="제목을 입력하세요"
+							<input type="text" size="50" id="cm_title" name="cm_title" placeholder="제목을 입력하세요"
 								style="font-size: 24px;">
 						</p>
 						<!-- 조회수/추천수 -->
@@ -67,7 +67,7 @@
 					</div>
 					<!-- 본문내용 -->
 					<div class="view_content">
-						<textarea id = "cm_content" name="cm_content" cols="90" rows="10" placeholder="내용을 입력하세요"></textarea>
+						<textarea id = "cm_content" name="cm_content" cols="100" rows="12" placeholder="내용을 입력하세요"></textarea>
 					</div>
 					<div class="move_area clear">
 						<div class="btn_box">

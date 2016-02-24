@@ -36,44 +36,15 @@ li a:hover:not(.active) {
     background-color: #4CAF50;
 }
 
-.dropdown{
-	position: relative;
-	display: inline-block;
-}
-
-.dropdown-content{
-	display: none;
-	position: absolute;
-	background-color : #00cdcd;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	padding: 12px 16px;
-}
-
-.dropdown:hover .dropdown-content {
-	display: block;
-}
 </style>
 </head>
 <body>
-<div class="dropdown">
-		<span>연애</span>
-	<div class="dropdown-content">
-		<p>야호</p>
-	</div>
-
-</div>
 <ul>
   <li><a href="cm_list?part_no=0">전체</a></li>
   <li><a href="cm_list?part_no=1">연애</a></li>
   <li><a href="cm_list?part_no=2">솔까말</a></li>
   <li><a href="cm_list?part_no=3">야한19	</a></li>
-  <li><a href="cm_list?part_no=4">석민이방</a></li>
-  <li><a href="cm_list?part_no=5">광민이방</a></li>
-  <li><a href="cm_list?part_no=6">원중이방</a></li>
-  <li><a href="cm_list?part_no=7">서연이방</a></li>
-  <li><a href="cm_list?part_no=8">수민이방</a></li>
-  <li><a href="cm_list?part_no=9">지상이방</a></li>
+  <li><a href="cm_list?part_no=4">짜줌에게 한마디</a></li>
   
   <ul style="float:right;list-style-type:none;">
     <li><a href="../member/memberlogview">Login</a></li>
