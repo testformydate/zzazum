@@ -473,9 +473,11 @@ $(document).ready(function(){
 						<% }else{ %>
 							<div class="memberImgWrapper"><img class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
 							<div class="member"><%=session.getAttribute("mem_nick") %></div>
-							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
-							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
-							<c:set var="mem_id" value="<%=mem %>" />
+							<div class="memberDetail">
+								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
+								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
+								<c:set var="mem_id" value="<%=mem %>" />
+							</div>
 						<%} %>
 					</div>						
 			</div>
