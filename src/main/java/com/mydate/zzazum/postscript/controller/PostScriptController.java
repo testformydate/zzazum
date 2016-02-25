@@ -253,11 +253,20 @@ public class PostScriptController {
 	@RequestMapping(value="psListUpdate")
 	public ModelAndView psListUpdate(PostScriptList list, HttpSession session){
 		ModelAndView model = new ModelAndView();
-		
 		list.setPs_email((String)session.getAttribute("mem_id"));
+		
+		PostScriptList psList = postScriptService.psDetailMain(list);
+		ArrayList<PostScriptDetail> pdList = postScriptService.pdEdit(list);
+		
+		for(int i =0; i<pdList.size(); i++){
+			if(pdList.get(i).getPd_image().equals(psList.getPs_image())){
+				model.addObject("main_val", "ps_insert_card"+Integer.toString(i+1));
+			}
+		}
+		model.addObject("psDSize", pdList.size());
 		model.addObject("psLo", locationDataService.selectLoCate());
-		model.addObject("psDM", postScriptService.psDetailMain(list));
-		model.addObject("psD", postScriptService.pdEdit(list));
+		model.addObject("psDM", psList);
+		model.addObject("psD", pdList);
 		model.setViewName("postscript/ps_update");
 		
 		return model;
