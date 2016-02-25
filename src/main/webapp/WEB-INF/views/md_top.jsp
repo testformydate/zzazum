@@ -205,8 +205,11 @@ div#search{
 	display:inline-block;
 	margin-right:20px;
 	cursor:pointer;
-	border:2px solid lightgray;
+	/* border:2px solid lightgray; */
 	position:absolute;
+	box-shadow:0 0 3px gray;
+	color:gray;
+	font-weight:600;
 }
 
 .memberUpload:hover{
@@ -289,6 +292,7 @@ $(document).ready(function(){
 	
 	$(".body").click(function(){
 		$("#searchResult").slideUp();
+		$(".memberDetail").slideUp();
 	});
 	
 	$("#autocompleteClose").click(function(){
@@ -306,9 +310,9 @@ $(document).ready(function(){
 		if(e.keyCode == 37){
 			//left
 			//alert("aa");
-			console.log("left reset currentId: " + currentId);
+			//console.log("left reset currentId: " + currentId);
 			currentId = parseInt(searchForm.resultIndex.value);
-			console.log("left searchForm Value: " + currentId);
+			//console.log("left searchForm Value: " + currentId);
  			if(currentId == 0) {
 				searchForm.resultIndex.value = autocompleteListId;
 				currentId = autocompleteListId;
@@ -319,7 +323,7 @@ $(document).ready(function(){
 			}
 			//console.log(e.keyCode + " " + currentId);
 			var tagId = "#list" + currentId;
-			console.log("left currentId: " + currentId);
+			//console.log("left currentId: " + currentId);
 			//console.log(tagId);
 			$(".box-font-active").attr("class","box-font");
 			$(".stepContent-active").attr("class","stepContent");
@@ -334,9 +338,9 @@ $(document).ready(function(){
 		}else if(e.keyCode == 39){
 			//right
 			//alert("aa");
-			console.log("right reset currentId: " + currentId);
+			//console.log("right reset currentId: " + currentId);
 			currentId = parseInt(searchForm.resultIndex.value);
-			console.log("right searchForm Value: " + currentId);
+			//console.log("right searchForm Value: " + currentId);
 			if(currentId == autocompleteListId) {
 				searchForm.resultIndex.value = -1;
 			}else{
@@ -345,7 +349,7 @@ $(document).ready(function(){
 			}
 			//console.log(e.keyCode + " " + currentId);
 			var tagId = "#list" + currentId;
-			console.log("right currentId: " + currentId);
+			//console.log("right currentId: " + currentId);
 			$(".box-font-active").attr("class","box-font");
 			$(".stepContent-active").attr("class","stepContent");
 			$(tagId).toggleClass("box-font-active");
@@ -359,9 +363,9 @@ $(document).ready(function(){
 		}else if(e.keyCode == 38){
 			//up
 			//alert("aa");
-			console.log("up reset currentId: " + currentId);
+			//console.log("up reset currentId: " + currentId);
 			currentId = parseInt(searchForm.resultIndex.value);
-			console.log("up searchForm Value: " + currentId);
+			//console.log("up searchForm Value: " + currentId);
 			if(currentId == 0){
 				searchForm.resultIndex.value = autocompleteListId;
 			}else{
@@ -370,7 +374,7 @@ $(document).ready(function(){
 			}
 			//console.log(e.keyCode + " " + currentId);
 			var tagId = "#list" + currentId;
-			console.log("up currentId" + currentId);
+			//console.log("up currentId" + currentId);
 			$(".box-font-active").attr("class","box-font");
 			$(".stepContent-active").attr("class","stepContent");
 			$(tagId).toggleClass("box-font-active");
@@ -384,9 +388,9 @@ $(document).ready(function(){
 		}else if(e.keyCode == 40){
 			//down
 			//alert("aa");
-			console.log("down reset currentId: " + currentId);
+			//console.log("down reset currentId: " + currentId);
 			currentId = parseInt(searchForm.resultIndex.value)
-			console.log("down searchForm Value: " + currentId);;
+			//console.log("down searchForm Value: " + currentId);;
 			if(currentId == autocompleteListId) {
 				searchForm.resultIndex.value = 0;
 			}/* else if(currentId == 0){
@@ -397,7 +401,7 @@ $(document).ready(function(){
 			}
 			//console.log(e.keyCode + " " + currentId);
 			var tagId = "#list" + currentId;
-			console.log("down currentId: " + currentId);
+			//console.log("down currentId: " + currentId);
 			//console.log(tagId);
 			$(".box-font-active").attr("class","box-font");
 			$(".stepContent-active").attr("class","stepContent");
@@ -447,11 +451,12 @@ $(document).ready(function(){
 					//$("#searchResult").autocomplete({source:[str]});
 				}
 			});
-			console.log(e.keyCode);
-			if(e.keyCode == 13){
-				searchForm.submit();
-			}
+			//console.log(e.keyCode);
 		}, 1300);
+		if(e.keyCode == 13){
+			//alert("수민이형 되는데요");
+			searchForm.submit();
+		}
 		//console.log(e.keyCode)
 	});
 	//alert("aa");
@@ -462,6 +467,7 @@ $(document).ready(function(){
 	});
 	$("#searchBtn").on("click", function(){
 		$(this).css("background-color","#c1134e");
+		//alert("수민이형 되는데요");
 		searchForm.submit();
 	});
 	// to fade in on page load
@@ -540,10 +546,10 @@ $(document).ready(function(){
 							<form action="${path}/keyword" name="searchForm">
 								<input type="hidden" id="resultIndex" name="resultIndex" value="0" />
 								<img class="icon-search" src="<c:url value="/icons/search.png" />">
-								<input type="text" class="searchMain" id="keyword" name="keyword" value="${exKeyword}" placeholder="예:서울,여의도, 강남" autocomplete="off">
-								<button class="searchBtn"><img width="20px;" src="<c:url value="/icons/enter-arrow.png" />"></button>
-								<!-- <input type="submit" class="searchBtn" value="GO!"> -->
+								<input type="text" class="searchMain" id="keyword" name="keyword" value="${exKeyword}" placeholder="예:서울, 강남역 오빠랑" autocomplete="off">
 							</form>
+								<button id="searchBtn" class="searchBtn"><img width="20px;" src="<c:url value="/icons/enter-arrow.png" />"></button>
+								<!-- <input type="submit" class="searchBtn" value="GO!"> -->
 						</div>
 					</li>
 				</ul>
@@ -554,7 +560,7 @@ $(document).ready(function(){
 							<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
 						</div>
 						<% }else{ %>
-							<div id="memberUpload" class="memberUpload">후기쓰기</div>
+							<div id="memberUpload" class="memberUpload">업로드</div>
 							<div class="memberImgWrapper"><img id="memberDetailBtn" class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
 							<div class="memberDetail">
 								<div>

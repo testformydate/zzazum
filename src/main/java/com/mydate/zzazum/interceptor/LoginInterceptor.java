@@ -1,5 +1,7 @@
 package com.mydate.zzazum.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,7 +27,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             return false;
 		}else{
 			if(!memberService.memberInfo(mem_id).getMem_auth().equals("auth")){
-				response.sendRedirect("home");
+				/*response.sendRedirect("home");*/
+				PrintWriter out = response.getWriter();
+				out.println("<html><body>");
+				out.println("<script>alert('이메일 인증이 필요합니다.');"
+			      		+ "location.href='/mydate/home';</script>");
+				out.println("</body></html>");
+				out.close();
 				return false;
 			}
 		}
