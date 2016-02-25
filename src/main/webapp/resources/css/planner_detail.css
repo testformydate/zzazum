@@ -53,4 +53,10 @@ div.detailTitle{
 	/* margin-top: 3px; */
 	color:#ee5488;
 	cursor:pointer;
+	display:inline-block;
+	width:30%;
+	white-space: nowrap; 
+    width: 12em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }

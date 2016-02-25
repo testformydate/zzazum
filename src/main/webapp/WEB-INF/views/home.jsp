@@ -13,7 +13,7 @@
 	/*loading*/
 .sk-fading-circle {
 	/* display:none; */
-	margin: 250px 780px;
+	margin:60px 780px;
 	width: 40px;
 	height: 40px;
 	position: absolute;

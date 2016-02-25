@@ -38,7 +38,7 @@ div.stepContent > a:hover{
 	/*loading*/
 .sk-fading-circle {
 	/* display:none; */
-	margin: 250px 780px;
+	margin: 65px 615px;
 	width: 40px;
 	height: 40px;
 	position: absolute;
@@ -172,6 +172,46 @@ div.stepContent > a:hover{
 @keyframes sk-circleFadeDelay {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; } 
+}
+
+/* styles for '...' */ 
+.descContext{
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 3.6em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: justify;
+  
+  /* */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+.descContext:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+.descContext:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  width: 1em;
+  /* set width and height */
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
 }
 </style>
 <script type="text/javascript">
@@ -603,7 +643,7 @@ $(document).ready(function(){
 									<div class="descContext">${p.ps_context}</div>
 								</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">
-									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:12px;"><span id="likeCount${p.ps_no}" style="color:#00cdcd;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#00cdcd;">${p.ps_hits}</span></div>
+									<div class="likesAndHitsCount" style="font-size:0.8em;margin-bottom:5px;"><span id="likeCount${p.ps_no}" style="color:#00cdcd;">${p.ps_like}</span>명이 좋아합니다.&nbsp;조회 수&nbsp;<span style="color:#00cdcd;">${p.ps_hits}</span></div>
 									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="like${p.ps_no}" class="unlike" style="width:30px;" src="resources/icons/unlike.png" onclick="javascript:like(${p.ps_no})"></div>
 									<div style="display:inline-block;margin-right:10px;cursor:pointer;"><img id="clip${p.ps_no}" class="unclip" style="width:30px;" src="resources/icons/unclip.png" onclick="javascript:clip(${p.ps_no})"></div>
 									<div style="display:inline-block;cursor:pointer;"><img id="commentImg${p.ps_no}" class="comment" style="width:30px;" src="resources/icons/comment.png"></div>
