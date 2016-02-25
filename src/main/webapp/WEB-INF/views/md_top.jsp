@@ -105,6 +105,7 @@ div#search{
 }
 
 .pageLinks{
+	margin-top:10px;
 	color:white;
 	background-color: #00cdcd;
 	padding:7px;
@@ -215,19 +216,42 @@ div#search{
 .memberImgWrapper{
 	display:inline-block;
 	margin-top:10px;
+	cursor:pointer;
 }
 
 .memberDetail{
+	display:none;
 	top:0;
 	right:0;
 	top:50px;
-	right:150px;
+	right:185px;
 	background-color:white;
 	border:1px solid lightgray;
 	padding:20px;
 	box-shadow:1px 1px 10px gray;
 	position:absolute;
-	display:inline-block;
+	opacity:1 !important;
+}
+
+.memberDetail-hide{
+	display:none;
+}
+
+.tooltipImg{
+	width:225px;
+	height:225px;
+}
+
+#logoutBtn{
+	float:right;
+}
+
+#mypageBtn{
+	float:left;
+}
+
+.idLink{
+	font-weight:600;
 }
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -436,8 +460,9 @@ $(document).ready(function(){
 		//alert("aa");
 		$("#emergency").toggle();
 	});
-	$(".searchBtn").on("click", function(){
+	$("#searchBtn").on("click", function(){
 		$(this).css("background-color","#c1134e");
+		searchForm.submit();
 	});
 	// to fade in on page load
     $(".body").css("display", "none").slideDown();
@@ -484,6 +509,10 @@ $(document).ready(function(){
 	$("#memberUpload").click(function(){
 		location.href = "psListInsert";
 	});
+	
+	$("#memberDetailBtn").click(function(){
+		$(".memberDetail").toggle("fast");
+	});
 });
 </script>
 <title>MyDate - Find Your Own Date</title>
@@ -520,17 +549,24 @@ $(document).ready(function(){
 				</ul>
 					<div style="float:right;display:inline-block;font-size:10pt;">
 							<%	if(mem==null){ %>
-						<div class="member"><a class="pageLinks" href="${path}/member/memberlogview">로그인</a></div>
-						<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
+						<div style="margin-top:10px;">
+							<div class="member"><a class="pageLinks" href="${path}/member/memberlogview">로그인</a></div>
+							<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
+						</div>
 						<% }else{ %>
 							<div id="memberUpload" class="memberUpload">후기쓰기</div>
-							<div class="memberImgWrapper"><img class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
+							<div class="memberImgWrapper"><img id="memberDetailBtn" class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
 							<div class="memberDetail">
 								<div>
-									<div class="member"><%=session.getAttribute("mem_id") %></div>
+									<div class="member"><a class="idLink" href="${path}/member/membermypage"><%=session.getAttribute("mem_id") %></a></div>
 								</div>
-								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
-								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
+								<div>
+									<div class="memberImgWrapper"><a href="${path}/member/memberupview"><img class="tooltipImg" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></a></div>
+								</div>
+								<div style="margin-top:10px;border-top:1px solid lightgray;padding-top:10px;">
+									<div id="logoutBtn" class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
+									<div id="mypageBtn" class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
+								</div>
 							</div>
 							<c:set var="mem_id" value="<%=mem %>" />
 						<%} %>
