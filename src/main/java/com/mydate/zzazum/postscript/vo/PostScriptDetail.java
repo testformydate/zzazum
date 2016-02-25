@@ -8,13 +8,18 @@ import org.springframework.web.multipart.MultipartFile;
 public class PostScriptDetail {
 	private int pd_no, ps_no, pd_like;
 	private String pd_email, pd_location, pd_context, pd_date, pd_image, mem_primg, mem_nick, pd_clike, ps_title, main_img, pl_id;
-	private MultipartFile[] pd_images;
-	private String[] pd_locations, pd_contexts, pl_ids; 
+	private String[] pd_locations, pd_contexts, pl_ids, deleteFile, pd_images; 
 	
 	private int co_psno, co_pdno;
 	private ArrayList<PostScriptComment> pd_comment;
 	
 	
+	public String[] getDeleteFile() {
+		return deleteFile;
+	}
+	public void setDeleteFile(String[] deleteFile) {
+		this.deleteFile = deleteFile;
+	}
 	public String getPl_id() {
 		return pl_id;
 	}
@@ -39,10 +44,10 @@ public class PostScriptDetail {
 	public void setPl_ids(String[] pl_ids) {
 		this.pl_ids = pl_ids;
 	}
-	public MultipartFile[] getPd_images() {
+	public String[] getPd_images() {
 		return pd_images;
 	}
-	public void setPd_images(MultipartFile[] pd_images) {
+	public void setPd_images(String[] pd_images) {
 		this.pd_images = pd_images;
 	}
 	public String[] getPd_locations() {

@@ -36,7 +36,6 @@ public class MailService {
     	helper.setTo(email);
     	helper.setSubject(nick + "님이 MyDate에 초대하셨습니다!");
     	mime.setContent("<h3>안녕하세요, 데이트 동반자 MyDate입니다!</h3>"
-    			+ "<script type='text/javascript'>window.onload = location.herf('http://localhost:8080/mydate/home');</script>"
     			+ "<p>" + nick + "님과 함께 아름다운 추억을 만들어 보세요!</p>"
     			+ "<p><a href='http://localhost:8080/mydate/member/memberinsview'>MyDate</a>는 당신을 기다리고 있습니다.</p>"
     			+ "<p>Enjoy your hangout with MyDate!</p>", "text/html; charset=utf-8");

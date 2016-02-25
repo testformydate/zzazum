@@ -20,6 +20,7 @@ import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.repository.PostScriptDataInter;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptFile;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
@@ -167,5 +168,38 @@ public class PostScriptService {
 	
 	public void psDataInsert(PostScriptDetail bean){
 		postScriptDataInter.psDataInsert(bean);
+	}
+	
+	public ArrayList<PostScriptFile> tempFileUp(PostScriptFile beanFile){
+		beanFile.setPf_name(beanFile.getPd_images()[0].getOriginalFilename());
+		int num = postScriptDataInter.tempFileMa(beanFile);
+		
+		
+		for(MultipartFile mf : beanFile.getPd_images()){
+			PostScriptFile dto = new PostScriptFile();
+			num += 1;
+			String fileName = Integer.toString(num) + ".png";
+			
+			dto.setPf_name(fileName);
+			dto.setPf_email(beanFile.getPf_email());
+			
+			try {
+				
+				mf.transferTo(upload(fileName));
+				Thread.sleep(5000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			postScriptDataInter.tempFileUp(dto);
+		}
+		
+		return postScriptDataInter.tempFileSe(beanFile);
+	}
+	
+	private File upload(String fileName){
+		String path="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_data/" + fileName;
+		File f = new File(path);
+		
+		return f;
 	}
 }

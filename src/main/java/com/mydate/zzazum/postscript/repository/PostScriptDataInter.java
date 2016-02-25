@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
 import com.mydate.zzazum.postscript.vo.PostScriptDetail;
+import com.mydate.zzazum.postscript.vo.PostScriptFile;
 import com.mydate.zzazum.postscript.vo.PostScriptLike;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
@@ -46,4 +47,8 @@ public interface PostScriptDataInter {
 	ArrayList<PostScriptComment> psListComment(int co_psno);
 	
 	int psDataInsert(PostScriptDetail bean);
+	
+	int tempFileUp(PostScriptFile beanFile);
+	int tempFileMa(PostScriptFile dtoFile);
+	ArrayList<PostScriptFile> tempFileSe(PostScriptFile beanFile);
 }
