@@ -221,4 +221,8 @@ public class PostScriptService {
 	public void pdCommentDelete(PostScriptComment comment){
 		postScriptDataInter.pdCommentDelete(comment);
 	}
+	
+	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list){
+		return postScriptDataInter.pdEdit(list);
+	}
 }

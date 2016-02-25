@@ -19,6 +19,7 @@
 <%@include file="../md_top.jsp" %>
 	<div class="ps_body body">
 		<div class="ps_planner">
+		<div class="ps_planner_best"><img src="resources/ps_icon/best_img.png"></div>
 		<c:forEach var="bp" items="${psBestPlanner }">
 			<img class="card_click bestPlanner_Click" id="${bp.mem_id }" src="resources/ps_images/profile/${bp.mem_primg }">
 		</c:forEach>

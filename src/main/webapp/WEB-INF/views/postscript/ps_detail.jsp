@@ -103,7 +103,7 @@
 </div>
 <div class="subMenu_body">
 		<c:if test="${psDM.email_check eq 'Ok' }">
-		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/edit.png" onclick="psUpdate()"></div>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/edit.png" onclick="psUpdate('${psDM.ps_no}')"></div>
 		</c:if>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write.png" onclick="javascript:psInsert()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/top1.jpg" onclick="javascript:psTop()"></div>

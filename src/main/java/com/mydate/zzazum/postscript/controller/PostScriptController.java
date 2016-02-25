@@ -248,9 +248,11 @@ public class PostScriptController {
 	}
 	
 	@RequestMapping(value="psListUpdate")
-	public ModelAndView psListUpdate(){
+	public ModelAndView psListUpdate(@RequestParam("ps_no") PostScriptList list){
 		ModelAndView model = new ModelAndView();
 		
+		model.addObject("psDM", postScriptService.psDetailMain(list));
+		model.addObject("psD", postScriptService.pdEdit(list));
 		model.setViewName("postscript/ps_update");
 		
 		return model;

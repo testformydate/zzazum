@@ -118,6 +118,9 @@ function insertSubmit(){
 		return;
 	}
 	
+	$("#loading").css("display","block");
+	$(".member_insert_body").css("opacity","0.5");
+	
 	$("#insertSubmit").attr("action", "psDataInsert");
 	$("#insertSubmit").submit();
 }
@@ -190,8 +193,22 @@ function fileTag(){
 </script>
 </head>
 <body>
+<div id="loading" class="sk-fading-circle">
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+</div>
 <%@include file="../md_top.jsp" %>
-<div class="ps_insert_body body">
+<div class="ps_insert_body body member_insert_body">
 	<form id="insertSubmit" enctype="multipart/form-data" method="post">
 	<div class="ps_insert_location">
 	<select name="pd_location" id="pd_lc" onchange="modalLocation()">
@@ -209,6 +226,7 @@ function fileTag(){
 			<img class="ps_icon" src="resources/ps_icon/picture_add.png" onclick="fileTag()">
 	</div>
 	<div class="ps_insert_label">
+		<span>* 사진을 클릭해주세요</span>
 		<span class="comment_color">ㅁ</span>Comment작성
 		<span class="title_color">ㅁ</span>대표 사진 선택
 	</div>

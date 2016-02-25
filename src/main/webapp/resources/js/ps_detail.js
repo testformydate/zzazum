@@ -103,6 +103,6 @@ function deleteComment(co_no){
 	$("#deleteComment").submit();
 }
 
-function psUpdate(){
-	location.href="psListUpdate";
+function psUpdate(ps_no){
+	location.href="psListUpdate?ps_no="+ps_no;
 }

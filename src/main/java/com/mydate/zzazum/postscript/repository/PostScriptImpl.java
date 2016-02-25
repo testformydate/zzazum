@@ -238,4 +238,9 @@ public class PostScriptImpl implements PostScriptDataInter{
 	public int pdCommentDelete(PostScriptComment comment) {
 		return postScriptDao.pdCommentDelete(comment);
 	}
+	
+	@Override
+	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list) {
+		return postScriptDao.pdEdit(list.getPs_no());
+	}
 }
