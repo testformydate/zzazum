@@ -106,6 +106,7 @@ div#search{
 
 .pageLinks{
 	color:white;
+	background-color: #00cdcd;
 	padding:7px;
 	font-family:'Nanum Gothic';
 	border-radius:3px;
@@ -189,11 +190,57 @@ div#search{
     border-radius: 50%;
     margin: 0 10px;
 }
+
+.memberUpload{
+	top:0;
+	top:10px;
+	right:222px;
+	margin:0;
+	padding:0;
+	background-color:white;
+	border-radius:3px;
+	padding-left:10px;
+	padding-right:10px;
+	display:inline-block;
+	margin-right:20px;
+	cursor:pointer;
+	border:2px solid lightgray;
+	position:absolute;
+}
+
+.memberUpload:hover{
+	background-color:lightgray;
+}
+
+.memberImgWrapper{
+	display:inline-block;
+	margin-top:10px;
+}
+
+.memberDetail{
+	top:0;
+	right:0;
+	top:50px;
+	right:150px;
+	background-color:white;
+	border:1px solid lightgray;
+	padding:20px;
+	box-shadow:1px 1px 10px gray;
+	position:absolute;
+	display:inline-block;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 function search(keyword){
+	//var ck_keyword = /[a-zA-Z0-9\~!@#$%^&*()_-.,]*$/
+	var ch = /[가-힣]+/
+	if(!ch.test(keyword)) {
+		alert("해커냐?");
+		$("#searchResult").hide();
+		$("#autocompleteClose").hide();
+	}
 	//alert(keyword);
 // 	$(".box-font-active").attr("class","box-font");
 	$(".stepContent-active").attr("class","stepContent");
@@ -211,22 +258,27 @@ function closeNav() {
 }
 
 $(document).ready(function(){
-	var ck_keyword = /^[A-Za-z0-9]*$/;
+	/* var ck_keyword = /^[A-Za-z0-9\~!@#$%^&*()_-.,]*$/; */
+	var ck_keyword = /^[가-힣]*$/
 	var autocompleteListId = 0; 
 	var rowIdx = 0;
+	
 	$(".body").click(function(){
 		$("#searchResult").slideUp();
 	});
+	
 	$("#autocompleteClose").click(function(){
 			$(this).hide();
 			$('#searchResult').slideUp();
 	});
+	
 	$("#searchResult").hide();
 	$("#autocompleteClose").hide();
 	$("#keyword").keyup(function(e){
 		console.log("keyCode: " + e.keyCode);
 		var keyword = searchForm.keyword.value;
 		var currentId = 0;
+		
 		if(e.keyCode == 37){
 			//left
 			//alert("aa");
@@ -368,10 +420,6 @@ $(document).ready(function(){
 						$("#searchResult").hide();
 						$("#autocompleteClose").hide();
 					}
-					if(ck_keyword.test(keyword)) {
-						$("#searchResult").hide();
-						$("#autocompleteClose").hide();
-					}
 					//$("#searchResult").autocomplete({source:[str]});
 				}
 			});
@@ -432,6 +480,10 @@ $(document).ready(function(){
  			/* $("#sideNav").css("width","0"); */
 		}
 	});
+	
+	$("#memberUpload").click(function(){
+		location.href = "psListInsert";
+	});
 });
 </script>
 <title>MyDate - Find Your Own Date</title>
@@ -466,15 +518,20 @@ $(document).ready(function(){
 						</div>
 					</li>
 				</ul>
-					<div style="float:right;display:inline-block;margin:10px;font-size:10pt;">
+					<div style="float:right;display:inline-block;font-size:10pt;">
 							<%	if(mem==null){ %>
 						<div class="member"><a class="pageLinks" href="${path}/member/memberlogview">로그인</a></div>
 						<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
 						<% }else{ %>
+							<div id="memberUpload" class="memberUpload">후기쓰기</div>
 							<div class="memberImgWrapper"><img class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
-							<div class="member"><%=session.getAttribute("mem_nick") %></div>
-							<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
-							<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
+							<div class="memberDetail">
+								<div>
+									<div class="member"><%=session.getAttribute("mem_id") %></div>
+								</div>
+								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
+								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
+							</div>
 							<c:set var="mem_id" value="<%=mem %>" />
 						<%} %>
 					</div>						
