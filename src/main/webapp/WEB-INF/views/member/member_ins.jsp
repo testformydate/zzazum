@@ -640,7 +640,7 @@ $(document).ready(function(){
 		if(!bhday == null || !bhday == ""){
 			if(!bhday_regExp.test(bhday)){
 				$("#mem_bhday").css("border","1px solid #e91e63");
-				$("#mem_bhdayInfo").html("<p>숫자만 입력해주세요. 예)930214</p>");
+				$("#mem_bhdayInfo").html("<p>숫자만 입력해주세요. 예)19930214</p>");
 				return;
 			}else{
 				$("#mem_bhday").css("border","1px solid #4DCB6D");
