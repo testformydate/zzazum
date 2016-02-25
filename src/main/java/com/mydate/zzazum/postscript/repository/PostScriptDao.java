@@ -112,5 +112,7 @@ public interface PostScriptDao {
 	
 	@Select("select count(pf_name) from md_psfile where pf_email = #{pf_email}")
 	public int tempFileMa(PostScriptFile dtoFile);
-
+	
+	@Delete("delete from md_psfile where pf_email = #{pf_email}")
+	public int tmepFielDe(String pf_email);
 }
