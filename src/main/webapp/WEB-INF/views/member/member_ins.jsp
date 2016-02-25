@@ -174,6 +174,78 @@ input.radio:focus ~ label:before {
 	box-shadow: 0 0 0 3px #999;
 }
 
+.polCheckBox {
+	clear: both;
+	/* float:left; */
+	margin-top: 10px;
+	display: inline-block;
+	/* margin:auto; */
+}
+
+label#polCheckLabel {
+	width: 401px;
+	border:0;
+}
+
+/* hide input */
+input.checkBox:empty {
+	margin-left: -1111px;
+}
+
+/* style label */
+input.checkBox:empty ~ label {
+	position: relative;
+	float: left;
+	line-height: 1.5em;
+	text-indent: 2.25em;
+	/* margin-top: 2em; */
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input.checkBox:empty ~ label:before {
+	position: absolute;
+	/* display: block; */
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 1.5em;
+	background: #D1D3D4;
+	border-radius: 3px 3px 3px 3px;
+}
+
+/* toggle hover */
+input.checkBox:hover:not (:checked ) ~ label#polCheckLabel:before {
+	content: '\2714';
+	text-indent: .9em;
+	color: #C2C2C2;
+}
+
+input.checkBox:hover:not (:checked ) ~ label#polCheckLabel {
+	color: #888;
+}
+
+/* toggle on */
+input.checkBox:checked ~ label#polCheckLabel:before {
+	content: '\2714';
+	text-indent: .4em;
+	color: #9CE2AE;
+	background-color: #4DCB6D;
+}
+
+input.checkBox:checked ~ label#polCheckLabel {
+	color: #777;
+}
+
+/* radio focus */
+input.checkBox:focus ~ label#polCheckLabel:before {
+	box-shadow: 0 0 0 3px #999;
+}
+
 p{
 	color:#e91e63;
 	padding:0;
@@ -730,6 +802,10 @@ $(document).ready(function(){
 						<input class="insert_input" type="text" id="mem_love" name="mem_love" placeholder="그/그녀의 이메일(선택)" />
 						<div id="mem_loveInfo"></div>
 					</form>
+					<div class="polCheckBox">
+							<input type="checkBox" name="polCheck" id="polCheck"
+								class="checkBox" /> <label id="polCheckLabel" for="polCheck" style="font-size:0.8em">MyDate의 <a href="">이용약관</a>과 <a href="">개인정보이용정책</a>에 동의합니다.</label>
+					</div>
 					<button id="submitBtn" class="submitBtn">가입하기</button>
 				</div>
 			</div>
