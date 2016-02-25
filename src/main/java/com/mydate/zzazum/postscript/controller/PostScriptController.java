@@ -153,6 +153,12 @@ public class PostScriptController {
 		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
 	}
 	
+	@RequestMapping(value="deleteComment")
+	public String deleteComment(PostScriptComment comment){
+		postScriptService.pdCommentDelete(comment);
+		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
+	}
+	
 	@RequestMapping(value="psListInsert")
 	public ModelAndView psListInsert(){
 		ModelAndView model = new ModelAndView();
@@ -240,5 +246,15 @@ public class PostScriptController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value="psListUpdate")
+	public ModelAndView psListUpdate(){
+		ModelAndView model = new ModelAndView();
+		
+		model.setViewName("postscript/ps_update");
+		
+		return model;
+	}
+	
 
 }

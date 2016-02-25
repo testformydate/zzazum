@@ -233,4 +233,9 @@ public class PostScriptImpl implements PostScriptDataInter{
 	public int tempFileMa(PostScriptFile dtoFile) {
 		return postScriptDao.tempFileMa(dtoFile);
 	}
+	
+	@Override
+	public int pdCommentDelete(PostScriptComment comment) {
+		return postScriptDao.pdCommentDelete(comment);
+	}
 }

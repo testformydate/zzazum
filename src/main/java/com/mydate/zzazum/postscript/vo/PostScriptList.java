@@ -4,9 +4,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PostScriptList {
-	private String ps_email, ps_location, ps_date, ps_image, ps_title, ps_context, mem_primg,  ps_clike, mem_nick;
+	private String ps_email, ps_location, ps_date, ps_image, ps_title, ps_context, mem_primg,  ps_clike, mem_nick, email_check;
 	private int ps_no, ps_psno, ps_hour, ps_like, ps_hits, track_Num, track_Count, ps_clip;
 	
+	
+	public String getEmail_check() {
+		return email_check;
+	}
+	public void setEmail_check(String email_check) {
+		this.email_check = email_check;
+	}
 	public String getMem_nick() {
 		return mem_nick;
 	}

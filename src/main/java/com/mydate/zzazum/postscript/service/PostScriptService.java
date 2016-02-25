@@ -80,6 +80,7 @@ public class PostScriptService {
 		ArrayList<PostScriptLike> like = postScriptDataInter.psLike(list);
 		ArrayList<PostScriptComment> comment = postScriptDataInter.psListComment(list.getPs_no());
 		
+		
 		for(PostScriptDetail pd : result){
 			for(PostScriptLike pl : like){
 				if(pd.getPd_no() == pl.getPd_no()){
@@ -98,6 +99,13 @@ public class PostScriptService {
 					comm.setMem_primg(pc.getMem_primg());
 					comm.setMem_nick(pc.getMem_nick());
 					comm.setCo_context(pc.getCo_context());
+					comm.setCo_no(pc.getCo_no());
+					
+					if(list.getPs_email().equals(pc.getCo_email())){
+						comm.setCo_delete("pd_comment_id");
+					}else{
+						comm.setCo_delete("pd_comment_none");
+					}
 					
 					pdList.add(comm);
 				}
@@ -115,6 +123,13 @@ public class PostScriptService {
 	public PostScriptList psDetailMain(PostScriptList list){
 		PostScriptList result = postScriptDataInter.psDetailMain(list.getPs_no());
 		PostScriptLike like = postScriptDataInter.psLikeMain(list);
+		
+		if(list.getPs_email().equals(result.getPs_email())){
+			result.setEmail_check("Ok");
+		}else{
+			result.setEmail_check("No");
+		}
+		
 		if(like != null){
 			result.setPs_clike("like");
 		}else{
@@ -201,5 +216,9 @@ public class PostScriptService {
 		File f = new File(path);
 		
 		return f;
+	}
+	
+	public void pdCommentDelete(PostScriptComment comment){
+		postScriptDataInter.pdCommentDelete(comment);
 	}
 }

@@ -51,4 +51,6 @@ public interface PostScriptDataInter {
 	int tempFileUp(PostScriptFile beanFile);
 	int tempFileMa(PostScriptFile dtoFile);
 	ArrayList<PostScriptFile> tempFileSe(PostScriptFile beanFile);
+	
+	int pdCommentDelete(PostScriptComment comment);
 }
