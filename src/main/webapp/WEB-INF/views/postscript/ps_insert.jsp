@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="${path}/resources/css/ps_insert.css"/>
 <style>
 </style>
-<title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
@@ -17,32 +16,10 @@ var card_imgNum="";
 var main_imgNum="none";
 var count = 0;
 $(document).ready(function(){
-	/* $("#upload_btn").live("change",function(){
-				readURL(this);
-	}); */
 	
 	$(".ps_loading").hide;
 	
 });
-
-/* function readURL(input) {
-	$(".ps_insert_show").html('');
-	var cnt=0;
-	for(ima=0; ima<input.files.length; ima++){
-		$(".ps_insert_show").append("<div class='ps_insert_card_body'><div class='close_btn'><img src='resources/icons/can.PNG' id='card_cancel"+ima+"'></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+ima+"'></div></div>");
-	   	$("#ps_insert_card"+ima).attr('onclick',"modal('ps_insert_card"+ima+"')");
-	   	$("#card_cancel"+ima).attr('onclick',"deletePicture('"+ima+"','"+input.files[ima].name+"')");
-	   	$(".ps_insert_body>form").append("<input type='hidden' class='ps_insert_card"+ima+"' value='' name='pd_contexts'>");
-		$(".ps_insert_body>form").append("<input type='hidden' class='ps_insert_card"+ima+"_loc' value='' name='pl_ids'>");
-		var reader = new FileReader();
-        reader.readAsDataURL(input.files[ima]);
-        reader.onload = function(){
-        	divName ="#ps_insert_card"+cnt;
-        	$(divName).css({"background-image":"url(" + this.result + ")","background-repeat":"no-repeat","background-size":"150px 150px"});
-        	cnt+= 1;
-        }
-	}
-} */
 
 function modal(card_id, fileName){
 	card_imgNum= card_id;
@@ -182,8 +159,7 @@ function fileUpload(){
 	$.each($("#upload_btn")[0].files, function(index, fileObj){
 		count++;
 		formdata.append('pd_images', fileObj);
-		str += "<div class='ps_insert_card_body'><div class='close_btn'><img src='resources/icons/close_btn.png' id='card_cancel"+count+"' ></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+count+"'><img src='resources/ps_icon/loding.gif'></div><input type='hidden' class='ps_insert_card"+count+"_loc' value='' name='pl_ids'><input type='hidden' class='ps_insert_card"+count+"' value='' name='pd_contexts'><input type='hidden' value='"+ fileObj.name +"' name='pd_images'></div>";
-		
+		str += "<div class='ps_insert_card_body'><div class='close_btn'><img src='resources/icons/close_btn.png' id='card_cancel"+count+"' ></div><div class='img_click modal_border ps_insert_card' id='ps_insert_card"+count+"'><img src='resources/ps_icon/loding.gif'></div></div>";
 	});
 	count -= $("#upload_btn")[0].files.length;
 	$(".ps_insert_show").append(str);
@@ -197,7 +173,10 @@ function fileUpload(){
 		success:function(data){
 			$.each(data, function(index, fileObj){
 				count++;
-				$("#card_cancel"+count).attr("onclick","deleteCard('"+count+"','"+fileObj.name+"')");
+				$(".ps_insert_body>form").append("<input type='hidden' value='"+ fileObj.pf_name +"' name='pd_images'>");
+				$(".ps_insert_body>form").append("<input type='hidden' class='ps_insert_card"+count+"' value='' name='pd_contexts'>")
+				$(".ps_insert_body>form").append("<input type='hidden' class='ps_insert_card"+count+"_loc' value='' name='pl_ids'>")
+				$("#card_cancel"+count).attr("onclick","deleteCard('"+count+"','"+fileObj.pf_name+"')");
 				$("#ps_insert_card"+count).attr('onclick',"modal('ps_insert_card"+count+"','"+fileObj.pf_name+"')");
 				$("#ps_insert_card"+count+">img").attr('src',"resources/ps_data/"+fileObj.pf_name);
 			});
@@ -270,7 +249,7 @@ function fileTag(){
 	</div>
 </div>
 <%@include file="../subMenu.jsp" %>
-<form action="">
+<form>
 	<input type="file" multiple="multiple" id="upload_btn" name="pd_images" onchange="fileUpload()">
 </form>
 <input type="hidden" id="getId" value="<%=(String)session.getAttribute("mem_id") %>">
