@@ -85,7 +85,7 @@ $(document).ready(function(){
 });
 
 function psBack(){
-	location.href="psListAll";
+	history.back();
 }
 
 function psTop(){
@@ -94,4 +94,15 @@ function psTop(){
 
 function psInsert(){
 	location.href="psListInsert";
+}
+
+function deleteComment(co_no){
+	alert(co_no);
+	$("#co_no").attr('value', co_no);
+	$("#deleteComment").attr('action','deleteComment');
+	$("#deleteComment").submit();
+}
+
+function psUpdate(ps_no){
+	location.href="psListUpdate?ps_no="+ps_no;
 }

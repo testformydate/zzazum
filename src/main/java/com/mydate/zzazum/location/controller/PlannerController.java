@@ -101,6 +101,8 @@ public class PlannerController {
 		String keyword2 = "";
 		ArrayList<LocationVo> resultList = null;
 		ArrayList<PostScriptList> postList = null;
+		ArrayList<CategoryVo> categoryList = service.selectCategoryAllData();
+		ArrayList<LocationCategory> locationList = service.selectLoCate();
 		ModelAndView model = new ModelAndView();
 		String mem_id = "";
 		mem_id = (String)session.getAttribute("mem_id");
@@ -141,6 +143,8 @@ public class PlannerController {
 		model.addObject("list", resultList);
 		model.addObject("psList", postList);
 		model.addObject("exKeyword", keyword);
+		model.addObject("categoryList", categoryList);
+		model.addObject("locationList", locationList);
 //		model.addObject("naverList", naverList);
 		model.setViewName("planner");
 		return model;

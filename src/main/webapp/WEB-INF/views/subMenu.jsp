@@ -15,7 +15,7 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 function psBack(){
-	location.href="psListAll";
+	history.back();
 }
 
 function psTop(){
@@ -29,7 +29,7 @@ function psInsert(){
 </head>
 <body>
 <div class="subMenu_body">
-		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write1.jpg" onclick="javascript:psInsert()"></div>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write.png" onclick="javascript:psInsert()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/top1.jpg" onclick="javascript:psTop()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/back1.jpg" onclick="javascript:psBack()"></div>
 </div>

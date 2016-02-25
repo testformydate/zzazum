@@ -2,8 +2,15 @@ package com.mydate.zzazum.postscript.vo;
 
 public class PostScriptComment {
 	private int co_no, co_psno, co_pdno;
-	private String co_email, co_context, mem_primg, mem_nick;
+	private String co_email, co_context, mem_primg, mem_nick, co_delete;
 	
+	
+	public String getCo_delete() {
+		return co_delete;
+	}
+	public void setCo_delete(String co_delete) {
+		this.co_delete = co_delete;
+	}
 	public String getMem_nick() {
 		return mem_nick;
 	}

@@ -1,14 +1,15 @@
 package com.mydate.zzazum.postscript.repository;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
-import javax.swing.plaf.synth.SynthStyle;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.mydate.zzazum.member.vo.MemberVo;
 import com.mydate.zzazum.postscript.vo.PostScriptComment;
@@ -154,7 +155,7 @@ public class PostScriptImpl implements PostScriptDataInter{
 	@Override
 	public int psDataInsert(PostScriptDetail bean) {
 		PostScriptList ps = new PostScriptList();
-		int main_num = Integer.parseInt(bean.getMain_img().substring(14));
+		int main_num = Integer.parseInt(bean.getMain_img().substring(14))-1;
 		String mem_id = bean.getPd_email();
 		
 		ps.setPs_email(mem_id);
@@ -162,21 +163,21 @@ public class PostScriptImpl implements PostScriptDataInter{
 		ps.setPs_title(bean.getPs_title());
 		ps.setPs_context(bean.getPd_contexts()[main_num]);
 		ps.setPs_location(bean.getPd_location());
-		
+
 		postScriptDao.psDataInssert(ps);
 		
 		int ps_no = postScriptDao.psInsertNum(mem_id);
-		System.out.println("aaa");
-		System.out.println(bean.getPd_images().length);
+
 		point : for(int i=0; i < bean.getPd_images().length; i++){
 			PostScriptDetail pd = new PostScriptDetail();
 			
 			if(bean.getDeleteFile() != null){
 				for(String deFi : bean.getDeleteFile()){
-					if(bean.getPd_images()[i].equals(deFi)) continue point;
+					if(bean.getPd_images()[i].equals(deFi)){
+						continue point;
+					}
 				}
 			}
-			
 			pd.setPs_no(ps_no);
 			pd.setPl_id(bean.getPl_ids()[i]);
 			pd.setPd_email(mem_id);
@@ -184,16 +185,33 @@ public class PostScriptImpl implements PostScriptDataInter{
 			pd.setPd_image(bean.getPd_images()[i]);
 			
 			postScriptDao.pdDataInsert(pd);
+			
+			upload(pd.getPd_image());
 		}
-		
+		postScriptDao.tmepFielDe(mem_id);
 		return 0;
 	}
 	
-	private File upload(MultipartFile file){
-		String path="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_images/postscript/" + file.getOriginalFilename();
-		File f = new File(path);
-		
-		return f;
+	private void upload(String fileName){
+		String inPath="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_data/" + fileName;
+		String outPath ="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_images/postscript/"+fileName;
+		File delete = new File(inPath);
+		try {
+			FileInputStream fis = new FileInputStream(inPath);
+			FileOutputStream fos = new FileOutputStream(outPath);
+			
+			int data =0;
+			while((data=fis.read())!=-1){
+				fos.write(data);
+			}
+			
+			fis.close();
+			fos.close();
+			
+			delete.delete();
+		} catch (Exception e) {
+			System.out.println("file upload err : " + e);
+		}
 	}
 	
 	@Override
@@ -214,5 +232,15 @@ public class PostScriptImpl implements PostScriptDataInter{
 	@Override
 	public int tempFileMa(PostScriptFile dtoFile) {
 		return postScriptDao.tempFileMa(dtoFile);
+	}
+	
+	@Override
+	public int pdCommentDelete(PostScriptComment comment) {
+		return postScriptDao.pdCommentDelete(comment);
+	}
+	
+	@Override
+	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list) {
+		return postScriptDao.pdEdit(list.getPs_no());
 	}
 }

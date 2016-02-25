@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<c:set var="mainVal" value='${pdC.pd_image}' />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${path}/resources/css/ps_insert.css"/>
+<link rel="stylesheet" href="${path}/resources/css/ps_update.css"/>
 <style>
 </style>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -14,11 +15,10 @@
 <script type="text/javascript">
 var card_imgNum="";
 var main_imgNum="none";
-var count = 0;
+var count = '${psDSize }';
 $(document).ready(function(){
-	
-	$(".ps_loading").hide;
-	
+	setting();
+
 });
 
 function modal(card_id, fileName){
@@ -37,7 +37,7 @@ function modal(card_id, fileName){
 	}
 	
 	img_add = $("#"+card_id).css('background-image');
-	$(".modal_img>img").attr("src","resources/ps_data/"+fileName);
+	$(".modal_img>img").attr("src","resources/ps_images/postscript/"+fileName);
 	$("#modal_context").attr("value", $("."+card_imgNum).val());
 	location.href="#openModal";
 }
@@ -118,9 +118,6 @@ function insertSubmit(){
 		return;
 	}
 	
-	$("#loading").css("display","block");
-	$(".member_insert_body").css("opacity","0.5");
-	
 	$("#insertSubmit").attr("action", "psDataInsert");
 	$("#insertSubmit").submit();
 }
@@ -190,57 +187,70 @@ function fileUpload(){
 function fileTag(){
 	$("#upload_btn").click();
 }
+
+function psBack(){
+	history.back();
+}
+
+function setting(){
+	$('#${psDM.ps_location}').attr("selected","selected");
+	for(i=0; i <'${psDSize }'; i++){
+		if($(".ps_insert_card" + i).val() !=""){
+			$("#ps_insert_card" + i).css("border-color", "#69D2E7");
+		}
+	}
+	$("#" +$("#main_val").val()).css("border-color", "red");
+}
 </script>
 </head>
 <body>
-<div id="loading" class="sk-fading-circle">
-  <div class="sk-circle1 sk-circle"></div>
-  <div class="sk-circle2 sk-circle"></div>
-  <div class="sk-circle3 sk-circle"></div>
-  <div class="sk-circle4 sk-circle"></div>
-  <div class="sk-circle5 sk-circle"></div>
-  <div class="sk-circle6 sk-circle"></div>
-  <div class="sk-circle7 sk-circle"></div>
-  <div class="sk-circle8 sk-circle"></div>
-  <div class="sk-circle9 sk-circle"></div>
-  <div class="sk-circle10 sk-circle"></div>
-  <div class="sk-circle11 sk-circle"></div>
-  <div class="sk-circle12 sk-circle"></div>
-</div>
 <%@include file="../md_top.jsp" %>
-<div class="ps_insert_body body member_insert_body">
+<div class="ps_insert_body body">
 	<form id="insertSubmit" enctype="multipart/form-data" method="post">
 	<div class="ps_insert_location">
 	<select name="pd_location" id="pd_lc" onchange="modalLocation()">
-		<option value="none" selected="selected">지역선택 해주세요</option>
+		<option value="none" >지역선택 해주세요</option>
 		<c:forEach var="lc" items="${psLo}">
-			<option value="${lc.lc_val}">${lc.lc_name}</option>
+			<option id="${lc.lc_val}" value="${lc.lc_val}">${lc.lc_name}</option>
 		</c:forEach>
 	</select>
 	</div>
 	<div class="ps_insert_ti img_click">Title</div>
 	<div class="ps_insert_title">
-		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~">
+		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~" value="${psDM.ps_title }">
 	</div>
 	<div class="ps_insert_file">
 			<img class="ps_icon" src="resources/ps_icon/picture_add.png" onclick="fileTag()">
 	</div>
 	<div class="ps_insert_label">
-		<span>* 사진을 클릭해주세요</span>
 		<span class="comment_color">ㅁ</span>Comment작성
 		<span class="title_color">ㅁ</span>대표 사진 선택
 	</div>
 	<div class="ps_insert_show">
+		<c:forEach var="pd" items="${psD }" varStatus="list">
+		<div class='ps_insert_card_body'>
+			<div class='close_btn'>
+				<img src='resources/icons/close_btn.png' id='card_cancel${list.count}' onclick="deleteCard('${list.count}','${pd.pd_image }')" >
+			</div>
+			<div class='img_click modal_border ps_insert_card' id='ps_insert_card${list.count}' onclick="modal('ps_insert_card${list.count}','${pd.pd_image}')">
+				<img src='resources/ps_images/postscript/${pd.pd_image}' >
+			</div>
+		</div>
+		</c:forEach>
 	</div>
 	<div class="contentSubmit">
-		
 	</div>
 	<div class="ps_insert_button">
 		<input type="button" value="작성" onclick="insertSubmit()">
 		<input type="button" value="취소" onclick="hisBack()">
 	</div>
-	<input type="hidden" id="main_val" name="main_img" value="">
-	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">	
+	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type="hidden" id="main_val" name="main_img" value="${main_val }">
+	<c:forEach var="pdC" items="${psD }" varStatus="list">
+		<input type='hidden' class='ps_insert_card${list.count}' value='${pdC.pd_context}' name='pd_contexts'>
+		<input type='hidden' value='${pdC.pd_image }' name='pd_images'>
+		<input type='hidden' class='ps_insert_card${list.count}_loc' value='${pdC.pl_id }' name='pl_ids'>
+	</c:forEach>
 	</form>
 </div>
 <div id="openModal" class="modal">
@@ -266,7 +276,9 @@ function fileTag(){
 		<img class="ps_loading_image" src="resources/ps_icon/loding.gif">
 	</div>
 </div>
-<%@include file="../subMenu.jsp" %>
+<div class="subMenu_body">
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/back1.jpg" onclick="javascript:psBack()"></div>
+</div>
 <form>
 	<input type="file" multiple="multiple" id="upload_btn" name="pd_images" onchange="fileUpload()">
 </form>

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -153,6 +156,12 @@ public class PostScriptController {
 		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
 	}
 	
+	@RequestMapping(value="deleteComment")
+	public String deleteComment(PostScriptComment comment){
+		postScriptService.pdCommentDelete(comment);
+		return "redirect:/psListDetail?ps_no="+comment.getCo_psno()+"&ps_email="+comment.getCo_email();
+	}
+	
 	@RequestMapping(value="psListInsert")
 	public ModelAndView psListInsert(){
 		ModelAndView model = new ModelAndView();
@@ -240,5 +249,28 @@ public class PostScriptController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value="psListUpdate")
+	public ModelAndView psListUpdate(PostScriptList list, HttpSession session){
+		ModelAndView model = new ModelAndView();
+		list.setPs_email((String)session.getAttribute("mem_id"));
+		
+		PostScriptList psList = postScriptService.psDetailMain(list);
+		ArrayList<PostScriptDetail> pdList = postScriptService.pdEdit(list);
+		
+		for(int i =0; i<pdList.size(); i++){
+			if(pdList.get(i).getPd_image().equals(psList.getPs_image())){
+				model.addObject("main_val", "ps_insert_card"+Integer.toString(i+1));
+			}
+		}
+		model.addObject("psDSize", pdList.size());
+		model.addObject("psLo", locationDataService.selectLoCate());
+		model.addObject("psDM", psList);
+		model.addObject("psD", pdList);
+		model.setViewName("postscript/ps_update");
+		
+		return model;
+	}
+	
 
 }

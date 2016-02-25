@@ -59,7 +59,19 @@
 					<div class="pd_comment_link">comment ▼</div>
 					<c:forEach var="pdC" items="${listD.pd_comment}">
 					<div class="pd_comment_body">
-						<div class="pd_comment_profile"><img src="resources/ps_images/profile/${pdC.mem_primg }"></div>
+						<c:if test="${pdC.co_delete eq 'pd_comment_none'} ">
+						<div class="pd_comment_delete like_click pd_comment_none" onclick="deleteComment('${pdC.co_no}')">
+							<img src='resources/icons/close_btn.png'>
+						</div>
+						</c:if>
+						<c:if test="${pdC.co_delete eq 'pd_comment_id'}">
+						<div class="pd_comment_delete like_click pd_comment_id" onclick="deleteComment('${pdC.co_no}')">
+							<img src='resources/icons/close_btn.png'>
+						</div>
+						</c:if>
+						<div class="pd_comment_profile">
+							<img src="resources/ps_images/profile/${pdC.mem_primg }">
+						</div>
 						<div class="pd_comment_context">
 							${pdC.mem_nick }
 							<hr>
@@ -90,8 +102,10 @@
 	</div>
 </div>
 <div class="subMenu_body">
-		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/edit_pen.png" onclick=""></div>
-		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/add_pen.png" onclick="javascript:psInsert()"></div>
+		<c:if test="${psDM.email_check eq 'Ok' }">
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/edit.png" onclick="psUpdate('${psDM.ps_no}')"></div>
+		</c:if>
+		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/write.png" onclick="javascript:psInsert()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/top1.jpg" onclick="javascript:psTop()"></div>
 		<div class="subMenu_img"><img class="click_cursor" src="resources/icons/back1.jpg" onclick="javascript:psBack()"></div>
 </div>
@@ -100,6 +114,12 @@
 	<input type="hidden" id="getId" name="co_email" value="<%=(String)session.getAttribute("mem_id") %>">
 	<input type="hidden" name="co_pdno" id="co_pdno">
 	<input type="hidden" name="co_context" id="co_comment">
+</form>
+
+<form id="deleteComment" method="post">
+	<input type="hidden" name="co_psno" value="${psDM.ps_no}">
+	<input type="hidden" name="co_email" value="<%=(String)session.getAttribute("mem_id") %>">
+	<input type="hidden" id="co_no" name="co_no">
 </form>
 </div>
 </body>

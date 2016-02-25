@@ -9,6 +9,6 @@
 <body>
 여긴 마이페이지 디자인좀 해주세요 ㅠㅠ
 <a href="memberupview">수정</a>
-<a href="memberdel">삭제</a>
+<a href="memberdel">회원탈퇴</a>
 </body>
 </html>
