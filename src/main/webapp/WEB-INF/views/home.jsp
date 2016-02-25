@@ -164,6 +164,64 @@ $(document).ready(function(){
 	$("#goPlannerCool").click(function(){
 		location.href = "planner";
 	});
+	
+	var track_Num = 7; //total loaded record group(s)
+    var track_Count = 7;
+    var loading  = false; //to prevents multiple ajax loads
+    var track_Size = $("#psListSize").val();
+    var sycro = 'false';
+    
+    $(window).scroll(function() { //detect page scroll
+    	//alert("aa");
+    	if(track_Size > track_Num){
+    		 if(Math.ceil($(window).scrollTop()) + $(window).height() == $(document).height()&& sycro=="false")  //user scrolled to bottom of the page?
+    	        {	
+    			 sycro="true";
+    	        	setTimeout(function(){
+	    	        	$.ajax({
+	    	        		type: "GET",
+	    	        		url: "psListPart?method=listPart&track_Num="+track_Num+"&track_Count="+track_Count,
+	    	        		success: function(jdata){
+		    	        		$(jdata).each(function(index,objArr){
+		    	        			var str = "<div class='card'>"
+									str += "<img class='cardImg' src='resources/ps_images/postscript/"+objArr.ps_image+"'>"
+									str += "<div id='"+objArr.ps_no+"' class='cardTitle'>"+objArr.ps_title+"</div>"
+									str += "<div class='cardWriter'>"
+									str += "<div class='likeAndComment'>"
+									str += "<img class='icons' src='<c:url value='/icons/like.png' />'><span class='count'>"+ objArr.ps_like+"</span>"
+									str += "</div>"
+									str += "<div class='likeAndComment'>"
+									str += "<img class='icons' src='<c:url value='/icons/views.png' />'><span class='count'>"+objArr.ps_hits +"</span>"
+									str += "</div>"
+									str += "</div>"
+									str += "<div class='cardBottom'>"
+									str += "<img class='cardProfile' src='<c:url value='resources/ps_images/profile/"+objArr.mb_image+"' />'><span class='count'>"+objArr.ps_nick+"</span>"
+									str += "</div>"
+									str += "</div>"
+		    	        		str = "<div class='ps_card'><div class='ps_card_title'>";
+		    	        			str += "<p class='ps_card_location card_click'><a href='#'><b>"+objArr.ps_location+"</b></a></p>";
+		    	        			str += "</div><div class='ps_card_list_body'>";
+		    	        			str += "<img class='card_all_image card_click card_detail_click'id='list"+objArr.ps_no+"' src='resources/ps_images/postscript/"+objArr.ps_image+"' onclick='detailClick("+ objArr.ps_no +")'>";
+		    	        			str += "<div class='ps_card_profile'><img src='resources/ps_images/profile/"+objArr.mb_image+"'>";
+		    	        			str += "</div><div class='ps_card_content'><div class='ps_card_day'>"+objArr.ps_date +"</div>";
+		    	        			str += "<div class='ps_card_title ellipsText card_click' onclick='detailClick("+ objArr.ps_no +")'>"+objArr.ps_title+"</div>";
+		    	        			str += "<div class='ps_card_etc'><span class='ps_card_clip'><img class='ps_icon' src='resources/ps_icon/clip.png'>"+ objArr.ps_clip + "</span><span class='ps_card_likes'><img class='ps_icon card_click' id='pslike"+ objArr.ps_no +"' src='resources/ps_icon/like.png' onclick='likeClick("+ objArr.ps_no +")'><span>"+ objArr.ps_like+"</span></span>";
+		    	        			str += "<span class='ps_card_comments'><img class='ps_icon' src='resources/ps_icon/views.png'>"+objArr.ps_hits +"</span></div></div></div></div>";
+		    	        			
+		    	        			$("#cardarea").append(str);
+		    	        		});
+		    	        		track_Num += track_Count;
+		    	        		
+		    	        		if(track_Num >= track_Size) track_Num= track_Size;
+		    	        		sycro="false";
+		    	        		}
+	    	        	});
+    	        	},1000);
+    	            
+    	        }
+    	}
+       
+        });
 });
 </script>
 </head>
@@ -233,5 +291,6 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
+		<input type="hidden" id="psListSize" value="${psListSize }">
 </body>
 </html>

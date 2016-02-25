@@ -15,6 +15,7 @@ import com.mydate.zzazum.location.vo.SearchKeywordVo;
 import com.mydate.zzazum.postscript.vo.PostScriptList;
 
 public interface LocationDataInter {
+	public String psListCnt();
 	public ArrayList<LocationVo> selectAllData() throws DataAccessException;
 	public ArrayList<LocationVo> selectSearchData(String p_addr) throws DataAccessException;
 	public String selectMaxNo() throws DataAccessException;
@@ -34,4 +35,5 @@ public interface LocationDataInter {
 	public boolean plusClip(String ps_no);
 	public boolean deleteClipData(ClipVo clip);
 	public ArrayList<String> selectClipedNo(String mem_id);
+	public ArrayList<PostScriptList> selectMyListAll(String mem_id);
 }
