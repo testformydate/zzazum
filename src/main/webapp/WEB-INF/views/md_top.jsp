@@ -520,7 +520,7 @@ $(document).ready(function(){
 		  <!-- <a href="javascript:void(0)" class="closebtn">X</a> -->
 		  <a href="${path}/home">메인으로</a>
 		  <a href="${path}/planner">데이트 짜기</a>
-		  <a href="${path}/psListAll">서연이가 함</a>
+		  <a href="${path}/psListAll">데이트 후기</a>
 		  <a href="${path}/community/cm_list?part_no=0">커뮤니티 미완성</a>
 		  <a href="#">Contact</a>
 		</div>
