@@ -37,7 +37,7 @@ function modal(card_id, fileName){
 	}
 	
 	img_add = $("#"+card_id).css('background-image');
-	$(".modal_img>img").attr("src","resources/ps_data/"+fileName);
+	$(".modal_img>img").attr("src","resources/ps_images/postscript/"+fileName);
 	$("#modal_context").attr("value", $("."+card_imgNum).val());
 	location.href="#openModal";
 }
@@ -207,7 +207,7 @@ function psBack(){
 	</div>
 	<div class="ps_insert_ti img_click">Title</div>
 	<div class="ps_insert_title">
-		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~">
+		<input type="text" id="ps_main_title" name="ps_title" placeholder="제목을 입력해주세요~" value="${psDM.ps_title }">
 	</div>
 	<div class="ps_insert_file">
 			<img class="ps_icon" src="resources/ps_icon/picture_add.png" onclick="fileTag()">
@@ -217,16 +217,28 @@ function psBack(){
 		<span class="title_color">ㅁ</span>대표 사진 선택
 	</div>
 	<div class="ps_insert_show">
+		<c:forEach var="pd" items="${psD }" varStatus="list">
+		<div class='ps_insert_card_body'>
+			<div class='close_btn'>
+				<img src='resources/icons/close_btn.png' id='card_cancel${list.count}' onclick="deleteCard('${list.count}','${pd.pd_image }')" >
+			</div>
+			<div class='img_click modal_border ps_insert_card' id='ps_insert_card${list.count}' onclick="modal('ps_insert_card${list.count}','${pd.pd_image}')">
+				<img src='resources/ps_images/postscript/${pd.pd_image}' >
+			</div>
+		</div>
+		</c:forEach>
 	</div>
 	<div class="contentSubmit">
-		
 	</div>
 	<div class="ps_insert_button">
 		<input type="button" value="작성" onclick="insertSubmit()">
 		<input type="button" value="취소" onclick="hisBack()">
 	</div>
 	<input type="hidden" id="main_val" name="main_img" value="">
-	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">	
+	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">
+	<input type='hidden' value='' name='pd_images'>
+	<input type='hidden' class='ps_insert_card' value='' name='pd_contexts'>
+	<input type='hidden' class='ps_insert_card' value='' name='pl_ids'>	
 	</form>
 </div>
 <div id="openModal" class="modal">

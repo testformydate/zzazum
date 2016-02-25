@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -248,9 +251,11 @@ public class PostScriptController {
 	}
 	
 	@RequestMapping(value="psListUpdate")
-	public ModelAndView psListUpdate(@RequestParam("ps_no") PostScriptList list){
+	public ModelAndView psListUpdate(PostScriptList list, HttpSession session){
 		ModelAndView model = new ModelAndView();
 		
+		list.setPs_email((String)session.getAttribute("mem_id"));
+		model.addObject("psLo", locationDataService.selectLoCate());
 		model.addObject("psDM", postScriptService.psDetailMain(list));
 		model.addObject("psD", postScriptService.pdEdit(list));
 		model.setViewName("postscript/ps_update");

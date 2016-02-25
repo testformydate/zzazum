@@ -119,6 +119,6 @@ public interface PostScriptDao {
 	@Delete("delete from md_psfile where pf_email = #{pf_email}")
 	public int tmepFielDe(String pf_email);
 	
-	@Select("select form md_psdetail where ps_no=#{ps_no}")
+	@Select("select * from md_psdetail where ps_no=#{ps_no}")
 	public ArrayList<PostScriptDetail> pdEdit(int ps_no);
 }
