@@ -570,8 +570,8 @@ $(document).ready(function(){
 									<div class="memberImgWrapper"><a href="${path}/member/memberupview"><img class="tooltipImg" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></a></div>
 								</div>
 								<div style="margin-top:10px;border-top:1px solid lightgray;padding-top:10px;">
+									<div id="mypageBtn" class="member"><a class="pageLinks" href="${path}/member/membermypage">내 정보 보기</a></div>
 									<div id="logoutBtn" class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
-									<div id="mypageBtn" class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
 								</div>
 							</div>
 							<c:set var="mem_id" value="<%=mem %>" />

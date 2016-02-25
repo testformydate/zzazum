@@ -174,44 +174,23 @@ div.stepContent > a:hover{
   40% { opacity: 1; } 
 }
 
-/* styles for '...' */ 
 .descContext{
-  /* hide text if it more than N lines  */
-  overflow: hidden;
-  /* for set '...' in absolute position */
-  position: relative; 
-  /* use this value to count block height */
-  line-height: 1.2em;
-  /* max-height = line-height (1.2) * lines max number (3) */
-  max-height: 3.6em; 
-  /* fix problem when last visible word doesn't adjoin right side  */
-  text-align: justify;
-  
-  /* */
-  margin-right: -1em;
-  padding-right: 1em;
+	margin-top:10px;
+	font-size:1.2em;
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
-.descContext:before {
-  /* points in the end */
-  content: '...';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of block */
-  right: 0;
-  bottom: 0;
+
+.nick{
+	margin-bottom:5px;
+	font-size:0.9em;
+	font-weight:600;
 }
-.descContext:after {
-  /* points in the end */
-  content: '';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of text */
-  right: 0;
-  width: 1em;
-  /* set width and height */
-  height: 1em;
-  margin-top: 0.2em;
-  background: white;
+
+.wrighter{
+	margin-right:5px;
+	color:gray;
 }
 </style>
 <script type="text/javascript">
@@ -639,7 +618,8 @@ $(document).ready(function(){
 							<div id="${p.ps_no}" class="detailTitle">${p.ps_title}</div>
 							<div class="detailContent">
 								<div class="description" style="margin-left:15px;cursor:pointer;">
-									<span><img class="cardProfile" src="resources/ps_images/profile/${p.mem_primg}"></span><span class="count">${p.mem_nick}</span>
+									<%-- <span><img class="cardProfile" src="resources/ps_images/profile/${p.mem_primg}"></span> --%>
+									<span class="nick wrighter">작성자</span><span class="nick">${p.mem_nick}</span>
 									<div class="descContext">${p.ps_context}</div>
 								</div>
 								<div style="display:inline-block;margin-top:17px;" class="likesAndComment">

@@ -41,6 +41,7 @@ img.detailImg{
 
 div.detailContents{
 	padding:20px;
+	padding-top:10px;
 }
 div.detailImgWrapper{
 	float:left;
@@ -59,4 +60,5 @@ div.detailTitle{
     width: 12em; 
     overflow: hidden;
     text-overflow: ellipsis; 
+    margin-bottom:5px;
 }
