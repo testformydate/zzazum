@@ -113,7 +113,7 @@ public interface PostScriptDao {
 	@Select("select * from md_psfile where pf_email = #{pf_email} and pf_auth=0")
 	public ArrayList<PostScriptFile> tempFileSe(PostScriptFile dtoFile);
 	
-	@Select("select count(pf_name) from md_psfile where pf_email = #{pf_email}")
+	@Select("select count(pf_name) from md_psfile")
 	public int tempFileMa(PostScriptFile dtoFile);
 	
 	@Delete("delete from md_psfile where pf_email = #{pf_email}")
@@ -122,6 +122,10 @@ public interface PostScriptDao {
 	@Select("select * from md_psdetail where ps_no=#{ps_no}")
 	public ArrayList<PostScriptDetail> pdEdit(int ps_no);
 	
-	@Update("update")
-	public void psDataUpdate();
+	@Update("update md_postscript set ps_location=#{ps_location}, ps_date=now(), ps_image=#{ps_image}, ps_title=#{ps_title}, ps_context=#{ps_context} where ps_no = #{ps_no}")
+	public void psDataUpdate(PostScriptList dto);
+	
+	@Delete("delete from md_psdetail where ps_no=#{ps_no}")
+	public void psExistDelete(int ps_no);
+	
 }

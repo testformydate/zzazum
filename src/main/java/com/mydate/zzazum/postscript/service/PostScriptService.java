@@ -1,7 +1,10 @@
 package com.mydate.zzazum.postscript.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -223,10 +226,43 @@ public class PostScriptService {
 	}
 	
 	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list){
-		return postScriptDataInter.pdEdit(list);
+		ArrayList<PostScriptDetail> pdList = postScriptDataInter.pdEdit(list);
+		
+		for(PostScriptDetail pd: pdList){
+			updateUpload(pd.getPd_image());
+		}
+		
+		return pdList;
 	}
 	
-	public void psDataUpdate(){
-		postScriptDataInter.psDataUpdate();
+	public void psDataUpdate(PostScriptDetail bean){
+		postScriptDataInter.pdDataUpdate(bean);
+	}
+	
+	private void updateUpload(String fileName){
+		String inPath="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_images/postscript/" + fileName;
+		String outPath ="C:/Users/user/git/zzazum/src/main/webapp/resources/ps_data/"+fileName;
+		File delete = new File(inPath);
+		try {
+			FileInputStream fis = new FileInputStream(inPath);
+			FileOutputStream fos = new FileOutputStream(outPath);
+			
+			int data =0;
+			while((data=fis.read())!=-1){
+				fos.write(data);
+			}
+			
+			fis.close();
+			fos.close();
+			
+			delete.delete();
+		} catch (Exception e) {
+			System.out.println("file upload err : " + e);
+		}
+	}
+	
+	public void psUpdateCancel(int ps_no){
+		postScriptDataInter.psUpdateCancel(ps_no);
+	
 	}
 }

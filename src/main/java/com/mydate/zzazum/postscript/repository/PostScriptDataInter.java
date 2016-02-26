@@ -56,5 +56,6 @@ public interface PostScriptDataInter {
 	
 	ArrayList<PostScriptDetail> pdEdit(PostScriptList list);
 	
-	void psDataUpdate();
+	void pdDataUpdate(PostScriptDetail bean);
+	void psUpdateCancel(int ps_no);
 }

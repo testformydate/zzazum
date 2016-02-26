@@ -37,7 +37,7 @@ function modal(card_id, fileName){
 	}
 	
 	img_add = $("#"+card_id).css('background-image');
-	$(".modal_img>img").attr("src","resources/ps_images/postscript/"+fileName);
+	$(".modal_img>img").attr("src","resources/ps_data/"+fileName);
 	$("#modal_context").attr("value", $("."+card_imgNum).val());
 	location.href="#openModal";
 }
@@ -90,7 +90,7 @@ function title_img(){
 }
 
 function hisBack(){
-	history.back();
+	location.href="psUpdateCancel?ps_no=${psDM.ps_no}"
 }
 
 function updateSubmit(){
@@ -118,7 +118,7 @@ function updateSubmit(){
 		return;
 	}
 	
-	$("#insertSubmit").attr("action", "psDataUpdate");
+	$("#insertSubmit").attr("action", "psDataUpdate?ps_no=${psDM.ps_no}");
 	$("#insertSubmit").submit();
 }
 
@@ -189,10 +189,11 @@ function fileTag(){
 }
 
 function psBack(){
-	history.back();
+	location.href="psUpdateCancel?ps_no=${psDM.ps_no}"
 }
 
 function setting(){
+	main_imgNum=$("#main_val").val();
 	$('#${psDM.ps_location}').attr("selected","selected");
 	for(i=0; i <'${psDSize }'; i++){
 		if($(".ps_insert_card" + i).val() !=""){
@@ -204,8 +205,22 @@ function setting(){
 </script>
 </head>
 <body>
+<div id="loading" class="sk-fading-circle">
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+</div>
 <%@include file="../md_top.jsp" %>
-<div class="ps_insert_body body">
+<div class="ps_insert_body body member_insert_body">
 	<form id="insertSubmit" enctype="multipart/form-data" method="post">
 	<div class="ps_insert_location">
 	<select name="pd_location" id="pd_lc" onchange="modalLocation()">
@@ -223,6 +238,7 @@ function setting(){
 			<img class="ps_icon" src="resources/ps_icon/picture_add.png" onclick="fileTag()">
 	</div>
 	<div class="ps_insert_label">
+		<span>* 사진을 클릭해주세요</span>
 		<span class="comment_color">ㅁ</span>Comment작성
 		<span class="title_color">ㅁ</span>대표 사진 선택
 	</div>
@@ -233,7 +249,7 @@ function setting(){
 				<img src='resources/icons/close_btn.png' id='card_cancel${list.count}' onclick="deleteCard('${list.count}','${pd.pd_image }')" >
 			</div>
 			<div class='img_click modal_border ps_insert_card' id='ps_insert_card${list.count}' onclick="modal('ps_insert_card${list.count}','${pd.pd_image}')">
-				<img src='resources/ps_images/postscript/${pd.pd_image}' >
+				<img src='resources/ps_data/${pd.pd_image}' >
 			</div>
 		</div>
 		</c:forEach>

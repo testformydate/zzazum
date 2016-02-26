@@ -172,10 +172,9 @@ $(document).ready(function(){
     var sycro = 'false';
     
     $(window).scroll(function() { //detect page scroll
-    	//alert("aa");
     	if(track_Size > track_Num){
     		 if(Math.ceil($(window).scrollTop()) + $(window).height() == $(document).height()&& sycro=="false")  //user scrolled to bottom of the page?
-    	        {	
+    	        {
     			 sycro="true";
     	        	setTimeout(function(){
 	    	        	$.ajax({
