@@ -201,14 +201,19 @@ public class PostScriptService {
 			dto.setPf_name(fileName);
 			dto.setPf_email(beanFile.getPf_email());
 			
+			postScriptDataInter.tempFileUp(dto);
+		}
+		
+		num -= beanFile.getPd_images().length;
+		
+		for(MultipartFile mf : beanFile.getPd_images()){
+			num +=1;
 			try {
-				
-				mf.transferTo(upload(fileName));
+				mf.transferTo(upload(Integer.toString(num) + ".png"));
 				Thread.sleep(5000);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			postScriptDataInter.tempFileUp(dto);
 		}
 		
 		return postScriptDataInter.tempFileSe(beanFile);
