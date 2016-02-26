@@ -272,5 +272,15 @@ public class PostScriptController {
 		return model;
 	}
 	
+	@RequestMapping(value="psDataUpdate")
+	public ModelAndView psDataUpdate(){
+		ModelAndView model = new ModelAndView();
+		
+		postScriptService.psDataUpdate();
+		
+		
+		model.setViewName("redirect:/home");
+		return model;
+	}
 
 }

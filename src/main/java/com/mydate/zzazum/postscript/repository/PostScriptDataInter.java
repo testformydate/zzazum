@@ -55,4 +55,6 @@ public interface PostScriptDataInter {
 	int pdCommentDelete(PostScriptComment comment);
 	
 	ArrayList<PostScriptDetail> pdEdit(PostScriptList list);
+	
+	void psDataUpdate();
 }

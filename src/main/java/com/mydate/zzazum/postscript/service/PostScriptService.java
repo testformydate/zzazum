@@ -225,4 +225,8 @@ public class PostScriptService {
 	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list){
 		return postScriptDataInter.pdEdit(list);
 	}
+	
+	public void psDataUpdate(){
+		postScriptDataInter.psDataUpdate();
+	}
 }

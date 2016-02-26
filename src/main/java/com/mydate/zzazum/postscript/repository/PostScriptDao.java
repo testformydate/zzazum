@@ -121,4 +121,7 @@ public interface PostScriptDao {
 	
 	@Select("select * from md_psdetail where ps_no=#{ps_no}")
 	public ArrayList<PostScriptDetail> pdEdit(int ps_no);
+	
+	@Update("update")
+	public void psDataUpdate();
 }

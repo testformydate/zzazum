@@ -93,7 +93,7 @@ function hisBack(){
 	history.back();
 }
 
-function insertSubmit(){
+function updateSubmit(){
 	
 	if($("#pd_lc").val()==""){
 		alert("지역을 선택해주세요!");
@@ -118,7 +118,7 @@ function insertSubmit(){
 		return;
 	}
 	
-	$("#insertSubmit").attr("action", "psDataInsert");
+	$("#insertSubmit").attr("action", "psDataUpdate");
 	$("#insertSubmit").submit();
 }
 
@@ -241,7 +241,7 @@ function setting(){
 	<div class="contentSubmit">
 	</div>
 	<div class="ps_insert_button">
-		<input type="button" value="작성" onclick="insertSubmit()">
+		<input type="button" value="작성" onclick="updateSubmit()">
 		<input type="button" value="취소" onclick="hisBack()">
 	</div>
 	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">

@@ -243,4 +243,9 @@ public class PostScriptImpl implements PostScriptDataInter{
 	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list) {
 		return postScriptDao.pdEdit(list.getPs_no());
 	}
+	
+	@Override
+	public void psDataUpdate() {
+		postScriptDao.psDataUpdate();
+	}
 }
