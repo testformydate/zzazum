@@ -24,7 +24,7 @@ public class MailService {
         helper.setTo(email);
         helper.setSubject("MyDate 인증 메일");
         mimeMessage.setContent("<p>안녕하세요! MyDate입니다.</p><p>다음의 링크를 누르시면 회원인증이 됩니다.</p>"
-        		+ "<a target='_blank' href='http://localhost:8080/mydate/member/loginAuthentication?mem_auth="+hashcode + "'>"
+        		+ "<a target='_blank' href='http://221.151.185.42:8080/mydate/member/loginAuthentication?mem_auth="+hashcode + "'>"
         		+ hashcode + "</a></p><p>Enjoy your hangout with MyDate!</p>", "text/html; charset=utf-8");
         mailSender.send(mimeMessage);
     }
@@ -37,7 +37,7 @@ public class MailService {
     	helper.setSubject(nick + "님이 MyDate에 초대하셨습니다!");
     	mime.setContent("<h3>안녕하세요, 데이트 동반자 MyDate입니다!</h3>"
     			+ "<p>" + nick + "님과 함께 아름다운 추억을 만들어 보세요!</p>"
-    			+ "<p><a href='http://localhost:8080/mydate/member/memberinsview'>MyDate</a>는 당신을 기다리고 있습니다.</p>"
+    			+ "<p><a href='http://221.151.185.42:8080/mydate/member/memberinsview'>MyDate</a>는 당신을 기다리고 있습니다.</p>"
     			+ "<p>Enjoy your hangout with MyDate!</p>", "text/html; charset=utf-8");
     	mailSender.send(mime);
     }

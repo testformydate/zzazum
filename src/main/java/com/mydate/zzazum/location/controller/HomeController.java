@@ -50,6 +50,7 @@ public class HomeController {
 		ArrayList<PostScriptList> postList = postService.psListAll();
 		//System.out.println(postList);
 		modelAndView.addObject("psList", postList);
+		modelAndView.addObject("psListCnt", postService.psListCnt());
 		
 		/*modelAndView.setViewName("planner");*/
 		/*modelAndView.setViewName("navitest");*/

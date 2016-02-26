@@ -53,13 +53,15 @@ text-align: center;
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#cm_wr").click(function(){
+	alert("성인인증이 필요합니다.");
+	location.href = "http://221.151.185.42:8080/mydate/member/loading";
+	/* $("#cm_wr").click(function(){
 		//alert("aa");
 		location.href = "cm_wrview?part_no="+${part_no};
 	});
 	$("#cm_searchs").click(function(){
 		cm_form_search.submit();
-	})
+	}) */
 });
 
 function detail(cm_no){

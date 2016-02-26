@@ -17,6 +17,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/icons/**" location="/resources/icons/" />
 	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/slide/**" location="/resources/slide/" />
 	
 	<!-- <default-servlet-handler/> -->
 

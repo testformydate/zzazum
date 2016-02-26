@@ -225,4 +225,9 @@ public class PlannerController {
 		
 		return clipedList;
 	}
+	
+	@RequestMapping("presentation")
+	public String ppt(){
+		return "presentation";
+	}
 }

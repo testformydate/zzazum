@@ -82,6 +82,6 @@ public interface LocationDao {
 	@Select("select ps_no from md_clip where mem_id=#{mem_id}")
 	public ArrayList<String> selectClipedNo(String mem_id);
 	
-	@Select("select * from md_postscript inner join md_clip on md_clip.ps_no = md_postscript.ps_no where md_clip.mem_id=#{mem_id} order by ps_date desc limit 0,10")
+	@Select("select * from vmd_pslistall inner join md_clip on md_clip.ps_no = vmd_pslistall.ps_no where md_clip.mem_id=#{mem_id} order by ps_date desc limit 0,10")
 	public ArrayList<PostScriptList> selectMyListAll(String mem_id);
 }

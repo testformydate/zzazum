@@ -14,7 +14,7 @@
 $(document).ready(function(){
 	$("#cm_up").click(function(){
 		location.href = "cm_upview?sm=${cm_Detail.cm_no}";
-	});	
+	});	s
 
 	$("#cm_del").click(function(){
 		if(confirm("정말 삭제할까요?") == true){
