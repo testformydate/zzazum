@@ -264,6 +264,7 @@ public class PostScriptController {
 				model.addObject("main_val", "ps_insert_card"+Integer.toString(i+1));
 			}
 		}
+		
 		model.addObject("psDSize", pdList.size());
 		model.addObject("psLo", locationDataService.selectLoCate());
 		model.addObject("psDM", psList);
@@ -273,5 +274,24 @@ public class PostScriptController {
 		return model;
 	}
 	
+	@RequestMapping(value="psDataUpdate")
+	public ModelAndView psDataUpdate(PostScriptDetail bean){
+		ModelAndView model = new ModelAndView();
+		
+		postScriptService.psDataUpdate(bean);
+		
+		
+		model.setViewName("redirect:/psListAll");
+		return model;
+	}
+	
+	@RequestMapping(value="psUpdateCancel")
+	public ModelAndView psUpdateCancel(PostScriptDetail bean){
+		ModelAndView model = new ModelAndView();
+		
+		postScriptService.psUpdateCancel(bean.getPs_no());
+		model.setViewName("redirect:/psListAll");
+		return model;
+	}
 
 }

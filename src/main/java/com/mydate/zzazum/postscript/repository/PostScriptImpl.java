@@ -188,7 +188,6 @@ public class PostScriptImpl implements PostScriptDataInter{
 			
 			upload(pd.getPd_image());
 		}
-		postScriptDao.tmepFielDe(mem_id);
 		return 0;
 	}
 	
@@ -242,5 +241,51 @@ public class PostScriptImpl implements PostScriptDataInter{
 	@Override
 	public ArrayList<PostScriptDetail> pdEdit(PostScriptList list) {
 		return postScriptDao.pdEdit(list.getPs_no());
+	}
+	
+	@Override
+	public void pdDataUpdate(PostScriptDetail bean) {
+		PostScriptList ps = new PostScriptList();
+		int main_num = Integer.parseInt(bean.getMain_img().substring(14))-1;
+		System.out.println(main_num);
+		String mem_id = bean.getPd_email();
+		int ps_no = bean.getPs_no();
+		
+		ps.setPs_no(ps_no);
+		ps.setPs_image(bean.getPd_images()[main_num]);
+		ps.setPs_title(bean.getPs_title());
+		ps.setPs_context(bean.getPd_contexts()[main_num]);
+		ps.setPs_location(bean.getPd_location());
+
+		postScriptDao.psDataUpdate(ps);
+		
+		postScriptDao.psExistDelete(ps_no);			
+		
+		point : for(int i=0; i < bean.getPd_images().length; i++){
+			PostScriptDetail pd = new PostScriptDetail();
+			
+			if(bean.getDeleteFile() != null){
+				for(String deFi : bean.getDeleteFile()){
+					if(bean.getPd_images()[i].equals(deFi)){
+						continue point;
+					}
+				}
+			}
+			pd.setPs_no(ps_no);
+			pd.setPl_id(bean.getPl_ids()[i]);
+			pd.setPd_email(mem_id);
+			pd.setPd_context(bean.getPd_contexts()[i]);
+			pd.setPd_image(bean.getPd_images()[i]);
+			
+			postScriptDao.pdDataInsert(pd);
+			upload(pd.getPd_image());
+		}
+	}
+	
+	@Override
+	public void psUpdateCancel(int ps_no) {
+		for(PostScriptDetail pd: postScriptDao.psDetail(ps_no)){
+			upload(pd.getPd_image());
+		}
 	}
 }
