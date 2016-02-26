@@ -21,6 +21,11 @@ public class LocationDataImpl implements LocationDataInter{
 	private LocationDao locationUpdateDao;
 	
 	@Override
+	public String psListCnt() {
+		return locationUpdateDao.psListCnt();
+	}
+	
+	@Override
 	public boolean insertApiData(LocationVo location) throws DataAccessException {
 		return locationUpdateDao.insertApiData(location);
 	}
@@ -113,5 +118,10 @@ public class LocationDataImpl implements LocationDataInter{
 	@Override
 	public ArrayList<String> selectClipedNo(String mem_id) {
 		return locationUpdateDao.selectClipedNo(mem_id);
+	}
+	
+	@Override
+	public ArrayList<PostScriptList> selectMyListAll(String mem_id) {
+		return locationUpdateDao.selectMyListAll(mem_id);
 	}
 }

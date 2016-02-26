@@ -32,6 +32,10 @@ public class LocationDataService{
 	@Autowired
 	private LocationDao locationDao;
 	
+	public String psListCnt(){
+		return locationDao.psListCnt();
+	}
+	
 	public boolean insertApiData(LocationVo location) throws DataAccessException,IOException {
 		return locationDao.insertApiData(location);
 	}
@@ -141,5 +145,9 @@ public class LocationDataService{
 	
 	public ArrayList<String> selectClipedNo(String mem_id){
 		return locationDao.selectClipedNo(mem_id);
+	}
+
+	public ArrayList<PostScriptList> selectMyListAll(String mem_id){
+		return locationDao.selectMyListAll(mem_id);
 	}
 }

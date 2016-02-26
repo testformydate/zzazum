@@ -527,6 +527,10 @@ $(document).ready(function(){
 		  <a href="${path}/home">메인으로</a>
 		  <a href="${path}/planner">데이트 짜기</a>
 		  <a href="${path}/psListAll">데이트 후기</a>
+		  <%	if(mem==null){ %>
+		  <% }else{ %>
+		  <a href="${path}/member/membermypage">내 컬렉션</a>
+		  <%} %>
 		  <a href="${path}/community/cm_list?part_no=0">커뮤니티</a>
 		  <a href="#">Contact</a>
 		</div>
@@ -560,6 +564,11 @@ $(document).ready(function(){
 							<div class="member"><a class="pageLinks" href="${path}/member/memberinsview">회원가입</a></div>
 						</div>
 						<% }else{ %>
+							<div class="memberDetail">
+								<div class="member"><a class="pageLinks" href="${path}/member/memberlogout">로그아웃</a></div>
+								<div class="member"><a class="pageLinks" href="${path}/member/membermypage">마이페이지</a></div>
+								<c:set var="mem_id" value="<%=mem %>" />
+							</div>
 							<div id="memberUpload" class="memberUpload">업로드</div>
 							<div class="memberImgWrapper"><img id="memberDetailBtn" class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
 							<div class="memberDetail">

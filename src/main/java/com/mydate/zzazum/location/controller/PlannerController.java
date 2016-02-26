@@ -51,11 +51,13 @@ public class PlannerController {
 		ArrayList<PostScriptList> postList = postService.psListAll();
 		ArrayList<CategoryVo> categoryList = service.selectCategoryAllData();
 		ArrayList<LocationCategory> locationList = service.selectLoCate();
+		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("psList", postList);
 		modelAndView.addObject("categoryList", categoryList);
 		modelAndView.addObject("locationList", locationList);
-		
+		modelAndView.addObject("psListSize", service.psListCnt())
+;		
 		if(mem_id == null || mem_id.equals("")) {
 			modelAndView.setViewName("planner");
 			return modelAndView;
