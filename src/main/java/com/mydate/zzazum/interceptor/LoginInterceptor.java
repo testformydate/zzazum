@@ -28,6 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		}else{
 			if(!memberService.memberInfo(mem_id).getMem_auth().equals("auth")){
 				/*response.sendRedirect("home");*/
+				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
 				out.println("<html><body>");
 				out.println("<script>alert('이메일 인증이 필요합니다.');"

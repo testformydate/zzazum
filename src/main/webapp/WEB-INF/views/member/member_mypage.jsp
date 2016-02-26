@@ -9,7 +9,66 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/home_cardlayout.css" />">
 <style type="text/css">
 .myInfos{
-	margin-top:100px;
+	margin:100px auto;
+	width:100%;
+	height:150px;
+}
+
+.myInfo{
+	width:60%;
+	margin:auto;
+}
+
+.infoImgWrapper{
+	float:left;
+}
+
+.infoImg{
+	width:138px;
+	height:138px;
+	border:1px solid lightgray;
+	border-radius:6px;
+	cursor:default;
+}
+
+.infoTextWrapper{
+	float:left;
+	margin: 20px 20px;
+}
+
+.memberEmail{
+	float:left;
+	font-weight:bold;
+    font-size: 1.17em;
+    margin-bottom:10px;
+}
+
+.editBtnWrapper{
+	float:left;
+	margin-left:10px;
+	font-size:0.8em;
+}
+
+.editBtn{
+	width:15px;
+	cursor:pointer;
+	margin-right:5px;
+}
+
+.cards{
+	width:100%;
+	margin-top:0;
+	background-color:#ededed;
+}
+
+.cardarea{
+	margin:auto;
+	padding-top:20px;
+	width:80%;
+}
+
+.memberNick{
+	display:inline-block;
 }
 </style>
 </head>
@@ -17,14 +76,23 @@
 <!-- <a href="memberupview">수정</a>
 <a href="memberdel">회원탈퇴</a> -->
 <div class="body">
-<div class="myInfos">
-	<div class="memberImgWrapper"><img class="tooltipImg" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
-</div>
+	<div class="myInfos">
+		<div class="myInfo">
+			<div class="infoImgWrapper"><img class="infoImg" src="${path}/resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
+			<div class="infoTextWrapper">
+				<div class="memberEmailWrapper">
+					<div class="memberEmail"><%=session.getAttribute("mem_id") %></div>
+					<div class="editBtnWrapper"><img class="editBtn" src="${path}/resources/icons/edit_gear.png">edit</div>
+				</div>
+				<div class="memberNick"><%=session.getAttribute("mem_nick") %></div>
+			</div>
+		</div>
+	</div>
 <div id="cards" class="cards">
 					<div id="cardarea" class="cardarea">
 						<c:forEach var="p" items="${psList}">
 							<div class="card">
-								<img class="cardImg" src="resources/ps_images/postscript/${p.ps_image}">
+								<img class="cardImg" src="${path}/resources/ps_images/postscript/${p.ps_image}">
 								<div id="${p.ps_no}" class="cardTitle">${p.ps_title}</div>
 								<div class="cardWriter">
 									<div class="likeAndComment">
@@ -35,13 +103,13 @@
 									</div>
 								</div>
 								<div class="cardBottom">
-									<img class="cardProfile" src="<c:url value="resources/ps_images/profile/${p.mem_primg}" />"><span class="count">${p.mem_nick}</span>
+									<img class="cardProfile" src="${path}/resources/ps_images/profile/${p.mem_primg}"><span class="count">${p.mem_nick}</span>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
-				<div id="loading" class="sk-fading-circle">
+				<!-- <div id="loading" class="sk-fading-circle">
 				  <div class="sk-circle1 sk-circle"></div>
 				  <div class="sk-circle2 sk-circle"></div>
 				  <div class="sk-circle3 sk-circle"></div>
@@ -54,7 +122,7 @@
 				  <div class="sk-circle10 sk-circle"></div>
 				  <div class="sk-circle11 sk-circle"></div>
 				  <div class="sk-circle12 sk-circle"></div>
-				</div>
+				</div> -->
 		<input type="hidden" id="psListSize" value="${psListSize }">
 		</div>
 </body>
