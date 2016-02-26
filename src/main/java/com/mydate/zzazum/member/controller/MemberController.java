@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mydate.zzazum.location.service.LocationDataService;
 import com.mydate.zzazum.member.service.MailService;
 import com.mydate.zzazum.member.service.MemberService;
 import com.mydate.zzazum.member.vo.MemberVo;
@@ -27,6 +28,9 @@ public class MemberController {
 	@Autowired
 	@Qualifier("memberService")
 	private MemberService memberService;
+	
+	@Autowired
+	private LocationDataService myService;
 	
 	@Autowired
 	private MailService mailService;
@@ -126,9 +130,12 @@ public class MemberController {
 	
 	//마이페이지로 이동하기 위한 컨트롤러
 	@RequestMapping("membermypage")
-	public String memberMyPage(){
-		
-		return"member/member_mypage";
+	public ModelAndView memberMyPage(HttpSession session){
+		ModelAndView model = new ModelAndView();
+		String mem_id = (String)session.getAttribute("mem_id");
+		model.addObject("psList", myService.selectMyListAll(mem_id));
+		model.setViewName("member/member_mypage");
+		return model;
 	}
 	
 	//회원 정보 수정뷰로 이동하기 위한 컨트롤러

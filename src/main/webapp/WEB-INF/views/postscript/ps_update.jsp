@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<c:set var="mainVal" value='${pdC.pd_image}' />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,11 +15,10 @@
 <script type="text/javascript">
 var card_imgNum="";
 var main_imgNum="none";
-var count = 0;
+var count = '${psDSize }';
 $(document).ready(function(){
-	
-	$(".ps_loading").hide;
-	
+	setting();
+
 });
 
 function modal(card_id, fileName){
@@ -191,6 +191,16 @@ function fileTag(){
 function psBack(){
 	history.back();
 }
+
+function setting(){
+	$('#${psDM.ps_location}').attr("selected","selected");
+	for(i=0; i <'${psDSize }'; i++){
+		if($(".ps_insert_card" + i).val() !=""){
+			$("#ps_insert_card" + i).css("border-color", "#69D2E7");
+		}
+	}
+	$("#" +$("#main_val").val()).css("border-color", "red");
+}
 </script>
 </head>
 <body>
@@ -199,9 +209,9 @@ function psBack(){
 	<form id="insertSubmit" enctype="multipart/form-data" method="post">
 	<div class="ps_insert_location">
 	<select name="pd_location" id="pd_lc" onchange="modalLocation()">
-		<option value="none" selected="selected">지역선택 해주세요</option>
+		<option value="none" >지역선택 해주세요</option>
 		<c:forEach var="lc" items="${psLo}">
-			<option value="${lc.lc_val}">${lc.lc_name}</option>
+			<option id="${lc.lc_val}" value="${lc.lc_val}">${lc.lc_name}</option>
 		</c:forEach>
 	</select>
 	</div>
@@ -234,11 +244,13 @@ function psBack(){
 		<input type="button" value="작성" onclick="insertSubmit()">
 		<input type="button" value="취소" onclick="hisBack()">
 	</div>
-	<input type="hidden" id="main_val" name="main_img" value="">
 	<input type="hidden" name="pd_email" value="<%=session.getAttribute("mem_id") %>">
-	<input type='hidden' value='' name='pd_images'>
-	<input type='hidden' class='ps_insert_card' value='' name='pd_contexts'>
-	<input type='hidden' class='ps_insert_card' value='' name='pl_ids'>	
+	<input type="hidden" id="main_val" name="main_img" value="${main_val }">
+	<c:forEach var="pdC" items="${psD }" varStatus="list">
+		<input type='hidden' class='ps_insert_card${list.count}' value='${pdC.pd_context}' name='pd_contexts'>
+		<input type='hidden' value='${pdC.pd_image }' name='pd_images'>
+		<input type='hidden' class='ps_insert_card${list.count}_loc' value='${pdC.pl_id }' name='pl_ids'>
+	</c:forEach>
 	</form>
 </div>
 <div id="openModal" class="modal">

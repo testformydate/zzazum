@@ -36,6 +36,9 @@ public interface LocationDao {
 	@Select("select ps_no from md_pslike where mem_id=#{mem_id}")
 	public ArrayList<String> selectLikedNo(String mem_id);
 	
+	@Select("select count(*) from md_postscript")
+	public String psListCnt();
+	
 	//For search
 	
 	@Insert("insert into md_searchkeyword(k_mid, k_word, k_sdate) values(#{k_mid},#{k_word}, now())")
@@ -78,4 +81,7 @@ public interface LocationDao {
 	
 	@Select("select ps_no from md_clip where mem_id=#{mem_id}")
 	public ArrayList<String> selectClipedNo(String mem_id);
+	
+	@Select("select * from md_postscript inner join md_clip on md_clip.ps_no = md_postscript.ps_no where md_clip.mem_id=#{mem_id} order by ps_date desc limit 0,10")
+	public ArrayList<PostScriptList> selectMyListAll(String mem_id);
 }
