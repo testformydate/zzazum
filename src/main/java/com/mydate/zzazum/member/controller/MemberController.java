@@ -178,13 +178,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="loginAuthentication", method=RequestMethod.GET)
-	public ModelAndView loginAuthentication(@RequestParam("mem_auth") String mem_hash){
+	public ModelAndView loginAuthentication(@RequestParam("mem_auth") String mem_hash, HttpServletResponse response) throws IOException{
 		ModelAndView model = new ModelAndView();
 		boolean b = memberService.loginAuthentication(mem_hash);
 		
 		if(b){
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<html><body>");
+			out.println("<script>alert('인증 성공!');"
+		      		+ "location.href='/mydate/home';</script>");
+			out.println("</body></html>");
+			out.close();
 			model.setViewName("redirect:/home");
 		}else{
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<html><body>");
+			out.println("<script>alert('인증에 실패했습니다.');"
+		      		+ "location.href='/mydate/home';</script>");
+			out.println("</body></html>");
+			out.close();
 			model.setViewName("authFail");
 		}
 		

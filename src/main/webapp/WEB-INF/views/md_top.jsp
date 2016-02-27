@@ -570,13 +570,13 @@ $(document).ready(function(){
 								<c:set var="mem_id" value="<%=mem %>" />
 							</div>
 							<div id="memberUpload" class="memberUpload">업로드</div>
-							<div class="memberImgWrapper"><img id="memberDetailBtn" class="cardProfile" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
+							<div class="memberImgWrapper"><img id="memberDetailBtn" class="cardProfile" src="${path}/resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></div>
 							<div class="memberDetail">
 								<div>
 									<div class="member"><a class="idLink" href="${path}/member/membermypage"><%=session.getAttribute("mem_id") %></a></div>
 								</div>
 								<div>
-									<div class="memberImgWrapper"><a href="${path}/member/memberupview"><img class="tooltipImg" src="resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></a></div>
+									<div class="memberImgWrapper"><a href="#"><img class="tooltipImg" src="${path}/resources/ps_images/profile/<%=session.getAttribute("mem_primg") %>"></a></div>
 								</div>
 								<div style="margin-top:10px;border-top:1px solid lightgray;padding-top:10px;">
 									<div id="mypageBtn" class="member"><a class="pageLinks" href="${path}/member/membermypage">내 정보 보기</a></div>
